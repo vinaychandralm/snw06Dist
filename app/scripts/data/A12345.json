@@ -1,0 +1,31 @@
+{
+    "courses": {
+        "_get": [
+            {"course_id": "C1_12345", "course_name": "Test Course One"},
+            {"course_id": "C1_12345", "course_name": "Test Course Two"},
+            {"course_id": "C1_12345", "course_name": "Test Course Three"}
+        ]
+
+    },
+    "course_status": {
+        "_get": [
+            {"name": "Active", "value": "active"},
+            {"name": "Inactive", "value": "inactive"},
+            {"name": "All", "value": "all"}
+        ]
+    },
+    "student": {
+        "_get": [
+            {"student_id": "S1_12345", "student_name": "Test One"},
+            {"student_id": "S2_12345", "student_name": "Test Two"},
+            {"student_id": "S3_12345", "student_name": "Test Three"}
+        ]
+    },
+    "enrollment_status": {
+        "_get": [
+            {"name": "Active", "value": "active"},
+            {"name": "Inactive", "value": "inactive"},
+            {"name": "All", "value": "all"}
+        ]
+    }
+}

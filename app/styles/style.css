@@ -1,0 +1,105 @@
+body{
+	background:#62ccfe;
+	}
+.row-content{
+	/*width: 872px;
+	margin:0 auto;*/
+	text-align:center;
+	}
+.row-content .block{
+	width:175px;
+	min-height:175px;
+	background:#fff;
+	border-radius:5px;
+	overflow:hidden;
+	display:inline-block;
+	position:relative;
+	cursor:pointer;
+	margin:25px 20px 0 20px;
+	-webkit-box-shadow: 3px 0px 5px -2px rgba(0,0,0,0.34);
+	-moz-box-shadow: 3px 0px 5px -2px rgba(0,0,0,0.34);
+	box-shadow: 3px 0px 5px -2px rgba(0,0,0,0.34);
+	}
+.row-content .block .round{
+	width:106px;
+	height:106px;
+	background:#66cc33;
+	border-radius:100px;
+	display:inline-block;
+	position:relative;
+	margin-top: 15px;
+	}
+.row-content .block .round img{
+	max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+	}	
+.row-content .block .text{
+	position:absolute;
+	height:36px;
+	background:#66cc33;
+	width:100%;
+	bottom:0px;
+	}
+.row-content .block .text p{
+	line-height:36px;
+	color:#fff;
+	text-align:center;
+	font-size:12px;
+	}
+.form-submit button{
+	margin:0 0 0 5px;
+	}	
+.form-submit button.btn{
+	background:#2196f3;
+	color:#fff;
+	border-radius:10px;
+	padding:10px 12px;
+	width:80px;
+	outline:none;
+	}	
+.title{
+	padding-bottom:20px;
+	border-bottom:1px solid #2196f3;
+	}
+.checkbox{
+	padding:0px;
+	}	
+.student-form p{
+	margin:0;
+	padding:8px 0 0 0;
+	}
+.student-form .textarea-row{
+	height:110px;
+	}
+.student-form .date .input-group-addon{
+	background:inherit;
+	}
+.select-drop .btn-group{
+	width:100%;
+	}
+.select-drop .btn-group .multiselect{
+	width:100%;
+	text-align:left;
+	}		
+@media only screen and (max-width: 900px) {
+		.row-content .block {
+		width: 40%;
+		margin: 25px 3% 0 3%;
+		}
+	}		
+@media only screen and (max-width: 500px) {
+		.row-content .block {
+		width: 100%;
+		margin: 25px 0 0 0;
+		}
+	}
+	
+					

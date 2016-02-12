@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="col-md-12 student-form">
+        <div class="row form-group">
+            <div class="col-md-12">
+                <h2 class="title">Student Activity Details Report</h2>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-2">
+                <p>Course(s):<span class="field-alert">*</span></p>
+            </div>
+            <div class="col-md-6">
+
+                <multiselect ng-model="multiselectModelcourse" options="c.title for c in courseArr" data-multiple="true" data-checkall="All Courses">
+                </multiselect>
+                <span class="field-alert" ng-show='courseNotSelected'>please select atleast one course.</span>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-md-2">
+                <p>Enrollment Status:</p>
+            </div>
+            <div class="col-md-6">
+
+                <multiselect ng-model="multiselectModelenrollment" options="c.name for c in enrollmentArr" data-multiple="true"
+                data-checkall="All">
+                </multiselect>
+
+                <span class="field-alert" ng-show='enrllNotSelected'>please select Enrollment Status.</span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-2">
+                <p>Activity Start Date:</p>
+            </div>
+            <div class="col-md-4">
+                <div id="datepicker" class="input-group date " data-date-format="mm-dd-yyyy">
+
+                    <input type="text" class="form-control cal-icon" ng-model="startDateStartActivity" data-max-date={{maxDateStartActivity}}
+                    name="date" bs-datepicker>
+                    <!--<input class="form-control" type="text"  />-->
+                    <!--<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>-->
+                </div>
+                <!--              <span class="field-alert" ng-show='srtDateNotSelected'>Please select.</span>-->
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-md-2">
+                <p>Activity End Date:</p>
+            </div>
+            <div class="col-md-4">
+                <div id="datepicker2" class="input-group date" data-date-format="mm-dd-yyyy">
+                    <!-- <input class="form-control" type="text"  /> -->
+
+                    <input type="text" class="form-control cal-icon" ng-model="startDateEndActivity" name="date" bs-datepicker>
+                    <!--<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>-->
+                </div>
+                <span class="field-alert" ng-show='endDateNotSelected'>Please select activity end date after start date.</span>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-md-2">
+                <p>Include Excused Items?</p>
+            </div>
+            <div class="col-md-2">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Yes
+                    </label>&nbsp;&nbsp;
+
+                    <!-- <label>
+                  <input type="checkbox"> No
+              </label> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="row form-submit">
+            <div class="col-md-12">
+                <button type="submit" class="btn pull-right" ng-click="submitStudentInfo()">OK</button>
+                <button type="submit" class="btn pull-right disabled">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
