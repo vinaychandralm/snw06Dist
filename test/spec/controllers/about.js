@@ -98,6 +98,63 @@ describe('getStudentCourseData', function () {
 
 });
 
+describe('notAuthenticated', function () {
+
+    // load the controller's module
+    beforeEach(module('studentActivityReports.factories'));
+
+    var scope, notAuthenticated, rootScope;
+    
+
+    //   // Initialize the controller and a mock scope
+    beforeEach(inject(function ($rootScope, _notAuthenticated_) {
+        rootScope = $rootScope;
+        scope = $rootScope.$new();
+        notAuthenticated = _notAuthenticated_;
+        
+    }));
+
+    it('should authenticationErr return true', function () {
+        rootScope.netErr = true;
+        rootScope.authenticationErr = false;
+        rootScope.loadingText = true;
+        notAuthenticated._showErrorMsg();
+        expect(rootScope.netErr).toBe(false);
+        expect(rootScope.authenticationErr).toBe(true);
+        expect(rootScope.loadingText).toBe(false);
+    });
+
+});
+
+
+describe('noNetError', function () {
+
+    // load the controller's module
+    beforeEach(module('studentActivityReports.factories'));
+
+    var scope, noNetError, rootScope;
+    
+
+    //   // Initialize the controller and a mock scope
+    beforeEach(inject(function ($rootScope, _noNetError_) {
+        rootScope = $rootScope;
+        scope = $rootScope.$new();
+        noNetError = _noNetError_;
+        
+    }));
+
+    it('should netErr return true', function () {
+        rootScope.netErr = false;
+        rootScope.authenticationErr = true;
+        rootScope.loadingText = true;
+        noNetError._showNetErrorMsg();
+        expect(rootScope.netErr).toBe(true);
+        expect(rootScope.authenticationErr).toBe(false);
+        expect(rootScope.loadingText).toBe(false);
+    });
+
+});
+
 
 
 describe('getEnrollmentStatus', function () {
