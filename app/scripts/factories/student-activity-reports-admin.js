@@ -1,4 +1,5 @@
-'use strict'
+"use strict";
+
 var factoryModule = angular.module('studentActivityReportsAdmin.factories', []);
 
 

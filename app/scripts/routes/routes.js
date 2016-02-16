@@ -1,3 +1,5 @@
+"use strict";
+
 var routingModule = angular.module("studentActivityReports.routing", []);
 
 
