@@ -47,10 +47,36 @@ module.exports = function(config) {
     // list of files / patterns to exclude
     exclude: [
     ],
-
+	preprocessors: {
+      // source files, that you wanna generate coverage for 
+      // do not include tests or libraries 
+      // (these files will be instrumented by Istanbul) 
+      'app/**/*.js': ['coverage']
+    },
+	// test results reporter to use
+    // possible values: 'dots', 'progress'
+    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+    reporters: ['dots', 'coverage', 'junit'],
+	// optionally, configure the reporter
+	junitReporter: {
+	   outputDir: './build',
+       outputFile: 'reports/junit/test-reports.xml',
+       suite: ''
+    },
+    coverageReporter: {
+	   dir: './build/reports/coverage',
+	   reporters: [
+	   { type: 'html', subdir: 'report-html' },
+	   { type: 'cobertura', subdir: 'report-cobertura' }
+	   ]
+      //to generate html code coverage reports
+      // type: 'html',
+      //to generate cobertura code coverage report
+    },
     // web server port
     port: 7869,
 
+	
     // Start these browsers, currently available:
     // - Chrome
     // - ChromeCanary
@@ -65,13 +91,15 @@ module.exports = function(config) {
 
     // Which plugins to enable
     plugins: [
+	  "karma-coverage",
+	  "karma-junit-reporter",
       "karma-phantomjs-launcher",
       "karma-jasmine"
     ],
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false,
+    singleRun: true,
 
     colors: true,
 
