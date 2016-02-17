@@ -161,21 +161,17 @@ describe('getEnrollmentStatus', function () {
 
     // load the controller's module
     beforeEach(module('studentActivityReports.factories'));
-
-    //   var AboutCtrl,
-    //     scope;
-
-    //   // Initialize the controller and a mock scope
-    //   beforeEach(inject(function ($controller, $rootScope) {
-    //     scope = $rootScope.$new();
-    //     AboutCtrl = $controller('AboutCtrl', {
-    //       $scope: scope
-    //       // place here mocked dependencies
-    //     });
-    //   }));
+     var scope, getEnrollmentStatus, rootScope;
+      beforeEach(inject(function ($rootScope, _getEnrollmentStatus_) {
+        rootScope = $rootScope;
+        scope = $rootScope.$new();
+        getEnrollmentStatus = _getEnrollmentStatus_;
+        
+    }));
 
     it('should return static value', function () {
-        expect([
+        var get=getEnrollmentStatus.get();
+        expect(get).toEqual([
             {
                 id: 0,
                 name: "Active"
@@ -186,7 +182,7 @@ describe('getEnrollmentStatus', function () {
             },
             {
                 id: 2,
-                name: "WithdrawnFailed"
+                name: "WithdrawnFailed" 
             },
             {
                 id: 3,

@@ -1,6 +1,7 @@
 <!doctype html>
 <html ng-app="studentActivityReports">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Student Activity Reports</title>
     <meta name="description" content="">
@@ -14,20 +15,22 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-      <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/style.css">
     <!-- endbuild -->
-  </head>
-  <body ng-class="{'sky-blue': (isblue)}">
-        <div id='overLay' class='overlayDiv' ng-show='showoverlay'>
-          <div class = 'centerDiv'>  <h1 id='loadingtextH1' ng-show="loadingText">Loading....</h1>
-            
-            <h2 id='onNetErrorH2'class='' ng-show="netErr">"Sorry, something went wrong. Please try again after sometime"</h2>
-            <h2 id='onServiceErrorH2'class='' ng-show="authenticationErr">"Sorry, you are not authorized to access the reports. Please contact the administrator"</h2>
-            </div>
+</head>
+
+<body ng-class="{'sky-blue': (isblue)}">
+    <div id='overLay' class='overlayDiv' ng-show='showoverlay'>
+        <div class='centerDiv'>
+            <h1 id='loadingtextH1' ng-show="loadingText">Loading....</h1>
+
+            <h2 id='onNetErrorH2' class='' ng-show="netErr">"Sorry, something went wrong. Please try again after sometime"</h2>
+            <h2 id='onServiceErrorH2' class='' ng-show="authenticationErr">"Sorry, you are not authorized to access the reports. Please contact the administrator"</h2>
         </div>
+    </div>
 
 
-        <div  ng-view="" ></div>
+    <div ng-view=""></div>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -50,31 +53,32 @@
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-<!--
+    <!--
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/about.js"></script>
 -->
     <!-- endbuild -->
-        <!-- Directives -->
-        <script src="scripts/directives/student-activity-reports-directive.js" type="text/javascript"></script>
-        <!-- End Directives -->
-        <!-- Routes -->
-        <!-- End Routes -->
-        <!-- Services -->
-        <script src="scripts/factories/student-activity-reports-factory.js" type="text/javascript"></script>
-        <script src="scripts/factories/student-activity-reports-teacher.js" type="text/javascript"></script>
-        <script src="scripts/factories/student-activity-reports-admin.js" type="text/javascript"></script>
-        <!-- End Services -->
-        <!-- Controllers -->
-        <script src="scripts/controllers/main-ctrl.js" type="text/javascript"></script>
-        <script src="scripts/controllers/student-activity-reports.js" type="text/javascript"></script>
-        <script src="scripts/controllers/teacher_ctrl.js" type="text/javascript"></script>
-        <script src="scripts/controllers/admin_ctrl.js" type="text/javascript"></script>
-        <!-- End Controllers -->
-        <!-- Main Entry FIle (Should be loaded after loading all module dependencies) -->
-       <script src="scripts/routes/routes.js" type="text/javascript"></script>
-        <script src="scripts/app.js" type="text/javascript"></script>
-        <!-- End Main Entry File -->
+    <!-- Directives -->
+    <script src="scripts/directives/student-activity-reports-directive.js" type="text/javascript"></script>
+    <!-- End Directives -->
+    <!-- Routes -->
+    <!-- End Routes -->
+    <!-- Services -->
+    <script src="scripts/factories/student-activity-reports-factory.js" type="text/javascript"></script>
+    <script src="scripts/factories/student-activity-reports-teacher.js" type="text/javascript"></script>
+    <script src="scripts/factories/student-activity-reports-admin.js" type="text/javascript"></script>
+    <!-- End Services -->
+    <!-- Controllers -->
+    <script src="scripts/controllers/main-ctrl.js" type="text/javascript"></script>
+    <script src="scripts/controllers/student-activity-reports.js" type="text/javascript"></script>
+    <script src="scripts/controllers/teacher_ctrl.js" type="text/javascript"></script>
+    <script src="scripts/controllers/admin_ctrl.js" type="text/javascript"></script>
+    <!-- End Controllers -->
+    <!-- Main Entry FIle (Should be loaded after loading all module dependencies) -->
+    <script src="scripts/routes/routes.js" type="text/javascript"></script>
+    <script src="scripts/app.js" type="text/javascript"></script>
+    <!-- End Main Entry File -->
 </body>
+
 </html>
