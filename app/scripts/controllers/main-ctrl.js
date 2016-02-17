@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 var constantModule = angular.module('constant', []);
 
 constantModule.constant('$theme', {
@@ -30,7 +30,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
 
      validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token)
          .then(function onsuccess(response) {
-            console.log($routeParams.token + " $routeParams.token")
+            console.log($routeParams.token + " $routeParams.token");
             console.log(response.data);
             
             if(response.data.messageType ==="ERROR"){
@@ -45,7 +45,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
          }, function onError(errResponse) {
              console.log("err Response ", errResponse);
             noNetError._showNetErrorMsg();
-             $scope.blockUser(errResponse)
+             $scope.blockUser(errResponse);
          });
 
     $scope.showTiles = function (authResponse) {
@@ -70,12 +70,12 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
             $rootScope.admindetail = authResponse;
 
         }
-    }
+    };
     $scope.blockUser = function (authResponse) {
         console.log(authResponse);
         // $scope.courseArr=studentCourse.data.course;
         console.log(authResponse);
-    }
+    };
 
 
 //    $scope.role = 'admin';

@@ -1,5 +1,5 @@
-'use strict'
-var xyz = null;
+'use strict';
+
 var sarModule = angular.module('teacherActivityReports.teacherDetails', []);
 sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'getDataCourseTeacher',
     'getEnrollmentStatus', 'getDataStudentTeacher','notAuthenticated','noNetError',
@@ -123,7 +123,7 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             var startDateActivity = new Date($scope.startDateStartActivity);
             var endDateActivity = new Date($scope.startDateEndActivity);
             if (startDateActivity > endDateActivity) {
-                $scope.endDateNotgreater = true
+                $scope.endDateNotgreater = true;
             }
             else {
                 $scope.endDateNotgreater = false;
@@ -133,7 +133,7 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParam
                 $scope.statusNotSelected = true;
             } else {
                 $scope.statusNotSelected = false;
-            };
+            }
       
             //TODO for Status select option  $scope.statusNotSelected = true;
   
@@ -147,11 +147,11 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             } else {
                 $scope.studentNotSelected = false;
             }
-            if ($scope.input == undefined || $scope.input == null) {
+            if ($scope.input === undefined || $scope.input === null) {
                 $scope.minimumMinut = true;
             } else {
                 $scope.minimumMinut = false;
-            };
+            }
         };
 
         // Success callback

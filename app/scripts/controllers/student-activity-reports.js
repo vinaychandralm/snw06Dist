@@ -1,5 +1,5 @@
-'use strict'
-var xyz = null;
+'use strict';
+
 var sarModule = angular.module('studentActivityReports.studentDetails', []);
 sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'getDataStudent',
     'getEnrollmentStatus', 'getStudentCourseData','notAuthenticated','noNetError',
@@ -65,7 +65,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             console.log(studentCourse);
             $scope.courseArr = studentCourse.data.course;
 
-        }
+        };
 
 
         $scope.submitStudentInfo = function () {
@@ -74,7 +74,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             var startDateActivity = new Date($scope.startDateStartActivity);
             var endDateActivity = new Date($scope.startDateEndActivity);
             if (startDateActivity > endDateActivity) {
-                $scope.endDateNotSelected = true
+                $scope.endDateNotSelected = true;
             }
             else {
                 $scope.endDateNotSelected = false;
@@ -84,13 +84,13 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
                 $scope.courseNotSelected = true;
             } else {
                 $scope.courseNotSelected = false;
-            };
+            }
 
             if($scope.enrollArr.length===0){
                 $scope.enrllNotSelected = true;
             }else{
                 $scope.enrllNotSelected = false;
-            };
+            }
 
         };
 

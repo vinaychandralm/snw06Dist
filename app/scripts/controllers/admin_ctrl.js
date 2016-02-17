@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 var admModule = angular.module('studentActivityReports.adminDetails', []);
 admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getSchoolData',
     'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse','notAuthenticated','noNetError', function ($scope, $rootScope, $routeParams,
@@ -59,19 +59,19 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
             $scope.allSchoolIdArrays = [];
             console.log(dataresopnse);
             for (var i = 0; i < dataresopnse.data.domains.length; i++) {
-                $scope.allSchoolIdArrays.push(dataresopnse.data.domains[i].id)
+                $scope.allSchoolIdArrays.push(dataresopnse.data.domains[i].id);
             }
             console.log("All Id Array ", $scope.allSchoolIdArrays);
-        }
+        };
 
         $scope.getAllSchollStudentCourseId = function (dataresopnse) {
             $scope.allSchoolStudentIdArrays = [];
             console.log(dataresopnse);
             for (var i = 0; i < dataresopnse.length; i++) {
-                $scope.allSchoolStudentIdArrays.push(dataresopnse[i].id)
+                $scope.allSchoolStudentIdArrays.push(dataresopnse[i].id);
             }
             console.log("All Id Array ", $scope.allSchoolStudentIdArrays);
-        }
+        };
         /*
         * @courseArr: Courses received from server
         * TODO:: modify object structure as per data received.
@@ -128,19 +128,19 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
             console.log(studentCourse);
             $scope.schoolList = studentCourse.data.domains;
             console.log($scope.schoolList);
-        }
+        };
 
         $scope.setDataoFStuds = function (schoolsStudent) {
             console.log(schoolsStudent);
             $scope.schoolStudentList = schoolsStudent;
             console.log($scope.schoolStudentList);
-        }
+        };
 
         $scope.setDataoFSchoolStudsCourse = function (schoolsStudent) {
             console.log(schoolsStudent);
             $scope.schoolStudentCourseList = schoolsStudent;
             console.log($scope.schoolStudentCourseList);
-        } 
+        }; 
     
         
        $scope.OnChangeSchools=function(){
@@ -153,7 +153,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
          getSchoolStudent._get($scope.schoolListIds)
                 .then(function onSuccess(res){
                     console.log("response of _getschool Data  ",res);
-                    if(response.data.messageType ==="ERROR"){
+                    if(res.data.messageType ==="ERROR"){
                         notAuthenticated._showErrorMsg();
                         return;
                     }
@@ -164,7 +164,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
                     getSchoolStudentCourse._get($scope.allSchoolStudentIdArrays)
                     .then(function onSuccess(res){
                         console.log("response of allSchoolStudentIdArrays Data  ",res);
-                        if(response.data.messageType ==="ERROR"){
+                        if(res.data.messageType ==="ERROR"){
                             notAuthenticated._showErrorMsg();
                             return;
                         }
@@ -177,14 +177,14 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
                     console.log("response of _getschool Data Error  ",res);
                     noNetError._showNetErrorMsg();
                 });
-        }
+        };
        $scope.OnChangeStudent=function(){
         
                     
                     getSchoolStudentCourse._get($scope.studentListIds)
                     .then(function onSuccess(res){
                         console.log("response of allSchoolStudentIdArrays Data  ",res);
-                        if(response.data.messageType ==="ERROR"){
+                        if(res.data.messageType ==="ERROR"){
                             notAuthenticated._showErrorMsg();
                             return;
                         }
@@ -194,7 +194,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
                         noNetError._showNetErrorMsg();
                     });  
                
-        }
+        };
 
         $scope.submit = function () {
 
@@ -202,7 +202,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
             var startDateActivity = new Date($scope.startDateStartActivity);
             var endDateActivity = new Date($scope.startDateEndActivity);
             if (startDateActivity > endDateActivity) {
-                $scope.endDateNotgreater = true
+                $scope.endDateNotgreater = true;
             }
             else {
                 $scope.endDateNotgreater = false;
@@ -240,13 +240,13 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
                 $scope.statusNotSelected = true;
             } else {
                 $scope.statusNotSelected = false;
-            };
+            }
             
-            if ($scope.input == undefined || $scope.input == null) {
+            if ($scope.input === undefined || $scope.input === null) {
                 $scope.minimumMinut = true;
             } else {
                 $scope.minimumMinut = false;
-            };
+            }
         };
 
         // Success callback
@@ -281,7 +281,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
                 //console.log($scope.schoolListIds);
             }
             console.log('schoolListIds  ',$scope.schoolListIds);
-            $scope.OnChangeSchools()
+            $scope.OnChangeSchools();
         }, true);
 
 

@@ -7,7 +7,7 @@ var factoryModule = angular.module('studentActivityReportsAdmin.factories', []);
 factoryModule.factory('getSchoolData', function($http) {
 
 http://172.16.9.197:8282/gage-service/service/domain/list/45685236?token=~SKq1BAAAAAALtEkMQ0pw5A.4h2waVknunsG6_6pOweqSB
-    var basePath = "http://172.16.9.197:8282/gage-service/service/domain/list/"
+    var basePath = "http://172.16.9.197:8282/gage-service/service/domain/list/";
     
     return {
         _get: function(userid,__token) {
@@ -26,7 +26,7 @@ http://172.16.9.197:8282/gage-service/service/domain/list/45685236?token=~SKq1BA
 factoryModule.factory('getSchoolStudent', function($http, $rootScope) {
 
 
-    var basePath = "http://172.16.9.197:8282/gage-service/service/student?entitytype=school&entityids="
+    var basePath = "http://172.16.9.197:8282/gage-service/service/student?entitytype=school&entityids=";
     //45685775?roletype=teacher&entitytype=D|C&token=~SKq1BAAAAAALtEkMQ0pw5A.4h2waVknunsG6_6pOweqSB"
     return {
         _get: function(schoolIdsArray) {
@@ -45,7 +45,7 @@ factoryModule.factory('getSchoolStudent', function($http, $rootScope) {
 factoryModule.factory('getSchoolStudentCourse', function($http, $rootScope) {
 
 
-    var basePath = "http://172.16.9.197:8282/gage-service/service/course?role=student&userids="
+    var basePath = "http://172.16.9.197:8282/gage-service/service/course?role=student&userids=";
     //45685775?roletype=teacher&entitytype=D|C&token=~SKq1BAAAAAALtEkMQ0pw5A.4h2waVknunsG6_6pOweqSB"
 //    http://172.16.9.197:8282/gage-service/service/course?role=student&userids=43634545,98545908
     return {
