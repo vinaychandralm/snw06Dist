@@ -13,8 +13,8 @@ http://172.16.9.197:8282/gage-service/service/domain/list/45685236?token=~SKq1BA
         _get: function(userid,__token) {
             console.log("*******************************************");
             console.log(userid);
-            var token = "SKq1BAAAAAALtEkMQ0pw5A.4h2waVknunsG6_6pOweqSB";
-            var __url = basePath +userid+'?token='+__token;
+            var token = __token;
+            var __url = basePath +userid+'?token='+token;
             console.log(__url);
             return $http.get(__url);
              
@@ -64,16 +64,16 @@ factoryModule.factory('getSchoolStudentCourse', function($http, $rootScope) {
 });
 
 
-factoryModule.factory('getData', function($http) {
+// factoryModule.factory('getData', function($http) {
 
-    var basePath = '/src/js/data/';
+//     var basePath = '/src/js/data/';
 
-    return {
-        _get: function(str) {
-            return $http.get(basePath + str + '.json');
-        }
-    };
-});
+//     return {
+//         _get: function(str) {
+//             return $http.get(basePath + str + '.json');
+//         }
+//     };
+// });
 
 
 factoryModule.factory('getEnrollmentStatus', function($http) {
