@@ -370,6 +370,29 @@ module.exports = function (grunt) {
 
     // Copies remaining files to places other tasks can use
     copy: {
+	  pack: {
+	   files: [{
+	    expand: true,
+		dot: true,
+		cwd: '<%= yeoman.app %>',
+		dest: '<%= yeoman.dist %>',
+          src: [
+            '*.{ico,png,txt}',
+            '*.html',
+            'styles/fonts/{,*/}*.*',
+			'styles/{,*/}*.*',
+			'scripts/{,*/}*.*',
+			'images/{,*/}*.*',			
+			'views/{,*/}*.*'
+          ]
+		 }, {
+          expand: true,
+          cwd: 'bower_components/bootstrap/dist',
+          src: 'fonts/*',
+          dest: '<%= yeoman.dist %>'
+        }
+		 ]
+	  },
       dist: {
         files: [{
           expand: true,

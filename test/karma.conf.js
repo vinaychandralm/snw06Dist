@@ -51,7 +51,7 @@ module.exports = function(config) {
       // source files, that you wanna generate coverage for 
       // do not include tests or libraries 
       // (these files will be instrumented by Istanbul) 
-      'app/**/*.js': ['coverage']
+      'app/scripts/**/*.js': ['coverage']
     },
 	// test results reporter to use
     // possible values: 'dots', 'progress'
@@ -99,7 +99,7 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: true,
+    singleRun: false,
 
     colors: true,
 
