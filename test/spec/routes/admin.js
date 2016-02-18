@@ -1,142 +1,39 @@
 'use strict';
+// describe('Test studentActivityReports.routing provider', function () {
+//     var theConfigProvider;
+//     beforeEach(module("studentActivityReports", function (routeInfoProvider) {
+//         theConfigProvider = routeInfoProvider;
+//     }));
+//     describe('with custom configuration', function () {
+//         it('tests the providers internal function', function () {
+//             expect(theConfigProvider).toBeUndefined();
+//         });
+//     });
+// });
 
-describe('getSchoolData', function () {
+describe('Testing routes', function() {
+beforeEach(module('studentActivityReports'));
 
-    // load the controller's module
-    beforeEach(module('studentActivityReportsAdmin.factories'));
+var location, route, rootScope;
 
-    var basePath, domainid, token, scope, getSchoolData, rootScope, http;
-    
+beforeEach(inject(
+    function( _$location_, _$route_, _$rootScope_ ) {
+        location = _$location_;
+        route = _$route_;
+        rootScope = _$rootScope_;
+}));
 
-    //   // Initialize the controller and a mock scope
-    beforeEach(inject(function ($http, $rootScope, _getSchoolData_) {
-        rootScope = $rootScope;
-        http = $http;
-        scope = $rootScope.$new();
-        getSchoolData = _getSchoolData_;
-        basePath = 'http://172.16.9.197:8282/gage-service/service/domain/list/';
-        domainid = "46240033";
-        token = "~hEZwCAAAAAQl7dkU-FQqlB.Yp_Q6EA2pmadM1IK-2Ea2C";
-        spyOn(http, "get").and.returnValue("some value");
-    }));
+ describe('testing admin', function() {
+    beforeEach(inject(
+        function($httpBackend) {
+            $httpBackend.expectGET('views/admin-form.html')
+            .respond(200);
+        }));
 
-    it('should call the getSchoolData function', function () {
-        var url = basePath +domainid+'?token='+token;
-        var get = getSchoolData._get(domainid,token);
-        expect(http.get).toHaveBeenCalledWith(url);
-        expect(get).toEqual("some value");
-        // expect(http.get).toBe("some value");
+    it('should load the login page on successful load of /admin-form', function() {
+        location.path('/admin-form');
+        rootScope.$digest();
+        expect(route.current.controller).toBe('adminctrl')
     });
-
-});
-
-describe('getSchoolStudent', function () {
-
-    // load the controller's module
-    beforeEach(module('studentActivityReportsAdmin.factories'));
-
-    var basePath,schoolIdsArray, scope, getSchoolStudent, rootScope, http;
-    
-
-    //   // Initialize the controller and a mock scope
-    beforeEach(inject(function ($http, $rootScope, _getSchoolStudent_) {
-        rootScope = $rootScope;
-        http = $http;
-        scope = $rootScope.$new();
-        getSchoolStudent = _getSchoolStudent_;
-        basePath = 'http://172.16.9.197:8282/gage-service/service/student?entitytype=school&entityids=';
-        schoolIdsArray = [46240033,464554,4645456,4564646,464645];
-        spyOn(http, "get").and.returnValue("some value");
-    }));
-
-    it('should call the getSchoolStudent function', function () {
-        var url = basePath +schoolIdsArray.join();
-        var get = getSchoolStudent._get(schoolIdsArray);
-        expect(http.get).toHaveBeenCalledWith(url);
-        expect(get).toEqual("some value");
-        // expect(http.get).toBe("some value");
-    });
-
-});
-
-
-
-describe('getSchoolStudentCourse', function () {
-
-    // load the controller's module
-    beforeEach(module('studentActivityReportsAdmin.factories'));
-
-    var basePath,schoolStudentIdsArray, scope, getSchoolStudentCourse, rootScope, http;
-    
-
-    //   // Initialize the controller and a mock scope
-    beforeEach(inject(function ($http, $rootScope, _getSchoolStudentCourse_) {
-        rootScope = $rootScope;
-        http = $http;
-        scope = $rootScope.$new();
-        getSchoolStudentCourse = _getSchoolStudentCourse_;
-        basePath = 'http://172.16.9.197:8282/gage-service/service/course?role=student&userids=';
-        schoolStudentIdsArray = [46240033,464554,4645456,4564646,464645];
-        spyOn(http, "get").and.returnValue("some value");
-    }));
-
-    it('should call the getSchoolStudentCourse function', function () {
-        var url = basePath +schoolStudentIdsArray.join();
-        var get = getSchoolStudentCourse._get(schoolStudentIdsArray);
-        expect(http.get).toHaveBeenCalledWith(url);
-        expect(get).toEqual("some value");
-        // expect(http.get).toBe("some value");
-    });
-
-});
-
-describe('getEnrollmentStatus', function () {
-
-    // load the controller's module
-    beforeEach(module('studentActivityReportsAdmin.factories'));
-     var scope, getEnrollmentStatus, rootScope;
-      beforeEach(inject(function ($rootScope, _getEnrollmentStatus_) {
-        rootScope = $rootScope;
-        scope = $rootScope.$new();
-        getEnrollmentStatus = _getEnrollmentStatus_;
-        
-    }));
-
-    it('should return static value', function () {
-        var get=getEnrollmentStatus.get();
-        expect(get).toEqual([
-            {
-                id: 0,
-                name: "Active"
-            },
-            {
-                id: 1,
-                name: "Withdrawn"
-            },
-            {
-                id: 2,
-                name: "WithdrawnFailed" 
-            },
-            {
-                id: 3,
-                name: "Transferred"
-            },
-            {
-                id: 4,
-                name: "Completed"
-            },
-            {
-                id: 5,
-                name: "CompletedNoCredit"
-            },
-            {
-                id: 6,
-                name: "Suspended"
-            },
-            {
-                id: 7,
-                name: "Inactive"
-            }
-        ]);
-    });
+});    
 });

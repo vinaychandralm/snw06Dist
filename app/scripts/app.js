@@ -30,20 +30,36 @@ angular
     'studentActivityReports.adminDetails',
     'studentActivityReportsAdmin.factories'
   ])
-  .config(['$routeProvider',
-    'routeInfoProvider',function ($routeProvider,routeInfoProvider) {
-     var routingInfo = routeInfoProvider._getRoutingInfo();
+  .config(function ($routeProvider) {
+    //  var routingInfo = routeInfoProvider._getRoutingInfo();
 
-        for (var i = 0; i < routingInfo.length; i++) {
-            $routeProvider.when(routingInfo[i].route, {
-                controller: routingInfo[i].controller,
-                templateUrl: routingInfo[i].templateUrl,
-                index: i
-            });
-        }
+    //     for (var i = 0; i < routingInfo.length; i++) {
+    //         $routeProvider.when(routingInfo[i].route, {
+    //             controller: routingInfo[i].controller,
+    //             templateUrl: routingInfo[i].templateUrl,
+    //             index: i
+    //         });
+    //     }
+    
+    $routeProvider
+          .when('/', {
+            templateUrl: 'views/home.html',
+            controller: 'MainCtrl'
+          })
+          .when('/student-activity-reports', {
+            templateUrl: 'views/student-activity-reports.html',
+            controller: 'studentDetailsCtrl'
+          })
+          .when('/teacher-form', {
+            templateUrl: 'views/teacher-form.html',
+            controller: 'teacherDetailsCtrl'
+          })
+           .when('/admin-form', {
+            templateUrl: 'views/admin-form.html',
+            controller: 'adminctrl'
+          })
 
         $routeProvider.otherwise({
             redirectTo: '/'
         });
-    }
-  ]);
+    });
