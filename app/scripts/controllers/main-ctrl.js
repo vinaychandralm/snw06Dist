@@ -25,15 +25,23 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
     console.log($rootScope.role, $rootScope.userid, $routeParams.token);
     console.log("*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
     
+    //TODO : Remove blow 3 line comments if not using GRUNT-SERVE.
+    $routeParams.role=CONFIGJSONOBJ.userSettingObjects.role;
+    $routeParams.userid=CONFIGJSONOBJ.userSettingObjects.userid;
+    $routeParams.token=CONFIGJSONOBJ.userSettingObjects.token;
     
+     
+    $rootScope.role = $routeParams.role;
     
+        console.log($rootScope.role, $rootScope.userid, $routeParams.token);
 
+ 
      validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token)
          .then(function onsuccess(response) {
             console.log($routeParams.token + " $routeParams.token");
             console.log(response.data);
             
-            if(response.data.messageType ==="ERROR"){
+            if(response.data.messageType ==="ERROR"){ 
                 
                 notAuthenticated._showErrorMsg();
                 
@@ -77,7 +85,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
         console.log(authResponse);
     };
 
-
+//$scope.showTiles("response.data");
 //    $scope.role = 'admin';
 //    $rootScope.role = 'admin';
 //    $scope.showTiles('sjkdfhjks');
