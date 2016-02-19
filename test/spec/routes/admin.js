@@ -23,6 +23,7 @@ beforeEach(inject(
         rootScope = _$rootScope_;
 }));
 
+
  describe('testing admin', function() {
     beforeEach(inject(
         function($httpBackend) {
@@ -35,5 +36,33 @@ beforeEach(inject(
         rootScope.$digest();
         expect(route.current.controller).toBe('adminctrl');
     });
-});    
-});
+    });
+    
+    describe('testing teacher', function() {
+    beforeEach(inject(
+        function($httpBackend) {
+            $httpBackend.expectGET('views/teacher-form.html')
+            .respond(200);
+        }));
+
+    it('should load the login page on successful load of /teacher-form', function() {
+        location.path('/teacher-form');
+        rootScope.$digest();
+        expect(route.current.controller).toBe('teacherDetailsCtrl');
+    });
+    });
+    
+    describe('testing student', function() {
+    beforeEach(inject(
+        function($httpBackend) {
+            $httpBackend.expectGET('views/student-activity-reports.html')
+            .respond(200);
+        }));
+
+    it('should load the login page on successful load of /teacher-form', function() {
+        location.path('/student-activity-reports');
+        rootScope.$digest();
+        expect(route.current.controller).toBe('studentDetailsCtrl');
+    });
+});  
+});  
