@@ -21,7 +21,7 @@ angular
     'ui.multiselect',
 // 'angularjs-dropdown-multiselect',
     'mgcrea.ngStrap.datepicker',
-    'studentActivityReports.routing',
+    // 'studentActivityReports.routing',
     'studentActivityReports.factories',
     'studentActivityReportsTeacher.factories',
     'studentActivityReports.home',
@@ -58,8 +58,11 @@ angular
             templateUrl: 'views/admin-form.html',
             controller: 'adminctrl'
           })
-
-        $routeProvider.otherwise({
+          .otherwise({
             redirectTo: '/'
-        });
+          }); 
+
+        // $routeProvider.otherwise({
+        //     redirectTo: '/'
+        // });
     });

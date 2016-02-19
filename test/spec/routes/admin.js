@@ -33,7 +33,7 @@ beforeEach(inject(
     it('should load the login page on successful load of /admin-form', function() {
         location.path('/admin-form');
         rootScope.$digest();
-        expect(route.current.controller).toBe('adminctrl')
+        expect(route.current.controller).toBe('adminctrl');
     });
 });    
 });
