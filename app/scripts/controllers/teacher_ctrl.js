@@ -2,11 +2,11 @@
 
 var sarModule = angular.module('teacherActivityReports.teacherDetails', []);
 sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'getDataCourseTeacher',
-    'getEnrollmentStatus', 'getDataStudentTeacher','notAuthenticated','noNetError',
-    function ($scope, $rootScope, $routeParams, getDataCourseTeacher, getEnrollmentStatus, getDataStudentTeacher,notAuthenticated,noNetError) {
+    'getEnrollmentStatus', 'getDataStudentTeacher','notAuthenticated','noNetError','getServerConfigData',
+    function ($scope, $rootScope, $routeParams, getDataCourseTeacher, getEnrollmentStatus, getDataStudentTeacher,notAuthenticated,noNetError,getServerConfigData) {
 
         console.dir("**Inside teacherDetailsCtrl**");
-    
+
         // console.log(getData._get($rootScope.role,$rootScope.userid));
 
         $scope.teacherId = $routeParams.teacherId;
@@ -17,7 +17,7 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         //    $scope.enrllNotSelected = false;
         //    $scope.srtDateNotSelected = false;
         //    $scope.endDateNotSelected = false;
-    
+
         $scope.statusNotSelected = false;
         $scope.courseNotSelected = false;
         $scope.studentNotSelected = false;
@@ -29,7 +29,7 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
         $scope.courseStudentIdArr = [];
         $scope.multiselectModel2 = [];
-        
+
         $scope.enrollArr = [];
         $scope.multiselectModelEroll = [];
 
@@ -42,17 +42,17 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         $scope.startDateStartActivity = currDate.setDate(currDate.getDate() - 7);
         $scope.maxDateStartActivity = new Date().setDate(new Date().getDate() - 1);
         $scope.startDateEndActivity = new Date();
-        
+
         /* @courseArr: Courses received from server
         * TODO:: modify object structure as per data received.
         */
 
         $scope.enrollmentArr = getEnrollmentStatus.get();
-       
-
-        getDataCourseTeacher._get($rootScope.role, $rootScope.userid, $rootScope.token)
+        //getting service deatil object
+        var urlDetails =getServerConfigData._getDetails();
+        getDataCourseTeacher._get($rootScope.role, $rootScope.userid, urlDetails)
             .then(function onsuccess(response) {
-                console.log(response.data);  
+                console.log(response.data);
                 if(response.data.messageType ==="ERROR"){
                     notAuthenticated._showErrorMsg();
                     return;
@@ -72,38 +72,38 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParam
                 console.log($scope.courseIdArr);
             }
 
-             getDataStudentTeacher._get($rootScope.role, $scope.courseIdArr)
+             getDataStudentTeacher._get($rootScope.role, $scope.courseIdArr,urlDetails)
                 .then(function onsuccess(response) {
                     if(response.data.messageType ==="ERROR"){
                         notAuthenticated._showErrorMsg();
                         return;
                     }
-                    console.log(response.data);  
+                    console.log(response.data);
                     $scope.setDataStudent(response.data.data.user);
                 },function onError(response){
                  console.log("Error on loading Student of Teacher page");
                  noNetError._showNetErrorMsg();
              });
         };
-       
+
 
         $scope.setDataStudent = function (studentCourse) {
                  console.log(studentCourse);
                  $scope.studentArr = studentCourse;
                  console.log($scope.studentArr);
         };
-        
+
         $scope.onChangeCourseSelect = function(courseIdArr){
             if(courseIdArr.length ===0){
                 var tempArr =[];
                 $scope.setDataStudent(tempArr);
-                
+
                 return;
             }
-            
-             getDataStudentTeacher._get($rootScope.role, courseIdArr)
+
+             getDataStudentTeacher._get($rootScope.role, courseIdArr,urlDetails)
                 .then(function onsuccess(response) {
-                    console.log(response.data);  
+                    console.log(response.data);
                     if(response.data.messageType ==="ERROR"){
                         notAuthenticated._showErrorMsg();
                         return;
@@ -113,10 +113,10 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParam
                  console.log("Error on loading Student of Teacher page");
                  noNetError._showNetErrorMsg();
              });
-        
+
         };
 
-       
+
 
         $scope.submit = function () {
             console.log(new Date($scope.startDateStartActivity));
@@ -134,9 +134,9 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             } else {
                 $scope.statusNotSelected = false;
             }
-      
+
             //TODO for Status select option  $scope.statusNotSelected = true;
-  
+
             if ($scope.courseIdArr.length === 0) {
                 $scope.courseNotSelected = true;
             } else {
@@ -197,11 +197,11 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParam
                 console.log($scope.courseStudentIdArr);
             }
 
-             
+
 
         }, true);
         //  console.log("$scope.courseIdArr", $scope.courseIdArr);
-    
+
         $scope.$watch('multiselectModelEroll', function () {
 
             console.log($scope.multiselectModelEroll.length);

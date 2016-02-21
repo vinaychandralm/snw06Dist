@@ -8,7 +8,7 @@ constantModule.constant('$theme', {
 var homeModule = angular.module('studentActivityReports.home', ['constant']);
 
 
-homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme', '$routeParams', 'validateUrlData','notAuthenticated','noNetError', function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData,notAuthenticated,noNetError) {
+homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme', '$routeParams', 'validateUrlData','notAuthenticated','noNetError','getServerConfigData', function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData,notAuthenticated,noNetError,getServerConfigData) {
 
     $scope.progressReport = false;
     $scope.courseCompletionReport = false;
@@ -24,37 +24,37 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
     $rootScope.role = $routeParams.role;
     console.log($rootScope.role, $rootScope.userid, $routeParams.token);
     console.log("*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-    
+
     //TODO : Remove blow 3 line comments if not using GRUNT-SERVE.
     $routeParams.role=CONFIGJSONOBJ.userSettingObjects.role;
     $routeParams.userid=CONFIGJSONOBJ.userSettingObjects.userid;
     $routeParams.token=CONFIGJSONOBJ.userSettingObjects.token;
-    
-     
+
+
     $rootScope.role = $routeParams.role;
-    
+
         console.log($rootScope.role, $rootScope.userid, $routeParams.token);
 
- 
-     validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token)
-         .then(function onsuccess(response) {
-            console.log($routeParams.token + " $routeParams.token");
-            console.log(response.data);
-            
-            if(response.data.messageType ==="ERROR"){ 
-                
-                notAuthenticated._showErrorMsg();
-                
-            }else{
-                $scope.showTiles(response.data);
-                $rootScope.showoverlay = false;
-            }
-                
-         }, function onError(errResponse) {
-             console.log("err Response ", errResponse);
-            noNetError._showNetErrorMsg();
-             $scope.blockUser(errResponse);
-         });
+        // var urlDetails = getServerConfigData._getDetails();
+        // validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token,urlDetails)
+        //  .then(function onsuccess(response) {
+        //     console.log($routeParams.token + " $routeParams.token");
+        //     console.log(response.data);
+        //
+        //     if(response.data.messageType ==="ERROR"){
+        //
+        //         notAuthenticated._showErrorMsg();
+        //
+        //     }else{
+        //         $scope.showTiles(response.data);
+        //         $rootScope.showoverlay = false;
+        //     }
+        //
+        //  }, function onError(errResponse) {
+        //      console.log("err Response ", errResponse);
+        //     noNetError._showNetErrorMsg();
+        //      $scope.blockUser(errResponse);
+        //  });
 
     $scope.showTiles = function (authResponse) {
         console.log(authResponse);
@@ -85,7 +85,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
         console.log(authResponse);
     };
 
-//$scope.showTiles("response.data");
+$scope.showTiles("response.data");
 //    $scope.role = 'admin';
 //    $rootScope.role = 'admin';
 //    $scope.showTiles('sjkdfhjks');

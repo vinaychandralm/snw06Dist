@@ -5,19 +5,16 @@ var factoryModule = angular.module('studentActivityReportsAdmin.factories', []);
 
 
 factoryModule.factory('getSchoolData', function($http) {
-
-http://172.16.9.197:8282/gage-service/service/domain/list/45685236?token=~SKq1BAAAAAALtEkMQ0pw5A.4h2waVknunsG6_6pOweqSB
-    var basePath = CONFIGJSONOBJ.servicesBaseUrl +"/domain/list/";
-    
     return {
-        _get: function(userid,__token) {
+        _get: function(userid,__token,urlDetails) {
             console.log("*******************************************");
             console.log(userid);
+            var basePath = urlDetails.servicesBaseUrl +"/domain/list/";
             var token = __token;
             var __url = basePath +userid+'?token='+token;
             console.log(__url);
             return $http.get(__url);
-             
+
         }
     };
 });
@@ -25,40 +22,35 @@ http://172.16.9.197:8282/gage-service/service/domain/list/45685236?token=~SKq1BA
 
 factoryModule.factory('getSchoolStudent', function($http, $rootScope) {
 
-
-    var basePath = CONFIGJSONOBJ.servicesBaseUrl +"/student?entitytype=school&entityids=";
-    //45685775?roletype=teacher&entitytype=D|C&token=~SKq1BAAAAAALtEkMQ0pw5A.4h2waVknunsG6_6pOweqSB"
     return {
-        _get: function(schoolIdsArray) {
+        _get: function(schoolIdsArray,urlDetails) {
            // console.log(role,userid);
            // var token = _token;
            // var entitytype = 'D|C';
            // $rootScope.showoverlay = true;
+            var basePath = urlDetails.servicesBaseUrl +"/student?entitytype=school&entityids=";
             console.log(schoolIdsArray.join());
             var __url = basePath +schoolIdsArray.join();
             console.log(__url);
             return $http.get(__url);
-             
+
         }
     };
 });
 factoryModule.factory('getSchoolStudentCourse', function($http, $rootScope) {
 
-
-    var basePath = CONFIGJSONOBJ.servicesBaseUrl +"/course?role=student&userids=";
-    //45685775?roletype=teacher&entitytype=D|C&token=~SKq1BAAAAAALtEkMQ0pw5A.4h2waVknunsG6_6pOweqSB"
-//    http://172.16.9.197:8282/gage-service/service/course?role=student&userids=43634545,98545908
     return {
-        _get: function(schoolStudentIdsArray) {
+        _get: function(schoolStudentIdsArray,urlDetails) {
            // console.log(role,userid);
            // var token = _token;
            // var entitytype = 'D|C';
            // $rootScope.showoverlay = true;
+             var basePath = urlDetails.servicesBaseUrl +"/course?role=student&userids=";
             console.log(schoolStudentIdsArray.join());
             var __url = basePath +schoolStudentIdsArray.join();
             console.log(__url);
             return $http.get(__url);
-             
+
         }
     };
 });

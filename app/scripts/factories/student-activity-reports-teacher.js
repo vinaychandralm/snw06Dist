@@ -4,10 +4,11 @@ var factoryModule = angular.module('studentActivityReportsTeacher.factories', []
 
 factoryModule.factory('getDataCourseTeacher', function ($http) {
 
-    var basePath = CONFIGJSONOBJ.servicesBaseUrl +"/course?";
+
 
     return {
-        _get: function (role, userid, __$scopecourseArr) {
+        _get: function (role, userid, urlDetails) {
+            var basePath = urlDetails.servicesBaseUrl +"/course?";
             return $http.get(basePath + "role=" + role + "&userids=" + userid);
         }
     };
@@ -15,13 +16,14 @@ factoryModule.factory('getDataCourseTeacher', function ($http) {
 
 factoryModule.factory('getDataStudentTeacher', function ($http) {
 
-    var basePath = CONFIGJSONOBJ.servicesBaseUrl +"/student?entitytype=course&";
+
 
     return {
-        _get: function (role, userid) {
+        _get: function (role, userid,urlDetails) {
             console.log(basePath + "entityids=" + userid);
+            var basePath = urlDetails.servicesBaseUrl +"/student?entitytype=course&";
             return $http.get(basePath + "entityids=" + userid);
-        }   
+        }
     };
 });
 
