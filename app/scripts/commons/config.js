@@ -4,9 +4,9 @@ var CONFIGJSONOBJ={
     
         "userSettingObjects" :
             {
-                'role':'teacher',
-                'userid':'46239951',
-                'token': '~PDZwCAAAAAwPx68jeBI0MB.Lw8GqGfgkPD_J3NbpfgMOA'
+                'role':'admin',
+                'userid':'46238944',
+                'token': '~gzYwCAAAAAwtfYZO9uRFOA.XyQ5DXCVgnyIYrHlPOmbYA'
             }
      
     }

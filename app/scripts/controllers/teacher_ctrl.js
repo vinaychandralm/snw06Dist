@@ -101,20 +101,20 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParam
                 return;
             }
 
-             getDataStudentTeacher._get($rootScope.role, courseIdArr,urlDetails)
-                .then(function onsuccess(response) {
-                    console.log(response.data);
-                    if(response.data.messageType ==="ERROR"){
-                        notAuthenticated._showErrorMsg();
-                        return;
-                    }
-                    $scope.setDataStudent(response.data.data.user);
-                },function onError(response){
-                 console.log("Error on loading Student of Teacher page");
-                 noNetError._showNetErrorMsg();
-             });
+        getDataStudentTeacher._get($rootScope.role, courseIdArr,urlDetails)
+        .then(function onsuccess(response) {
+            console.log(response.data);
+            if(response.data.messageType ==="ERROR"){
+                notAuthenticated._showErrorMsg();
+                return;
+            }
+            $scope.setDataStudent(response.data.data.user);
+            },function onError(response){
+                console.log("Error on loading Student of Teacher page");
+                noNetError._showNetErrorMsg();
+        });
 
-        };
+    };
 
 
 

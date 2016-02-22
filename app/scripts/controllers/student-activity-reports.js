@@ -48,7 +48,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         console.log("2378459023478927842748923749273423894792384798237498347923784");
         //getting Server url details
         var urlDetails =getServerConfigData._getDetails();
-      console.log(urlDetails)
+        console.log(urlDetails)
         getDataStudent._get($rootScope.role, $rootScope.userid,urlDetails)
             .then(function onsuccess(response) {
                 console.log(response.data);
@@ -71,7 +71,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
 
         $scope.submitStudentInfo = function () {
-
+           
             console.log(new Date($scope.startDateStartActivity));
             var startDateActivity = new Date($scope.startDateStartActivity);
             var endDateActivity = new Date($scope.startDateEndActivity);

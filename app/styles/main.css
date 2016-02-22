@@ -1,5 +1,11 @@
 body{
-    /*background:#62ccfe;*/
+   /* background:#62ccfe;*/
+}
+bodyBgViolat{
+    background:#330066;
+}
+.bodyBgwhite{
+    background: white;
 }
 .row-content{
     /*width: 872px;

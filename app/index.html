@@ -10,18 +10,19 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <!-- <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" /> -->
+<!--    <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" />-->
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-<!--    <link rel="stylesheet" href="styles/style.css">-->
+    <link rel="stylesheet" href="styles/style.css" type="text/css" >
 <!--    <link rel="stylesheet" href="styles/datepicker.css">-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
 
     <!-- endbuild -->
 </head>
 
-<body ng-class="{'sky-blue': (isblue)}">
+<body class={{bodybg}}>
     <div id='overLay' class='overlayDiv' ng-show='showoverlay'>
         <div class='centerDiv'>
             <h1 id='loadingtextH1' ng-show="loadingText">Loading....</h1>
@@ -50,7 +51,7 @@
     <script src="bower_components/angular-bootstrap-multiselect/angular-bootstrap-multiselect.js"></script>
     <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
     <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
-    <!-- <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script> -->
+<!--    <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>-->
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -81,6 +82,7 @@
     <!-- Main Entry FIle (Should be loaded after loading all module dependencies) -->
     <script src="scripts/routes/routes.js" type="text/javascript"></script>
     <script src="scripts/app.js" type="text/javascript"></script>
+    
     <!-- End Main Entry File -->
 <!--    <link rel="stylesheet" href="styles/datepicker.css">-->
 </body>
