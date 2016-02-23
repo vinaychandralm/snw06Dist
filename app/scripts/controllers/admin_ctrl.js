@@ -244,8 +244,10 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
             } else {
                 $scope.statusNotSelected = false;
             }
+            
+            console.log($scope.input);
 
-            if ($scope.input === undefined || $scope.input === null) {
+            if ($scope.input === undefined || $scope.input === null || $scope.input<0) {
                 $scope.minimumMinut = true;
             } else {
                 $scope.minimumMinut = false;
