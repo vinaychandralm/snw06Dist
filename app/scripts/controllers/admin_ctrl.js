@@ -1,8 +1,8 @@
 'use strict';
 var admModule = angular.module('studentActivityReports.adminDetails', []);
 admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getSchoolData',
-    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse','notAuthenticated','noNetError','getServerConfigData', function ($scope, $rootScope, $routeParams,
-        getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse,notAuthenticated,noNetError,getServerConfigData) {
+    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError', 'getServerConfigData', function ($scope, $rootScope, $routeParams,
+        getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse, notAuthenticated, noNetError, getServerConfigData) {
 
         //console.dir("**Inside Admin Ctrl**");
 
@@ -83,125 +83,125 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
         //console.log($rootScope.admindetail.data.user.domainid,$rootScope.admindetail.data.user,$rootScope.token)
         
         
-        getSchoolData._get($rootScope.admindetail.data.user.domainid,$rootScope.token,urlDetails)
-         .then(function onsuccess(response){
+        getSchoolData._get($rootScope.admindetail.data.user.domainid, $rootScope.token, urlDetails)
+            .then(function onsuccess(response) {
 
-                   if(response.data.messageType ==="ERROR"){
+                if (response.data.messageType === "ERROR") {
 
-                        notAuthenticated._showErrorMsg();
-                       return;
+                    notAuthenticated._showErrorMsg();
+                    return;
 
-                    }
-                     //console.log(response.data);
-                     $scope.setData(response.data);
-                     $scope.getAllSchollDomainId(response.data);
-                     getSchoolStudent._get($scope.allSchoolIdArrays,urlDetails)
-                     .then(function onSuccess(res){
-                         //console.log("response of _getschool Data  ",res);
-                         if(response.data.messageType ==="ERROR"){
-                                notAuthenticated._showErrorMsg();
-                                return;
+                }
+                //console.log(response.data);
+                $scope.setData(response.data);
+                $scope.getAllSchollDomainId(response.data);
+                getSchoolStudent._get($scope.allSchoolIdArrays, urlDetails)
+                    .then(function onSuccess(res) {
+                        //console.log("response of _getschool Data  ",res);
+                        if (response.data.messageType === "ERROR") {
+                            notAuthenticated._showErrorMsg();
+                            return;
                         }
 
                         $scope.setDataoFStuds(res.data.data.user);
                         $scope.getAllSchollStudentCourseId(res.data.data.user);
-                        getSchoolStudentCourse._get($scope.allSchoolStudentIdArrays,urlDetails)
-                         .then(function onSuccess(res){
-                             //console.log("response of allSchoolStudentIdArrays Data  ",res);
-                             if(response.data.messageType ==="ERROR"){
-                                notAuthenticated._showErrorMsg();
-                                return;
-                            }
-                            $scope.setDataoFSchoolStudsCourse(res.data.data.course);
-                         },function onError(res){
-                             //console.log("response of allSchoolStudentIdArrays Data Error  ",res);
-                            noNetError._showNetErrorMsg();
-                         });
-                     },function onError(res){
-                         //console.log("response of _getschool Data Error  ",res);
-                         noNetError._showNetErrorMsg();
-                     });
-                 },function onerror(response){
-                     noNetError._showNetErrorMsg();
-                     //console.log("Error has been occured");
-                     //console.log(response.data);
-             });
+                        getSchoolStudentCourse._get($scope.allSchoolStudentIdArrays, urlDetails)
+                            .then(function onSuccess(res) {
+                                //console.log("response of allSchoolStudentIdArrays Data  ",res);
+                                if (response.data.messageType === "ERROR") {
+                                    notAuthenticated._showErrorMsg();
+                                    return;
+                                }
+                                $scope.setDataoFSchoolStudsCourse(res.data.data.course);
+                            }, function onError(res) {
+                                //console.log("response of allSchoolStudentIdArrays Data Error  ",res);
+                                noNetError._showNetErrorMsg();
+                            });
+                    }, function onError(res) {
+                        //console.log("response of _getschool Data Error  ",res);
+                        noNetError._showNetErrorMsg();
+                    });
+            }, function onerror(response) {
+                noNetError._showNetErrorMsg();
+                //console.log("Error has been occured");
+                //console.log(response.data);
+            });
 
         $scope.setData = function (studentCourse) {
-//            //console.log(studentCourse);
+            //            //console.log(studentCourse);
             $scope.schoolList = studentCourse.data.domains;
-//            //console.log($scope.schoolList);
+            //            //console.log($scope.schoolList);
         };
 
         $scope.setDataoFStuds = function (schoolsStudent) {
-//            //console.log(schoolsStudent);
+            //            //console.log(schoolsStudent);
             $scope.schoolStudentList = schoolsStudent;
-//            //console.log($scope.schoolStudentList);
+            //            //console.log($scope.schoolStudentList);
         };
 
         $scope.setDataoFSchoolStudsCourse = function (schoolsStudent) {
-//            //console.log(schoolsStudent);
+            //            //console.log(schoolsStudent);
             $scope.schoolStudentCourseList = schoolsStudent;
-//            //console.log($scope.schoolStudentCourseList);
+            //            //console.log($scope.schoolStudentCourseList);
         };
 
 
-       $scope.OnChangeSchools=function(){
-        if($scope.schoolListIds.length ===0){
-            var tempArr =[];
-             $scope.setDataoFStuds(tempArr);
-             $scope.setDataoFSchoolStudsCourse(tempArr);
-            return;
-        }
-         getSchoolStudent._get($scope.schoolListIds,urlDetails)
-                .then(function onSuccess(res){
+        $scope.OnChangeSchools = function () {
+            if ($scope.schoolListIds.length === 0) {
+                var tempArr = [];
+                $scope.setDataoFStuds(tempArr);
+                $scope.setDataoFSchoolStudsCourse(tempArr);
+                return;
+            }
+            getSchoolStudent._get($scope.schoolListIds, urlDetails)
+                .then(function onSuccess(res) {
                     //console.log("response of _getschool Data  ",res);
-                    if(res.data.messageType ==="ERROR"){
+                    if (res.data.messageType === "ERROR") {
                         notAuthenticated._showErrorMsg();
                         return;
                     }
 
-                   $scope.setDataoFStuds(res.data.data.user);
+                    $scope.setDataoFStuds(res.data.data.user);
                     $scope.getAllSchollStudentCourseId(res.data.data.user);
 
-                    getSchoolStudentCourse._get($scope.allSchoolStudentIdArrays,urlDetails)
-                    .then(function onSuccess(res){
-                        //console.log("response of allSchoolStudentIdArrays Data  ",res);
-                        if(res.data.messageType ==="ERROR"){
-                            notAuthenticated._showErrorMsg();
-                            return;
-                        }
-                        $scope.setDataoFSchoolStudsCourse(res.data.data.course);
-                    },function onError(res){
-                        //console.log("response of allSchoolStudentIdArrays Data Error  ",res);
-                        noNetError._showNetErrorMsg();
-                    });
-                },function onError(res){
+                    getSchoolStudentCourse._get($scope.allSchoolStudentIdArrays, urlDetails)
+                        .then(function onSuccess(res) {
+                            //console.log("response of allSchoolStudentIdArrays Data  ",res);
+                            if (res.data.messageType === "ERROR") {
+                                notAuthenticated._showErrorMsg();
+                                return;
+                            }
+                            $scope.setDataoFSchoolStudsCourse(res.data.data.course);
+                        }, function onError(res) {
+                            //console.log("response of allSchoolStudentIdArrays Data Error  ",res);
+                            noNetError._showNetErrorMsg();
+                        });
+                }, function onError(res) {
                     //console.log("response of _getschool Data Error  ",res);
                     noNetError._showNetErrorMsg();
                 });
         };
-       $scope.OnChangeStudent=function(){
+        $scope.OnChangeStudent = function () {
 
 
-                    getSchoolStudentCourse._get($scope.studentListIds,urlDetails)
-                    .then(function onSuccess(res){
-                        //console.log("response of allSchoolStudentIdArrays Data  ",res);
-                        if(res.data.messageType ==="ERROR"){
-                            notAuthenticated._showErrorMsg();
-                            return;
-                        }
-                        $scope.setDataoFSchoolStudsCourse(res.data.data.course);
-                    },function onError(res){
-                        //console.log("response of allSchoolStudentIdArrays Data Error  ",res);
-                        noNetError._showNetErrorMsg();
-                    });
+            getSchoolStudentCourse._get($scope.studentListIds, urlDetails)
+                .then(function onSuccess(res) {
+                    //console.log("response of allSchoolStudentIdArrays Data  ",res);
+                    if (res.data.messageType === "ERROR") {
+                        notAuthenticated._showErrorMsg();
+                        return;
+                    }
+                    $scope.setDataoFSchoolStudsCourse(res.data.data.course);
+                }, function onError(res) {
+                    //console.log("response of allSchoolStudentIdArrays Data Error  ",res);
+                    noNetError._showNetErrorMsg();
+                });
 
         };
 
         $scope.submit = function () {
 
-//            //console.log(new Date($scope.startDateStartActivity));
+            //            //console.log(new Date($scope.startDateStartActivity));
             var startDateActivity = new Date($scope.startDateStartActivity);
             var endDateActivity = new Date($scope.startDateEndActivity);
             if (startDateActivity > endDateActivity) {
@@ -239,15 +239,13 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
                 $scope.courseNotSelected = false;
             }
 
-             if ($scope.enrollArr.length === 0) {
+            if ($scope.enrollArr.length === 0) {
                 $scope.statusNotSelected = true;
             } else {
                 $scope.statusNotSelected = false;
             }
-            
-            console.log($scope.input);
 
-            if ($scope.input === undefined || $scope.input === null || $scope.input<0) {
+            if ($scope.inputAdmin === undefined || $scope.inputAdmin === null || $scope.inputAdmin < 0) {
                 $scope.minimumMinut = true;
             } else {
                 $scope.minimumMinut = false;
@@ -257,13 +255,13 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
         // Success callback
         var handleSuccess = function (data, status) {
             $scope.details = data;
-//            //console.log(status, $scope.details.courses._get);
+            //            //console.log(status, $scope.details.courses._get);
         };
 
         // Error callback
         var handleError = function (err, status) {
             $scope.details = {};
-//            //console.log(status, err);
+            //            //console.log(status, err);
         };
 
         //getData._get($scope.teacherId).success(handleSuccess).error(handleError);
@@ -275,7 +273,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
 
 
         $scope.$watch('selectedDate', function () {
-//            //console.log($scope.selectedDate);
+            //            //console.log($scope.selectedDate);
         }, true);
 
         $scope.$watch('multiselectModelAdminCourse', function () {
@@ -295,10 +293,10 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
 
             for (var i = 0; i < $scope.multiselectModelAdminStudent.length; i++) {
                 $scope.studentListIds.push($scope.multiselectModelAdminStudent[i].id);
-//                //console.log($scope.studentListIds);
+                //                //console.log($scope.studentListIds);
             }
-//            //console.log('studentListIds  ',$scope.studentListIds);
-         $scope.OnChangeStudent();
+            //            //console.log('studentListIds  ',$scope.studentListIds);
+            $scope.OnChangeStudent();
         }, true);
 
 
@@ -307,21 +305,21 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
 
             for (var i = 0; i < $scope.multiselectModelAdminStudentCourse.length; i++) {
                 $scope.studentCourseListIds.push($scope.multiselectModelAdminStudentCourse[i].id);
-//                //console.log($scope.studentCourseListIds);
+                //                //console.log($scope.studentCourseListIds);
             }
         }, true);
 
         $scope.$watch('multiselectModelEnrollment', function () {
 
-//            console.log($scope.multiselectModelEnrollment.length);
+            //            console.log($scope.multiselectModelEnrollment.length);
 
             $scope.enrollArr = [];
-//            console.log($scope.multiselectModelEnrollment);
+            //            console.log($scope.multiselectModelEnrollment);
 
             for (var i = 0; i < $scope.multiselectModelEnrollment.length; i++) {
 
                 $scope.enrollArr.push($scope.multiselectModelEnrollment[i].id);
-//                console.log($scope.enrollArr);
+                //                console.log($scope.enrollArr);
 
             }
 
