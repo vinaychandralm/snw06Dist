@@ -59,10 +59,23 @@ angular
             controller: 'adminctrl'
           })
           .otherwise({
-            redirectTo: '/'
+                redirectTo: '/'
           }); 
 
-        // $routeProvider.otherwise({
-        //     redirectTo: '/'
-        // });
     });
+
+angular.run(function ($rootScope, $location) {
+
+    var history = [];
+
+    $rootScope.$on('$routeChangeSuccess', function() {
+        history.push($location.$$path);
+    });
+
+    $rootScope.back = function () {
+        alert("Hello");
+        var prevUrl = history.length > 1 ? history.splice(-2)[0] : "/";
+        $location.path(prevUrl);
+    };
+
+});

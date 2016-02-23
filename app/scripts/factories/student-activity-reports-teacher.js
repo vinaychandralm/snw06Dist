@@ -4,12 +4,11 @@ var factoryModule = angular.module('studentActivityReportsTeacher.factories', []
 
 factoryModule.factory('getDataCourseTeacher', function ($http) {
 
-    var basePath = 'http://172.16.9.197:8282/gage-service/service/course?';
+
 
     return {
-        _get: function (role, userid, __$scopecourseArr) {
-            console.log("*******************************************");
-            console.log(role, userid);
+        _get: function (role, userid, urlDetails) {
+            var basePath = urlDetails.servicesBaseUrl +"/course?";
             return $http.get(basePath + "role=" + role + "&userids=" + userid);
         }
     };
@@ -17,15 +16,14 @@ factoryModule.factory('getDataCourseTeacher', function ($http) {
 
 factoryModule.factory('getDataStudentTeacher', function ($http) {
 
-    var basePath = 'http://172.16.9.197:8282/gage-service/service/student?entitytype=course&';
+
 
     return {
-        _get: function (role, userid) {
-            console.log("*******************************************");
-            console.log(role, userid);
+        _get: function (role, userid,urlDetails) {
             console.log(basePath + "entityids=" + userid);
+            var basePath = urlDetails.servicesBaseUrl +"/student?entitytype=course&";
             return $http.get(basePath + "entityids=" + userid);
-        }   
+        }
     };
 });
 

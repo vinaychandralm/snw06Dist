@@ -2,48 +2,61 @@
 
 var factoryModule = angular.module('studentActivityReports.factories', []);
 
+factoryModule.factory('getServerConfigData', function() {
+
+    return {
+        _getDetails: function() {
+          return {
+                  "servicesBaseUrl" : 'http://172.16.9.197:8282/gage-service/service/',
+
+                  "userSettingObjects" :
+                      {
+                          'role':'teacher',
+                          'userid':'46239951',
+                          'token': '~PDZwCAAAAAwPx68jeBI0MB.Lw8GqGfgkPD_J3NbpfgMOA'
+                      }
+
+              }
+        }
+    }
+});
+
 factoryModule.factory('validateUrlData', function($http, $rootScope) {
 
-
-    var basePath = "http://172.16.9.197:8282/gage-service/service/user/rights/";
-    //45685775?roletype=teacher&entitytype=D|C&token=~SKq1BAAAAAALtEkMQ0pw5A.4h2waVknunsG6_6pOweqSB"
     return {
-        _get: function(role,userid,_token) {
+        _get: function(role,userid,_token,urlDetails) {
             console.log(role,userid);
             var token = _token;
             var entitytype = 'D|C';
+            var basePath =urlDetails.servicesBaseUrl  +"/user/rights/";
             $rootScope.showoverlay = true;
             var __url = basePath +userid+'?roletype='+role+'&entitytype='+entitytype+'&token='+_token;
             console.log(__url);
             return $http.get(__url);
-             
+
         }
     };
 });
 
 
 factoryModule.factory('getDataStudent', function($http) {
-
-    var basePath = 'http://172.16.9.197:8282/gage-service/service/course?';
-
     return {
-        _get: function(role,userid,__$scopecourseArr) {
-            //console.log("*******************************************");
-            //console.log(role,userid);
-             return $http.get(basePath +"role="+role+"&userids="+userid);        
+        _get: function(role,userid,urlDetails,__$scopecourseArr) {
+          console.log(urlDetails);
+          var basePath =  urlDetails.servicesBaseUrl + '/course?';
+             return $http.get(basePath +"role="+role+"&userids="+userid);
         }
     };
 });
 
 factoryModule.factory('getStudentCourseData', function($http) {
 
-    var basePath = 'http://172.16.9.197:8282/gage-service/service/course?role=student&userids=';
+
 
     return {
-        _get: function(userid) {
-            //console.log("*******************************************");
-          //  console.log(role,userid);
-             return $http.get(basePath +userid);        
+        _get: function(userid,urlDetails) {
+          var basePath = urlDetails.servicesBaseUrl +'/course?role=student&userids=';
+             return $http.get(basePath +userid);
         }
     };
 });

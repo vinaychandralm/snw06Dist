@@ -8,7 +8,10 @@ constantModule.constant('$theme', {
 var homeModule = angular.module('studentActivityReports.home', ['constant']);
 
 
-homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme', '$routeParams', 'validateUrlData', 'notAuthenticated', 'noNetError', function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData, notAuthenticated, noNetError) {
+
+
+homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme', '$routeParams', 'validateUrlData', 'notAuthenticated', 'noNetError', 'getServerConfigData', function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData, notAuthenticated, noNetError, getServerConfigData) {
+
 
     $scope.progressReport = false;
     $scope.courseCompletionReport = false;
@@ -28,7 +31,40 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
 
 
 
-    validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token)
+
+    // validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token)
+    //     .then(function onsuccess(response) {
+    //         console.log($routeParams.token + " $routeParams.token");
+    //         console.log(response.data);
+
+    //         if (response.data.messageType === "ERROR") {
+
+    //             notAuthenticated._showErrorMsg();
+
+    //         } else {
+    //             $scope.showTiles(response.data);
+    //             $rootScope.showoverlay = false;
+    //         }
+
+    //     }, function onError(errResponse) {
+    //         console.log("err Response ", errResponse);
+    //         noNetError._showNetErrorMsg();
+    //         $scope.blockUser(errResponse);
+    //     });
+
+    //TODO : Remove blow 5 line comments if not using GRUNT-SERVE.
+    $routeParams.role = CONFIGJSONOBJ.userSettingObjects.role;
+    $routeParams.userid = CONFIGJSONOBJ.userSettingObjects.userid;
+    $routeParams.token = CONFIGJSONOBJ.userSettingObjects.token;
+    $rootScope.token = $routeParams.token;
+    $rootScope.userid = $routeParams.userid;
+
+    $rootScope.role = $routeParams.role;
+
+    console.log($rootScope.role, $rootScope.userid, $routeParams.token);
+
+    var urlDetails = getServerConfigData._getDetails();
+    validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token, urlDetails)
         .then(function onsuccess(response) {
             console.log($routeParams.token + " $routeParams.token");
             console.log(response.data);
@@ -47,6 +83,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
             noNetError._showNetErrorMsg();
             $scope.blockUser(errResponse);
         });
+
 
     $scope.showTiles = function (authResponse) {
         console.log(authResponse);
@@ -82,6 +119,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
     //    $rootScope.role = 'admin';
     //    $scope.showTiles('sjkdfhjks');
 
+
     console.log('$routeParams', $routeParams);
     console.log('role= ', $routeParams.role);
     console.dir("Inside MainCtrl");
@@ -107,6 +145,9 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
         $location.path("/teacher-form");
     };
     $scope.openForm = function () {
+        //changing body background color
+        
+        
         if ($rootScope.role === 'admin') {
             $location.path("/admin-form");
         } else if ($rootScope.role === 'teacher') {
@@ -121,4 +162,19 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
     $scope.go = function (path) {
         $location.path(path);
     };
+
+    $rootScope.$watch(function () { // fixed function declaration
+        return $location.path();
+    },
+        function (newValue, oldValue) {
+            console.log(newValue, oldValue);
+            if (newValue === '/') { // Update: variable name case should be the same
+                // here you can do your tasks
+                $rootScope.bodybg = 'bodyBgViolat';
+            }
+            else {
+                $rootScope.bodybg = 'bodyBgwhite';
+            }
+        },
+        true);
 }]);

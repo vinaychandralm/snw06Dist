@@ -2,11 +2,11 @@
 
 var sarModule = angular.module('studentActivityReports.studentDetails', []);
 sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'getDataStudent',
-    'getEnrollmentStatus', 'getStudentCourseData','notAuthenticated','noNetError',
-    function ($scope, $rootScope, $routeParams, getDataStudent, getEnrollmentStatus, getStudentCourseData,notAuthenticated,noNetError) {
+    'getEnrollmentStatus', 'getStudentCourseData','notAuthenticated','noNetError','getServerConfigData',
+    function ($scope, $rootScope, $routeParams, getDataStudent, getEnrollmentStatus, getStudentCourseData,notAuthenticated,noNetError,getServerConfigData) {
 
         console.dir("**Inside studentDetailsCtrl**");
-    
+
         // console.log(getData._get($rootScope.role,$rootScope.userid));
 
         $scope.teacherId = $routeParams.userId;
@@ -19,8 +19,8 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         $scope.endDateNotSelected = false;
         $scope.courseIdArr = [];
         $scope.enrollArr = [];
-        
-     
+
+
 
         /*
         * @startDate: holds the start date.
@@ -46,8 +46,10 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
         $scope.enrollmentArr = getEnrollmentStatus.get();
         console.log("2378459023478927842748923749273423894792384798237498347923784");
-
-        getDataStudent._get($rootScope.role, $rootScope.userid)
+        //getting Server url details
+        var urlDetails =getServerConfigData._getDetails();
+        console.log(urlDetails)
+        getDataStudent._get($rootScope.role, $rootScope.userid,urlDetails)
             .then(function onsuccess(response) {
                 console.log(response.data);
                 $scope.setData(response.data);
@@ -69,7 +71,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
 
         $scope.submitStudentInfo = function () {
-
+           
             console.log(new Date($scope.startDateStartActivity));
             var startDateActivity = new Date($scope.startDateStartActivity);
             var endDateActivity = new Date($scope.startDateEndActivity);
@@ -128,7 +130,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         $scope.$watch('multiselectModelenrollment', function () {
 
             console.log($scope.multiselectModelenrollment.length);
-            
+
             $scope.enrollArr = [];
             console.log($scope.multiselectModelenrollment);
 
