@@ -210,7 +210,7 @@
     	<img src="images/logo.jpg" class="logo" alt="" />
     </div>
     <div class="heading-block" >
-    	<h2 class="heading centered">Admin Activity Details Report For Administrators</h2>
+    	<h2 class="heading centered">Student Activity Details Report for Administrators</h2>
     </div>
      <div class="link-row">
     	<a href="" ng-click="back()" class="back-link">Back to All Reports</a>
@@ -278,7 +278,7 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                         </div>
 -->
-                        <div id="datepickerAdminStart" class="input-group date" data-date-format="mm-dd-yyyy">
+                        <div id="datepickerAdminStart" class="date" data-date-format="mm-dd-yyyy">
                     <input type="text" class="form-control cal-icon" ng-model="startDateStartActivity" data-max-date={{maxDateStartActivity}} name="date" bs-datepicker>
                 </div>
                     </div>
@@ -289,7 +289,7 @@
                         <p>Activity End Date:</p>
                     </div>
                     <div class="col-md-3">
-                        <div id="datepickerAdminEnd" class="input-group date" data-date-format="mm-dd-yyyy">
+                        <div id="datepickerAdminEnd" class="date" data-date-format="mm-dd-yyyy">
                     <input type="text" class="form-control cal-icon" ng-model="startDateEndActivity" name="date" bs-datepicker>
                 </div>
                 <span class="field-alert" ng-show='endDateNotgreater'>please select activity end date after start date.</span>
