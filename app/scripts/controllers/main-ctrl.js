@@ -8,7 +8,7 @@ constantModule.constant('$theme', {
 var homeModule = angular.module('studentActivityReports.home', ['constant']);
 
 
-homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme', '$routeParams', 'validateUrlData','notAuthenticated','noNetError', function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData,notAuthenticated,noNetError) {
+homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme', '$routeParams', 'validateUrlData', 'notAuthenticated', 'noNetError', function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData, notAuthenticated, noNetError) {
 
     $scope.progressReport = false;
     $scope.courseCompletionReport = false;
@@ -24,29 +24,29 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
     $rootScope.role = $routeParams.role;
     console.log($rootScope.role, $rootScope.userid, $routeParams.token);
     console.log("*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-    
-    
-    
 
-     validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token)
-         .then(function onsuccess(response) {
+
+
+
+    validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token)
+        .then(function onsuccess(response) {
             console.log($routeParams.token + " $routeParams.token");
             console.log(response.data);
-            
-            if(response.data.messageType ==="ERROR"){
-                
+
+            if (response.data.messageType === "ERROR") {
+
                 notAuthenticated._showErrorMsg();
-                
-            }else{
+
+            } else {
                 $scope.showTiles(response.data);
                 $rootScope.showoverlay = false;
             }
-                
-         }, function onError(errResponse) {
-             console.log("err Response ", errResponse);
+
+        }, function onError(errResponse) {
+            console.log("err Response ", errResponse);
             noNetError._showNetErrorMsg();
-             $scope.blockUser(errResponse);
-         });
+            $scope.blockUser(errResponse);
+        });
 
     $scope.showTiles = function (authResponse) {
         console.log(authResponse);
@@ -78,9 +78,9 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
     };
 
 
-//    $scope.role = 'admin';
-//    $rootScope.role = 'admin';
-//    $scope.showTiles('sjkdfhjks');
+    //    $scope.role = 'admin';
+    //    $rootScope.role = 'admin';
+    //    $scope.showTiles('sjkdfhjks');
 
     console.log('$routeParams', $routeParams);
     console.log('role= ', $routeParams.role);
