@@ -220,7 +220,7 @@
   
   	<div class="container">
     	<div class="col-md-12 student-form">
-        	<div class="collapse-row">
+        	<div class="collapse-row" ng-class="{'displaynonecls hideAnimation': isShowReportView, 'showAnimation displayCls' : !isShowReportView}">
                 <div class="row form-group">
                     <div class="col-md-2">
                         <p>School(s)</p>
@@ -328,17 +328,17 @@
                     </div>
                 </div>
             </div>
-            <div class="row" >
-            	<div class="col-md-3">
-                	<p class="search">Search Again <a href="javascript:void(0)" class="again"><img src="images/arrow-down.png" alt=""></a></p>
+            <div class="row" ng-class="{'displaynonecls hideAnimation': !isShowReportView, 'showAnimation displayCls' : isShowReportView}">
+            	<div class="col-md-12">
+                	<p class="search displayCls" ng-click ="serachAgain()">Search Again <a href="javascript:void(0)" class="again"><img src="images/arrow-down.png" alt=""></a></p>
                 </div>
-                
+                <div class="col-md-12">
+                	<iframe class="frame " src="http://www.w3schools.com/jquery/default.asp">fdfdfdf</iframe>
+                </div>
             </div>
             
-            <div class="row iframe-row">
-                <div class="col-md-12">
-                	<iframe class="frame" src="http://www.w3schools.com/jquery/default.asp">fdfdfdf</iframe>
-                </div>
+            <div class="row iframe-row displayCls" ng-class="{'displaynonecls hideAnimation': !isShowReportView, 'showAnimation displayCls' : isShowReportView}">
+
             </div>
         </div>
     </div>

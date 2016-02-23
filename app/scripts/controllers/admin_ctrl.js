@@ -32,9 +32,10 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
 
         $scope.studentCourseListIds = [];
         $scope.multiselectModelAdminStudentCourse = [];
-        //console.log("$scope.userId  ", $scope.userId);
-        //console.log("$routeParams.userId  ", $rootScope.admindetail);
-        /////console.log("$scope.userId  ",$scope.userId );
+        
+        $scope.searchagain ="displaynonecls";
+        $scope.iframe_row = "displaynonecls";
+        $scope.isShowReportView =false;
 
 
         /*
@@ -202,6 +203,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
         $scope.submit = function () {
 
 //            //console.log(new Date($scope.startDateStartActivity));
+            
             var startDateActivity = new Date($scope.startDateStartActivity);
             var endDateActivity = new Date($scope.startDateEndActivity);
             if (startDateActivity > endDateActivity) {
@@ -251,6 +253,13 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
                 $scope.minimumMinut = true;
             } else {
                 $scope.minimumMinut = false;
+            }
+            
+            if($scope.endDateNotgreater && $scope.schoolNotSelected && $scope.studentNotSelected && $scope.courseNotSelected 
+              &&$scope.courseNotSelected && $scope.statusNotSelected && $scope.minimumMinut){
+                //Setting varaible for Animation
+                $scope.isShowReportView = true;
+            console.log($scope.isShowReportView);
             }
         };
 
@@ -327,8 +336,10 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
 
 
         }, true);
-        $scope.submit = function(){
-            
+        
+        $scope.serachAgain = function(){
+            $scope.isShowReportView = false;
+            console.log($scope.isShowReportView);
         }
 
     }]);
