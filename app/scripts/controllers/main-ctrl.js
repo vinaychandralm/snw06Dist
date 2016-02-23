@@ -147,7 +147,6 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
     $scope.openForm = function () {
         //changing body background color
         
-        
         if ($rootScope.role === 'admin') {
             $location.path("/admin-form");
         } else if ($rootScope.role === 'teacher') {

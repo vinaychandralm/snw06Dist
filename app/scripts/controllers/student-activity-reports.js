@@ -1,9 +1,9 @@
 'use strict';
 
 var sarModule = angular.module('studentActivityReports.studentDetails', []);
-sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'getDataStudent',
+sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParams','$location', 'getDataStudent',
     'getEnrollmentStatus', 'getStudentCourseData','notAuthenticated','noNetError','getServerConfigData',
-    function ($scope, $rootScope, $routeParams, getDataStudent, getEnrollmentStatus, getStudentCourseData,notAuthenticated,noNetError,getServerConfigData) {
+    function ($scope, $rootScope, $routeParams,$location, getDataStudent, getEnrollmentStatus, getStudentCourseData,notAuthenticated,noNetError,getServerConfigData) {
 
         console.dir("**Inside studentDetailsCtrl**");
 
@@ -95,6 +95,11 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             }
 
         };
+        
+       $scope.backStudent = function () {
+            // debugger;
+            $location.path('/');
+        }
 
         // Success callback
         var handleSuccess = function (data, status) {

@@ -1,7 +1,7 @@
 'use strict';
 var admModule = angular.module('studentActivityReports.adminDetails', []);
-admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getSchoolData',
-    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError', 'getServerConfigData', function ($scope, $rootScope, $routeParams,
+admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams','$location', 'getSchoolData',
+    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError', 'getServerConfigData', function ($scope, $rootScope, $routeParams,$location,
         getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse, notAuthenticated, noNetError, getServerConfigData) {
 
         //console.dir("**Inside Admin Ctrl**");
@@ -201,13 +201,6 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
         };
 
         $scope.submit = function () {
-
-<<<<<<< HEAD
-//            //console.log(new Date($scope.startDateStartActivity));
-            
-=======
-            //            //console.log(new Date($scope.startDateStartActivity));
->>>>>>> 71ca1fea0928568b3753a1da2f39420eec9c3d57
             var startDateActivity = new Date($scope.startDateStartActivity);
             var endDateActivity = new Date($scope.startDateEndActivity);
             if (startDateActivity > endDateActivity) {
@@ -264,6 +257,11 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
             console.log($scope.isShowReportView);
             }
         };
+        
+        $scope.backAdmin = function () {
+            // debugger;
+            $location.path('/');
+        }
 
         // Success callback
         var handleSuccess = function (data, status) {

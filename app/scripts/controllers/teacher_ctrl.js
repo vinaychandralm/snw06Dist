@@ -1,9 +1,9 @@
 'use strict';
 
 var sarModule = angular.module('teacherActivityReports.teacherDetails', []);
-sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'getDataCourseTeacher',
+sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location', '$routeParams', 'getDataCourseTeacher',
     'getEnrollmentStatus', 'getDataStudentTeacher', 'notAuthenticated', 'noNetError', 'getServerConfigData',
-    function ($scope, $rootScope, $routeParams, getDataCourseTeacher, getEnrollmentStatus, getDataStudentTeacher, notAuthenticated, noNetError, getServerConfigData) {
+    function ($scope, $rootScope, $location, $routeParams, getDataCourseTeacher, getEnrollmentStatus, getDataStudentTeacher, notAuthenticated, noNetError, getServerConfigData) {
 
         console.dir("**Inside teacherDetailsCtrl**");
 
@@ -153,6 +153,12 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParam
                 $scope.minimumMinut = false;
             }
         };
+
+        $scope.backTeacher = function () {
+            // debugger;
+            $location.path('/');
+        }
+
 
         // Success callback
         var handleSuccess = function (data, status) {

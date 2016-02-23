@@ -157,14 +157,14 @@ body{
 	display:none;
 	}	*/
 .hideAnimation{
-    overflow: hidden;
+    /*overflow: hidden;*/
     height: 0px;
     transition: ease all 0.5s;
     opacity: 1;
 
 }
 .showAnimation{
-    overflow: hidden;
+    /*overflow: hidden;*/
     height: 500px;
     transition: ease all 1s;
     opacity: 1;
