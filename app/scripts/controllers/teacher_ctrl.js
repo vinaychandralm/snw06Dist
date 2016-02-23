@@ -147,7 +147,6 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             } else {
                 $scope.studentNotSelected = false;
             }
-            console.log()
             if ($scope.inputTeacher === undefined || $scope.inputTeacher === null || $scope.inputTeacher < 0) {
                 $scope.minimumMinut = true;
             } else {

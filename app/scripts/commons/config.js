@@ -1,4 +1,4 @@
-var BaseUrl = 'http://172.16.9.197:8282/gage-service/service/';
+// var BaseUrl = 'http://172.16.9.197:8282/gage-service/service/';
 
 
 var CONFIGJSONOBJ={
@@ -8,11 +8,9 @@ var CONFIGJSONOBJ={
             {
                 'role':'admin',
                 'userid':'46238944',
-                'token': '~gzYwCAAAAAghzEQI0nvuwA.-wBBaOTIF8SQNyM6sdo7RB'
+                'token': '~gzYwCAAAAAQ7OObRj-NwKA.yzRByba6lnRSHIAzdH_r5B'
             }
      
-
-
 }
     
 

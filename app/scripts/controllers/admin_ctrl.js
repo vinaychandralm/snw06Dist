@@ -244,7 +244,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
             } else {
                 $scope.statusNotSelected = false;
             }
-
+            console.log($scope.inputAdmin);
             if ($scope.inputAdmin === undefined || $scope.inputAdmin === null || $scope.inputAdmin < 0) {
                 $scope.minimumMinut = true;
             } else {
@@ -325,8 +325,8 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
 
 
         }, true);
-        $scope.submit = function(){
-            
+        $scope.submit = function () {
+
         }
 
     }]);
