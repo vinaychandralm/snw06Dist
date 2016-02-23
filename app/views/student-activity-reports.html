@@ -212,7 +212,7 @@
                             <p>Activity Start Date:</p>
                         </div>
                         <div class="col-md-3">
-                            <div id="datepicker" class="input-group date " data-date-format="mm-dd-yyyy">
+                            <div id="datepicker" class="input-group date " data-date-format="dd-mm-yyyy" value="{{ date | date: 'dd-mm-yyyy' }}">
 
                     <input type="text" class="form-control cal-icon" ng-model="startDateStartActivity" data-max-date={{maxDateStartActivity}}
                     name="date" bs-datepicker>
@@ -224,7 +224,7 @@
                             <p>Activity End Date:</p>
                         </div>
                         <div class="col-md-3">
-                            <div id="datepicker2" class="input-group date" data-date-format="mm-dd-yyyy">
+                            <div id="datepicker2" class="input-group date" data-date-format="dd-mm-yyyy">
 
                     <input type="text" class="form-control cal-icon" ng-model="startDateEndActivity" name="date" bs-datepicker>
                 </div>

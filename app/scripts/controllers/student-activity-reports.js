@@ -1,9 +1,9 @@
 'use strict';
 
 var sarModule = angular.module('studentActivityReports.studentDetails', []);
-sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParams','$location', 'getDataStudent',
-    'getEnrollmentStatus', 'getStudentCourseData','notAuthenticated','noNetError','getServerConfigData',
-    function ($scope, $rootScope, $routeParams,$location, getDataStudent, getEnrollmentStatus, getStudentCourseData,notAuthenticated,noNetError,getServerConfigData) {
+sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'getDataStudent',
+    'getEnrollmentStatus', 'getStudentCourseData', 'notAuthenticated', 'noNetError', 'getServerConfigData',
+    function ($scope, $rootScope, $routeParams, $location, getDataStudent, getEnrollmentStatus, getStudentCourseData, notAuthenticated, noNetError, getServerConfigData) {
 
         console.dir("**Inside studentDetailsCtrl**");
 
@@ -47,13 +47,13 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         $scope.enrollmentArr = getEnrollmentStatus.get();
         console.log("2378459023478927842748923749273423894792384798237498347923784");
         //getting Server url details
-        var urlDetails =getServerConfigData._getDetails();
+        var urlDetails = getServerConfigData._getDetails();
         console.log(urlDetails)
-        getDataStudent._get($rootScope.role, $rootScope.userid,urlDetails)
+        getDataStudent._get($rootScope.role, $rootScope.userid, urlDetails)
             .then(function onsuccess(response) {
                 console.log(response.data);
                 $scope.setData(response.data);
-                if(response.data.messageType ==="ERROR"){
+                if (response.data.messageType === "ERROR") {
                     notAuthenticated._showErrorMsg();
                     return;
                 }
@@ -71,7 +71,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
 
         $scope.submitStudentInfo = function () {
-           
+
             console.log(new Date($scope.startDateStartActivity));
             var startDateActivity = new Date($scope.startDateStartActivity);
             var endDateActivity = new Date($scope.startDateEndActivity);
@@ -88,15 +88,15 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
                 $scope.courseNotSelected = false;
             }
 
-            if($scope.enrollArr.length===0){
+            if ($scope.enrollArr.length === 0) {
                 $scope.enrllNotSelected = true;
-            }else{
+            } else {
                 $scope.enrllNotSelected = false;
             }
 
         };
-        
-       $scope.backStudent = function () {
+
+        $scope.backStudent = function () {
             // debugger;
             $location.path('/');
         }
@@ -115,9 +115,15 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
         //getData._get($scope.teacherId).success(handleSuccess).error(handleError);
 
-        $scope.$watch('selectedDate', function () {
-            console.log($scope.selectedDate);
-        }, true);
+        // $scope.$watch('selectedDate', function (v) {
+        //     console.log($scope.selectedDate);
+        //     var d = new Date(v);
+        //     var curr_date = d.getDate();
+        //     var curr_month = d.getMonth() + 1; //Months are zero based
+        //     var curr_year = d.getFullYear();
+        //     $scope.modDate = curr_date + "/" + curr_month + "/" + curr_year;
+        //     console.log($scope.modDate)
+        // }, true);
 
         $scope.$watch('multiselectModelcourse', function () {
 
