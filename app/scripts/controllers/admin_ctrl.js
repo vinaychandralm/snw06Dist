@@ -325,5 +325,8 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
 
 
         }, true);
+        $scope.submit = function(){
+            
+        }
 
     }]);
