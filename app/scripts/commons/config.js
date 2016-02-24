@@ -8,7 +8,7 @@ var CONFIGJSONOBJ={
             {
                 'role':'student',
                 'userid':'46240033',
-                'token': '~hEZwCAAAAAw8Mok_Q8dMnB.IQFx-2G668dH1HWIVMKo9B'
+                'token': '~hEZwCAAAAAAO-L3jTorYnB.N0D98pZpzK18t8Idh4YmuB'
 
             }
      

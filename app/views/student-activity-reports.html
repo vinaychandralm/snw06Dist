@@ -212,10 +212,10 @@
                             <p>Activity Start Date:</p>
                         </div>
                         <div class="col-md-3">
-                            <div id="datepicker" class="input-group date " data-date-format="dd-mm-yyyy" value="{{ date | date: 'dd-mm-yyyy' }}">
+                            <div id="datepicker" class="input-group date">
 
                     <input type="text" class="form-control cal-icon" ng-model="startDateStartActivity" data-max-date={{maxDateStartActivity}}
-                    name="date" bs-datepicker>
+                    name="date" bs-datepicker  data-date-format="dd-MM-yyyy">
                 </div>
                         </div>
                     </div>
@@ -224,9 +224,9 @@
                             <p>Activity End Date:</p>
                         </div>
                         <div class="col-md-3">
-                            <div id="datepicker2" class="input-group date" data-date-format="dd-mm-yyyy">
+                            <div id="datepicker2" class="input-group date">
 
-                    <input type="text" class="form-control cal-icon" ng-model="startDateEndActivity" name="date" bs-datepicker>
+                    <input type="text" class="form-control cal-icon" ng-model="startDateEndActivity" name="date" bs-datepicker data-date-format="dd-MM-yyyy">
                 </div>
                 <span class="field-alert" ng-show='endDateNotSelected'>Please select activity end date after start date.</span>
                         </div>
