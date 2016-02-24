@@ -12,7 +12,7 @@ var homeModule = angular.module('studentActivityReports.home', ['constant']);
 
 homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme', '$routeParams', 'validateUrlData', 'notAuthenticated', 'noNetError', 'getServerConfigData', function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData, notAuthenticated, noNetError, getServerConfigData) {
 
-
+    
     $scope.progressReport = false;
     $scope.courseCompletionReport = false;
     $scope.studentActivityReport = false;
