@@ -12,7 +12,7 @@
   </div>
   	<div class="container">
     	<div class="col-md-12 student-form">
-        		<div class="collapse-row">
+        		<div class="collapse-row" ng-class="{'displaynonecls hideAnimation': isShowReportView, 'showAnimation displayCls' : !isShowReportView}">
                     <div class="row form-group">
                         <div class="col-md-2">
                             <p>Course(s):</p>
@@ -77,17 +77,22 @@
                     </div>
                 </div>
                 </div>
-                <div class="row displaynonecls" >
-                    <div class="col-md-3">
-                        <p class="search">Search Again <a href="javascript:void(0)" class="again"><img src="images/arrow-down.png" alt=""></a></p>
-                    </div>
-            	</div>
-                <div class="row iframe-row displaynonecls" >
+                <div class="row" ng-class="{'displaynonecls hideAnimation': !isShowReportView, 'showAnimation displayCls' : isShowReportView}">
+            	<div class="col-md-12">
+                	<p class="search displayCls" ng-click ="searchAgain()">Search Again <a href="javascript:void(0)" class="again"><img src="images/arrow-down.png" alt=""></a></p>
+                </div>
                 <div class="col-md-12">
-                	<!--<iframe class="frame" src="http://www.w3schools.com/jquery/default.asp">fdfdfdf</iframe>-->
+                	<iframe class="frame"  src="http://www.w3schools.com/jquery/default.asp"></iframe>
                 </div>
             </div>
+<!--
+                <div class="row iframe-row displaynonecls" >
+                <div class="col-md-12">
+                	<iframe class="frame" src="http://www.w3schools.com/jquery/default.asp">fdfdfdf</iframe>
+                </div>
+            </div>
+-->
             </div>
             
         </div>
-    </div>
+    

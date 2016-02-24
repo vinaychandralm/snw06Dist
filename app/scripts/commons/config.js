@@ -7,10 +7,10 @@ var CONFIGJSONOBJ={
         "userSettingObjects" :
             {
 
-                'role':'admin',
-                'userid':'46238944',
+                'role':'student',
+                'userid':'46240033',
 
-                'token': '~gzYwCAAAAAQVzvT5PsJ5aA.SCJjirgImOTIdqS6Ni2dGB'
+                'token': '~hEZwCAAAAAAxfWRdyE3MmB.HSDnvcDs3ymIgvgFNzgcUA'
 
 
             }

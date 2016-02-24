@@ -19,6 +19,10 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         $scope.endDateNotSelected = false;
         $scope.courseIdArr = [];
         $scope.enrollArr = [];
+        
+        $scope.searchagain ="displaynonecls";
+        $scope.iframe_row = "displaynonecls";
+        $scope.isShowReportView =false;
 
 
 
@@ -99,8 +103,18 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             } else {
                 $scope.enrllNotSelected = false;
             }
+            
+            
+            if(!$scope.endDateNotSelected && !$scope.courseNotSelected && !$scope.enrllNotSelected && !$scope.srtDateNotSelected){
+                //Setting varaible for Animation
+                $scope.isShowReportView = true;
+            console.log($scope.isShowReportView);
+            }
+            
 
         };
+        
+        
 
         $scope.backStudent = function () {
             // debugger;
@@ -160,5 +174,10 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
 
         }, true);
+         $scope.searchAgain = function(){
+            $scope.isShowReportView = false;
+            console.log($scope.isShowReportView);
+        }
+       
 
     }]);
