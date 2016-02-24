@@ -140,12 +140,15 @@ body{
 	
 	}
 .displaynonecls{
-/*    display:none;*/
+/*
+    display:none;
+    transition: ease all 0.5s;
+*/
 }
 .displayCls{
-    /* display: block;
-   transition:ease all 0.5s;
-    opacity:1;*/
+    display: block;
+    transition: ease all 0.5s;
+   
 }
 .iframe-row .frame{
 	width:100%;
@@ -157,19 +160,35 @@ body{
 	display:none;
 	}	*/
 .hideAnimation{
+
     overflow: hidden;
-    height: 0px;
-    transition: ease all 0.5s;
-    opacity: 1;
+    height: 0;
+    transition: ease all 1s;
+
+    opacity: 0;
 
 }
 .showAnimation{
-    overflow: hidden;
-    height: 500px;
+
+/*
+    overflow-y: auto;
+    overflow-x: hidden;
+*/
+/*    height: 500px;*/
     transition: ease all 1s;
     opacity: 1;
+    top:0px;
+
 }
 
+
+
+.frame{
+    height: 400px;
+    width: 100%;
+    border: 1px solid #ccc;
+    
+}
 .student-form .search a{
 	margin-left:3px;
 	}

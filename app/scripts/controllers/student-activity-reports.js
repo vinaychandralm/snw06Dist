@@ -72,10 +72,17 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
         $scope.submitStudentInfo = function () {
            
-            console.log(new Date($scope.startDateStartActivity));
+            console.log($scope.startDateStartActivity);
             var startDateActivity = new Date($scope.startDateStartActivity);
             var endDateActivity = new Date($scope.startDateEndActivity);
-            if (startDateActivity > endDateActivity) {
+            if($scope.startDateStartActivity == null){
+                
+                $scope.srtDateNotSelected = true;
+            }else{
+                $scope.srtDateNotSelected = false;
+            }
+           
+            if (startDateActivity > endDateActivity  || $scope.startDateEndActivity ==null) {
                 $scope.endDateNotSelected = true;
             }
             else {

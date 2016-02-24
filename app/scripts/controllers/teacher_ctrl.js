@@ -21,8 +21,10 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         $scope.statusNotSelected = false;
         $scope.courseNotSelected = false;
         $scope.studentNotSelected = false;
+        $scope.srtDateNotSelected = false;
         $scope.endDateNotgreater = false;
         $scope.minimumMinut = false;
+        $scope.inputTeacher=0;
 
         $scope.multiselectModel = [];
         $scope.courseIdArr = [];
@@ -32,6 +34,10 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
         $scope.enrollArr = [];
         $scope.multiselectModelEroll = [];
+        
+        $scope.searchagain ="displaynonecls";
+        $scope.iframe_row = "displaynonecls";
+        $scope.isShowReportView =false;
 
         /*
         * @startDate: holds the start date.
@@ -116,13 +122,22 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
         };
 
-
+        $scope.isInt=function(n) {
+            return n % 1 === 0;
+        }
 
         $scope.submit = function () {
             console.log(new Date($scope.startDateStartActivity));
             var startDateActivity = new Date($scope.startDateStartActivity);
             var endDateActivity = new Date($scope.startDateEndActivity);
-            if (startDateActivity > endDateActivity) {
+             if($scope.startDateStartActivity == null){
+                
+                $scope.srtDateNotSelected = true;
+            }else{
+                $scope.srtDateNotSelected = false;
+            }
+            
+            if (startDateActivity > endDateActivity || $scope.startDateEndActivity ==null) {
                 $scope.endDateNotgreater = true;
             }
             else {
@@ -147,10 +162,18 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             } else {
                 $scope.studentNotSelected = false;
             }
-            if ($scope.inputTeacher === undefined || $scope.inputTeacher === null || $scope.inputTeacher < 0) {
+            console.log( $scope.inputTeacher)
+            if ($scope.inputTeacher === undefined || $scope.inputTeacher === null || $scope.inputTeacher < 0 || !$scope.isInt($scope.inputTeacher)) {
                 $scope.minimumMinut = true;
             } else {
                 $scope.minimumMinut = false;
+            }
+            
+            
+             if(!$scope.endDateNotgreater && !$scope.statusNotSelected && !$scope.courseNotSelected && !$scope.studentNotSelected && !$scope.minimumMinut && !$scope.srtDateNotSelected){
+                //Setting varaible for Animation
+                $scope.isShowReportView =true;
+            
             }
         };
 
@@ -218,5 +241,9 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
 
         }, true);
+         $scope.searchAgain = function(){
+            $scope.isShowReportView = false;
+            console.log($scope.isShowReportView);
+        }
 
     }]);

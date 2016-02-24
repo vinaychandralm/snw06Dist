@@ -15,8 +15,10 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
         $scope.courseNotSelected = false;
         $scope.studentNotSelected = false;
         $scope.schoolNotSelected = false;
+        $scope.srtDateNotSelected = false;
         $scope.endDateNotgreater = false;
         $scope.minimumMinut = false;
+        $scope.inputAdmin=0;
         $scope.schoolListIds = [];
         $scope.multiselectModelAdminSchool = [];
         //    $scope.allSchoolId =[];
@@ -96,6 +98,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
                 //console.log(response.data);
                 $scope.setData(response.data);
                 $scope.getAllSchollDomainId(response.data);
+         
                 getSchoolStudent._get($scope.allSchoolIdArrays, urlDetails)
                     .then(function onSuccess(res) {
                         //console.log("response of _getschool Data  ",res);
@@ -106,6 +109,8 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
 
                         $scope.setDataoFStuds(res.data.data.user);
                         $scope.getAllSchollStudentCourseId(res.data.data.user);
+
+                        console.log($scope.allSchoolStudentIdArrays,"$scope.allSchoolStudentIdArrays 112");
                         getSchoolStudentCourse._get($scope.allSchoolStudentIdArrays, urlDetails)
                             .then(function onSuccess(res) {
                                 //console.log("response of allSchoolStudentIdArrays Data  ",res);
@@ -184,7 +189,11 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
         };
         $scope.OnChangeStudent = function () {
 
-
+            console.log("**************", $scope.studentListIds.length);
+            if($scope.studentListIds.length ==0){
+                $scope.setDataoFSchoolStudsCourse([]);
+                return;
+            }
             getSchoolStudentCourse._get($scope.studentListIds, urlDetails)
                 .then(function onSuccess(res) {
                     //console.log("response of allSchoolStudentIdArrays Data  ",res);
@@ -200,17 +209,23 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
 
         };
 
+         $scope.isInt=function(n) {
+            return n % 1 === 0;
+        }
+
         $scope.submit = function () {
 
-<<<<<<< HEAD
-//            //console.log(new Date($scope.startDateStartActivity));
-            
-=======
-            //            //console.log(new Date($scope.startDateStartActivity));
->>>>>>> 71ca1fea0928568b3753a1da2f39420eec9c3d57
             var startDateActivity = new Date($scope.startDateStartActivity);
             var endDateActivity = new Date($scope.startDateEndActivity);
-            if (startDateActivity > endDateActivity) {
+            
+            if($scope.startDateStartActivity == null){
+                
+                $scope.srtDateNotSelected = true;
+            }else{
+                $scope.srtDateNotSelected = false;
+            }
+            
+            if (startDateActivity > endDateActivity || $scope.startDateEndActivity ==null) {
                 $scope.endDateNotgreater = true;
             }
             else {
@@ -251,14 +266,13 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
                 $scope.statusNotSelected = false;
             }
             console.log($scope.inputAdmin);
-            if ($scope.inputAdmin === undefined || $scope.inputAdmin === null || $scope.inputAdmin < 0) {
+            if ($scope.inputAdmin === undefined || $scope.inputAdmin === null || $scope.inputAdmin < 0 ||!$scope.isInt($scope.inputAdmin)) {
                 $scope.minimumMinut = true;
             } else {
                 $scope.minimumMinut = false;
             }
             
-            if($scope.endDateNotgreater && $scope.schoolNotSelected && $scope.studentNotSelected && $scope.courseNotSelected 
-              &&$scope.courseNotSelected && $scope.statusNotSelected && $scope.minimumMinut){
+            if(!$scope.endDateNotgreater && !$scope.schoolNotSelected && !$scope.studentNotSelected && !$scope.courseNotSelected && !$scope.courseNotSelected && !$scope.statusNotSelected && !$scope.minimumMinut && !$scope.srtDateNotSelected){
                 //Setting varaible for Animation
                 $scope.isShowReportView = true;
             console.log($scope.isShowReportView);
@@ -340,7 +354,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
         }, true);
 
         
-        $scope.serachAgain = function(){
+        $scope.searchAgain = function(){
             $scope.isShowReportView = false;
             console.log($scope.isShowReportView);
         }

@@ -192,7 +192,7 @@
   
   	<div class="container">
     	<div class="col-md-12 student-form">
-        	<div class="collapse-row">
+        	<div class="collapse-row"  ng-class="{'displaynonecls hideAnimation': isShowReportView, 'showAnimation displayCls' : !isShowReportView}">
                 <div class="row form-group">
                     <div class="col-md-2">
                         <p>Course(s):</p>
@@ -238,13 +238,13 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>-->
                             
                             
-                             <div id="datepicker" class="input-group date" data-date-format="mm-dd-yyyy">
+                             <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
                     <input type="text" class="form-control cal-icon" ng-model="startDateStartActivity" data-max-date={{maxDateStartActivity}} name="date" bs-datepicker>
                 </div>
+                <span class="field-alert" ng-show='srtDateNotSelected'>Please select activity strat date.</span>
             </div>
                         </div> 
                     </div>
-                </div>
                 
                 <div class="row form-group">
                     <div class="col-md-2">
@@ -264,7 +264,7 @@
                 <div class="col-md-6">
                 	<div class="row">
                     	 <div class="col-xs-6">
-                        	<input class="form-control" type="number" ng-model="inputTeacher">
+                        	<input class="form-control" type="number" ng-model="inputTeacher" >
                         </div>
                        
                     </div>
@@ -290,17 +290,22 @@
                          <button type="submit" class="btn disabled">Cancel</button>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-            	<div class="col-md-3">
-                	<p class="search">Search Again <a href="javascript:void(0)" class="again"><img src="images/arrow-down.png" alt=""></a></p>
                 </div>
-                
+             </div>
+             <div class="row" ng-class="{'displaynonecls hideAnimation': !isShowReportView, 'showAnimation displayCls' : isShowReportView}">
+            	<div class="col-md-12">
+                	<p class="search displayCls" ng-click ="searchAgain()">Search Again <a href="javascript:void(0)" class="again"><img src="images/arrow-down.png" alt=""></a></p>
+                </div>
+                <div class="col-md-12">
+                	<iframe class="frame"  src="http://www.w3schools.com/jquery/default.asp"></iframe>
+                </div>
             </div>
-            <div class="row iframe-row">
+<!--
+            <div class="row iframe-row displaynonecls" >
                 <div class="col-md-12">
                 	<iframe class="frame" src="http://www.w3schools.com/jquery/default.asp">fdfdfdf</iframe>
                 </div>
             </div>
+-->
         </div>
-    </div>
+    
