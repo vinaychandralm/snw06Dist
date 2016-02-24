@@ -1,7 +1,7 @@
 'use strict';
 var admModule = angular.module('studentActivityReports.adminDetails', []);
-admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getSchoolData',
-    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError', 'getServerConfigData', function ($scope, $rootScope, $routeParams,
+admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams','$location', 'getSchoolData',
+    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError', 'getServerConfigData', function ($scope, $rootScope, $routeParams,$location,
         getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse, notAuthenticated, noNetError, getServerConfigData) {
 
         //console.dir("**Inside Admin Ctrl**");
@@ -278,6 +278,11 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams', 'getS
             console.log($scope.isShowReportView);
             }
         };
+        
+        $scope.backAdmin = function () {
+            // debugger;
+            $location.path('/');
+        }
 
         // Success callback
         var handleSuccess = function (data, status) {

@@ -1,177 +1,3 @@
-<!--<div class="container">
-    <div class="col-md-12 student-form">
-        <div class="row form-group">
-            <div class="col-md-12">
-                <h2 class="title">Student Activity Details Report</h2>
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col-md-2">
-                <p>Course(s):<span class="field-alert">*</span></p>
-            </div>
-            <div class="col-md-6">
-
-                <multiselect ng-model="multiselectModelcourse" options="c.title for c in courseArr" data-multiple="true" data-checkall="All Courses">
-                </multiselect>
-                <span class="field-alert" ng-show='courseNotSelected'>please select atleast one course.</span>
-            </div>
-        </div>
-
-        <div class="row form-group">
-            <div class="col-md-2">
-                <p>Enrollment Status:</p>
-            </div>
-            <div class="col-md-6">
-
-                <multiselect ng-model="multiselectModelenrollment" options="c.name for c in enrollmentArr" data-multiple="true"
-                data-checkall="All">
-                </multiselect>
-
-                <span class="field-alert" ng-show='enrllNotSelected'>please select Enrollment Status.</span>
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col-md-2">
-                <p>Activity Start Date:</p>
-            </div>
-            <div class="col-md-4">
-                <div id="datepicker" class="input-group date " data-date-format="mm-dd-yyyy">
-
-                    <input type="text" class="form-control cal-icon" ng-model="startDateStartActivity" data-max-date={{maxDateStartActivity}}
-                    name="date" bs-datepicker>
-                </div>
-            </div>
-        </div>
-
-        <div class="row form-group">
-            <div class="col-md-2">
-                <p>Activity End Date:</p>
-            </div>
-            <div class="col-md-4">
-                <div id="datepicker2" class="input-group date" data-date-format="mm-dd-yyyy">
-
-                    <input type="text" class="form-control cal-icon" ng-model="startDateEndActivity" name="date" bs-datepicker>
-                </div>
-                <span class="field-alert" ng-show='endDateNotSelected'>Please select activity end date after start date.</span>
-            </div>
-        </div>
-
-        <div class="row form-group">
-            <div class="col-md-2">
-                <p>Include Excused Items?</p>
-            </div>
-            <div class="col-md-2">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Yes
-                    </label>&nbsp;&nbsp;
-                </div>
-            </div>
-        </div>
-
-        <div class="row form-submit">
-            <div class="col-md-12">
-                <button type="submit" class="btn pull-right" ng-click="submitStudentInfo()">OK</button>
-                <button type="submit" class="btn pull-right disabled">Cancel</button>
-            </div>
-        </div>
-    </div>
-</div>-->
-<!--
-<div class="header">
-    <div class="logo-row">
-    	<img src="images/logo.jpg" class="logo" alt="" />
-    </div>
-    <div class="heading-block" >
-    	<h2 class="heading centered">Student Activity Details Report For Students</h2>
-    </div>
-     <div class="link-row">
-    	<a href="#" class="back-link">Back to All Reports</a>
-    </div>
-    <div class="clear"></div>
-  </div>
-  	<div class="container">
-    	<div class="col-md-12 student-form">
-        		<div class="collapse-row">
-                    <div class="row form-group">
-                        <div class="col-md-2">
-                            <p>Course(s):</p>
-                        </div>
-                        <div class="col-md-6 select-drop">
-                            
-                             <multiselect ng-model="multiselectModelcourse" options="c.title for c in courseArr" data-multiple="true" data-checkall="All Courses">
-                </multiselect>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-md-2">
-                            <p>Enrollment Status:</p>
-                        </div>
-                        <div class="col-md-6 select-drop">
-
-                            
-                            <multiselect ng-model="multiselectModelenrollment" options="c.name for c in enrollmentArr" data-multiple="true"
-                data-checkall="All">
-                </multiselect> 
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-md-2">
-                            <p>Activity Start Date:</p>
-                        </div>
-                        <div class="col-md-3">
-                            <div id="datepicker" class="input-group date" data-date-format="mm-dd-yyyy">
-                                <input class="form-control" type="text"  />
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            </div> 
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-md-2">
-                            <p>Activity End Date:</p>
-                        </div>
-                        <div class="col-md-3">
-                            <div id="datepicker2" class="input-group date" data-date-format="mm-dd-yyyy">
-                                <input class="form-control" type="text"  />
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            </div> 
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-md-2">
-                            <p>Include Excused Items?</p>
-                        </div>
-                        <div class="col-md-2">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Yes
-                            </label>&nbsp;&nbsp;
-                            
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row form-submit">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-6">
-                         <button type="submit" class="btn" id="submit-btn">OK</button>
-                         <button type="submit" class="btn disabled">Cancel</button>
-                    </div>
-                </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <p class="search">Search Again <a href="javascript:void(0)" class="again"><img src="images/arrow-down.png" alt=""></a></p>
-                    </div>
-            	</div>
-                <div class="row iframe-row">
-                <div class="col-md-12">
-                	<iframe class="frame" src="http://www.w3schools.com/jquery/default.asp">fdfdfdf</iframe>
-                </div>
-            </div>
-            </div>
-            
-        </div>
-    </div>-->
   <div class="header">
     <div class="logo-row">
     	<img src="images/logo.jpg" class="logo" alt="" />
@@ -180,7 +6,7 @@
     	<h2 class="heading centered">Student Activity Details Report For Students</h2>
     </div>
      <div class="link-row">
-    	<a href="#" class="back-link">Back to All Reports</a>
+    	<a href="" class="back-link" ng-click="backStudent()">Back to All Reports</a>
     </div>
     <div class="clear"></div>
   </div>
@@ -212,11 +38,11 @@
                             <p>Activity Start Date:</p>
                         </div>
                         <div class="col-md-3">
-                            <div id="datepicker" class="input-group date " data-date-format="mm-dd-yyyy">
+                            <div id="datepicker" class="input-group date">
 
-                    <input type="text" class="form-control cal-icon" ng-model="startDateStartActivity" data-max-date={{maxDateStartActivity}}
-                    name="date" bs-datepicker>
+                    <input type="text" class="form-control cal-icon" ng-model="startDateStartActivity" data-max-date={{maxDateStartActivity}} name="date" bs-datepicker  data-date-format="dd-MM-yyyy">
                     <span class="field-alert" ng-show='srtDateNotSelected'>Please select activity strat date.</span>
+
                 </div>
                         </div>
                     </div>
@@ -225,9 +51,9 @@
                             <p>Activity End Date:</p>
                         </div>
                         <div class="col-md-3">
-                            <div id="datepicker2" class="input-group date" data-date-format="mm-dd-yyyy">
+                            <div id="datepicker2" class="input-group date">
 
-                    <input type="text" class="form-control cal-icon" ng-model="startDateEndActivity" name="date" bs-datepicker>
+                    <input type="text" class="form-control cal-icon" ng-model="startDateEndActivity" name="date" bs-datepicker data-date-format="dd-MM-yyyy">
                 </div>
                 <span class="field-alert" ng-show='endDateNotSelected'>Please select activity end date after start date.</span>
                         </div>
@@ -258,7 +84,7 @@
             	</div>
                 <div class="row iframe-row displaynonecls" >
                 <div class="col-md-12">
-                	<iframe class="frame" src="http://www.w3schools.com/jquery/default.asp">fdfdfdf</iframe>
+                	<!--<iframe class="frame" src="http://www.w3schools.com/jquery/default.asp">fdfdfdf</iframe>-->
                 </div>
             </div>
             </div>
