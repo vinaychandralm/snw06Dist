@@ -6,10 +6,9 @@ var CONFIGJSONOBJ = {
 
     "userSettingObjects":
     {
-
         'role': 'student',
         'userid': '46240033',
-        'token': '~gzYwCAAAAAQOnXlqVuqMhA.vkbclxsLmGcMbkWf2hmzCC'
+        'token': '~hEZwCAAAAAAi7Lgr34JkrA.gJ0M61dTBCIJ8EMx9jStoD'
     }
 
 };
