@@ -1,8 +1,8 @@
 'use strict';
 var admModule = angular.module('studentActivityReports.adminDetails', []);
 admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams','$location', 'getSchoolData',
-    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError', 'getServerConfigData', function ($scope, $rootScope, $routeParams,$location,
-        getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse, notAuthenticated, noNetError, getServerConfigData) {
+    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError', 'getServerConfigData','$sce', function ($scope, $rootScope, $routeParams,$location,
+        getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse, notAuthenticated, noNetError, getServerConfigData,$sce) {
 
         //console.dir("**Inside Admin Ctrl**");
 
@@ -38,6 +38,8 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams','$loca
         $scope.searchagain ="displaynonecls";
         $scope.iframe_row = "displaynonecls";
         $scope.isShowReportView =false;
+        
+        $scope.adminReportUrl =$sce.trustAsResourceUrl('www.google.com'); ;
 
 
         /*
@@ -274,7 +276,10 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams','$loca
             
             if(!$scope.endDateNotgreater && !$scope.schoolNotSelected && !$scope.studentNotSelected && !$scope.courseNotSelected && !$scope.courseNotSelected && !$scope.statusNotSelected && !$scope.minimumMinut && !$scope.srtDateNotSelected){
                 //Setting varaible for Animation
-                $scope.isShowReportView = true;
+               
+                 $scope.adminReportUrl=$sce.trustAsResourceUrl('https://www.angularjs.org');
+                 $scope.isShowReportView = true;
+                
             console.log($scope.isShowReportView);
             }
         };
