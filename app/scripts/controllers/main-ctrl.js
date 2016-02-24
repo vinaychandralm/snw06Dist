@@ -25,45 +25,25 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
     $rootScope.userid = $routeParams.userid;
     $rootScope.token = $routeParams.token;
     $rootScope.role = $routeParams.role;
+    
+    //putting 'userspace' value to root scope so that it is avilable to all ctrls
+    $rootScope.userspace = $routeParams.userspace
+    
     console.log($rootScope.role, $rootScope.userid, $routeParams.token);
-    console.log("*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+    console.log($routeParams.role, $routeParams.userid, $routeParams.token);
 
 
-
-
-
-    // validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token)
-    //     .then(function onsuccess(response) {
-    //         console.log($routeParams.token + " $routeParams.token");
-    //         console.log(response.data);
-
-    //         if (response.data.messageType === "ERROR") {
-
-    //             notAuthenticated._showErrorMsg();
-
-    //         } else {
-    //             $scope.showTiles(response.data);
-    //             $rootScope.showoverlay = false;
-    //         }
-
-    //     }, function onError(errResponse) {
-    //         console.log("err Response ", errResponse);
-    //         noNetError._showNetErrorMsg();
-    //         $scope.blockUser(errResponse);
-    //     });
-
-    //TODO : Remove blow 5 line comments if not using GRUNT-SERVE.
-    $routeParams.role = CONFIGJSONOBJ.userSettingObjects.role;
-    $routeParams.userid = CONFIGJSONOBJ.userSettingObjects.userid;
-    $routeParams.token = CONFIGJSONOBJ.userSettingObjects.token;
-    $rootScope.token = $routeParams.token;
-    $rootScope.userid = $routeParams.userid;
-
-    $rootScope.role = $routeParams.role;
-
-    console.log($rootScope.role, $rootScope.userid, $routeParams.token);
+//    TODO : Remove blow 6 line comments if not using GRUNT-SERVE.
+        $routeParams.role = CONFIGJSONOBJ.userSettingObjects.role;
+        $routeParams.userid = CONFIGJSONOBJ.userSettingObjects.userid;
+        $routeParams.token = CONFIGJSONOBJ.userSettingObjects.token;
+        $rootScope.token = $routeParams.token;
+        $rootScope.userid = $routeParams.userid;
+        $rootScope.role = $routeParams.role;
 
     var urlDetails = getServerConfigData._getDetails();
+    
+    console.log("urlDetails   ",urlDetails);
     validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token, urlDetails)
         .then(function onsuccess(response) {
             console.log($routeParams.token + " $routeParams.token");
