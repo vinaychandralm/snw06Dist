@@ -57,23 +57,27 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         */
 
         $scope.enrollmentArr = getEnrollmentStatus.get();
-        console.log("2378459023478927842748923749273423894792384798237498347923784");
+        // console.log("2378459023478927842748923749273423894792384798237498347923784");
         //getting Server url details
         var urlDetails = getServerConfigData._getDetails();
-        console.log(urlDetails)
-        getDataStudent._get($rootScope.role, $rootScope.userid, urlDetails)
-            .then(function onsuccess(response) {
-                console.log(response.data);
-                $scope.setData(response.data);
-                if (response.data.messageType === "ERROR") {
-                    notAuthenticated._showErrorMsg();
-                    return;
-                }
+        console.log(urlDetails);
+        
+        $scope.getStudentData = function () {
+            getDataStudent._get($rootScope.role, $rootScope.userid, urlDetails)
+                .then(function onsuccess(response) {
+                    console.log(response.data);
+                    $scope.setData(response.data);
+                    if (response.data.messageType === "ERROR") {
+                        notAuthenticated._showErrorMsg();
+                        return;
+                    }
 
-            }, function onerr(res) {
-                console.log("Form net Error");
-                notAuthenticated._showErrorMsg();
-            });
+                }, function onerr(res) {
+                    console.log("Form net Error");
+                    notAuthenticated._showErrorMsg();
+                });
+        }
+
 
         $scope.setData = function (studentCourse) {
             console.log(studentCourse);
@@ -121,8 +125,6 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
 
         };
-
-
 
         $scope.backStudent = function () {
             // debugger;
@@ -186,9 +188,10 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             $scope.isShowReportView = false;
             console.log($scope.isShowReportView);
         }
-        
+
         $scope.init();
         $scope.dateUpdate();
+        $scope.getStudentData();
 
 
     }]);

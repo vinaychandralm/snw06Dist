@@ -12,7 +12,6 @@ var homeModule = angular.module('studentActivityReports.home', ['constant']);
 
 homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme', '$routeParams', 'validateUrlData', 'notAuthenticated', 'noNetError', 'getServerConfigData', function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData, notAuthenticated, noNetError, getServerConfigData) {
 
-
     $scope.initValues = function(){
         $scope.progressReport = false;
         $scope.courseCompletionReport = false;
@@ -39,8 +38,6 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
          $rootScope.role = $routeParams.role;
 
         $scope.urlDetails = getServerConfigData._getDetails();
-        
-   
         
     };
     
@@ -117,7 +114,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
         true);
 
     
-    //Initailizing variables.
+    //Initilizing variables.
     $scope.initValues();
     
     //Laoding data 
