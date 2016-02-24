@@ -5,7 +5,7 @@ describe('getDataCourseTeacher', function () {
     // load the controller's module
     beforeEach(module('studentActivityReportsTeacher.factories'));
 
-    var basePath, userid, role, scope, getDataCourseTeacher, rootScope, http;
+    var basePath, userid, role, scope, urldetails, getDataCourseTeacher, rootScope, http;
     
 
     //   // Initialize the controller and a mock scope
@@ -14,15 +14,17 @@ describe('getDataCourseTeacher', function () {
         http = $http;
         scope = $rootScope.$new();
         getDataCourseTeacher = _getDataCourseTeacher_;
-        basePath = 'http://172.16.9.197:8282/gage-service/service/course?';
+        // basePath = 'http://172.16.9.197:8282/gage-service/service/course?';
         role = "teacher";
         userid = "46240033";
+        urldetails = { "servicesBaseUrl": 'http://172.16.9.197:8282/gage-service/service/' };
+        basePath = urldetails.servicesBaseUrl + "/course?";
         spyOn(http, "get").and.returnValue("some value");
     }));
 
     it('should call the getDataCourseTeacher function', function () {
         var url = basePath + "role=" + role + "&userids=" + userid;
-        var get = getDataCourseTeacher._get(role, userid);
+        var get = getDataCourseTeacher._get(role, userid, urldetails);
         expect(http.get).toHaveBeenCalledWith(url);
         expect(get).toEqual("some value");
         // expect(http.get).toBe("some value");
@@ -35,7 +37,7 @@ describe('getDataStudentTeacher', function () {
     // load the controller's module
     beforeEach(module('studentActivityReportsTeacher.factories'));
 
-    var basePath, userid, role, scope, getDataStudentTeacher, rootScope, http;
+    var basePath, userid, role, scope, urldetails, getDataStudentTeacher, rootScope, http;
     
 
     //   // Initialize the controller and a mock scope
@@ -44,15 +46,17 @@ describe('getDataStudentTeacher', function () {
         http = $http;
         scope = $rootScope.$new();
         getDataStudentTeacher = _getDataStudentTeacher_;
-        basePath = 'http://172.16.9.197:8282/gage-service/service/student?entitytype=course&';
+        // basePath = 'http://172.16.9.197:8282/gage-service/service/student?entitytype=course&';
         role = "teacher";
         userid = "46240033";
+        urldetails = { "servicesBaseUrl": 'http://172.16.9.197:8282/gage-service/service/' };
+        basePath = urldetails.servicesBaseUrl + "/student?entitytype=course&";
         spyOn(http, "get").and.returnValue("some value");
     }));
 
     it('should call the getDataStudentTeacher function', function () {
         var url = basePath + "entityids=" + userid;
-        var get = getDataStudentTeacher._get(role, userid);
+        var get = getDataStudentTeacher._get(role, userid, urldetails);
         expect(http.get).toHaveBeenCalledWith(url);
         expect(get).toEqual("some value");
         // expect(http.get).toBe("some value");
@@ -64,16 +68,16 @@ describe('getEnrollmentStatus', function () {
 
     // load the controller's module
     beforeEach(module('studentActivityReportsTeacher.factories'));
-     var scope, getEnrollmentStatus, rootScope;
-      beforeEach(inject(function ($rootScope, _getEnrollmentStatus_) {
+    var scope, getEnrollmentStatus, rootScope;
+    beforeEach(inject(function ($rootScope, _getEnrollmentStatus_) {
         rootScope = $rootScope;
         scope = $rootScope.$new();
         getEnrollmentStatus = _getEnrollmentStatus_;
-        
+
     }));
 
     it('should return static value', function () {
-        var get=getEnrollmentStatus.get();
+        var get = getEnrollmentStatus.get();
         expect(get).toEqual([
             {
                 id: 0,
@@ -85,7 +89,7 @@ describe('getEnrollmentStatus', function () {
             },
             {
                 id: 2,
-                name: "WithdrawnFailed" 
+                name: "WithdrawnFailed"
             },
             {
                 id: 3,

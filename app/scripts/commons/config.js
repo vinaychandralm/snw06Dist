@@ -1,20 +1,15 @@
 ;
 
 
-var CONFIGJSONOBJ={
-        "servicesBaseUrl" : 'http://172.16.9.197:8282/gage-service/service',
-    
-        "userSettingObjects" :
-            {
+var CONFIGJSONOBJ = {
 
-                'role':'admin',
-                'userid':'46238944',
+    "userSettingObjects":
+    {
+        'role': 'student',
+        'userid': '46240033',
+        'token': '~hEZwCAAAAAAi7Lgr34JkrA.gJ0M61dTBCIJ8EMx9jStoD'
+    }
 
-                'token': '~gzYwCAAAAAw_a9uMyoU6YB.RS9b5wdQepV-uksr1RFjbB'
-
-
-            }
-     
 };
     
 

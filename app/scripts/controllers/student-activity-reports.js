@@ -8,21 +8,25 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         console.dir("**Inside studentDetailsCtrl**");
 
         // console.log(getData._get($rootScope.role,$rootScope.userid));
-
-        $scope.teacherId = $routeParams.userId;
-        $scope.details = {};
-        console.log("a");
-        $rootScope.isblue = false;
-        $scope.courseNotSelected = false;
-        $scope.enrllNotSelected = false;
-        $scope.srtDateNotSelected = false;
-        $scope.endDateNotSelected = false;
-        $scope.courseIdArr = [];
-        $scope.enrollArr = [];
         
-        $scope.searchagain ="displaynonecls";
-        $scope.iframe_row = "displaynonecls";
-        $scope.isShowReportView =false;
+        $scope.init = function () {
+
+            $scope.teacherId = $routeParams.userId;
+            $scope.details = {};
+            console.log("a");
+            $rootScope.isblue = false;
+            $scope.courseNotSelected = false;
+            $scope.enrllNotSelected = false;
+            $scope.srtDateNotSelected = false;
+            $scope.endDateNotSelected = false;
+            $scope.courseIdArr = [];
+            $scope.enrollArr = [];
+
+            $scope.searchagain = "displaynonecls";
+            $scope.iframe_row = "displaynonecls";
+            $scope.isShowReportView = false;
+        }
+
 
 
 
@@ -30,12 +34,16 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         * @startDate: holds the start date.
         * Acceptable date formats: mm-dd-yyyy, mm-dd-yy, ISO formatated string, miliseconds
         */
-        var currDate = new Date();
-        //var Date = new Date();
-        $scope.startDateStartActivity = currDate.setDate(currDate.getDate() - 7);
-        $scope.maxDateStartActivity = new Date().setDate(new Date().getDate() - 1);
-        // console.log( $scope.maxDate);
-        $scope.startDateEndActivity = new Date();
+
+        $scope.dateUpdate = function () {
+            var currDate = new Date();
+            //var Date = new Date();
+            $scope.startDateStartActivity = currDate.setDate(currDate.getDate() - 7);
+            $scope.maxDateStartActivity = new Date().setDate(new Date().getDate() - 1);
+            // console.log( $scope.maxDate);
+            $scope.startDateEndActivity = new Date();
+        }
+        
 
         /*
         * @endDate: holds the start date.
@@ -78,14 +86,14 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
             var startDateActivity = new Date($scope.startDateStartActivity);
             var endDateActivity = new Date($scope.startDateEndActivity);
-            if($scope.startDateStartActivity == null){
-                
+            if ($scope.startDateStartActivity == null) {
+
                 $scope.srtDateNotSelected = true;
-            }else{
+            } else {
                 $scope.srtDateNotSelected = false;
             }
-           
-            if (startDateActivity > endDateActivity  || $scope.startDateEndActivity ==null) {
+
+            if (startDateActivity > endDateActivity || $scope.startDateEndActivity == null) {
                 $scope.endDateNotSelected = true;
             }
             else {
@@ -103,18 +111,18 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             } else {
                 $scope.enrllNotSelected = false;
             }
-            
-            
-            if(!$scope.endDateNotSelected && !$scope.courseNotSelected && !$scope.enrllNotSelected && !$scope.srtDateNotSelected){
+
+
+            if (!$scope.endDateNotSelected && !$scope.courseNotSelected && !$scope.enrllNotSelected && !$scope.srtDateNotSelected) {
                 //Setting varaible for Animation
                 $scope.isShowReportView = true;
-            console.log($scope.isShowReportView);
+                console.log($scope.isShowReportView);
             }
-            
+
 
         };
-        
-        
+
+
 
         $scope.backStudent = function () {
             // debugger;
@@ -174,10 +182,13 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
 
         }, true);
-         $scope.searchAgain = function(){
+        $scope.searchAgain = function () {
             $scope.isShowReportView = false;
             console.log($scope.isShowReportView);
         }
-       
+        
+        $scope.init();
+        $scope.dateUpdate();
+
 
     }]);
