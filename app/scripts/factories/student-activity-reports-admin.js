@@ -4,7 +4,7 @@ var factoryModule = angular.module('studentActivityReportsAdmin.factories', []);
 
 
 
-factoryModule.factory('getSchoolData', function($http) {
+factoryModule.factory('getSchoolData',['$http', function($http) {
     return {
         _get: function(userid,__token,urlDetails) {
             console.log("*******************************************");
@@ -17,10 +17,10 @@ factoryModule.factory('getSchoolData', function($http) {
 
         }
     };
-});
+}]);
 
 
-factoryModule.factory('getSchoolStudent', function($http, $rootScope) {
+factoryModule.factory('getSchoolStudent', ['$http','$rootScope',function($http, $rootScope) {
 
     return {
         _get: function(schoolIdsArray,urlDetails) {
@@ -36,8 +36,8 @@ factoryModule.factory('getSchoolStudent', function($http, $rootScope) {
 
         }
     };
-});
-factoryModule.factory('getSchoolStudentCourse', function($http, $rootScope) {
+}]);
+factoryModule.factory('getSchoolStudentCourse', ['$http','$rootScope',function($http, $rootScope) {
 
     return {
         _get: function(schoolStudentIdsArray,urlDetails) {
@@ -53,7 +53,7 @@ factoryModule.factory('getSchoolStudentCourse', function($http, $rootScope) {
 
         }
     };
-});
+}]);
 
 
 // factoryModule.factory('getData', function($http) {
@@ -68,7 +68,7 @@ factoryModule.factory('getSchoolStudentCourse', function($http, $rootScope) {
 // });
 
 
-factoryModule.factory('getEnrollmentStatus', function($http) {
+factoryModule.factory('getEnrollmentStatus',['$http', function($http) {
 
     var service = {};
 
@@ -110,4 +110,4 @@ factoryModule.factory('getEnrollmentStatus', function($http) {
     };
 
     return service;
-});
+}]);

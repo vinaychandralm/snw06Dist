@@ -55,6 +55,7 @@ module.exports = function (grunt) {
       gruntfile: {
         files: ['Gruntfile.js']
       },
+        
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -66,7 +67,11 @@ module.exports = function (grunt) {
         ]
       }
     },
-
+    injector: {
+        options: {
+            lineEnding: grunt.util.linefeed
+        }
+    },
     // The actual grunt server settings
     connect: {
       options: {
@@ -338,7 +343,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       dist: {
         options: {
-          module: 'snw06App',
+          module: 'studentActivityReports',
           htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         },
@@ -399,10 +404,18 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>',
           dest: '<%= yeoman.dist %>',
           src: [
+//            '*.{ico,png,txt}',
+//            '*.html',
+//            'images/{,*/}*.{webp}',
+//            'styles/fonts/{,*/}*.*'
+//              
             '*.{ico,png,txt}',
             '*.html',
-            'images/{,*/}*.{webp}',
-            'styles/fonts/{,*/}*.*'
+            'styles/fonts/{,*/}*.*',
+			'styles/{,*/}*.*',
+			'scripts/{,*/}*.*',
+			'images/{,*/}*.*',			
+			'views/{,*/}*.*'
           ]
         }, {
           expand: true,
@@ -497,7 +510,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'newer:jshint',
+//    'newer:jshint',
     'newer:jscs',
     'test',
     'build'

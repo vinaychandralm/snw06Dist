@@ -2,7 +2,7 @@
 
 var factoryModule = angular.module('studentActivityReportsTeacher.factories', []);
 
-factoryModule.factory('getDataCourseTeacher', function ($http) {
+factoryModule.factory('getDataCourseTeacher',['$http', function ($http) {
 
 
 
@@ -12,9 +12,9 @@ factoryModule.factory('getDataCourseTeacher', function ($http) {
             return $http.get(basePath + "role=" + role + "&userids=" + userid);
         }
     };
-});
+}]);
 
-factoryModule.factory('getDataStudentTeacher', function ($http) {
+factoryModule.factory('getDataStudentTeacher',['$http', function ($http) {
 
 
 
@@ -25,10 +25,10 @@ factoryModule.factory('getDataStudentTeacher', function ($http) {
             return $http.get(basePath + "entityids=" + userid);
         }
     };
-});
+}]);
 
 
-factoryModule.factory('getEnrollmentStatus', function ($http) {
+factoryModule.factory('getEnrollmentStatus', ['$http',function ($http) {
 
     var service = {};
 
@@ -70,4 +70,4 @@ factoryModule.factory('getEnrollmentStatus', function ($http) {
     };
 
     return service;
-});
+}]);

@@ -21,7 +21,7 @@ factoryModule.factory('getServerConfigData', function() {
     }
 });
 
-factoryModule.factory('validateUrlData', function($http, $rootScope) {
+factoryModule.factory('validateUrlData',['$http','$rootScope', function($http, $rootScope) {
 
     return {
         _get: function(role,userid,_token,urlDetails) {
@@ -36,10 +36,10 @@ factoryModule.factory('validateUrlData', function($http, $rootScope) {
 
         }
     };
-});
+}]);
 
 
-factoryModule.factory('getDataStudent', function($http) {
+factoryModule.factory('getDataStudent',['$http', function($http) {
     return {
         _get: function(role,userid,urlDetails,__$scopecourseArr) {
           console.log(urlDetails);
@@ -47,9 +47,9 @@ factoryModule.factory('getDataStudent', function($http) {
              return $http.get(basePath +"role="+role+"&userids="+userid);
         }
     };
-});
+}]);
 
-factoryModule.factory('getStudentCourseData', function($http) {
+factoryModule.factory('getStudentCourseData', ['$http',function($http) {
 
 
 
@@ -59,9 +59,9 @@ factoryModule.factory('getStudentCourseData', function($http) {
              return $http.get(basePath +userid);
         }
     };
-});
+}]);
 
-factoryModule.factory('notAuthenticated', function($rootScope) {
+factoryModule.factory('notAuthenticated',['$rootScope', function($rootScope) {
 
    // var basePath = 'http://172.16.9.197:8282/gage-service/service/course?role=student&userids=';
 
@@ -73,8 +73,8 @@ factoryModule.factory('notAuthenticated', function($rootScope) {
                 $rootScope.loadingText = false;
         }
     };
-});
-factoryModule.factory('noNetError', function($rootScope) {
+}]);
+factoryModule.factory('noNetError',['$rootScope', function($rootScope) {
 
    // var basePath = 'http://172.16.9.197:8282/gage-service/service/course?role=student&userids=';
 
@@ -85,10 +85,10 @@ factoryModule.factory('noNetError', function($rootScope) {
                 $rootScope.loadingText = false;
         }
     };
-});
+}]);
 
 
-factoryModule.factory('getEnrollmentStatus', function($http) {
+factoryModule.factory('getEnrollmentStatus',['$http', function($http) {
 
     var service = {};
 
@@ -130,4 +130,4 @@ factoryModule.factory('getEnrollmentStatus', function($http) {
     };
 
     return service;
-});
+}]);
