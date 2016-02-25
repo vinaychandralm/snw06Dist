@@ -1,6 +1,5 @@
 'use strict';
 
-
 describe('Main Ctrl', function() {
     var scope, $location, createController,rootScope,notAuthenticated;
     var $q,noNetError,getServerConfigData,routeParams,validateUrlData;
@@ -176,3 +175,4 @@ beforeEach(module('studentActivityReports.home'));
      });   
 
 });
+
