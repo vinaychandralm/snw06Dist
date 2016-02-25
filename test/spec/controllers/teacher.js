@@ -143,24 +143,74 @@ describe('Teacher Ctrl', function() {
      });    
     
     
-//    it('getDataStudentTeacher and loadData function in Status 200',         function() {
+    it('getDataStudentTeacher and loadData function in Status 200',         function() {
+        var controller = createController();
+           
+         scope.role='teacher';
+        // spyOn(getDataStudentTeacher,'_get').and.returnValue('Some text');
+         // Setup the data we wish to return for the .then function in the controller
+        deferred.resolve({ config:{},data:{data:{'key':'someType'},messageType:'SUCCESS',status: 200, statusText: 'OK'} });
+//         // We have to call apply for this to work
+//        scope.$apply();   
+        
+        scope.setDataOFStudent ();
+       
+           
+        expect(getDataStudentTeacher._get).toHaveBeenCalled();
+       // expect(scope.setDataOFStudent).toHaveBeenCalled();
+         
+     });
+    
+//     it('getDataStudentTeacher and loadData function in Status 200',         function() {
 //        var controller = createController();
 //           
 //         scope.role='teacher';
-//         spyOn(scope,'setDataOFStudent').and.returnValue('Some text');
+//        // spyOn(getDataStudentTeacher,'_get').and.returnValue('Some text');
 //         // Setup the data we wish to return for the .then function in the controller
-//        deferred.resolve({ config:{},data:{data:{'key':'someType'},messageType:'SUCCESS',status: 200, statusText: 'OK'} });
-//         // We have to call apply for this to work
-//        scope.$apply();   
+//        deferred.reject();
+////         // We have to call apply for this to work
+////        scope.$apply();   
 //        
-//        scope.setDataStudent();
+//        scope.setDataOFStudent ();
 //       
 //           
 //        expect(getDataStudentTeacher._get).toHaveBeenCalled();
-//        expect(scope.setDataOFStudent).toHaveBeenCalled();
+//       // expect(scope.setDataOFStudent).toHaveBeenCalled();
 //         
 //     });
+//    
     
+    it('It shuould call Submit success ', function() {
+         var controller = createController();
+        
+        var currDate = new Date();
+        scope.startDateStartActivity = currDate.setDate(currDate.getDate() - 7);
+        scope.startDateEndActivity = new Date();
+        scope.enrollArr = [1,2];
+        scope.courseIdArr = [1,2];
+        scope.courseStudentIdArr=[1,2];
+        scope.inputTeacher=2;
+        
+        scope.submit();
+        expect(scope.isShowReportView).toEqual(true);
+        
+    });
+    it('It shuould call Submit Fail ', function() {
+         var controller = createController();
+        
+        var currDate = new Date();
+        scope.startDateStartActivity = null;
+            
+        scope.startDateEndActivity = currDate.setDate(currDate.getDate() - 7);
+        scope.enrollArr = [];
+        scope.courseIdArr = [];
+        scope.courseStudentIdArr=[];
+        scope.inputTeacher=-1;
+        
+        scope.submit();
+        expect(scope.isShowReportView).toEqual(false);
+        
+    });
     
    it('It shuould call date update ', function() {
         var controller = createController();
@@ -171,6 +221,27 @@ describe('Teacher Ctrl', function() {
         expect(scope.startDateEndActivity).toEqual(new Date());
     
    });
+    
+    it('backTeacher', function() {
+        var controller = createController();
+       
+        scope.backTeacher ();
+        
+        rootScope.$apply();
+        expect($location.path()).toBe('/');
+        
+         
+     });   
+    it('Search Agian    ', function() {
+        var controller = createController();
+       
+        scope.searchAgain  ();
+        
+        
+        expect(scope.isShowReportView ).toEqual(false);
+        
+         
+     });  
 
 });
 
