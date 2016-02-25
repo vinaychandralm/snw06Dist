@@ -248,8 +248,6 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
                 console.log($scope.enrollArr);
 
             }
-
-
         }, true);
         $scope.searchAgain = function () {
             $scope.isShowReportView = false;
