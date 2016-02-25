@@ -35,6 +35,12 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
             $scope.searchagain = "displaynonecls";
             $scope.iframe_row = "displaynonecls";
             $scope.isShowReportView = false;
+            
+            /* @courseArr: Courses received from server
+        * TODO:: modify object structure as per data received.
+        */
+
+        $scope.enrollmentArr = getEnrollmentStatus.get();
         }
 
         
@@ -53,11 +59,7 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
         }
         
 
-        /* @courseArr: Courses received from server
-        * TODO:: modify object structure as per data received.
-        */
-
-        $scope.enrollmentArr = getEnrollmentStatus.get();
+        
         //getting service deatil object
         var urlDetails = getServerConfigData._getDetails();
         getDataCourseTeacher._get($rootScope.role, $rootScope.userid, urlDetails)
