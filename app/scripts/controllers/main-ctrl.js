@@ -30,18 +30,20 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
         $rootScope.userspace = $routeParams.userspace
     
     //   TODO : Remove blow 6 line comments if not using GRUNT-SERVE.
-         $routeParams.role = CONFIGJSONOBJ.userSettingObjects.role;
-         $routeParams.userid = CONFIGJSONOBJ.userSettingObjects.userid;
-         $routeParams.token = CONFIGJSONOBJ.userSettingObjects.token;
-         $rootScope.token = $routeParams.token;
-         $rootScope.userid = $routeParams.userid;
-         $rootScope.role = $routeParams.role;
+//         $routeParams.role = CONFIGJSONOBJ.userSettingObjects.role;
+//         $routeParams.userid = CONFIGJSONOBJ.userSettingObjects.userid;
+//         $routeParams.token = CONFIGJSONOBJ.userSettingObjects.token;
+//         $rootScope.token = $routeParams.token;
+//         $rootScope.userid = $routeParams.userid;
+//         $rootScope.role = $routeParams.role;
 
         $scope.urlDetails = getServerConfigData._getDetails();
         
     };
     
     $scope.showTiles = function (authResponse) {
+        
+        console.log($scope.role, "   ______________________________");
 
         if ($scope.role === 'student') {
             $scope.progressReport = true;
@@ -68,6 +70,8 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
     $scope.loadData = function(){
         validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token, $scope.urlDetails)
         .then(function onsuccess(response) {
+            
+            console.log(response);
             if (response.data.messageType === "ERROR") {
                 notAuthenticated._showErrorMsg();
             } else {

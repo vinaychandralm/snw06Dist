@@ -7,7 +7,7 @@ var CONFIGJSONOBJ = {
     {
         'role': 'admin',
         'userid': '46238944',
-        'token': '~gzYwCAAAAAAUEFWtnDQ4hA.AJqVWe637A6hnEJKM5JnmC'
+        'token': '~gzYwCAAAAAwmOVo9fjEwtA.Oaww2OUsdYLJTxim120tCD'
     }
 
 };
