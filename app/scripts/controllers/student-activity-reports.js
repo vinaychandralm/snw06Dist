@@ -67,11 +67,12 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         $scope.getStudentData = function () {
             getDataStudent._get($rootScope.role, $rootScope.userid, urlDetails)
                 .then(function onsuccess(response) {
-                    console.log(response.data);
-                    $scope.setData(response.data);
+                    console.log(response.data);                    
                     if (response.data.messageType === "ERROR") {
                         notAuthenticated._showErrorMsg();
                         return;
+                    }else{
+                      $scope.setData(response.data);  
                     }
 
                 }, function onerr(res) {
@@ -92,14 +93,14 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
             var startDateActivity = new Date($scope.startDateStartActivity);
             var endDateActivity = new Date($scope.startDateEndActivity);
-            if ($scope.startDateStartActivity == null) {
+            if ($scope.startDateStartActivity === null) {
 
                 $scope.srtDateNotSelected = true;
             } else {
                 $scope.srtDateNotSelected = false;
             }
 
-            if (startDateActivity > endDateActivity || $scope.startDateEndActivity == null) {
+            if (startDateActivity > endDateActivity || $scope.startDateEndActivity === null) {
                 $scope.endDateNotSelected = true;
             }
             else {
@@ -172,7 +173,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
         $scope.$watch('multiselectModelenrollment', function () {
 
-            console.log($scope.multiselectModelenrollment.length);
+            // console.log($scope.multiselectModelenrollment.length);
 
             $scope.enrollArr = [];
             console.log($scope.multiselectModelenrollment);
