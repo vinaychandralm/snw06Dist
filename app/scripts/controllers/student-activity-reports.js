@@ -67,11 +67,12 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         $scope.getStudentData = function () {
             getDataStudent._get($rootScope.role, $rootScope.userid, urlDetails)
                 .then(function onsuccess(response) {
-                    console.log(response.data);
-                    $scope.setData(response.data);
+                    console.log(response.data);                    
                     if (response.data.messageType === "ERROR") {
                         notAuthenticated._showErrorMsg();
                         return;
+                    }else{
+                      $scope.setData(response.data);  
                     }
 
                 }, function onerr(res) {
@@ -172,7 +173,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
         $scope.$watch('multiselectModelenrollment', function () {
 
-            console.log($scope.multiselectModelenrollment.length);
+            // console.log($scope.multiselectModelenrollment.length);
 
             $scope.enrollArr = [];
             console.log($scope.multiselectModelenrollment);
