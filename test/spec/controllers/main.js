@@ -91,13 +91,6 @@ beforeEach(module('studentActivityReports.home'));
             spyOn(scope,'blockUser').and.returnValue('Some text');
          // Setup the data we wish to return for the .then function in the controller
         deferred.reject();
-        /*
-        
-        noNetError._showNetErrorMsg();
-            $scope.blockUser(errResponse);
-
-        */
-         
         // We have to call apply for this to work
         scope.$apply();   
            
