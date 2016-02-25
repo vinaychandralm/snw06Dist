@@ -11,7 +11,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         
         $scope.init = function () {
 
-            $scope.teacherId = $routeParams.userId;
+            // $scope.teacherId = $routeParams.userId;
             $scope.details = {};
             console.log("a");
             $rootScope.isblue = false;
