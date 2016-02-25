@@ -1,31 +1,31 @@
 'use strict';
 
-describe('main controller', function() {
-  beforeEach(module('studentActivityReports.home'));
-    
-    var $scope;
-    var $rootScope;
-    var $location;
-    var theme;
-    var $routeParams;
-    var validateUrlData;
-    var notAuthenticated;
-    var noNetError;
-    var getServerConfigData;
-    
-  beforeEach(inject(function(_$scope_, _$rootScope_, _$location_, _theme_, _$routeParams_, _validateUrlData_, _notAuthenticated_, _noNetError_, _getServerConfigData_){
-    // The injector unwraps the underscores (_) from around the parameter names when matching
-    $controller = _$controller_;
-    $scope = _$scope_ ;
-    $rootScope = _$rootScope_;
-    $location = _$location_;
-    theme = _theme_;
-    $routeParams = _$routeParams_;
-    validateUrlData = _validateUrlData_;
-    notAuthenticated = _notAuthenticated_;
-    noNetError = _noNetError_;
-    getServerConfigData = _getServerConfigData_;
-  }));
 
+describe('Main Ctrl', function() {
+    var scope, $location, createController,rootScope;
+    beforeEach(module('studentActivityReports'))
+beforeEach(module('studentActivityReports.home'));
+    beforeEach(inject(function ($rootScope, $controller, _$location_,_$routeParams_, _validateUrlData_){
+        $location = _$location_;
+        rootScope=$rootScope;
+        scope = $rootScope.$new();
 
+        createController = function() {
+            return $controller('MainCtrl', {
+                $scope: scope
+                
+            });
+        };
+    }));
 
+    it('should have a method to check if the path is active', function() {
+        var controller = createController();
+        scope.initValues();
+        expect(scope.progressReport).toBe(false);
+         expect(scope.studentActivityReport).toBe(false);
+         expect(rootScope.loadingText).toBe(true);
+         expect(rootScope.netErr).toBe(false);
+         expect(rootScope.authenticationErr ).toBe(false);
+        
+    });
+});
