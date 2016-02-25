@@ -140,13 +140,19 @@ multiselect .btn-group ul {
     height: 100%;
     width: 100%;
     background-color: rgba(0,0,0,1);
-/*    opacity: 0.5;*/
     position: absolute;
     z-index: 1000;
   
 }.disabledCls{
-        cursor: not-allowed !important;
-     opacity: .5;
+    cursor: not-allowed !important;
+    opacity: .5;
+    text-decoration: none !important;
+}
+.onNetError,.onServiceError{
+    color: red;
+}
+#loadingtext{
+    font-size: 30pt;
 }
 
 .cal-icon{
@@ -166,5 +172,5 @@ multiselect .btn-group ul {
     margin-top: -100px;
     text-align: center;
     height: 150px;
-    color: white;
+    color: black;
 }
