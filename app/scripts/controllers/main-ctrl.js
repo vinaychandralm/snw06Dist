@@ -42,6 +42,8 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
     };
     
     $scope.showTiles = function (authResponse) {
+        
+        console.log($scope.role, "   ______________________________");
 
         if ($scope.role === 'student') {
             $scope.progressReport = true;
@@ -68,6 +70,8 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
     $scope.loadData = function(){
         validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token, $scope.urlDetails)
         .then(function onsuccess(response) {
+            
+            console.log(response);
             if (response.data.messageType === "ERROR") {
                 notAuthenticated._showErrorMsg();
             } else {
