@@ -75,16 +75,10 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
                 noNetError._showNetErrorMsg();
             });
 
-        $scope.setDataCourseTeacher = function (teacherCourse) {
-            console.log(teacherCourse.data.course);
-            $scope.courseArr = teacherCourse.data.course;
-            console.log($scope.courseArr);
-            for (var i = 0; i < $scope.courseArr.length; i++) {
-                $scope.courseIdArr.push($scope.courseArr[i].id);
-                console.log($scope.courseIdArr);
-            }
-
-            getDataStudentTeacher._get($rootScope.role, $scope.courseIdArr, urlDetails)
+        
+        $scope.setDataOFStudent =function(courseIdArr){
+             
+            getDataStudentTeacher._get($rootScope.role, courseIdArr, urlDetails)
                 .then(function onsuccess(response) {
                     if (response.data.messageType === "ERROR") {
                         notAuthenticated._showErrorMsg();
@@ -96,6 +90,30 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
                     console.log("Error on loading Student of Teacher page");
                     noNetError._showNetErrorMsg();
                 });
+        }
+        $scope.setDataCourseTeacher = function (teacherCourse) {
+            console.log(teacherCourse.data.course);
+            $scope.courseArr = teacherCourse.data.course;
+            console.log($scope.courseArr);
+            for (var i = 0; i < $scope.courseArr.length; i++) {
+                $scope.courseIdArr.push($scope.courseArr[i].id);
+                console.log($scope.courseIdArr);
+            }
+            
+            $scope.setDataOFStudent($scope.courseIdArr);
+
+//            getDataStudentTeacher._get($rootScope.role, $scope.courseIdArr, urlDetails)
+//                .then(function onsuccess(response) {
+//                    if (response.data.messageType === "ERROR") {
+//                        notAuthenticated._showErrorMsg();
+//                        return;
+//                    }
+//                    console.log(response.data);
+//                    $scope.setDataStudent(response.data.data.user);
+//                }, function onError(response) {
+//                    console.log("Error on loading Student of Teacher page");
+//                    noNetError._showNetErrorMsg();
+//                });
         };
 
 
@@ -112,7 +130,7 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
 
                 return;
             }
-
+//            $scope.setDataStudent(courseIdArr);
             getDataStudentTeacher._get($rootScope.role, courseIdArr, urlDetails)
                 .then(function onsuccess(response) {
                     console.log(response.data);

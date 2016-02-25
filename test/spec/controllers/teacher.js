@@ -32,6 +32,7 @@ describe('Teacher Ctrl', function() {
         // Use a Jasmine Spy to return the deferred promise
         spyOn(getDataCourseTeacher, '_get').and.returnValue(deferred.promise);
         
+        spyOn(getDataStudentTeacher,'_get').and.returnValue(deferred.promise);
         
         createController = function() {
             return $controller('teacherDetailsCtrl', {
@@ -111,7 +112,7 @@ describe('Teacher Ctrl', function() {
         expect(notAuthenticated._showErrorMsg).toHaveBeenCalled();
          
      });
-    it('It shuould resolve promis object of validate data and loadData function with Error Response in Status 200',         function() {
+    it('It shuould getDataCourseTeacher and loadData function with Error Response in Status 200',         function() {
         var controller = createController();
             scope.role='teacher';
             spyOn(noNetError,'_showNetErrorMsg').and.returnValue('Some text');
@@ -124,6 +125,41 @@ describe('Teacher Ctrl', function() {
         expect(noNetError._showErrorMsg).toBe(undefined);
          
      });
+    
+    it('It shuould setDataCourseTeacher and loadData function with s',         function() {
+        var controller = createController();
+            scope.role='teacher';
+            spyOn(scope,'setDataOFStudent').and.returnValue('Some text');
+         // Setup the data we wish to return for the .then function in the controller
+        //deferred.reject();
+        var teacherId ={data:{course:[{id:'2'},{id:'3'},{id:'4'},{id:'5'},{id:'6'}]}};
+        scope.setDataCourseTeacher(teacherId)   ;
+        
+        expect(scope.courseArr).toEqual(teacherId.data.course);
+           
+        //expect(getDataCourseTeacher._get).toHaveBeenCalled();
+        expect(scope.setDataOFStudent).toHaveBeenCalled();
+         
+     });    
+    
+    
+//    it('getDataStudentTeacher and loadData function in Status 200',         function() {
+//        var controller = createController();
+//           
+//         scope.role='teacher';
+//         spyOn(scope,'setDataOFStudent').and.returnValue('Some text');
+//         // Setup the data we wish to return for the .then function in the controller
+//        deferred.resolve({ config:{},data:{data:{'key':'someType'},messageType:'SUCCESS',status: 200, statusText: 'OK'} });
+//         // We have to call apply for this to work
+//        scope.$apply();   
+//        
+//        scope.setDataStudent();
+//       
+//           
+//        expect(getDataStudentTeacher._get).toHaveBeenCalled();
+//        expect(scope.setDataOFStudent).toHaveBeenCalled();
+//         
+//     });
     
     
    it('It shuould call date update ', function() {
