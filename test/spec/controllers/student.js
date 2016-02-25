@@ -1,15 +1,15 @@
 'use strict';
 
 describe('studentDetailsCtrl', function () {
-    var scope, location, createController, rootScope, getEnrollmentStatus, $q, deferred, getDataStudent, routeParams;
+    var scope, $location, createController, rootScope, getEnrollmentStatus, $q, deferred, getDataStudent, routeParams;
 
     beforeEach(module('studentActivityReports'))
     beforeEach(module('studentActivityReports.studentDetails'));
-    beforeEach(inject(function ($rootScope, $controller,_$location_, _getEnrollmentStatus_, _$routeParams_, _$q_, _getDataStudent_) {
+    beforeEach(inject(function ($rootScope, $controller, _$location_, _getEnrollmentStatus_, _$routeParams_, _$q_, _getDataStudent_) {
         // $location = _$location_;
         rootScope = $rootScope;
         scope = $rootScope.$new();
-        location=_$location_;
+        $location = _$location_;
         getEnrollmentStatus = _getEnrollmentStatus_;
         $q = _$q_;
         getDataStudent = _getDataStudent_;
@@ -22,7 +22,8 @@ describe('studentDetailsCtrl', function () {
         createController = function () {
             return $controller('studentDetailsCtrl', {
                 $scope: scope,
-                getDataStudent: getDataStudent
+                getDataStudent: getDataStudent,
+                $location: $location
             });
         };
     }));
@@ -94,7 +95,7 @@ describe('studentDetailsCtrl', function () {
         scope.courseIdArr = [];
         scope.submitStudentInfo();
         expect(scope.courseNotSelected).toBe(true);
-        
+
         scope.courseIdArr = [1, 2];
         scope.submitStudentInfo();
         expect(scope.courseNotSelected).toBe(false);
@@ -109,12 +110,15 @@ describe('studentDetailsCtrl', function () {
 
         expect(scope.isShowReportView).toBe(true);
     });
-    
-    // it('should have a method to check if the path is active', function () {
-    //     var controller = createController();
-    //     spyOn(location, 'path').andReturn('Fake location');
-    //     expect(location.path).toHaveBeenCalledWith('/');
-    // });
+
+    it('should return launch page url', function () {
+        var controller = createController();
+        // spyOn($location, 'path').andReturn('Fake location');
+        // expect($location.path).toBe('Fake location');
+        $location.path('/');
+        scope.backStudent();
+        expect($location.path()).toBe('/');
+    });
 
 
 });

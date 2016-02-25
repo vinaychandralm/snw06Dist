@@ -135,16 +135,16 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         }
 
         // Success callback
-        var handleSuccess = function (data, status) {
-            $scope.details = data;
-            console.log(status, $scope.details.courses._get);
-        };
+        // var handleSuccess = function (data, status) {
+        //     $scope.details = data;
+        //     console.log(status, $scope.details.courses._get);
+        // };
 
-        // Error callback
-        var handleError = function (err, status) {
-            $scope.details = {};
-            console.log(status, err);
-        };
+        // // Error callback
+        // var handleError = function (err, status) {
+        //     $scope.details = {};
+        //     console.log(status, err);
+        // };
 
         //getData._get($scope.teacherId).success(handleSuccess).error(handleError);
 
