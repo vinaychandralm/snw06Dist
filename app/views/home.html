@@ -53,15 +53,28 @@
             	<div class="col-md-5 row-content">
                 	<div class="feild-row">
                	    	<img src="images/logo2.png" class="user-logo" alt="">
-                        <h4>REPORTS</h4>
-                        <a href="" class="report-link disabledCls" ng-show='progressReport'>Student Progress Report</a>
+                        
+                        <div  class='report-link marginLoading' ng-show='showoverlay'>
+                            <div id='loadingtext' ng-show="loadingText">Loading....</div>
 
-                        <a href="#" class="report-link disabledCls" ng-show='courseCompletionReport'>Course Completion Report</a>
-
-                        <a href="" class="report-link" ng-click="openForm()" ng-show='studentActivityReport'>Student Activity Report</a>
+                            <div id='onNetErrorH2' class='onNetError' ng-show="netErr">Sorry, something went wrong. Please try again after sometime</div>
+                            <div id='onServiceErrorH2' class='onServiceError' ng-show="authenticationErr">Sorry, you are not authorized to access the reports. Please contact the administrator</div>
+                        </div>
 
                         
-                        <a href="#" class="click-here disabledCls">Click here to access Reports User Guide</a>
+                        
+                        <div ng-class="{'showreportLink': !showoverlay, 'hidereportLink' : showoverlay}">
+                            <h4>REPORTS</h4>
+                            <a href="" class="report-link disabledCls" ng-show='progressReport'>Student Progress Report</a>
+
+                            <a href="" class="report-link disabledCls" ng-show='courseCompletionReport'>Course Completion Report</a>
+
+                            <a href="" class="report-link" ng-click="openForm()" ng-show='studentActivityReport'>Student Activity Report</a>
+                            
+                             <a href="" class="click-here disabledCls">Click here to access Reports User Guide</a>
+                        </div>
+                        
+                       
                     </div>
               </div>
             </div>
