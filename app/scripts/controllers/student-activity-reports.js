@@ -93,14 +93,14 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
             var startDateActivity = new Date($scope.startDateStartActivity);
             var endDateActivity = new Date($scope.startDateEndActivity);
-            if ($scope.startDateStartActivity == null) {
+            if ($scope.startDateStartActivity === null) {
 
                 $scope.srtDateNotSelected = true;
             } else {
                 $scope.srtDateNotSelected = false;
             }
 
-            if (startDateActivity > endDateActivity || $scope.startDateEndActivity == null) {
+            if (startDateActivity > endDateActivity || $scope.startDateEndActivity === null) {
                 $scope.endDateNotSelected = true;
             }
             else {

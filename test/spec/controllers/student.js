@@ -1,14 +1,15 @@
 'use strict';
 
 describe('studentDetailsCtrl', function () {
-    var scope, $location, createController, rootScope, getEnrollmentStatus, $q, deferred, getDataStudent, routeParams;
+    var scope, location, createController, rootScope, getEnrollmentStatus, $q, deferred, getDataStudent, routeParams;
 
     beforeEach(module('studentActivityReports'))
     beforeEach(module('studentActivityReports.studentDetails'));
-    beforeEach(inject(function ($rootScope, $controller, _getEnrollmentStatus_, _$routeParams_, _$q_, _getDataStudent_) {
+    beforeEach(inject(function ($rootScope, $controller,_$location_, _getEnrollmentStatus_, _$routeParams_, _$q_, _getDataStudent_) {
         // $location = _$location_;
         rootScope = $rootScope;
         scope = $rootScope.$new();
+        location=_$location_;
         getEnrollmentStatus = _getEnrollmentStatus_;
         $q = _$q_;
         getDataStudent = _getDataStudent_;
@@ -78,18 +79,42 @@ describe('studentDetailsCtrl', function () {
         scope.submitStudentInfo();
         expect(scope.srtDateNotSelected).toBe(false);
 
-        startDateActivity = 0;
-        endDateActivity = 1;
-        scope.startDateEndActivity = 5;
-        scope.submitStudentInfo();
-        expect(scope.endDateNotSelected).toBe(false);
-        
-        startDateActivity = 0;
-        endDateActivity = 1;
-        scope.startDateEndActivity = 5;
+        startDateActivity = 1;
+        endDateActivity = 0;
+        scope.startDateEndActivity = null;
         scope.submitStudentInfo();
         expect(scope.endDateNotSelected).toBe(true);
+
+        startDateActivity = 0;
+        endDateActivity = 1;
+        scope.startDateEndActivity = 'some value';
+        scope.submitStudentInfo();
+        expect(scope.endDateNotSelected).toBe(false);
+
+        scope.courseIdArr = [];
+        scope.submitStudentInfo();
+        expect(scope.courseNotSelected).toBe(true);
+        
+        scope.courseIdArr = [1, 2];
+        scope.submitStudentInfo();
+        expect(scope.courseNotSelected).toBe(false);
+
+        scope.enrollArr = [];
+        scope.submitStudentInfo();
+        expect(scope.enrllNotSelected).toBe(true);
+
+        scope.enrollArr = [1, 2];
+        scope.submitStudentInfo();
+        expect(scope.enrllNotSelected).toBe(false);
+
+        expect(scope.isShowReportView).toBe(true);
     });
+    
+    // it('should have a method to check if the path is active', function () {
+    //     var controller = createController();
+    //     spyOn(location, 'path').andReturn('Fake location');
+    //     expect(location.path).toHaveBeenCalledWith('/');
+    // });
 
 
 });
