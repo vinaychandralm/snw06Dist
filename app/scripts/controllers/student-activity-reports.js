@@ -23,8 +23,10 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             $scope.enrollArr = [];
 
             $scope.searchagain = "displaynonecls";
-            $scope.iframe_row = "displaynonecls";
+            $scope.iframe_row = "displaynonecls";   
             $scope.isShowReportView = false;
+
+            $scope.enrollmentArr = getEnrollmentStatus.get();
         }
 
 
@@ -56,12 +58,12 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         * TODO:: modify object structure as per data received.
         */
 
-        $scope.enrollmentArr = getEnrollmentStatus.get();
+       
         // console.log("2378459023478927842748923749273423894792384798237498347923784");
         //getting Server url details
         var urlDetails = getServerConfigData._getDetails();
         console.log(urlDetails);
-        
+
         $scope.getStudentData = function () {
             getDataStudent._get($rootScope.role, $rootScope.userid, urlDetails)
                 .then(function onsuccess(response) {
