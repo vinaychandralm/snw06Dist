@@ -223,7 +223,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams','$loca
             if(!$scope.endDateNotgreater && !$scope.schoolNotSelected && !$scope.studentNotSelected && !$scope.courseNotSelected && !$scope.courseNotSelected && !$scope.statusNotSelected && !$scope.minimumMinut && !$scope.srtDateNotSelected){
                 //Setting varaible for Animation
                
-                 $scope.adminReportUrl=$sce.trustAsResourceUrl('https://www.angularjs.org');
+               //  $scope.adminReportUrl=$sce.trustAsResourceUrl('https://www.angularjs.org');
                  $scope.isShowReportView = true;
                 
             }

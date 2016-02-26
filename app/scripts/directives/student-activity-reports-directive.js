@@ -131,7 +131,7 @@ angular.module("ui.multiselect", ["multiselect.tpl.html"])
                          if(attrs.msSelected) {
                             scope.header = $interpolate(attrs.msSelected)(scope);
                          } else {
-                             console.log(modelCtrl.$modelValue);
+//                             console.log(modelCtrl.$modelValue);
                              if(modelCtrl.$modelValue.length > 3){
                          	      scope.header = modelCtrl.$modelValue.length + " " + "selected";
                              }else{
@@ -139,7 +139,7 @@ angular.module("ui.multiselect", ["multiselect.tpl.html"])
                                  for(var i=0; i< modelCtrl.$modelValue.length-1;i++){
                                      nameString += selectedItemLable[i] +',';
                                  }
-                                 console.log(modelCtrl.$modelValue[i],  scope.items )
+                                // console.log(modelCtrl.$modelValue[i],  scope.items )
                                  nameString += selectedItemLable[i];
                                  scope.header = nameString;
                              }
@@ -202,7 +202,7 @@ angular.module("ui.multiselect", ["multiselect.tpl.html"])
 
                     } else {
                         scope.noOfChkedItem = document.getElementsByClassName('glyphicon-ok').length + 1;
-                        console.log(scope.noOfChkedItem);
+//                        console.log(scope.noOfChkedItem);
                         if (scope.noOfChkedItem === scope.items.length) {
                             scope.allChecked = true;
                         }
@@ -238,7 +238,7 @@ angular.module("ui.multiselect", ["multiselect.tpl.html"])
                         });
                     }
                     
-                    console.log(selectedItemLable, "scope.items")
+                   // console.log(selectedItemLable, "scope.items")
                     modelCtrl.$setViewValue(value);
                 }
 
@@ -331,7 +331,7 @@ angular.module("ui.multiselect", ["multiselect.tpl.html"])
                             checked: false
                         });
                     }
-                    console.log(scope.items[0].label);
+                    //console.log(scope.items[0].label);
                     if(scope.items[0].label==='Active') {
                         // alert(1);
                         // scope.checkAll();

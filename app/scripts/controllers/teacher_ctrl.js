@@ -37,10 +37,9 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
             $scope.isShowReportView = false;
             
             /* @courseArr: Courses received from server
-        * TODO:: modify object structure as per data received.
-        */
-
-        $scope.enrollmentArr = getEnrollmentStatus.get();
+            * TODO:: modify object structure as per data received.
+            */
+            $scope.enrollmentArr = getEnrollmentStatus.get();
         }
 
         
@@ -195,8 +194,9 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
 
 
             if (!$scope.endDateNotgreater && !$scope.statusNotSelected && !$scope.courseNotSelected && !$scope.studentNotSelected && !$scope.minimumMinut && !$scope.srtDateNotSelected) {
+                
                 //Setting varaible for Animation
-                $scope.isShowReportView = true;
+                    //$scope.isShowReportView = true;
 
             }
         };
@@ -205,21 +205,6 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
             // debugger;
             $location.path('/');
         }
-
-
-//        // Success callback
-//        var handleSuccess = function (data, status) {
-//            $scope.details = data;
-//            console.log(status, $scope.details.courses._get);
-//        };
-//
-//        // Error callback
-//        var handleError = function (err, status) {
-//            $scope.details = {};
-//            console.log(status, err);
-//        };
-
-        //getData._get($scope.teacherId).success(handleSuccess).error(handleError);
 
         $scope.$watch('selectedDate', function () {
             console.log($scope.selectedDate);
@@ -253,7 +238,6 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
 
 
         }, true);
-        //  console.log("$scope.courseIdArr", $scope.courseIdArr);
 
         $scope.$watch('multiselectModelEroll', function () {
 

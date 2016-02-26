@@ -7,7 +7,8 @@ factoryModule.factory('getServerConfigData', function() {
     return {
         _getDetails: function() {
           return {
-                    "servicesBaseUrl" : 'http://172.16.9.197:8282/gage-service/service/',
+                  //  "servicesBaseUrl" : 'http://172.16.9.197:8282/gage-service/service/',
+                    "servicesBaseUrl" : 'http://192.168.2.58:8080/gage-service/service',
                     "reportServiceUrlStudent": "http://192.168.2.58:8080/reports/studentactivityreport?"
               }
         }
@@ -35,7 +36,7 @@ factoryModule.factory('validateUrlData',['$http','$rootScope', function($http, $
 factoryModule.factory('getDataStudent',['$http', function($http) {
     return {
         _get: function(role,userid,urlDetails,__$scopecourseArr) {
-          console.log(urlDetails);
+         // console.log(urlDetails);
           var basePath =  urlDetails.servicesBaseUrl + '/course?';
              return $http.get(basePath +"role="+role+"&userids="+userid);
         }
@@ -56,11 +57,9 @@ factoryModule.factory('getStudentCourseData', ['$http',function($http) {
 
 factoryModule.factory('notAuthenticated',['$rootScope', function($rootScope) {
 
-   // var basePath = 'http://172.16.9.197:8282/gage-service/service/course?role=student&userids=';
 
     return {
         _showErrorMsg: function(){
-//                $rootScope.loadingText = true;
                 $rootScope.netErr = false;
                 $rootScope.authenticationErr = true;
                 $rootScope.loadingText = false;
@@ -68,8 +67,6 @@ factoryModule.factory('notAuthenticated',['$rootScope', function($rootScope) {
     };
 }]);
 factoryModule.factory('noNetError',['$rootScope', function($rootScope) {
-
-   // var basePath = 'http://172.16.9.197:8282/gage-service/service/course?role=student&userids=';
 
     return {
         _showNetErrorMsg: function(){
@@ -84,16 +81,6 @@ factoryModule.factory('noNetError',['$rootScope', function($rootScope) {
 factoryModule.factory('getEnrollmentStatus',['$http', function($http) {
 
     var service = {};
-
-//     Active = 1,
-//    Withdrawn = 4,
-//    WithdrawnFailed = 5,
-//    Transferred = 6,
-//    Completed = 7,
-//    CompletedNoCredit = 8,
-//    Suspended = 9,
-//    Inactive = 10,
-    
     
     service.get = function() {
         return [

@@ -9,7 +9,7 @@ factoryModule.factory('getSchoolData',['$http', function($http) {
         _get: function(userid,__token,urlDetails) {
             console.log("*******************************************");
             console.log(userid);
-            var basePath = urlDetails.servicesBaseUrl +"domain/list/";
+            var basePath = urlDetails.servicesBaseUrl +"/domain/list/";
             var token = __token;
             var __url = basePath +userid+'?token='+token;
             console.log(__url);
@@ -28,7 +28,7 @@ factoryModule.factory('getSchoolStudent', ['$http','$rootScope',function($http, 
            // var token = _token;
            // var entitytype = 'D|C';
            // $rootScope.showoverlay = true;
-            var basePath = urlDetails.servicesBaseUrl +"student?entitytype=school&entityids=";
+            var basePath = urlDetails.servicesBaseUrl +"/student?entitytype=school&entityids=";
             console.log(schoolIdsArray.join());
             var __url = basePath +schoolIdsArray.join();
             console.log(__url);
@@ -45,7 +45,7 @@ factoryModule.factory('getSchoolStudentCourse', ['$http','$rootScope',function($
            // var token = _token;
            // var entitytype = 'D|C';
            // $rootScope.showoverlay = true;
-             var basePath = urlDetails.servicesBaseUrl +"course?role=student&userids=";
+             var basePath = urlDetails.servicesBaseUrl +"/course?role=student&userids=";
             console.log(schoolStudentIdsArray.join());
             var __url = basePath +schoolStudentIdsArray.join();
             console.log(__url);

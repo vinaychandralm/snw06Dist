@@ -13,7 +13,6 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
             // $scope.teacherId = $routeParams.userId;
             $scope.details = {};
-            console.log("a");
             $rootScope.isblue = false;
             $scope.courseNotSelected = false;
             $scope.enrllNotSelected = false;
@@ -31,9 +30,6 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             $scope.enrollmentArr = getEnrollmentStatus.get();
         }
 
-
-
-
         /*
         * @startDate: holds the start date.
         * Acceptable date formats: mm-dd-yyyy, mm-dd-yy, ISO formatated string, miliseconds
@@ -47,24 +43,10 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             // console.log( $scope.maxDate);
             $scope.startDateEndActivity = new Date();
         }
-        
 
-        /*
-        * @endDate: holds the start date.
-        * Acceptable date formats: mm-dd-yyyy, mm-dd-yy, ISO formatated string, miliseconds
-        */
-        // $scope.endDate = "04-02-2016";
-
-        /*
-        * @courseArr: Courses received from server
-        * TODO:: modify object structure as per data received.
-        */
-
-       
-        // console.log("2378459023478927842748923749273423894792384798237498347923784");
         //getting Server url details
         var urlDetails = getServerConfigData._getDetails();
-        console.log(urlDetails);
+      //  console.log(urlDetails);
 
         $scope.getStudentData = function () {
             getDataStudent._get($rootScope.role, $rootScope.userid, urlDetails)
@@ -85,7 +67,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
 
         $scope.setData = function (studentCourse) {
-            console.log(studentCourse);
+          //  console.log(studentCourse);
             $scope.courseArr = studentCourse.data.course;
 
         };
@@ -104,25 +86,17 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
                 mm='0'+mm
             } 
             return( dd+'/'+mm+'/'+yyyy );
-            //document.getElementById("DATE").value = today;
             
         }
         $scope.getEnrollIdStr=function(){
-            console.log("**************",$scope.enrollArr);
+           // console.log("**************",$scope.enrollArr);
             var temObj = ["1","4","5","6","7","8","9","10"];
-            //Active = 1,
-            //    Withdrawn = 4,
-            //    WithdrawnFailed = 5,
-            //    Transferred = 6,
-            //    Completed = 7,
-            //    CompletedNoCredit = 8,
-            //    Suspended = 9,
-            //    Inactive = 10,
-            //$scope.enrollArr            
+            //Active = 1, Withdrawn = 4, WithdrawnFailed = 5,Transferred = 6,Completed = 7,CompletedNoCredit = 8,Suspended = 9,Inactive = 10,     
+            
             var idArray=[];
             for(var i =0; i<$scope.enrollArr.length;i++){
-                console.log("$scope.enrollArr ",$scope.enrollArr[i]);
-                console.log("temObj.enrollArr ",temObj[$scope.enrollArr[i]]);
+               // console.log("$scope.enrollArr ",$scope.enrollArr[i]);
+               // console.log("temObj.enrollArr ",temObj[$scope.enrollArr[i]]);
                     
                 idArray.push(temObj[$scope.enrollArr[i]]);
             }
@@ -167,38 +141,24 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
                 
                 var courseStr = $scope.courseIdArr.join(',');
                 var enrollStr = $scope.enrollArr.join(',');
-                console.log("$scope.startDateStartActivity ",new Date($scope.startDateStartActivity));
-                console.log("$scope.startDateEndActivity ",$scope.startDateEndActivity);
-                console.log("$rootScope.userid ",$rootScope.userid);
-                console.log("$rootScope.userid ",$rootScope.userspace);
-                console.log("$scope.excuedItem ",$scope.excuedItem);
-                console.log("Token :",$rootScope.token);
                 var startDateStr =$scope.getDateAsString(new Date($scope.startDateStartActivity));
                 var endDateStr = $scope.getDateAsString($scope.startDateEndActivity);
-                
-                console.log(startDateStr ,endDateStr );
-                
                 var enrollIdsArray = $scope.getEnrollIdStr();
                 enrollStr =enrollIdsArray.join(',');
-                console.log(enrollStr);
+
                 var excuseItemStr = $scope.excuedItem?'1':'0';
                 
-/*http://192.168.2.58:8080/reports/studentactivityreport?startdate=01/02/2014&enddate=01/18/2019&userid=23696742&courseids=23598050,23598525&enrollmentstatus=1,10&excuseditem=0&userspace=sdale-innovation&token=~FbT1BAAAAAgCqkx2orhMPA.ubJwpnTsLvN3eKwu5jvOVB */
-            /*
-http://192.168.2.58:8080/reports/studentactivityreport?startdate=19/02/2016&enddate=26/02/2016&userid=46240033&courseids=46238953,46238967&enrollmentstatus=1&excuseditem=0&userspace=s1-06&token=~hEZwCAAAAAAyOvuFXmp-MB.KR3XOf_I12XrjDYv81FxDB            
-            
-            */
+//              var reportUrl = urlDetailObj.reportServiceUrlStudent +'startdate='+startDateStr+'&enddate='+endDateStr
+//                    +'&userid='+$rootScope.userid+'&courseids='+courseStr+'&enrollmentstatus='+enrollStr+'&excuseditem='
+//                    +excuseItemStr+'&userspace='+$rootScope.userspace+'&token='+$rootScope.token;
                 
-                var reportUrl = urlDetailObj.reportServiceUrlStudent +'startdate='+startDateStr+'&enddate='+endDateStr
-                    +'&userid='+$rootScope.userid+'&courseids='+courseStr+'&enrollmentstatus='+enrollStr+'&excuseditem='
-                    +excuseItemStr+'&userspace='+$rootScope.userspace+'&token='+$rootScope.token;
-                
+                var reportUrl = 'http://192.168.2.58:8080/reports/studentactivityreport?startdate=01/02/2014&enddate=01/18/2019&userid=23696742&courseids=23598050,23598525&enrollmentstatus=1,10&excuseditem=0&userspace=sdale-innovation&token=~FbT1BAAAAAgCqkx2orhMPA.ubJwpnTsLvN3eKwu5jvOVB';
                 console.log(reportUrl);
+                
                 $scope.studentReportUrl=$sce.trustAsResourceUrl(reportUrl);
                 $scope.isShowReportView = true;
-                console.log($scope.isShowReportView);
+                
             }
-
 
         };
 
@@ -207,38 +167,15 @@ http://192.168.2.58:8080/reports/studentactivityreport?startdate=19/02/2016&endd
             $location.path('/');
         }
 
-        // Success callback
-        // var handleSuccess = function (data, status) {
-        //     $scope.details = data;
-        //     console.log(status, $scope.details.courses._get);
-        // };
-
-        // // Error callback
-        // var handleError = function (err, status) {
-        //     $scope.details = {};
-        //     console.log(status, err);
-        // };
-
-        //getData._get($scope.teacherId).success(handleSuccess).error(handleError);
-
-        // $scope.$watch('selectedDate', function (v) {
-        //     console.log($scope.selectedDate);
-        //     var d = new Date(v);
-        //     var curr_date = d.getDate();
-        //     var curr_month = d.getMonth() + 1; //Months are zero based
-        //     var curr_year = d.getFullYear();
-        //     $scope.modDate = curr_date + "/" + curr_month + "/" + curr_year;
-        //     console.log($scope.modDate)
-        // }, true);
-
         $scope.$watch('multiselectModelcourse', function () {
 
-            console.log($scope.multiselectModelcourse);
             $scope.courseIdArr = [];
+            //To handle error at the time of initialization 
+            if(!$scope.multiselectModelcourse)
+                return;
 
             for (var i = 0; i < $scope.multiselectModelcourse.length; i++) {
                 $scope.courseIdArr.push($scope.multiselectModelcourse[i].id);
-                console.log($scope.courseIdArr);
             }
 
 
@@ -246,15 +183,11 @@ http://192.168.2.58:8080/reports/studentactivityreport?startdate=19/02/2016&endd
 
         $scope.$watch('multiselectModelenrollment', function () {
 
-            // console.log($scope.multiselectModelenrollment.length);
-
             $scope.enrollArr = [];
-            console.log($scope.multiselectModelenrollment);
 
             for (var i = 0; i < $scope.multiselectModelenrollment.length; i++) {
 
                 $scope.enrollArr.push($scope.multiselectModelenrollment[i].id);
-                console.log($scope.enrollArr);
 
             }
 
@@ -262,7 +195,6 @@ http://192.168.2.58:8080/reports/studentactivityreport?startdate=19/02/2016&endd
         }, true);
         $scope.searchAgain = function () {
             $scope.isShowReportView = false;
-            console.log($scope.isShowReportView);
         }
 
         $scope.init();

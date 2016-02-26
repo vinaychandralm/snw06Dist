@@ -21,7 +21,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
         $rootScope.authenticationErr = false;
 
         $rootScope.token = $routeParams.token;
-        console.log($routeParams.token);
+//console.log($routeParams.token);
         $rootScope.userid = $routeParams.userid;
         $rootScope.token = $routeParams.token;
         $rootScope.role = $routeParams.role;
@@ -30,15 +30,15 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
         $rootScope.userspace = $routeParams.userspace
     
     //   TODO : Remove blow 6 line comments if not using GRUNT-SERVE.
-         $routeParams.role = CONFIGJSONOBJ.userSettingObjects.role;
-         $routeParams.userid = CONFIGJSONOBJ.userSettingObjects.userid;
-         $routeParams.token = CONFIGJSONOBJ.userSettingObjects.token;
-         $routeParams.userspace = CONFIGJSONOBJ.userSettingObjects.userspace;
-        
-         $rootScope.token = $routeParams.token;
-         $rootScope.userid = $routeParams.userid;
-         $rootScope.role = $routeParams.role;
-         $rootScope.userspace = CONFIGJSONOBJ.userSettingObjects.userspace;
+//         $routeParams.role = CONFIGJSONOBJ.userSettingObjects.role;
+//         $routeParams.userid = CONFIGJSONOBJ.userSettingObjects.userid;
+//         $routeParams.token = CONFIGJSONOBJ.userSettingObjects.token;
+//         $routeParams.userspace = CONFIGJSONOBJ.userSettingObjects.userspace;
+//        
+//         $rootScope.token = $routeParams.token;
+//         $rootScope.userid = $routeParams.userid;
+//         $rootScope.role = $routeParams.role;
+//         $rootScope.userspace = CONFIGJSONOBJ.userSettingObjects.userspace;
         
 
         $scope.urlDetails = getServerConfigData._getDetails();
@@ -73,7 +73,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
         validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token, $scope.urlDetails)
         .then(function onsuccess(response) {
             
-            console.log(response);
+//            console.log(response);
             if (response.data.messageType === "ERROR") {
                 notAuthenticated._showErrorMsg();
             } else {
@@ -108,7 +108,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
         return $location.path();
         },
         function (newValue, oldValue) {
-            console.log(newValue, oldValue);
+//            console.log(newValue, oldValue);
             if (newValue === '/') { // Update: variable name case should be the same
                 // here you can do your tasks
                 $rootScope.bodybg = 'bodyBgViolat';
