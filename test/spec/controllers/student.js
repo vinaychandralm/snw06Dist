@@ -71,6 +71,8 @@ describe('studentDetailsCtrl', function () {
     it('should have proper variable to be return proper value', function () {
         var controller = createController();
         var startDateActivity, endDateActivity;
+        
+        spyOn(scope, 'getDateAsString').and.returnValue("some value");
 
         scope.startDateStartActivity = null;
         scope.submitStudentInfo();
@@ -105,9 +107,11 @@ describe('studentDetailsCtrl', function () {
         expect(scope.enrllNotSelected).toBe(true);
 
         scope.enrollArr = [1, 2];
+        
         scope.submitStudentInfo();
+        
         expect(scope.enrllNotSelected).toBe(false);
-
+        expect(scope.getDateAsString).toHaveBeenCalled();
         expect(scope.isShowReportView).toBe(true);
     });
 

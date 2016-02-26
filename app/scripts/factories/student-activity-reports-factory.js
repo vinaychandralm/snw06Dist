@@ -7,7 +7,8 @@ factoryModule.factory('getServerConfigData', function() {
     return {
         _getDetails: function() {
           return {
-                  "servicesBaseUrl" : 'http://172.16.9.197:8282/gage-service/service/',
+                    "servicesBaseUrl" : 'http://172.16.9.197:8282/gage-service/service/',
+                    "reportServiceUrlStudent": "http://192.168.2.58:8080/reports/studentactivityreport?"
               }
         }
     }
@@ -84,38 +85,48 @@ factoryModule.factory('getEnrollmentStatus',['$http', function($http) {
 
     var service = {};
 
+//     Active = 1,
+//    Withdrawn = 4,
+//    WithdrawnFailed = 5,
+//    Transferred = 6,
+//    Completed = 7,
+//    CompletedNoCredit = 8,
+//    Suspended = 9,
+//    Inactive = 10,
+    
+    
     service.get = function() {
         return [
             {
-                id: 0,
+                id: 1,
                 name: "Active"
             },
             {
-                id: 1,
+                id: 4,
                 name: "Withdrawn"
             },
             {
-                id: 2,
+                id: 5,
                 name: "WithdrawnFailed"
             },
             {
-                id: 3,
+                id: 6,
                 name: "Transferred"
             },
             {
-                id: 4,
+                id: 7,
                 name: "Completed"
             },
             {
-                id: 5,
+                id: 8,
                 name: "CompletedNoCredit"
             },
             {
-                id: 6,
+                id: 9,
                 name: "Suspended"
             },
             {
-                id: 7,
+                id: 10,
                 name: "Inactive"
             }
         ];

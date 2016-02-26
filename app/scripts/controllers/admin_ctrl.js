@@ -6,7 +6,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams','$loca
         
         $scope.initValues = function(){
              
-            $scope.userId = $routeParams.userid;
+//            $scope.userId = $routeParams.userid;
             $scope.details = {};
             $rootScope.isblue = false;
             $scope.statusNotSelected = false;
