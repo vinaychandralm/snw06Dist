@@ -184,6 +184,10 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
                 var excuseItemStr = $scope.excuedItem?'1':'0';
                 
 /*http://192.168.2.58:8080/reports/studentactivityreport?startdate=01/02/2014&enddate=01/18/2019&userid=23696742&courseids=23598050,23598525&enrollmentstatus=1,10&excuseditem=0&userspace=sdale-innovation&token=~FbT1BAAAAAgCqkx2orhMPA.ubJwpnTsLvN3eKwu5jvOVB */
+            /*
+http://192.168.2.58:8080/reports/studentactivityreport?startdate=19/02/2016&enddate=26/02/2016&userid=46240033&courseids=46238953,46238967&enrollmentstatus=1&excuseditem=0&userspace=s1-06&token=~hEZwCAAAAAAyOvuFXmp-MB.KR3XOf_I12XrjDYv81FxDB            
+            
+            */
                 
                 var reportUrl = urlDetailObj.reportServiceUrlStudent +'startdate='+startDateStr+'&enddate='+endDateStr
                     +'&userid='+$rootScope.userid+'&courseids='+courseStr+'&enrollmentstatus='+enrollStr+'&excuseditem='
