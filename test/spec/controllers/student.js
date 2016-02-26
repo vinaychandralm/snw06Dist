@@ -119,6 +119,11 @@ describe('studentDetailsCtrl', function () {
         scope.backStudent();
         expect($location.path()).toBe('/');
     });
+    
+    it('testing watch function for multiselectModelenrollment', function () {
+        var controller = createController();
+        
+    });
 
 
 });
