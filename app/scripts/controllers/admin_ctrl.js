@@ -1,10 +1,10 @@
 'use strict';
 var admModule = angular.module('studentActivityReports.adminDetails', []);
-admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams','$location', 'getSchoolData',
-    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError', 'getServerConfigData','$sce', function ($scope, $rootScope, $routeParams,$location,
-        getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse, notAuthenticated, noNetError, getServerConfigData,$sce) {
-        
-        $scope.initValues = function(){
+admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getSchoolData',
+    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError', 'getServerConfigData', '$sce', function ($scope, $rootScope, $location,
+        getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse, notAuthenticated, noNetError, getServerConfigData, $sce) {
+
+        $scope.initValues = function () {
              
             // $scope.userId = $routeParams.userid;
             $scope.details = {};
@@ -16,7 +16,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams','$loca
             $scope.srtDateNotSelected = false;
             $scope.endDateNotgreater = false;
             $scope.minimumMinut = false;
-            $scope.inputAdmin=0;
+            $scope.inputAdmin = 0;
             $scope.schoolListIds = [];
             $scope.multiselectModelAdminSchool = [];
             $scope.allSchoolIdArrays = [];
@@ -28,63 +28,77 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams','$loca
             $scope.studentCourseListIds = [];
             $scope.multiselectModelAdminStudentCourse = [];
 
-            $scope.searchagain ="displaynonecls";
+            $scope.searchagain = "displaynonecls";
             $scope.iframe_row = "displaynonecls";
-            $scope.isShowReportView =false;
+            $scope.isShowReportView = false;
 
-            $scope.adminReportUrl =$sce.trustAsResourceUrl('www.google.com'); 
-            
+            // $scope.adminReportUrl =$sce.trustAsResourceUrl('www.google.com');   
             var currDate = new Date();
             $scope.startDateStartActivity = currDate.setDate(currDate.getDate() - 7);
             $scope.maxDateStartActivity = new Date().setDate(new Date().getDate() - 1);
             // //console.log( $scope.maxDate);
             $scope.startDateEndActivity = new Date();
-           
-            $scope.urlDetails = getServerConfigData._getDetails();
             
             $scope.enrollmentArr = getEnrollmentStatus.get();
-            
+        $scope.urlDetails = getServerConfigData._getDetails();
         };
 
-        
-        $scope.loadData = function(){
-            
+
+        // $scope.dateUpdate = function () {
+        //     var currDate = new Date();
+        //     $scope.startDateStartActivity = currDate.setDate(currDate.getDate() - 7);
+        //     $scope.maxDateStartActivity = new Date().setDate(new Date().getDate() - 1);
+        //     // //console.log( $scope.maxDate);
+        //     $scope.startDateEndActivity = new Date();
+        // }
+
+
+
+
+        // $scope.enrollmentArr = getEnrollmentStatus.get();
+        // $scope.urlDetails = getServerConfigData._getDetails();
+
+
+
+
+        $scope.loadData = function () {
+
             getSchoolData._get($rootScope.admindetail.data.user.domainid, $rootScope.token, $scope.urlDetails)
-            .then(function onsuccess(response) {
-                if (response.data.messageType === "ERROR") {
-                    notAuthenticated._showErrorMsg();
-                    return;
-                }
-                $scope.setData(response.data);
-                $scope.getAllSchollDomainId(response.data);
-                getSchoolStudent._get($scope.allSchoolIdArrays, $scope.urlDetails)
-                    .then(function onSuccess(res) {
-                        if (response.data.messageType === "ERROR") {
-                            notAuthenticated._showErrorMsg();
-                            return;
-                        }
-                        $scope.setDataoFStuds(res.data.data.user);
-                        $scope.getAllSchollStudentCourseId(res.data.data.user);
-                        console.log($scope.allSchoolStudentIdArrays,"$scope.allSchoolStudentIdArrays 112");
-                        getSchoolStudentCourse._get($scope.allSchoolStudentIdArrays, $scope.urlDetails)
-                            .then(function onSuccess(res) {
-                                if (response.data.messageType === "ERROR") {
-                                    notAuthenticated._showErrorMsg();
-                                    return;
-                                }
-                                $scope.setDataoFSchoolStudsCourse(res.data.data.course);
-                            }, function onError(res) {
-                                noNetError._showNetErrorMsg();
-                            });
-                    }, function onError(res) {
-                        noNetError._showNetErrorMsg();
-                    });
-            }, function onerror(response) {
-                noNetError._showNetErrorMsg();
-            });
-            
+                .then(function onsuccess(response) {
+                    if (response.data.messageType === "ERROR") {
+                        notAuthenticated._showErrorMsg();
+                        return;
+                    }
+                    $scope.setData(response.data);
+                    $scope.getAllSchollDomainId(response.data);
+                    getSchoolStudent._get($scope.allSchoolIdArrays, $scope.urlDetails)
+                        .then(function onSuccess(res) {
+                            if (response.data.messageType === "ERROR") {
+                                notAuthenticated._showErrorMsg();
+                                return;
+                            }
+                            $scope.setDataoFStuds(res.data.data.user);
+                            $scope.getAllSchollStudentCourseId(res.data.data.user);
+                            console.log($scope.allSchoolStudentIdArrays, "$scope.allSchoolStudentIdArrays 112");
+                            getSchoolStudentCourse._get($scope.allSchoolStudentIdArrays, $scope.urlDetails)
+                                .then(function onSuccess(res) {
+                                    if (response.data.messageType === "ERROR") {
+                                        notAuthenticated._showErrorMsg();
+                                        return;
+                                    }
+                                    $scope.setDataoFSchoolStudsCourse(res.data.data.course);
+                                }, function onError(res) {
+                                    noNetError._showNetErrorMsg();
+                                });
+                        }, function onError(res) {
+                            noNetError._showNetErrorMsg();
+                        });
+                }, function onerror(response) {
+                    noNetError._showNetErrorMsg();
+                });
+
         }
-        
+
         $scope.getAllSchollDomainId = function (dataresopnse) {
             $scope.allSchoolIdArrays = [];
             for (var i = 0; i < dataresopnse.data.domains.length; i++) {
@@ -144,7 +158,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams','$loca
                 });
         };
         $scope.OnChangeStudent = function () {
-            if($scope.studentListIds.length ==0){
+            if ($scope.studentListIds.length == 0) {
                 $scope.setDataoFSchoolStudsCourse([]);
                 return;
             }
@@ -160,22 +174,22 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams','$loca
                 });
         };
 
-         $scope.isInt=function(n) {
+        $scope.isInt = function (n) {
             return n % 1 === 0;
         }
 
         $scope.submit = function () {
             var startDateActivity = new Date($scope.startDateStartActivity);
             var endDateActivity = new Date($scope.startDateEndActivity);
-            
-            if($scope.startDateStartActivity == null){
-                
+
+            if ($scope.startDateStartActivity == null) {
+
                 $scope.srtDateNotSelected = true;
-            }else{
+            } else {
                 $scope.srtDateNotSelected = false;
             }
-            
-            if (startDateActivity > endDateActivity || $scope.startDateEndActivity ==null) {
+
+            if (startDateActivity > endDateActivity || $scope.startDateEndActivity == null) {
                 $scope.endDateNotgreater = true;
             }
             else {
@@ -214,26 +228,26 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams','$loca
                 $scope.statusNotSelected = false;
             }
             console.log($scope.inputAdmin);
-            if ($scope.inputAdmin === undefined || $scope.inputAdmin === null || $scope.inputAdmin < 0 ||!$scope.isInt($scope.inputAdmin)) {
+            if ($scope.inputAdmin === undefined || $scope.inputAdmin === null || $scope.inputAdmin < 0 || !$scope.isInt($scope.inputAdmin)) {
                 $scope.minimumMinut = true;
             } else {
                 $scope.minimumMinut = false;
             }
-            
-            if(!$scope.endDateNotgreater && !$scope.schoolNotSelected && !$scope.studentNotSelected && !$scope.courseNotSelected && !$scope.courseNotSelected && !$scope.statusNotSelected && !$scope.minimumMinut && !$scope.srtDateNotSelected){
+
+            if (!$scope.endDateNotgreater && !$scope.schoolNotSelected && !$scope.studentNotSelected && !$scope.courseNotSelected && !$scope.courseNotSelected && !$scope.statusNotSelected && !$scope.minimumMinut && !$scope.srtDateNotSelected) {
                 //Setting varaible for Animation
                
-                 $scope.adminReportUrl=$sce.trustAsResourceUrl('https://www.angularjs.org');
-                 $scope.isShowReportView = true;
-                
+                $scope.adminReportUrl = $sce.trustAsResourceUrl('https://www.angularjs.org');
+                $scope.isShowReportView = true;
+
             }
         };
-        
-        $scope.searchAgain = function(){
+
+        $scope.searchAgain = function () {
             $scope.isShowReportView = false;
             console.log($scope.isShowReportView);
         }
-        
+
         $scope.backAdmin = function () {
             // debugger;
             $location.path('/');
@@ -261,7 +275,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams','$loca
             $scope.schoolListIds = [];
             
             //To handle error at the time of initialization 
-            if(!$scope.multiselectModelAdminCourse)
+            if (!$scope.multiselectModelAdminCourse)
                 return;
             for (var i = 0; i < $scope.multiselectModelAdminCourse.length; i++) {
                 $scope.schoolListIds.push($scope.multiselectModelAdminCourse[i].id);
@@ -299,7 +313,9 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams','$loca
         
         
         //Initalizing variables
-         $scope.initValues();
+        $scope.initValues();
+
+        // $scope.dateUpdate();
         
         //Laoding data 
         $scope.loadData();

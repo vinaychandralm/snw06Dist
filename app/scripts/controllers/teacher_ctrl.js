@@ -40,7 +40,7 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
         * TODO:: modify object structure as per data received.
         */
 
-        $scope.enrollmentArr = getEnrollmentStatus.get();
+            $scope.enrollmentArr = getEnrollmentStatus.get();
         }
 
         
@@ -75,9 +75,9 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
                 noNetError._showNetErrorMsg();
             });
 
-        
-        $scope.setDataOFStudent =function(courseIdArr){
-             
+
+        $scope.setDataOFStudent = function (courseIdArr) {
+
             getDataStudentTeacher._get($rootScope.role, courseIdArr, urlDetails)
                 .then(function onsuccess(response) {
                     if (response.data.messageType === "ERROR") {
@@ -99,21 +99,21 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
                 $scope.courseIdArr.push($scope.courseArr[i].id);
                 console.log($scope.courseIdArr);
             }
-            
+
             $scope.setDataOFStudent($scope.courseIdArr);
 
-//            getDataStudentTeacher._get($rootScope.role, $scope.courseIdArr, urlDetails)
-//                .then(function onsuccess(response) {
-//                    if (response.data.messageType === "ERROR") {
-//                        notAuthenticated._showErrorMsg();
-//                        return;
-//                    }
-//                    console.log(response.data);
-//                    $scope.setDataStudent(response.data.data.user);
-//                }, function onError(response) {
-//                    console.log("Error on loading Student of Teacher page");
-//                    noNetError._showNetErrorMsg();
-//                });
+            //            getDataStudentTeacher._get($rootScope.role, $scope.courseIdArr, urlDetails)
+            //                .then(function onsuccess(response) {
+            //                    if (response.data.messageType === "ERROR") {
+            //                        notAuthenticated._showErrorMsg();
+            //                        return;
+            //                    }
+            //                    console.log(response.data);
+            //                    $scope.setDataStudent(response.data.data.user);
+            //                }, function onError(response) {
+            //                    console.log("Error on loading Student of Teacher page");
+            //                    noNetError._showNetErrorMsg();
+            //                });
         };
 
 
@@ -130,15 +130,17 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
 
                 return;
             }
-//            $scope.setDataStudent(courseIdArr);
+            //            $scope.setDataStudent(courseIdArr);
             getDataStudentTeacher._get($rootScope.role, courseIdArr, urlDetails)
                 .then(function onsuccess(response) {
                     console.log(response.data);
                     if (response.data.messageType === "ERROR") {
                         notAuthenticated._showErrorMsg();
                         return;
+                    }else{
+                        $scope.setDataStudent(response.data.data.user);
                     }
-                    $scope.setDataStudent(response.data.data.user);
+                    
                 }, function onError(response) {
                     console.log("Error on loading Student of Teacher page");
                     noNetError._showNetErrorMsg();
@@ -207,25 +209,27 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
         }
 
 
-//        // Success callback
-//        var handleSuccess = function (data, status) {
-//            $scope.details = data;
-//            console.log(status, $scope.details.courses._get);
-//        };
-//
-//        // Error callback
-//        var handleError = function (err, status) {
-//            $scope.details = {};
-//            console.log(status, err);
-//        };
+        //        // Success callback
+        //        var handleSuccess = function (data, status) {
+        //            $scope.details = data;
+        //            console.log(status, $scope.details.courses._get);
+        //        };
+        //
+        //        // Error callback
+        //        var handleError = function (err, status) {
+        //            $scope.details = {};
+        //            console.log(status, err);
+        //        };
 
         //getData._get($scope.teacherId).success(handleSuccess).error(handleError);
-
-        $scope.$watch('selectedDate', function () {
+        
+        $scope._selectedDate_ = function () {
             console.log($scope.selectedDate);
-        }, true);
+        },
 
-        $scope.$watch('multiselectModel', function () {
+        $scope.$watch('selectedDate', $scope._selectedDate_, true);
+
+        $scope._multiselectModel_ = function () {
 
             console.log($scope.multiselectModel);
             $scope.courseIdArr = [];
@@ -235,12 +239,11 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
                 console.log($scope.courseIdArr);
             }
             $scope.onChangeCourseSelect($scope.courseIdArr);
+        }
 
+        $scope.$watch('multiselectModel', $scope._multiselectModel_, true);
 
-        }, true);
-
-
-        $scope.$watch('multiselectModel2', function () {
+        $scope._multiselectModel2_ = function () {
 
             console.log($scope.multiselectModel2);
 
@@ -249,13 +252,13 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
                 $scope.courseStudentIdArr.push($scope.multiselectModel2[i].id);
                 console.log($scope.courseStudentIdArr);
             }
+        }
 
 
-
-        }, true);
+        $scope.$watch('multiselectModel2', $scope._multiselectModel2_, true);
         //  console.log("$scope.courseIdArr", $scope.courseIdArr);
-
-        $scope.$watch('multiselectModelEroll', function () {
+        
+        $scope._multiselectModelEroll_ = function () {
 
             console.log($scope.multiselectModelEroll.length);
 
@@ -268,12 +271,16 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
                 console.log($scope.enrollArr);
 
             }
-        }, true);
+        }
+
+        $scope.$watch('multiselectModelEroll', $scope._multiselectModelEroll_, true);
+
+
         $scope.searchAgain = function () {
             $scope.isShowReportView = false;
             console.log($scope.isShowReportView);
         }
-        
+
         $scope.init();
         $scope.dateUpdate();
 
