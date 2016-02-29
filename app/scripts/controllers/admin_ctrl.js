@@ -6,7 +6,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
 
         $scope.initValues = function () {
              
-            // $scope.userId = $routeParams.userid;
+
             $scope.details = {};
             $rootScope.isblue = false;
             $scope.statusNotSelected = false;
@@ -239,6 +239,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
                
                 $scope.adminReportUrl = $sce.trustAsResourceUrl('https://www.angularjs.org');
                 $scope.isShowReportView = true;
+
 
             }
         };

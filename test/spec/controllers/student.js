@@ -77,7 +77,7 @@ describe('studentDetailsCtrl', function () {
 
         scope.role = 'student';
 
-        spyOn(notAuthenticated, '_showErrorMsg').and.returnValue('Some text');
+        spyOn(notAuthenticated, 'setDataStudent').and.returnValue('Some text');
         // Setup the data we wish to return for the .then function in the controller
         deferred.resolve({ config: {}, data: { data: { 'key': 'someType' }, messageType: 'ERROR', status: 200, statusText: 'OK' } });
         

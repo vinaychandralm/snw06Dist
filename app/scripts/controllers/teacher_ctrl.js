@@ -37,6 +37,7 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
             $scope.isShowReportView = false;
             
             /* @courseArr: Courses received from server
+
         * TODO:: modify object structure as per data received.
         */
 
@@ -197,8 +198,9 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
 
 
             if (!$scope.endDateNotgreater && !$scope.statusNotSelected && !$scope.courseNotSelected && !$scope.studentNotSelected && !$scope.minimumMinut && !$scope.srtDateNotSelected) {
+                
                 //Setting varaible for Animation
-                $scope.isShowReportView = true;
+                    //$scope.isShowReportView = true;
 
             }
         };
@@ -224,8 +226,9 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
         //getData._get($scope.teacherId).success(handleSuccess).error(handleError);
         
         $scope._selectedDate_ = function () {
+
             console.log($scope.selectedDate);
-        },
+        };
 
         $scope.$watch('selectedDate', $scope._selectedDate_, true);
 
@@ -253,6 +256,7 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
                 console.log($scope.courseStudentIdArr);
             }
         }
+
 
 
         $scope.$watch('multiselectModel2', $scope._multiselectModel2_, true);

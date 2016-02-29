@@ -5,9 +5,12 @@ var CONFIGJSONOBJ = {
 
     "userSettingObjects":
     {
-        'role': 'teacher',
-        'userid': '46239951',
-        'token': '~PDZwCAAAAAwEKQhW5IIHYB.0fGPOhwKMbOzy5WOfyq8hC'
+
+        'role': 'admin',
+        'userid': '46238944',
+        'token': '~gzYwCAAAAAA1uO3HHqOGXA.dc3-rS5LPUJ_fo_rb3m74A',
+        'userspace':'s1-06'
+
     }
 
 };

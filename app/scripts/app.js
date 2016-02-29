@@ -20,7 +20,7 @@ angular
     'ngTouch',
     'ui.multiselect',
 // 'angularjs-dropdown-multiselect',
-    'mgcrea.ngStrap.datepicker',
+    'mgcrea.ngStrap',
     // 'studentActivityReports.routing',
     'studentActivityReports.factories',
     'studentActivityReportsTeacher.factories',

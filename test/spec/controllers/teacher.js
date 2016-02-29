@@ -159,7 +159,7 @@ describe('Teacher Ctrl', function () {
          scope.$apply();
 
 
-        expect(getDataStudentTeacher._get).toEqual('Some text');
+        expect(getDataStudentTeacher._get).toHaveBeenCalled();
         expect(scope.setDataStudent).toHaveBeenCalled();
          
     });
