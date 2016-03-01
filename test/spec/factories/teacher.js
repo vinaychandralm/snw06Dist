@@ -17,7 +17,7 @@ describe('getDataCourseTeacher', function () {
         // basePath = 'http://172.16.9.197:8282/gage-service/service/course?';
         role = "teacher";
         userid = "46240033";
-        urldetails = { "servicesBaseUrl": 'http://172.16.9.197:8282/gage-service/service/' };
+        urldetails = { "servicesBaseUrl": 'http://172.16.9.197:8282/gage-service/service' };
         basePath = urldetails.servicesBaseUrl + "/course?";
         spyOn(http, "get").and.returnValue("some value");
     }));
@@ -49,7 +49,7 @@ describe('getDataStudentTeacher', function () {
         // basePath = 'http://172.16.9.197:8282/gage-service/service/student?entitytype=course&';
         role = "teacher";
         userid = "46240033";
-        urldetails = { "servicesBaseUrl": 'http://172.16.9.197:8282/gage-service/service/' };
+        urldetails = { "servicesBaseUrl": 'http://172.16.9.197:8282/gage-service/service' };
         basePath = urldetails.servicesBaseUrl + "/student?entitytype=course&";
         spyOn(http, "get").and.returnValue("some value");
     }));

@@ -208,3 +208,7 @@ multiselect .btn-group ul {
 .timepicker.dropdown-menu tbody button {
   padding: 6px;
 }
+
+.datepicker {
+  top: 0 !important;
+}

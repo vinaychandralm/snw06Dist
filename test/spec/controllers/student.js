@@ -20,6 +20,7 @@ describe('studentDetailsCtrl', function () {
         // spyOn(getDataStudent, '_get').and.returnValue(deferred.promise);
         spyOn(getDataStudent, '_get').and.returnValue(deferred.promise);
         scope.$watch = jasmine.createSpy('$watch');
+        // dateObj=new Date();
 
 
         createController = function () {
@@ -54,6 +55,12 @@ describe('studentDetailsCtrl', function () {
         expect(scope.searchagain).toEqual("displaynonecls");
         expect(scope.iframe_row).toEqual("displaynonecls");
     });
+    
+    it('It shuould resolve promise object of validate data and loadData function', function () {
+        var controller = createController();
+
+        var dateObj=new Date();
+    });
 
     it('It shuould resolve promise object of validate data and loadData function', function () {
         var controller = createController();
@@ -77,7 +84,7 @@ describe('studentDetailsCtrl', function () {
 
         scope.role = 'student';
 
-        spyOn(notAuthenticated, 'setDataStudent').and.returnValue('Some text');
+        spyOn(notAuthenticated, '_showErrorMsg').and.returnValue('Some text');
         // Setup the data we wish to return for the .then function in the controller
         deferred.resolve({ config: {}, data: { data: { 'key': 'someType' }, messageType: 'ERROR', status: 200, statusText: 'OK' } });
         

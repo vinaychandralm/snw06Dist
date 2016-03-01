@@ -16,8 +16,8 @@ describe('getSchoolData', function () {
         getSchoolData = _getSchoolData_;
         domainid = "46240033";
         token = "~hEZwCAAAAAQl7dkU-FQqlB.Yp_Q6EA2pmadM1IK-2Ea2C";
-        urldetails = { "servicesBaseUrl": 'http://172.16.9.197:8282/gage-service/service/' };
-        basePath = urldetails.servicesBaseUrl + "domain/list/";
+        urldetails = { "servicesBaseUrl": 'http://172.16.9.197:8282/gage-service/service' };
+        basePath = urldetails.servicesBaseUrl + "/domain/list/";
         spyOn(http, "get").and.returnValue("some value");
     }));
 
@@ -47,8 +47,8 @@ describe('getSchoolStudent', function () {
         getSchoolStudent = _getSchoolStudent_;
         // basePath = 'http://172.16.9.197:8282/gage-service/service/student?entitytype=school&entityids=';
         schoolIdsArray = [46240033, 464554, 4645456, 4564646, 464645];
-        urldetails = { "servicesBaseUrl": 'http://172.16.9.197:8282/gage-service/service/' };
-        basePath = urldetails.servicesBaseUrl + "student?entitytype=school&entityids=";
+        urldetails = { "servicesBaseUrl": 'http://172.16.9.197:8282/gage-service/service' };
+        basePath = urldetails.servicesBaseUrl + "/student?entitytype=school&entityids=";
         spyOn(http, "get").and.returnValue("some value");
     }));
 
@@ -80,8 +80,8 @@ describe('getSchoolStudentCourse', function () {
         getSchoolStudentCourse = _getSchoolStudentCourse_;
         // basePath = 'http://172.16.9.197:8282/gage-service/service/course?role=student&userids=';
         schoolStudentIdsArray = [46240033, 464554, 4645456, 4564646, 464645];
-        urldetails = { "servicesBaseUrl": 'http://172.16.9.197:8282/gage-service/service/' };
-        basePath = urldetails.servicesBaseUrl +"course?role=student&userids=";
+        urldetails = { "servicesBaseUrl": 'http://172.16.9.197:8282/gage-service/service' };
+        basePath = urldetails.servicesBaseUrl +"/course?role=student&userids=";
         spyOn(http, "get").and.returnValue("some value");
     }));
 

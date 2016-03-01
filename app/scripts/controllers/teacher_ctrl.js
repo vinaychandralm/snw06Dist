@@ -200,7 +200,7 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
             if (!$scope.endDateNotgreater && !$scope.statusNotSelected && !$scope.courseNotSelected && !$scope.studentNotSelected && !$scope.minimumMinut && !$scope.srtDateNotSelected) {
                 
                 //Setting varaible for Animation
-                    //$scope.isShowReportView = true;
+                    $scope.isShowReportView = true;
 
             }
         };

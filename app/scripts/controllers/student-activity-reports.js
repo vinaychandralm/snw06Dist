@@ -167,7 +167,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             $location.path('/');
         }
 
-<<<<<<< HEAD
+
         // Success callback
         // var handleSuccess = function (data, status) {
         //     $scope.details = data;
