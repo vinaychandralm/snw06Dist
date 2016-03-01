@@ -19,7 +19,7 @@ describe('validateUrlData', function () {
         role = "student";
         userid = "46240033";
         entitytype = 'D|C';
-        urldetails = { "servicesBaseUrl": 'http://172.16.9.197:8282/gage-service/service/' };
+        urldetails = { "servicesBaseUrl": 'http://172.16.9.197:8282/gage-service/service' };
         basePath = urldetails.servicesBaseUrl + "/user/rights/";
         // spyOn(validateUrlData, "_get").and.returnValue(745);
         spyOn(http, "get").and.returnValue("some value");
@@ -57,7 +57,7 @@ describe('getDataStudent', function () {
         // basePath = 'http://172.16.9.197:8282/gage-service/service/course?';
         role = "student";
         userid = "46240033";
-        urldetails = { "servicesBaseUrl": 'http://172.16.9.197:8282/gage-service/service/' };
+        urldetails = { "servicesBaseUrl": 'http://172.16.9.197:8282/gage-service/service' };
         basePath = urldetails.servicesBaseUrl + '/course?';
         spyOn(http, "get").and.returnValue("some value");
     }));
@@ -89,7 +89,7 @@ describe('getStudentCourseData', function () {
         getStudentCourseData = _getStudentCourseData_;
         // basePath = 'http://172.16.9.197:8282/gage-service/service/course?role=student&userids=';
         userid = "46240033";
-        urldetails = { "servicesBaseUrl": 'http://172.16.9.197:8282/gage-service/service/' };
+        urldetails = { "servicesBaseUrl": 'http://172.16.9.197:8282/gage-service/service' };
         basePath = urldetails.servicesBaseUrl + '/course?role=student&userids=';
         spyOn(http, "get").and.returnValue("some value");
     }));
@@ -179,35 +179,35 @@ describe('getEnrollmentStatus', function () {
         var get = getEnrollmentStatus.get();
         expect(get).toEqual([
             {
-                id: 0,
+                id: 1,
                 name: "Active"
             },
             {
-                id: 1,
+                id: 4,
                 name: "Withdrawn"
             },
             {
-                id: 2,
+                id: 5,
                 name: "WithdrawnFailed"
             },
             {
-                id: 3,
+                id: 6,
                 name: "Transferred"
             },
             {
-                id: 4,
+                id: 7,
                 name: "Completed"
             },
             {
-                id: 5,
+                id: 8,
                 name: "CompletedNoCredit"
             },
             {
-                id: 6,
+                id: 9,
                 name: "Suspended"
             },
             {
-                id: 7,
+                id: 10,
                 name: "Inactive"
             }
         ]);

@@ -10,7 +10,9 @@ var homeModule = angular.module('studentActivityReports.home', ['constant']);
 
 
 
-homeModule.controller('MainCtrl', ['config','$scope', '$rootScope', '$location', '$theme', '$routeParams', 'validateUrlData', 'notAuthenticated', 'noNetError', 'getServerConfigData', function (configJSon,$scope, $rootScope, $location, theme, $routeParams, validateUrlData, notAuthenticated, noNetError, getServerConfigData) {
+homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme', '$routeParams', 'validateUrlData', 
+        'notAuthenticated', 'noNetError','config',
+         function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData, notAuthenticated, noNetError,configJSon) {
 
     $scope.initValues = function(){
         
@@ -44,7 +46,7 @@ homeModule.controller('MainCtrl', ['config','$scope', '$rootScope', '$location',
          $rootScope.userspace = configJSon.userSettingObjects.userspace;
         
 
-        $scope.urlDetails = getServerConfigData._getDetails();
+        $scope.urlDetails = configJSon;
         console.log($scope.urlDetails);
         
     };
@@ -74,7 +76,7 @@ homeModule.controller('MainCtrl', ['config','$scope', '$rootScope', '$location',
     };
     
     $scope.loadData = function(){
-        validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token, configJSon)
+        validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token, $scope.urlDetails)
         .then(function onsuccess(response) {
             
 //            console.log(response);

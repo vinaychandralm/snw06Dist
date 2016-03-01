@@ -1,11 +1,11 @@
 'use strict';
 
 describe('studentDetailsCtrl', function () {
-    var scope, $location, createController, rootScope, getEnrollmentStatus, $q, deferred, getDataStudent, routeParams;
+    var scope, $location, createController, rootScope, getEnrollmentStatus, $q, deferred, getDataStudent, routeParams, notAuthenticated;
 
     beforeEach(module('studentActivityReports'))
     beforeEach(module('studentActivityReports.studentDetails'));
-    beforeEach(inject(function ($rootScope, $controller, _$location_, _getEnrollmentStatus_, _$routeParams_, _$q_, _getDataStudent_) {
+    beforeEach(inject(function ($rootScope, $controller, _$location_, _getEnrollmentStatus_, _$routeParams_, _$q_, _getDataStudent_, _notAuthenticated_) {
         // $location = _$location_;
         rootScope = $rootScope;
         scope = $rootScope.$new();
@@ -15,9 +15,13 @@ describe('studentDetailsCtrl', function () {
         getDataStudent = _getDataStudent_;
         routeParams = _$routeParams_;
         deferred = _$q_.defer();
+        notAuthenticated = _notAuthenticated_;
 
         // spyOn(getDataStudent, '_get').and.returnValue(deferred.promise);
         spyOn(getDataStudent, '_get').and.returnValue(deferred.promise);
+        scope.$watch = jasmine.createSpy('$watch');
+        // dateObj=new Date();
+
 
         createController = function () {
             return $controller('studentDetailsCtrl', {
@@ -51,28 +55,58 @@ describe('studentDetailsCtrl', function () {
         expect(scope.searchagain).toEqual("displaynonecls");
         expect(scope.iframe_row).toEqual("displaynonecls");
     });
+    
+    it('It shuould resolve promise object of validate data and loadData function', function () {
+        var controller = createController();
 
-    // it('should have a method to check if the path is active', function () {
-    //     var controller = createController();
+        var dateObj=new Date();
+    });
 
-    //     scope.role = 'student';
-    //     spyOn(scope, 'setData').and.returnValue('Some text');
-    //     // Setup the data we wish to return for the .then function in the controller
-    //     deferred.resolve({ config: {}, data: { data: { 'key': 'someType' }, messageType: 'SUCCESS', status: 200, statusText: 'OK' } });
+    it('It shuould resolve promise object of validate data and loadData function', function () {
+        var controller = createController();
+
+        scope.role = 'student';
+
+        spyOn(scope, 'setData').and.returnValue("some value");
+        // Setup the data we wish to return for the .then function in the controller
+        deferred.resolve({ config: {}, data: { data: { 'key': 'someType' }, messageType: 'SUCCESS', status: 200, statusText: 'OK' } });
         
          
-    //     // We have to call apply for this to work
-    //     scope.$apply();
+        // We have to call apply for this to work
+        scope.$apply();
 
-    //     expect(getDataStudent._get).toHaveBeenCalled();
-    //     expect(scope.setData).toEqual('Some text');
-    // });
+        expect(getDataStudent._get).toHaveBeenCalled();
+        expect(scope.setData).toHaveBeenCalled();
+    });
+
+    it('It shuould resolve promise object of validate data and loadData function', function () {
+        var controller = createController();
+
+        scope.role = 'student';
+
+        spyOn(notAuthenticated, '_showErrorMsg').and.returnValue('Some text');
+        // Setup the data we wish to return for the .then function in the controller
+        deferred.resolve({ config: {}, data: { data: { 'key': 'someType' }, messageType: 'ERROR', status: 200, statusText: 'OK' } });
+        
+         
+        // We have to call apply for this to work
+        scope.$apply();
+
+        expect(getDataStudent._get).toHaveBeenCalled();
+        expect(notAuthenticated._showErrorMsg).toHaveBeenCalled();
+    });
     
+    it('It shuould return the courseArray in $scope.courseArr var', function () {
+        var controller = createController();
+        scope.courseArr=[];
+        var studentCourse={data:{course:"some course"}};
+        scope.setData(studentCourse);
+        expect(scope.courseArr).toEqual("some course");
+    });
+
     it('should have proper variable to be return proper value', function () {
         var controller = createController();
         var startDateActivity, endDateActivity;
-        
-        spyOn(scope, 'getDateAsString').and.returnValue("some value");
 
         scope.startDateStartActivity = null;
         scope.submitStudentInfo();
@@ -107,26 +141,57 @@ describe('studentDetailsCtrl', function () {
         expect(scope.enrllNotSelected).toBe(true);
 
         scope.enrollArr = [1, 2];
-        
         scope.submitStudentInfo();
-        
         expect(scope.enrllNotSelected).toBe(false);
-        expect(scope.getDateAsString).toHaveBeenCalled();
+
         expect(scope.isShowReportView).toBe(true);
     });
 
     it('should return launch page url', function () {
         var controller = createController();
-        // spyOn($location, 'path').andReturn('Fake location');
-        // expect($location.path).toBe('Fake location');
+
         $location.path('/');
         scope.backStudent();
         expect($location.path()).toBe('/');
     });
-    
+
+    it('testing watch function for multiselectModelcourse', function () {
+        var controller = createController();
+
+        expect(scope.$watch).toHaveBeenCalledWith('multiselectModelcourse', scope._multiselectModelcourse_, true);
+
+    });
+
+    it('should return the array of values', function () {
+        var controller = createController();
+
+        scope.courseIdArr = [];
+        scope.multiselectModelcourse = [{ id: 1 }, { id: 2 }];
+        scope._multiselectModelcourse_();
+        expect(scope.courseIdArr).toEqual([1, 2]);
+    });
+
     it('testing watch function for multiselectModelenrollment', function () {
         var controller = createController();
-        
+
+        expect(scope.$watch).toHaveBeenCalledWith('multiselectModelenrollment', scope._multiselectModelenrollment_, true);
+
+    });
+
+    it('should return the array of values', function () {
+        var controller = createController();
+
+        scope.enrollArr = [];
+        scope.multiselectModelenrollment = [{ id: 1 }, { id: 2 }];
+        scope._multiselectModelenrollment_();
+        expect(scope.enrollArr).toEqual([1, 2]);
+    });
+
+    it('isShowReportView should be false', function () {
+        var controller = createController();
+
+        scope.searchAgain();
+        expect(scope.isShowReportView).toBe(false);
     });
 
 

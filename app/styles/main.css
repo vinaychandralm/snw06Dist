@@ -158,6 +158,7 @@ multiselect .btn-group ul {
 .cal-icon{
     background: url(../images/calender-icon.jpg) no-repeat center right;
     border-radius: 4px !important;
+    /*cursor:pointer;*/
 }
 #datepicker, #datepicker2{
     width:100%;
@@ -206,4 +207,8 @@ multiselect .btn-group ul {
 }
 .timepicker.dropdown-menu tbody button {
   padding: 6px;
+}
+
+.datepicker {
+  top: 0 !important;
 }

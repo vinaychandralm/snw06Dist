@@ -2,8 +2,8 @@
 
 var sarModule = angular.module('studentActivityReports.studentDetails', []);
 sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'getDataStudent',
-    'getEnrollmentStatus', 'getStudentCourseData', 'notAuthenticated', 'noNetError', 'getServerConfigData', '$sce', 'iFrameLoading', '$timeout',
-    function ($scope, $rootScope, $routeParams, $location, getDataStudent, getEnrollmentStatus, getStudentCourseData, notAuthenticated, noNetError, getServerConfigData, $sce, iFrameLoading, $timeout) {
+    'getEnrollmentStatus', 'getStudentCourseData', 'notAuthenticated', 'noNetError', 'config', '$sce', 'iFrameLoading', '$timeout',
+    function ($scope, $rootScope, $routeParams, $location, getDataStudent, getEnrollmentStatus, getStudentCourseData, notAuthenticated, noNetError, configJson, $sce, iFrameLoading, $timeout) {
 
         console.dir("**Inside studentDetailsCtrl**");
 
@@ -62,7 +62,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         */
 
         //getting Server url details
-        var urlDetails = getServerConfigData._getDetails();
+        var urlDetails = configJson
         console.log(urlDetails);
 
         $scope.getStudentData = function () {
@@ -162,7 +162,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             if (!$scope.endDateNotSelected && !$scope.courseNotSelected && !$scope.enrllNotSelected && !$scope.srtDateNotSelected) {
                 //Setting varaible for Animation
                 
-                var urlDetailObj = getServerConfigData._getDetails()
+                var urlDetailObj = configJson;
 
                 var courseStr = $scope.courseIdArr.join(',');
                 var enrollStr = $scope.enrollArr.join(',');
@@ -213,9 +213,9 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             $location.path('/');
         }
 
-       
+        
+        $scope._multiselectModelcourse_ = function () {
 
-        $scope.$watch('multiselectModelcourse', function () {
 
             console.log($scope.multiselectModelcourse);
             $scope.courseIdArr = [];
@@ -224,11 +224,11 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
                 $scope.courseIdArr.push($scope.multiselectModelcourse[i].id);
                 console.log($scope.courseIdArr);
             }
+        }
 
+        $scope.$watch('multiselectModelcourse', $scope._multiselectModelcourse_, true);
 
-        }, true);
-
-        $scope.$watch('multiselectModelenrollment', function () {
+        $scope._multiselectModelenrollment_ = function () {
 
             // console.log($scope.multiselectModelenrollment.length);
 
@@ -241,9 +241,10 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
                 console.log($scope.enrollArr);
 
             }
+        }
 
+        $scope.$watch('multiselectModelenrollment', $scope._multiselectModelenrollment_, true);
 
-        }, true);
         $scope.searchAgain = function () {
             $scope.isShowReportView = false;
             console.log($scope.isShowReportView);
