@@ -1,8 +1,10 @@
 {
     "userSettingObjects": {
+
         "role": "admin",
         "userid": "46238944",
         "token": "~gzYwCAAAAAgDTUPdh3abuA.wiWrp4FEV8pI8F-vVfZz7A",
+
         "userspace": "s1-06"
     },
     "servicesBaseUrl": "http://192.168.2.58:8080/gage-service/service",

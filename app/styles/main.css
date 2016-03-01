@@ -88,6 +88,7 @@ bodyBgViolat{
 }
 .student-form .date .input-group-addon{
     background:inherit;
+    
 }
 
 /* Alert */
@@ -163,6 +164,10 @@ multiselect .btn-group ul {
     background: url(../images/calender-icon.jpg) no-repeat center right;
     border-radius: 4px !important;
     /*cursor:pointer;*/
+}
+
+.input-group .form-control{
+    width: 99%;
 }
 #datepicker, #datepicker2{
     width:100%;
