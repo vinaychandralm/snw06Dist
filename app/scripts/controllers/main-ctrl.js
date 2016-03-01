@@ -49,6 +49,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
         $scope.urlDetails = configJSon;
         console.log($scope.urlDetails);
         
+        
     };
     
     $scope.showTiles = function (authResponse) {

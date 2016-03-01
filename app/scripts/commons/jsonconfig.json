@@ -1,8 +1,8 @@
 {
     "userSettingObjects": {
-        "role": "teacher",
-        "userid": "46239951",
-        "token": "~PDZwCAAAAAggjdYeUxkiJA.lUA65CrzPPf7TTFA3rKvxC",
+        "role": "student",
+        "userid": "46240033",
+        "token": "~hEZwCAAAAAQ9A5SEtXHFnB.RhLSJbNh3bUYFMjHqpY4OD",
         "userspace": "s1-06"
     },
     "servicesBaseUrl": "http://192.168.2.58:8080/gage-service/service",
