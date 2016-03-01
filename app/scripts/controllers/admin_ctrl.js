@@ -5,7 +5,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
         getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse, notAuthenticated, noNetError, configJson, $sce) {
 
         $scope.initValues = function () {
-             
+
 
             $scope.details = {};
             $rootScope.isblue = false;
@@ -38,9 +38,10 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
             $scope.maxDateStartActivity = new Date().setDate(new Date().getDate() - 1);
             // //console.log( $scope.maxDate);
             $scope.startDateEndActivity = new Date();
-            
+
             $scope.enrollmentArr = getEnrollmentStatus.get();
-        $scope.urlDetails = configJson;
+            $scope.urlDetails = configJson;
+
         };
 
 
@@ -317,8 +318,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
 
 
         }, true);
-        
-        
+
         //Initalizing variables
         $scope.initValues();
 

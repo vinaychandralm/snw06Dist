@@ -8,8 +8,6 @@ constantModule.constant('$theme', {
 var homeModule = angular.module('studentActivityReports.home', ['constant']);
 
 
-
-
 homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme', '$routeParams', 'validateUrlData', 
         'notAuthenticated', 'noNetError','config',
          function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData, notAuthenticated, noNetError,configJSon) {
@@ -35,6 +33,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
         $rootScope.userspace = $routeParams.userspace
     
     //   TODO : Remove blow 6 line comments if not using GRUNT-SERVE.
+
          $routeParams.role = configJSon.userSettingObjects.role;
          $routeParams.userid = configJSon.userSettingObjects.userid;
          $routeParams.token = configJSon.userSettingObjects.token;
@@ -44,6 +43,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
          $rootScope.userid = $routeParams.userid;
          $rootScope.role = $routeParams.role;
          $rootScope.userspace = configJSon.userSettingObjects.userspace;
+
         
 
         $scope.urlDetails = configJSon;
