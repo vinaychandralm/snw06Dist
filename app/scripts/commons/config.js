@@ -1,18 +1,19 @@
 ;
 
 
-var CONFIGJSONOBJ = {
+// var CONFIGJSONOBJ = {
 
-    "userSettingObjects":
-    {
+//     "userSettingObjects":
+//     {
 
-        'role': 'admin',
-        'userid': '46238944',
-        'token': '~gzYwCAAAAAQZrVJ1FdxK2A.vIZRTuf7NazlOhgnCvXl-D',
-        'userspace':'gsd-06'
+//         'role': 'admin',
+//         'userid': '46238944',
+//         'token': '~gzYwCAAAAAwFyoe_C7gN0B.HTVh6qzD_Lcbua_MaXpBMA',
+//         'userspace':'gsd-06'
 
-    }
 
-};
+//     }
+
+// };
     
 

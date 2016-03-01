@@ -1,8 +1,8 @@
 'use strict';
 var admModule = angular.module('studentActivityReports.adminDetails', []);
 admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getSchoolData',
-    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError', 'getServerConfigData', '$sce', function ($scope, $rootScope, $location,
-        getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse, notAuthenticated, noNetError, getServerConfigData, $sce) {
+    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError', 'config', '$sce', function ($scope, $rootScope, $location,
+        getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse, notAuthenticated, noNetError, configJson, $sce) {
 
         $scope.initValues = function () {
 
@@ -40,7 +40,8 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
             $scope.startDateEndActivity = new Date();
 
             $scope.enrollmentArr = getEnrollmentStatus.get();
-            $scope.urlDetails = getServerConfigData._getDetails();
+            $scope.urlDetails = configJson;
+
         };
 
 
@@ -137,6 +138,9 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
                     //console.log("response of _getschool Data  ",res);
                     if (res.data.messageType === "ERROR") {
                         notAuthenticated._showErrorMsg();
+                        var tempArr = [];
+                        $scope.setDataoFStuds(tempArr);
+                        $scope.setDataoFSchoolStudsCourse(tempArr);
                         return;
                     }
 
@@ -147,6 +151,9 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
                         .then(function onSuccess(res) {
                             if (res.data.messageType === "ERROR") {
                                 notAuthenticated._showErrorMsg();
+                                var tempArr = [];
+                                // $scope.setDataoFStuds(tempArr);
+                                $scope.setDataoFSchoolStudsCourse(tempArr);
                                 return;
                             }
                             $scope.setDataoFSchoolStudsCourse(res.data.data.course);

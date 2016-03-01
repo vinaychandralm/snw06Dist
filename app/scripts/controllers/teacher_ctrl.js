@@ -2,8 +2,8 @@
 
 var sarModule = angular.module('teacherActivityReports.teacherDetails', []);
 sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location', '$routeParams', 'getDataCourseTeacher',
-    'getEnrollmentStatus', 'getDataStudentTeacher', 'notAuthenticated', 'noNetError', 'getServerConfigData',
-    function ($scope, $rootScope, $location, $routeParams, getDataCourseTeacher, getEnrollmentStatus, getDataStudentTeacher, notAuthenticated, noNetError, getServerConfigData) {
+    'getEnrollmentStatus', 'getDataStudentTeacher', 'notAuthenticated', 'noNetError', 'config',
+    function ($scope, $rootScope, $location, $routeParams, getDataCourseTeacher, getEnrollmentStatus, getDataStudentTeacher, notAuthenticated, noNetError, configJson) {
 
         console.dir("**Inside teacherDetailsCtrl**");
 
@@ -62,7 +62,7 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
 
         
         //getting service deatil object
-        var urlDetails = getServerConfigData._getDetails();
+        var urlDetails = configJson;
         getDataCourseTeacher._get($rootScope.role, $rootScope.userid, urlDetails)
             .then(function onsuccess(response) {
                 console.log(response.data);
