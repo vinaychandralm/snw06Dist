@@ -182,6 +182,8 @@ multiselect .btn-group ul {
   width: 230px;
   height: 270px;
   font-size: small;
+  /*top:0 !important;
+  position: relative;*/
 }
 .datepicker.dropdown-menu button {
   outline: none;
@@ -198,6 +200,10 @@ multiselect .btn-group ul {
   height: 65px;
 }
 
+.datepicker.dropdown-menu.datepicker-mode-1 tbody button, .datepicker.dropdown-menu.datepicker-mode-2 tbody button {
+  height: 65px;
+}
+
 .timepicker.dropdown-menu {
   padding: 0 4px;
 }
@@ -207,8 +213,4 @@ multiselect .btn-group ul {
 }
 .timepicker.dropdown-menu tbody button {
   padding: 6px;
-}
-
-.datepicker {
-  top: 0 !important;
 }

@@ -30,15 +30,15 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
         $rootScope.userspace = $routeParams.userspace
     
     //   TODO : Remove blow 6 line comments if not using GRUNT-SERVE.
-//         $routeParams.role = CONFIGJSONOBJ.userSettingObjects.role;
-//         $routeParams.userid = CONFIGJSONOBJ.userSettingObjects.userid;
-//         $routeParams.token = CONFIGJSONOBJ.userSettingObjects.token;
-//         $routeParams.userspace = CONFIGJSONOBJ.userSettingObjects.userspace;
+        $routeParams.role = CONFIGJSONOBJ.userSettingObjects.role;
+        $routeParams.userid = CONFIGJSONOBJ.userSettingObjects.userid;
+        $routeParams.token = CONFIGJSONOBJ.userSettingObjects.token;
+        $routeParams.userspace = CONFIGJSONOBJ.userSettingObjects.userspace;
 //        
-//         $rootScope.token = $routeParams.token;
-//         $rootScope.userid = $routeParams.userid;
-//         $rootScope.role = $routeParams.role;
-//         $rootScope.userspace = CONFIGJSONOBJ.userSettingObjects.userspace;
+        $rootScope.token = $routeParams.token;
+        $rootScope.userid = $routeParams.userid;
+        $rootScope.role = $routeParams.role;
+        $rootScope.userspace = CONFIGJSONOBJ.userSettingObjects.userspace;
         
 
         $scope.urlDetails = getServerConfigData._getDetails();
