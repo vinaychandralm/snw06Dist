@@ -82,8 +82,14 @@
                 	<p class="search displayCls" ng-click ="searchAgain()">Search Again <a href="javascript:void(0)" class="again"><img src="images/arrow-down.png" alt=""></a></p>
                 </div>
                 <div class="col-md-12" id='pDivStudentIframe'>
+                    <div id='famerOverLay' class="overLayFrameDiv overlayDiv" ng-show='showoverlayOniFrameLoading'>
+                        <div class='centerDiv'>
+                            <h1  class='frameLoadingText'>Loading....</h1>
+                        </div>
                 	<iframe id='studentIframe' class="frame"  ng-src={{studentReportUrl}}></iframe>
+                    </div>
                 </div>
+                
             </div>
 <!--
                 <div class="row iframe-row displaynonecls" >
