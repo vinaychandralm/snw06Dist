@@ -136,14 +136,18 @@ multiselect .btn-group ul {
         margin: 25px 0 0 0;
     }
 }
-#overLay{
+.overLayFrameDiv{
     height: 100%;
     width: 100%;
     background-color: rgba(0,0,0,0.8);
     position: absolute;
     z-index: 1000;
-  
-}.disabledCls{
+}
+.frameLoadingText{
+    color: white;
+}
+
+.disabledCls{
     cursor: not-allowed !important;
     opacity: .5;
     text-decoration: none !important;
@@ -170,10 +174,12 @@ multiselect .btn-group ul {
     position: absolute;
     width: 100%;
     top: 50%;
-    margin-top: -100px;
+  /*  margin-top: -100px;*/
     text-align: center;
-    height: 150px;
+    height: 400px;;
     color: black;
+    opacity:0.5;
+    background-color: black;
 }
 
 /*---------------------------------my css----------------------------------*/

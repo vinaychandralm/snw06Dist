@@ -2,8 +2,8 @@
 
 var sarModule = angular.module('teacherActivityReports.teacherDetails', []);
 sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location', '$routeParams', 'getDataCourseTeacher',
-    'getEnrollmentStatus', 'getDataStudentTeacher', 'notAuthenticated', 'noNetError', 'config',
-    function ($scope, $rootScope, $location, $routeParams, getDataCourseTeacher, getEnrollmentStatus, getDataStudentTeacher, notAuthenticated, noNetError, configJson) {
+    'getEnrollmentStatus', 'getDataStudentTeacher', 'notAuthenticated', 'noNetError', 'config','iFrameLoading','$sce','$timeout',
+    function ($scope, $rootScope, $location, $routeParams, getDataCourseTeacher, getEnrollmentStatus, getDataStudentTeacher, notAuthenticated, noNetError, configJson,iFrameLoading,$sce,$timeout) {
 
         console.dir("**Inside teacherDetailsCtrl**");
 
@@ -22,6 +22,7 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
             $scope.endDateNotgreater = false;
             $scope.minimumMinut = false;
             $scope.inputTeacher = 0;
+            $scope.teacherReportUrl= null;
 
             $scope.multiselectModel = [];
             $scope.courseIdArr = [];
@@ -152,57 +153,165 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
         $scope.isInt = function (n) {
             return n % 1 === 0;
         }
+        $scope.getDateAsString = function (dateObj) {
+            
+            // var today = new Date();
+            var dd = dateObj.getDate();
+            var mm = dateObj.getMonth() + 1; //January is 0!
 
+            var yyyy = dateObj.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+            return (dd + '/' + mm + '/' + yyyy);
+            //document.getElementById("DATE").value = today;
+            
+        }
+        $scope.getEnrollIdStr = function () {
+            console.log("**************", $scope.enrollArr);
+            var temObj = ["1", "4", "5", "6", "7", "8", "9", "10"];
+            //Active = 1,
+            //    Withdrawn = 4,
+            //    WithdrawnFailed = 5,
+            //    Transferred = 6,
+            //    Completed = 7,
+            //    CompletedNoCredit = 8,
+            //    Suspended = 9,
+            //    Inactive = 10,
+            //$scope.enrollArr            
+            var idArray = [];
+            for (var i = 0; i < $scope.enrollArr.length; i++) {
+                console.log("$scope.enrollArr ", $scope.enrollArr[i]);
+                console.log("temObj.enrollArr ", temObj[$scope.enrollArr[i]]);
+
+                idArray.push(temObj[$scope.enrollArr[i]]);
+            }
+            return idArray;
+        }
+
+        $scope.showTeacherReport=function(isDataValidate){
+            
+            console.log('isvalidData : ' ,isDataValidate);
+            if (isDataValidate) {
+                //Setting varaible for Animation
+                
+                var urlDetailObj = configJson;
+//$scope.courseIdArr.length
+
+                var courseStr = $scope.courseIdArr.join(',');
+//$scope.courseStudentIdArr
+
+                var courseStudentIds = $scope.courseStudentIdArr.join(',');
+                console.log("courseStudentIds : ",courseStudentIds);
+                //var enrollStr = $scope.enrollArr.join(',');
+                console.log("$scope.startDateStartActivity ", new Date($scope.startDateStartActivity));
+                console.log("$scope.startDateEndActivity ", $scope.startDateEndActivity);
+                console.log("$rootScope.userid ", $rootScope.userid);
+                console.log("$rootScope.userid ", $rootScope.userspace);
+                console.log("$scope.excuedItem ", $scope.excuedItem);
+                console.log("Token :", $rootScope.token);
+                var startDateStr = $scope.getDateAsString(new Date($scope.startDateStartActivity));
+                var endDateStr = $scope.getDateAsString($scope.startDateEndActivity);
+
+                console.log(startDateStr, endDateStr);
+
+                var enrollIdsArray = $scope.getEnrollIdStr();
+                var enrollStr = enrollIdsArray.join(',');
+                console.log(enrollStr);
+                var excuseItemStr = $scope.excuedItem ? '1' : '0';
+                
+                var reportUrl = urlDetailObj.reportServiceUrlStudent +'/studentactivityreportforteacher?startdate='+startDateStr+'&enddate='+endDateStr
+                    +'&userid='+$rootScope.userid+'&courseids='+courseStr+'&studentids='+courseStudentIds+'&minimumminutes='+$scope.minimumMinut +'&enrollmentstatus='+enrollStr+'&excuseditem='
+                    +excuseItemStr+'&userspace='+$rootScope.userspace+'&token='+$rootScope.token;
+                    console.log("reportUrl : ",$scope.minimumMinut);
+//http://localhost:8080/reports/studentactivityreportforteacher?startdate=01/02/2014&enddate=01/18/2019&userid=46238944
+//&courseids=45282864&studentids=6353727&minimumminutes=2&enrollmentstatus=1,10&excuseditem=0&userspace=gsd-06
+//&token=~gzYwCAAAAAwV29myGEzN-A.wPoIwcxlw1FBzxFvLW2W9C
+                
+                
+                // var reportUrl = 'http://192.168.2.58:8080/reports/studentactivityreport?startdate=01/02/2014&enddate=01/18/2019&userid=23696742&courseids=23598050,23598525&enrollmentstatus=1,10&excuseditem=0&userspace=sdale-innovation&token=~FbT1BAAAAAgCqkx2orhMPA.ubJwpnTsLvN3eKwu5jvOVB';
+                console.log(reportUrl);
+
+                $scope.teacherReportUrl = $sce.trustAsResourceUrl(reportUrl);
+                 //Setting varaible for Animation
+                 $scope.isShowReportView = true;
+                 $scope.isShowReportView = true;
+                $rootScope.showoverlayOniFrameLoading = true;
+                
+                
+                iFrameLoading.subscribeiFrameLoading();
+                $rootScope.$on('iframeloading.done', function (a, b) {
+                    $timeout(function () {
+                        $rootScope.showoverlayOniFrameLoading = false;
+                    }, 3000);
+                    $scope.$apply();
+                });
+
+                console.log($scope.isShowReportView);
+            }
+        }
         $scope.submit = function () {
             console.log(new Date($scope.startDateStartActivity));
             var startDateActivity = new Date($scope.startDateStartActivity);
             var endDateActivity = new Date($scope.startDateEndActivity);
+            var isvalidData = true;
             if ($scope.startDateStartActivity == null) {
 
                 $scope.srtDateNotSelected = true;
+                isvalidData = false;
             } else {
                 $scope.srtDateNotSelected = false;
+                
             }
 
             if (startDateActivity > endDateActivity || $scope.startDateEndActivity == null) {
                 $scope.endDateNotgreater = true;
+                isvalidData = false;
             }
             else {
                 $scope.endDateNotgreater = false;
+                
             }
 
             if ($scope.enrollArr.length === 0) {
                 $scope.statusNotSelected = true;
+                isvalidData = false;
             } else {
                 $scope.statusNotSelected = false;
+                
             }
 
             //TODO for Status select option  $scope.statusNotSelected = true;
 
             if ($scope.courseIdArr.length === 0) {
                 $scope.courseNotSelected = true;
+                isvalidData = false;
             } else {
                 $scope.courseNotSelected = false;
+                
             }
             if ($scope.courseStudentIdArr.length === 0) {
                 $scope.studentNotSelected = true;
+                isvalidData = false;
             } else {
                 $scope.studentNotSelected = false;
+                
             }
             console.log($scope.inputTeacher)
             if ($scope.inputTeacher === undefined || $scope.inputTeacher === null || $scope.inputTeacher < 0 || !$scope.isInt($scope.inputTeacher)) {
                 $scope.minimumMinut = true;
+                  isvalidData = false;
             } else {
                 $scope.minimumMinut = false;
+              
             }
+            
+            $scope.showTeacherReport(isvalidData);
 
-
-            if (!$scope.endDateNotgreater && !$scope.statusNotSelected && !$scope.courseNotSelected && !$scope.studentNotSelected && !$scope.minimumMinut && !$scope.srtDateNotSelected) {
-                
-                //Setting varaible for Animation
-                    $scope.isShowReportView = true;
-
-            }
+      
         };
 
         $scope.backTeacher = function () {

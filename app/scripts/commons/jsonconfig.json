@@ -1,10 +1,10 @@
 {
     "userSettingObjects": {
-        "role": "student",
-        "userid": "46240033",
-        "token": "~hEZwCAAAAAQUfYvos_bqzB.nKX5l6zlRyHY9SPv3c78zD",
+        "role": "teacher",
+        "userid": "46239951",
+        "token": "~PDZwCAAAAAggjdYeUxkiJA.lUA65CrzPPf7TTFA3rKvxC",
         "userspace": "s1-06"
     },
     "servicesBaseUrl": "http://192.168.2.58:8080/gage-service/service",
-    "reportServiceUrlStudent": "http://192.168.2.58:8080/reports/studentactivityreport?"
+    "reportServiceUrlStudent": "http://192.168.2.58:8080/reports"
 }

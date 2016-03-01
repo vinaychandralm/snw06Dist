@@ -99,7 +99,7 @@
                         </div>
                         <div class="col-md-2">
                             <label class="feild-text">
-                                <input type="checkbox"> Yes
+                                <input type="checkbox" ng-model="excuedItem"> Yes
                             </label>&nbsp;&nbsp;
                             
                         </div>
@@ -119,7 +119,11 @@
                 	<p class="search displayCls" ng-click ="searchAgain()">Search Again <a href="javascript:void(0)" class="again"><img src="images/arrow-down.png" alt=""></a></p>
                 </div>
                 <div class="col-md-12">
-                	<iframe class="frame"  src=""></iframe>
+                    <div id='famerOverLay' class="overLayFrameDiv overlayDiv" ng-show='showoverlayOniFrameLoading'>
+                        <div class='centerDiv'>
+                            <h1  class='frameLoadingText'>Loading....</h1>
+                        </div>
+                	<iframe class="frame"  ng-src={{teacherReportUrl}}></iframe>
                 </div>
             </div>
 <!--

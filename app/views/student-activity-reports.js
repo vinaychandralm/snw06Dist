@@ -182,7 +182,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
                 console.log(enrollStr);
                 var excuseItemStr = $scope.excuedItem ? '1' : '0';
                 
-                var reportUrl = urlDetailObj.reportServiceUrlStudent +'/studentactivityreport?startdate='+startDateStr+'&enddate='+endDateStr
+                var reportUrl = urlDetailObj.reportServiceUrlStudent +'startdate='+startDateStr+'&enddate='+endDateStr
                     +'&userid='+$rootScope.userid+'&courseids='+courseStr+'&enrollmentstatus='+enrollStr+'&excuseditem='
                     +excuseItemStr+'&userspace='+$rootScope.userspace+'&token='+$rootScope.token;
 
