@@ -8,8 +8,8 @@ var CONFIGJSONOBJ = {
 
         'role': 'admin',
         'userid': '46238944',
-        'token': '~gzYwCAAAAAA1uO3HHqOGXA.dc3-rS5LPUJ_fo_rb3m74A',
-        'userspace':'s1-06'
+        'token': '~gzYwCAAAAAwFyoe_C7gN0B.HTVh6qzD_Lcbua_MaXpBMA',
+        'userspace':'gsd-06'
 
     }
 

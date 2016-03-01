@@ -332,7 +332,8 @@ angular.module("ui.multiselect", ["multiselect.tpl.html"])
                         });
                     }
                     //console.log(scope.items[0].label);
-                    if(scope.items[0].label==='Active') {
+                    if(typeof scope.items[0] !== "undefined" && scope.items[0].label==='Active') {
+                    //if(typeof obj !== "undefined" && scope.items[0].label==='Active') {
                         // alert(1);
                         // scope.checkAll();
                         // scope.select(scope.items[0]);

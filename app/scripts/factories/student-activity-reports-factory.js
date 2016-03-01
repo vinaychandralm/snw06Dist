@@ -2,18 +2,30 @@
 
 var factoryModule = angular.module('studentActivityReports.factories', []);
 
-factoryModule.factory('getServerConfigData', function() {
+factoryModule.factory('getServerConfigData',['$http', function($http) {
 
     return {
         _getDetails: function() {
+            
+             var dataResponse =null;
+        //   return (      $http.get('../scripts/commons/jsonconfig.json').then(function(response){
+        //             console.log("Sucess Response ",response);
+        //             dataResponse = response;
+        //         },function errorConfig(responseErr){
+        //             console.log(responseErr);
+        //             dataResponse = responseErr
+        //         }) );
           return {
-                  //  "servicesBaseUrl" : 'http://172.16.9.197:8282/gage-service/service/',
-                    "servicesBaseUrl" : 'http://192.168.2.58:8080/gage-service/service',
-                    "reportServiceUrlStudent": "http://192.168.2.58:8080/reports/studentactivityreport?"
+                //   //  "servicesBaseUrl" : 'http://172.16.9.197:8282/gage-service/service/',
+                //     "servicesBaseUrl" : 'http://192.168.2.58:8080/gage-service/service',
+                //     "reportServiceUrlStudent": "http://192.168.2.58:8080/reports/studentactivityreport?"
+               
+                
+                // dataResponse
               }
         }
     }
-});
+}]);
 
 factoryModule.factory('validateUrlData',['$http','$rootScope', function($http, $rootScope) {
 

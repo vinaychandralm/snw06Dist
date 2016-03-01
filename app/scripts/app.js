@@ -1,5 +1,5 @@
 'use strict';
-
+(function(){
 /**
  * @ngdoc overview
  * @name snw06App
@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular
+var studentActivityApp = angular
   .module('studentActivityReports', [
     'ngAnimate',
     'ngAria',
@@ -24,6 +24,7 @@ angular
     // 'studentActivityReports.routing',
     'studentActivityReports.factories',
     'studentActivityReportsTeacher.factories',
+    'studentActivityReports.services',
     'studentActivityReports.home',
     'studentActivityReports.studentDetails',
     'teacherActivityReports.teacherDetails',
@@ -65,3 +66,28 @@ angular
     });
 
 
+    fetchData().then(bootstrapApplication);
+
+    function fetchData() {
+        var initInjector = angular.injector(["ng"]);
+        var $http = initInjector.get("$http");
+        //var $rootscope = initInjector.get("$rootScope");
+
+        return $http.get("../scripts/commons/jsonconfig.json").then(function(response) {
+            studentActivityApp.constant("config", response.data);
+            console.log("From Boot Strap  ", response.data)
+          //  $rootScope.configData = response.data;
+        }, function(errorResponse) {
+            // Handle error case
+            console.log("Error While fetching config data");
+        });
+    }
+
+    function bootstrapApplication() {
+        angular.element(document).ready(function() {
+            angular.bootstrap(document, ["studentActivityReports"]);
+        });
+    }
+
+
+}());

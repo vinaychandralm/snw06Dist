@@ -10,9 +10,12 @@ var homeModule = angular.module('studentActivityReports.home', ['constant']);
 
 
 
-homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme', '$routeParams', 'validateUrlData', 'notAuthenticated', 'noNetError', 'getServerConfigData', function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData, notAuthenticated, noNetError, getServerConfigData) {
+homeModule.controller('MainCtrl', ['config','$scope', '$rootScope', '$location', '$theme', '$routeParams', 'validateUrlData', 'notAuthenticated', 'noNetError', 'getServerConfigData', function (configJSon,$scope, $rootScope, $location, theme, $routeParams, validateUrlData, notAuthenticated, noNetError, getServerConfigData) {
 
     $scope.initValues = function(){
+        
+        console.log(".configData ........  : ",configJSon);
+        console.log("configJSon.userSettingObjects.role :  ",configJSon.userSettingObjects.role);
         $scope.progressReport = false;
         $scope.courseCompletionReport = false;
         $scope.studentActivityReport = false;
@@ -30,18 +33,19 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
         $rootScope.userspace = $routeParams.userspace
     
     //   TODO : Remove blow 6 line comments if not using GRUNT-SERVE.
-//         $routeParams.role = CONFIGJSONOBJ.userSettingObjects.role;
-//         $routeParams.userid = CONFIGJSONOBJ.userSettingObjects.userid;
-//         $routeParams.token = CONFIGJSONOBJ.userSettingObjects.token;
-//         $routeParams.userspace = CONFIGJSONOBJ.userSettingObjects.userspace;
-//        
-//         $rootScope.token = $routeParams.token;
-//         $rootScope.userid = $routeParams.userid;
-//         $rootScope.role = $routeParams.role;
-//         $rootScope.userspace = CONFIGJSONOBJ.userSettingObjects.userspace;
+         $routeParams.role = configJSon.userSettingObjects.role;
+         $routeParams.userid = configJSon.userSettingObjects.userid;
+         $routeParams.token = configJSon.userSettingObjects.token;
+         $routeParams.userspace = configJSon.userSettingObjects.userspace;
+        
+         $rootScope.token = $routeParams.token;
+         $rootScope.userid = $routeParams.userid;
+         $rootScope.role = $routeParams.role;
+         $rootScope.userspace = configJSon.userSettingObjects.userspace;
         
 
         $scope.urlDetails = getServerConfigData._getDetails();
+        console.log($scope.urlDetails);
         
     };
     
@@ -70,7 +74,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
     };
     
     $scope.loadData = function(){
-        validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token, $scope.urlDetails)
+        validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token, configJSon)
         .then(function onsuccess(response) {
             
 //            console.log(response);

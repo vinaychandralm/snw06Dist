@@ -123,6 +123,9 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams','$loca
                     //console.log("response of _getschool Data  ",res);
                     if (res.data.messageType === "ERROR") {
                         notAuthenticated._showErrorMsg();
+                        var tempArr = [];
+                        $scope.setDataoFStuds(tempArr);
+                        $scope.setDataoFSchoolStudsCourse(tempArr);
                         return;
                     }
 
@@ -133,6 +136,9 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$routeParams','$loca
                         .then(function onSuccess(res) {
                             if (res.data.messageType === "ERROR") {
                                 notAuthenticated._showErrorMsg();
+                                var tempArr = [];
+                                // $scope.setDataoFStuds(tempArr);
+                                $scope.setDataoFSchoolStudsCourse(tempArr);
                                 return;
                             }
                             $scope.setDataoFSchoolStudsCourse(res.data.data.course);
