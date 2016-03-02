@@ -22,6 +22,8 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             $scope.endDateNotSelected = false;
             $scope.excuedItem = false;
             $scope.studentReportUrl = null;
+            $scope.newReportUrl = null;
+            $scope.oldReportUrl = null;
             $scope.courseIdArr = [];
             $scope.enrollArr = [];
 
@@ -182,26 +184,47 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
                 console.log(enrollStr);
                 var excuseItemStr = $scope.excuedItem ? '1' : '0';
                 
-                var reportUrl = urlDetailObj.reportServiceUrlStudent +'/studentactivityreport?startdate='+startDateStr+'&enddate='+endDateStr
+                $scope.newReportUrl = urlDetailObj.reportServiceUrlStudent +'/studentactivityreport?startdate='+startDateStr+'&enddate='+endDateStr
                     +'&userid='+$rootScope.userid+'&courseids='+courseStr+'&enrollmentstatus='+enrollStr+'&excuseditem='
                     +excuseItemStr+'&userspace='+$rootScope.userspace+'&token='+$rootScope.token;
 
-                // var reportUrl = 'http://192.168.2.58:8080/reports/studentactivityreport?startdate=01/02/2014&enddate=01/18/2019&userid=23696742&courseids=23598050,23598525&enrollmentstatus=1,10&excuseditem=0&userspace=sdale-innovation&token=~FbT1BAAAAAgCqkx2orhMPA.ubJwpnTsLvN3eKwu5jvOVB';
-                console.log(reportUrl);
+                // $scope.newReportUrl = 'http://192.168.2.58:8080/reports/studentactivityreport?startdate=01/02/2014&enddate=01/18/2019&userid=23696742&courseids=23598050,23598525&enrollmentstatus=1,10&excuseditem=0&userspace=sdale-innovation&token=~FbT1BAAAAAgCqkx2orhMPA.ubJwpnTsLvN3eKwu5jvOVB';
+           //    console.log(reportUrl);
 
-                $scope.studentReportUrl = $sce.trustAsResourceUrl(reportUrl);
-                $scope.isShowReportView = true;
-                $rootScope.showoverlayOniFrameLoading = true;
+                // $scope.studentReportUrl = $sce.trustAsResourceUrl(reportUrl);
+                // $scope.isShowReportView = true;
+                // $rootScope.showoverlayOniFrameLoading = true;
                 
                 
-                iFrameLoading.subscribeiFrameLoading();
-                $rootScope.$on('iframeloading.done', function (a, b) {
-                    $timeout(function () {
-                        $rootScope.showoverlayOniFrameLoading = false;
-                    }, 3000);
-                    $scope.$apply();
-                });
-
+                // iFrameLoading.subscribeiFrameLoading();
+                // $rootScope.$on('iframeloading.done', function (a, b) {
+                //     $timeout(function () {
+                //         $rootScope.showoverlayOniFrameLoading = false;
+                //     }, 3000);
+                //     $scope.$apply();
+                // });
+                 if( $scope.oldReportUrl != $scope.newReportUrl){
+                    
+                    //assigning new url to old url valiable 
+                    $scope.oldReportUrl = $scope.newReportUrl;
+                    console.log($scope.newReportUrl);
+                    $scope.studentReportUrl = $sce.trustAsResourceUrl($scope.newReportUrl);
+                    //Setting varaible for Animation
+                    $scope.isShowReportView = true;
+                    $rootScope.showoverlayOniFrameLoading = true;
+                    
+                    iFrameLoading.subscribeiFrameLoading();
+                    $rootScope.$on('iframeloading.done', function (a, b) {
+                        $timeout(function () {
+                            $rootScope.showoverlayOniFrameLoading = false;
+                        }, 3000);
+                        $scope.$apply();
+                       });
+                    
+                }else{
+                    $scope.isShowReportView = true;
+                }
+                console.log($scope.isShowReportView);
                 console.log($scope.isShowReportView);
             }
 
