@@ -2,8 +2,9 @@
 
 var sarModule = angular.module('studentActivityReports.studentDetails', []);
 sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'getDataStudent',
-    'getEnrollmentStatus', 'getStudentCourseData', 'notAuthenticated', 'noNetError', 'config', '$sce', 'iFrameLoading', '$timeout',
-    function ($scope, $rootScope, $routeParams, $location, getDataStudent, getEnrollmentStatus, getStudentCourseData, notAuthenticated, noNetError, configJson, $sce, iFrameLoading, $timeout) {
+    'getEnrollmentStatus', 'getStudentCourseData', 'notAuthenticated', 'noNetError', '$sce', 'iFrameLoading', '$timeout',
+    function ($scope, $rootScope, $routeParams, $location, getDataStudent, getEnrollmentStatus, getStudentCourseData,
+     notAuthenticated, noNetError, $sce, iFrameLoading, $timeout) {
 
         console.dir("**Inside studentDetailsCtrl**");
 
@@ -64,7 +65,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         */
 
         //getting Server url details
-        var urlDetails = configJson
+        var urlDetails = $rootScope.winConfigObj
         console.log(urlDetails);
 
         $scope.getStudentData = function () {
@@ -164,7 +165,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             if (!$scope.endDateNotSelected && !$scope.courseNotSelected && !$scope.enrllNotSelected && !$scope.srtDateNotSelected) {
                 //Setting varaible for Animation
                 
-                var urlDetailObj = configJson;
+                var urlDetailObj = $rootScope.winConfigObj;
 
                 var courseStr = $scope.courseIdArr.join(',');
                 var enrollStr = $scope.enrollArr.join(',');

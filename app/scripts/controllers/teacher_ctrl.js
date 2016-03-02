@@ -2,8 +2,9 @@
 
 var sarModule = angular.module('teacherActivityReports.teacherDetails', []);
 sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location', '$routeParams', 'getDataCourseTeacher',
-    'getEnrollmentStatus', 'getDataStudentTeacher', 'notAuthenticated', 'noNetError', 'config', 'iFrameLoading', '$sce', '$timeout',
-    function ($scope, $rootScope, $location, $routeParams, getDataCourseTeacher, getEnrollmentStatus, getDataStudentTeacher, notAuthenticated, noNetError, configJson, iFrameLoading, $sce, $timeout) {
+    'getEnrollmentStatus', 'getDataStudentTeacher', 'notAuthenticated', 'noNetError',  'iFrameLoading', '$sce', '$timeout',
+    function ($scope, $rootScope, $location, $routeParams, getDataCourseTeacher, getEnrollmentStatus, 
+    getDataStudentTeacher, notAuthenticated, noNetError, iFrameLoading, $sce, $timeout) {
 
         console.dir("**Inside teacherDetailsCtrl**");
 
@@ -66,7 +67,7 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
 
         
         //getting service deatil object
-        var urlDetails = configJson;
+        var urlDetails = $rootScope.winConfigObj;
         getDataCourseTeacher._get($rootScope.role, $rootScope.userid, urlDetails)
             .then(function onsuccess(response) {
                 console.log(response.data);
@@ -201,7 +202,7 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
             if (isDataValidate) {
                 //Setting varaible for Animation
                 
-                var urlDetailObj = configJson;
+                var urlDetailObj = $rootScope.winConfigObj;
                 //$scope.courseIdArr.length
 
                 var courseStr = $scope.courseIdArr.join(',');

@@ -9,13 +9,14 @@ var homeModule = angular.module('studentActivityReports.home', ['constant']);
 
 
 homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme', '$routeParams', 'validateUrlData', 
-        'notAuthenticated', 'noNetError','config',
-         function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData, notAuthenticated, noNetError,configJSon) {
+        'notAuthenticated', 'noNetError',
+         function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData, notAuthenticated, noNetError) {
 
     $scope.initValues = function(){
         
-        console.log(".configData ........  : ",configJSon);
-        console.log("configJSon.userSettingObjects.role :  ",configJSon.userSettingObjects.role);
+        $rootScope.winConfigObj = window.configObj;
+        console.log(".configData ........  : ",$rootScope.winConfigObj);
+        console.log("$rootScope.winConfigObj.userSettingObjects.role :  ",$rootScope.winConfigObj.userSettingObjects.role);
         $scope.progressReport = false;
         $scope.courseCompletionReport = false;
         $scope.studentActivityReport = false;
@@ -34,19 +35,19 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
     
     //   TODO : Remove blow 6 line comments if not using GRUNT-SERVE.
 
-         $routeParams.role = configJSon.userSettingObjects.role;
-         $routeParams.userid = configJSon.userSettingObjects.userid;
-         $routeParams.token = configJSon.userSettingObjects.token;
-         $routeParams.userspace = configJSon.userSettingObjects.userspace;
+        //  $routeParams.role = $rootScope.winConfigObj.userSettingObjects.role;
+        //  $routeParams.userid = $rootScope.winConfigObj.userSettingObjects.userid;
+        //  $routeParams.token = $rootScope.winConfigObj.userSettingObjects.token;
+        //  $routeParams.userspace = $rootScope.winConfigObj.userSettingObjects.userspace;
         
-         $rootScope.token = $routeParams.token;
-         $rootScope.userid = $routeParams.userid;
-         $rootScope.role = $routeParams.role;
-         $rootScope.userspace = configJSon.userSettingObjects.userspace;
+        //  $rootScope.token = $routeParams.token;
+        //  $rootScope.userid = $routeParams.userid;
+        //  $rootScope.role = $routeParams.role;
+        //  $rootScope.userspace = $rootScope.winConfigObj.userSettingObjects.userspace;
 
         
 
-        $scope.urlDetails = configJSon;
+        $scope.urlDetails = $rootScope.winConfigObj;
         console.log($scope.urlDetails);
         
         

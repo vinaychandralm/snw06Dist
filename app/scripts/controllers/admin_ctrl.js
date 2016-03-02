@@ -1,8 +1,8 @@
 'use strict';
 var admModule = angular.module('studentActivityReports.adminDetails', []);
 admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getSchoolData',
-    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError', 'config', '$sce', function ($scope, $rootScope, $location,
-        getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse, notAuthenticated, noNetError, configJson, $sce) {
+    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError',  '$sce', function ($scope, $rootScope, $location,
+        getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse, notAuthenticated, noNetError,  $sce) {
 
         $scope.initValues = function () {
 
@@ -40,7 +40,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
             $scope.startDateEndActivity = new Date();
 
             $scope.enrollmentArr = getEnrollmentStatus.get();
-            $scope.urlDetails = configJson;
+            $scope.urlDetails = $rootScope.winConfigObj;
 
         };
 
