@@ -17,7 +17,7 @@ describe('studentDetailsCtrl', function () {
         deferred = _$q_.defer();
         notAuthenticated = _notAuthenticated_;
         
-        scope.urlDetailObj = {
+        rootScope.winConfigObj = {
             "userSettingObjects": {
 
                 "role": "admin",
