@@ -25,6 +25,19 @@ describe('Teacher Ctrl', function () {
         getDataStudentTeacher = _getDataStudentTeacher_;
         getDataCourseTeacher = _getDataCourseTeacher_;
         getEnrollmentStatus = _getEnrollmentStatus_;
+
+        rootScope.winConfigObj = {
+            "userSettingObjects": {
+
+                "role": "admin",
+                "userid": "46238944",
+                "token": "~gzYwCAAAAAQM2iw5BQIX1B.HwmhTZ2tivEXR8DPganCnA",
+
+                "userspace": "gsd-06"
+            },
+            "servicesBaseUrl": "http://192.168.2.58:8080/gage-service/service",
+            "reportServiceUrlStudent": "http://192.168.2.58:8080/reports"
+        }
         
         // We use the $q service to create a mock instance of defer
         deferred = _$q_.defer();
@@ -214,7 +227,7 @@ describe('Teacher Ctrl', function () {
         expect(scope.isShowReportView).toEqual(false);
 
     });
-    
+
     it('It shuould set endDateNotgreater to true ', function () {
         var controller = createController();
 
@@ -222,7 +235,7 @@ describe('Teacher Ctrl', function () {
         scope.startDateStartActivity = currDate.setDate(currDate.getDate() - 7);
         scope.startDateEndActivity = currDate.setDate(currDate.getDate() - 8);
         scope.submit();
-        
+
         expect(scope.endDateNotgreater).toEqual(true);
 
     });
@@ -268,16 +281,16 @@ describe('Teacher Ctrl', function () {
     it('should return the array of values', function () {
         var controller = createController();
         spyOn(scope, 'onChangeCourseSelect').and.returnValue("some value");
-        
+
         scope.courseIdArr = [];
         scope.multiselectModel = [{ id: 1 }, { id: 2 }];
         scope._multiselectModel_();
         expect(scope.courseIdArr).toEqual([1, 2]);
-        var get=scope.onChangeCourseSelect(scope.courseIdArr);
+        var get = scope.onChangeCourseSelect(scope.courseIdArr);
         expect(scope.onChangeCourseSelect).toHaveBeenCalledWith(scope.courseIdArr);
-         expect(get).toEqual("some value");
+        expect(get).toEqual("some value");
     });
-    
+
     it('testing watch function for _multiselectModel2_', function () {
         var controller = createController();
 
@@ -287,15 +300,15 @@ describe('Teacher Ctrl', function () {
 
     it('should return the array of values', function () {
         var controller = createController();
-        
-        
+
+
         scope.courseStudentIdArr = [];
         scope.multiselectModel2 = [{ id: 1 }, { id: 2 }];
         scope._multiselectModel2_();
         expect(scope.courseStudentIdArr).toEqual([1, 2]);
     });
-    
-     it('testing watch function for _multiselectModelEroll_', function () {
+
+    it('testing watch function for _multiselectModelEroll_', function () {
         var controller = createController();
 
         expect(scope.$watch).toHaveBeenCalledWith('multiselectModelEroll', scope._multiselectModelEroll_, true);
@@ -304,26 +317,26 @@ describe('Teacher Ctrl', function () {
 
     it('should return the array of values', function () {
         var controller = createController();
-        
-        
+
+
         scope.enrollArr = [];
         scope.multiselectModelEroll = [{ id: 1 }, { id: 2 }];
         scope._multiselectModelEroll_();
         expect(scope.enrollArr).toEqual([1, 2]);
     });
-    
+
     it('testing watch function for _selectedDate_', function () {
         var controller = createController();
 
         expect(scope.$watch).toHaveBeenCalledWith('selectedDate', scope._selectedDate_, true);
 
     });
-    
+
     it('should call the function', function () {
         var controller = createController();
 
         scope._selectedDate_();
-        
+
     });
 
 });
