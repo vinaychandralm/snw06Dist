@@ -16,9 +16,23 @@ describe('studentDetailsCtrl', function () {
         routeParams = _$routeParams_;
         deferred = _$q_.defer();
         notAuthenticated = _notAuthenticated_;
+        
+        scope.urlDetailObj = {
+            "userSettingObjects": {
+
+                "role": "admin",
+                "userid": "46238944",
+                "token": "~gzYwCAAAAAQM2iw5BQIX1B.HwmhTZ2tivEXR8DPganCnA",
+
+                "userspace": "gsd-06"
+            },
+            "servicesBaseUrl": "http://192.168.2.58:8080/gage-service/service",
+            "reportServiceUrlStudent": "http://192.168.2.58:8080/reports"
+        }
 
         // spyOn(getDataStudent, '_get').and.returnValue(deferred.promise);
         spyOn(getDataStudent, '_get').and.returnValue(deferred.promise);
+        // spyOn(scope, 'getDateAsString').and.returnValue('some value');
         scope.$watch = jasmine.createSpy('$watch');
         // dateObj=new Date();
 
@@ -55,11 +69,11 @@ describe('studentDetailsCtrl', function () {
         expect(scope.searchagain).toEqual("displaynonecls");
         expect(scope.iframe_row).toEqual("displaynonecls");
     });
-    
+
     it('It shuould resolve promise object of validate data and loadData function', function () {
         var controller = createController();
 
-        var dateObj=new Date();
+        var dateObj = new Date();
     });
 
     it('It shuould resolve promise object of validate data and loadData function', function () {
@@ -95,11 +109,11 @@ describe('studentDetailsCtrl', function () {
         expect(getDataStudent._get).toHaveBeenCalled();
         expect(notAuthenticated._showErrorMsg).toHaveBeenCalled();
     });
-    
+
     it('It shuould return the courseArray in $scope.courseArr var', function () {
         var controller = createController();
-        scope.courseArr=[];
-        var studentCourse={data:{course:"some course"}};
+        scope.courseArr = [];
+        var studentCourse = { data: { course: "some course" } };
         scope.setData(studentCourse);
         expect(scope.courseArr).toEqual("some course");
     });

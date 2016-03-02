@@ -65,7 +65,8 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         */
 
         //getting Server url details
-        var urlDetails = $rootScope.winConfigObj
+        var urlDetails = $rootScope.winConfigObj;
+        
         console.log(urlDetails);
 
         $scope.getStudentData = function () {
@@ -95,6 +96,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
         $scope.getDateAsString = function (dateObj) {
             
             // var today = new Date();
+            console.log(dateObj)
             var dd = dateObj.getDate();
             var mm = dateObj.getMonth() + 1; //January is 0!
 
@@ -109,6 +111,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             //document.getElementById("DATE").value = today;
             
         }
+        
         $scope.getEnrollIdStr = function () {
             console.log("**************", $scope.enrollArr);
             var temObj = ["1", "4", "5", "6", "7", "8", "9", "10"];
@@ -162,21 +165,22 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             }
 
 
-            if (!$scope.endDateNotSelected && !$scope.courseNotSelected && !$scope.enrllNotSelected && !$scope.srtDateNotSelected) {
+            if (!$scope.endDateNotSelected && !$scope.courseNotSelected 
+            && !$scope.enrllNotSelected && !$scope.srtDateNotSelected) {
                 //Setting varaible for Animation
                 
                 var urlDetailObj = $rootScope.winConfigObj;
 
                 var courseStr = $scope.courseIdArr.join(',');
                 var enrollStr = $scope.enrollArr.join(',');
-                console.log("$scope.startDateStartActivity ", new Date($scope.startDateStartActivity));
-                console.log("$scope.startDateEndActivity ", $scope.startDateEndActivity);
-                console.log("$rootScope.userid ", $rootScope.userid);
-                console.log("$rootScope.userid ", $rootScope.userspace);
-                console.log("$scope.excuedItem ", $scope.excuedItem);
-                console.log("Token :", $rootScope.token);
+                // console.log("$scope.startDateStartActivity ", new Date($scope.startDateStartActivity));
+                // console.log("$scope.startDateEndActivity ", $scope.startDateEndActivity);
+                // console.log("$rootScope.userid ", $rootScope.userid);
+                // console.log("$rootScope.userid ", $rootScope.userspace);
+                // console.log("$scope.excuedItem ", $scope.excuedItem);
+                // console.log("Token :", $rootScope.token);
                 var startDateStr = $scope.getDateAsString(new Date($scope.startDateStartActivity));
-                var endDateStr = $scope.getDateAsString($scope.startDateEndActivity);
+                var endDateStr = $scope.getDateAsString(new Date($scope.startDateEndActivity));
 
                 console.log(startDateStr, endDateStr);
 

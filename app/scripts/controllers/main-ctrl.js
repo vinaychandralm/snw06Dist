@@ -15,8 +15,8 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
     $scope.initValues = function(){
         
         $rootScope.winConfigObj = window.configObj;
-        console.log(".configData ........  : ",$rootScope.winConfigObj);
-        console.log("$rootScope.winConfigObj.userSettingObjects.role :  ",$rootScope.winConfigObj.userSettingObjects.role);
+        // console.log(".configData ........  : ",$rootScope.winConfigObj);
+        // console.log("$rootScope.winConfigObj.userSettingObjects.role :  ",$rootScope.winConfigObj.userSettingObjects.role);
         $scope.progressReport = false;
         $scope.courseCompletionReport = false;
         $scope.studentActivityReport = false;
