@@ -18,6 +18,18 @@ describe('Main Ctrl', function () {
         getServerConfigData = _getServerConfigData_;
         routeParams = _$routeParams_;
         validateUrlData = _validateUrlData_;
+        window.configObj = {
+            "userSettingObjects": {
+
+                "role": "admin",
+                "userid": "46238944",
+                "token": "~gzYwCAAAAAQM2iw5BQIX1B.HwmhTZ2tivEXR8DPganCnA",
+
+                "userspace": "gsd-06"
+            },
+            "servicesBaseUrl": "http://192.168.2.58:8080/gage-service/service",
+            "reportServiceUrlStudent": "http://192.168.2.58:8080/reports"
+        }
         // $rootScope.winConfigObj.userSettingObjects = { };
         
         // $rootScope.winConfigObj.userSettingObjects.userid = '46240033';
@@ -36,7 +48,8 @@ describe('Main Ctrl', function () {
         createController = function () {
             return $controller('MainCtrl', {
                 $scope: scope,
-                validateUrlData: validateUrlData
+                validateUrlData: validateUrlData,
+                $location: $location
             });
         };
     }));
