@@ -110,7 +110,7 @@
                 </div>
                 <div class="col-md-2">
                     <label class="feild-text">
-                        <input type="checkbox"> Yes
+                        <input type="checkbox" ng-model="excuedItem"> Yes
                     </label>&nbsp;&nbsp;
 
                 </div>
@@ -131,6 +131,11 @@
                 </p>
             </div>
             <div class="col-md-12">
+                <div id='famerOverLay' class="overLayFrameDiv overlayDiv" ng-show='showoverlayOniFrameLoading'>
+                         <div>
+                            <div class ="lodaingImageDiv">   <img src="images/loading.gif" /> </div>
+                        </div>
+                </div>
                 <iframe class="frame" ng-src={{adminReportUrl}}> </iframe>
             </div>
         </div>

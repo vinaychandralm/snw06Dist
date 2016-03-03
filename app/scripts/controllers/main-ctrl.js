@@ -69,6 +69,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
                 $scope.studentActivityReport = true;
 
                 $rootScope.admindetail = authResponse;
+                console.log($rootScope.admindetail);
 
             }
         };
