@@ -96,6 +96,14 @@ describe('Teacher Ctrl', function () {
 
     });
 
+    it('should store studentCourse data to studentArr scope variable', function () {
+        var controller = createController();
+        scope.role = 'teacher';
+        var studentCourse = ['active', 'withdrawn'];
+        scope.setDataStudent(studentCourse);
+        expect(scope.studentArr).toEqual(['active', 'withdrawn']);
+    });
+
 
     it('It shuould resolv promis object of validate data and loadData function', function () {
         var controller = createController();
@@ -112,6 +120,27 @@ describe('Teacher Ctrl', function () {
         expect(scope.setDataCourseTeacher).toHaveBeenCalled();
 
     });
+    // it('getDataStudentTeacher and loadData function in Status 200', function () {
+    //     var controller = createController();
+
+    //     scope.role = 'teacher';
+    //     var courseIdArr=[{ id: '2' }, { id: '3' }, { id: '4' }, { id: '5' }, { id: '6' }];
+        
+    //     scope.getDataOFStudent(courseIdArr);
+    //     spyOn(scope,'setDataStudent').and.returnValue('Some text');
+    //     // Setup the data we wish to return for the .then function in the controller
+    //     deferred.resolve({ config: {}, data: { data: { 'key': 'someType' }, messageType: 'SUCCESS', status: 200, statusText: 'OK' } });
+    //     //         // We have to call apply for this to work
+    //     //        scope.$apply();   
+        
+    //     // scope.setDataOFStudent();
+    //      scope.$apply();
+
+
+    //     expect(getDataStudentTeacher._get).toHaveBeenCalled();
+    //     expect(scope.setDataStudent).toHaveBeenCalled();
+         
+    // });
     it('It shuould resolv promis object of validate data and loadData function', function () {
         var controller = createController();
         scope.role = 'teacher';
@@ -127,6 +156,23 @@ describe('Teacher Ctrl', function () {
         expect(notAuthenticated._showErrorMsg).toHaveBeenCalled();
 
     });
+
+
+    // it('getDataStudentTeacher and loadData function in Status 200', function () {
+    //     var controller = createController();
+
+    //     scope.role = 'teacher';
+    //     spyOn(notAuthenticated, '_showErrorMsg').and.returnValue('Some text');
+    //     // Setup the data we wish to return for the .then function in the controller
+    //     deferred.resolve({ config: {}, data: { data: { 'key': 'someType' }, messageType: 'ERROR', status: 200, statusText: 'OK' } });
+        
+         
+    //     // We have to call apply for this to work
+    //     scope.$apply();
+
+    //     expect(getDataStudentTeacher._get).toHaveBeenCalled();
+    //     expect(notAuthenticated._showErrorMsg).toHaveBeenCalled();
+    // });
     it('It shuould getDataCourseTeacher and loadData function with Error Response in Status 200', function () {
         var controller = createController();
         scope.role = 'teacher';
@@ -144,7 +190,7 @@ describe('Teacher Ctrl', function () {
     it('It shuould setDataCourseTeacher and loadData function with s', function () {
         var controller = createController();
         scope.role = 'teacher';
-        spyOn(scope, 'setDataOFStudent').and.returnValue('Some text');
+        spyOn(scope, 'getDataOFStudent').and.returnValue('Some text');
         // Setup the data we wish to return for the .then function in the controller
         //deferred.reject();
         var teacherId = { data: { course: [{ id: '2' }, { id: '3' }, { id: '4' }, { id: '5' }, { id: '6' }] } };
@@ -153,49 +199,11 @@ describe('Teacher Ctrl', function () {
         expect(scope.courseArr).toEqual(teacherId.data.course);
            
         //expect(getDataCourseTeacher._get).toHaveBeenCalled();
-        expect(scope.setDataOFStudent).toHaveBeenCalled();
+        expect(scope.getDataOFStudent).toHaveBeenCalled();
 
     });
 
 
-    it('getDataStudentTeacher and loadData function in Status 200', function () {
-        // var controller = createController();
-
-        // scope.role = 'teacher';
-        // spyOn(getDataStudentTeacher,'_get').and.returnValue('Some text');
-        // // Setup the data we wish to return for the .then function in the controller
-        // deferred.resolve({ config: {}, data: { data: { 'key': 'someType' }, messageType: 'SUCCESS', status: 200, statusText: 'OK' } });
-        // //         // We have to call apply for this to work
-        // //        scope.$apply();   
-        
-        // // scope.setDataOFStudent();
-        //  scope.$apply();
-
-
-        // expect(getDataStudentTeacher._get).toHaveBeenCalled();
-        // expect(scope.setDataStudent).toHaveBeenCalled();
-         
-    });
-    
-    //     it('getDataStudentTeacher and loadData function in Status 200',         function() {
-    //        var controller = createController();
-    //           
-    //         scope.role='teacher';
-    //        // spyOn(getDataStudentTeacher,'_get').and.returnValue('Some text');
-    //         // Setup the data we wish to return for the .then function in the controller
-    //        deferred.reject();
-    ////         // We have to call apply for this to work
-    ////        scope.$apply();   
-    //        
-    //        scope.setDataOFStudent ();
-    //       
-    //           
-    //        expect(getDataStudentTeacher._get).toHaveBeenCalled();
-    //       // expect(scope.setDataOFStudent).toHaveBeenCalled();
-    //         
-    //     });
-    //    
-    
     it('It shuould call Submit success ', function () {
         var controller = createController();
 
