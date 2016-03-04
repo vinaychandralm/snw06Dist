@@ -45,6 +45,19 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
 
         };
         
+        
+         $scope.setData = function (studentCourse) {
+            $scope.schoolList = studentCourse.data.domains;
+        };
+
+        $scope.setDataoFStuds = function (schoolsStudent) {
+            $scope.schoolStudentList = schoolsStudent;
+        };
+
+        $scope.setDataoFSchoolStudsCourse = function (schoolsStudent) {
+            $scope.schoolStudentCourseList = schoolsStudent;
+        };
+        
         //Fetch and Set data for course dropdown list .
         $scope.getnSetSchoolStudentCourse=function(scopeAllSchoolStudentIdArrays, scopeUrlDetails){
             
@@ -54,6 +67,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
                         notAuthenticated._showErrorMsg();
                         return;
                     }
+                   
                     $scope.setDataoFSchoolStudsCourse(res.data.data.course);
                 }, function onError(res) {
                     noNetError._showNetErrorMsg();
@@ -93,6 +107,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
                         $scope.setDataoFSchoolStudsCourse(tempArr);
                         return;
                     }
+                    console.log(response.data)
                     $scope.setData(response.data);
                     $scope.getAllSchollDomainId(response.data);
                     $scope.getnSetSchoolStudent($scope.allSchoolIdArrays,$scope.urlDetails)
@@ -104,6 +119,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
         }
 
         $scope.getAllSchollDomainId = function (dataresopnse) {
+            console.log(dataresopnse.data.domains);
             $scope.allSchoolIdArrays = [];
             for (var i = 0; i < dataresopnse.data.domains.length; i++) {
                 $scope.allSchoolIdArrays.push(dataresopnse.data.domains[i].id);
@@ -117,17 +133,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
             }
         };
 
-        $scope.setData = function (studentCourse) {
-            $scope.schoolList = studentCourse.data.domains;
-        };
-
-        $scope.setDataoFStuds = function (schoolsStudent) {
-            $scope.schoolStudentList = schoolsStudent;
-        };
-
-        $scope.setDataoFSchoolStudsCourse = function (schoolsStudent) {
-            $scope.schoolStudentCourseList = schoolsStudent;
-        };
+       
 
         $scope.OnChangeSchools = function () {
             if ($scope.schoolListIds.length === 0) {
@@ -237,10 +243,12 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
                     $rootScope.showoverlayOniFrameLoading = true;
 
                     iFrameLoading.subscribeiFrameLoading();
+                    
+                    //setting delay due to heavy processing and parsing taking time
                     $rootScope.$on('iframeloading.done', function (a, b) {
                         $timeout(function () {
                             $rootScope.showoverlayOniFrameLoading = false;
-                        }, 3000);
+                        }, 4000);
                         $scope.$apply();
                     });
 
@@ -316,12 +324,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
                 $scope.minimumMinut = false;
             }
 
-            // if (!$scope.endDateNotgreater && !$scope.schoolNotSelected && !$scope.studentNotSelected && !$scope.courseNotSelected && !$scope.courseNotSelected && !$scope.statusNotSelected && !$scope.minimumMinut && !$scope.srtDateNotSelected) {
-            //     //Setting varaible for Animation
-               
-            //     $scope.adminReportUrl = $sce.trustAsResourceUrl('https://www.angularjs.org');
-            //     $scope.isShowReportView = true;
-            // }
+            //Calling method to launch the course.
             $scope.showAdminReport(isvalidData);
         };
 
