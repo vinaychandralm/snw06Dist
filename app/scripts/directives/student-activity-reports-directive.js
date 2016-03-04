@@ -51,7 +51,7 @@ angular.module("ui.multiselect", ["multiselect.tpl.html"])
                 scope.multiple = isMultiple;
                 scope.disabled = false;
                 var toggleChk = false;
-                
+
                 var selectedItemLable = [];
 
                 scope.ulStyle = {};
@@ -117,7 +117,7 @@ angular.module("ui.multiselect", ["multiselect.tpl.html"])
                     modelCtrl.$setValidity("required", scope.valid());
                 }, true);
 
-                
+
 
                 element.append($compile(popUpEl)(scope));
 
@@ -128,31 +128,31 @@ angular.module("ui.multiselect", ["multiselect.tpl.html"])
                     }
 
                     if (isMultiple) {
-                         if(attrs.msSelected) {
+                        if (attrs.msSelected) {
                             scope.header = $interpolate(attrs.msSelected)(scope);
-                         } else {
-//                             console.log(modelCtrl.$modelValue);
-                             if(modelCtrl.$modelValue.length > 3){
+                        } else {
+                            //                             console.log(modelCtrl.$modelValue);
+                            if (modelCtrl.$modelValue.length > 3) {
                          	      scope.header = modelCtrl.$modelValue.length + " " + "selected";
-                             }else{
-                                 var nameString = "";
-                                 for(var i=0; i< modelCtrl.$modelValue.length-1;i++){
-                                     nameString += selectedItemLable[i] +',';
-                                 }
+                            } else {
+                                var nameString = "";
+                                for (var i = 0; i < modelCtrl.$modelValue.length - 1; i++) {
+                                    nameString += selectedItemLable[i] + ',';
+                                }
                                 // console.log(modelCtrl.$modelValue[i],  scope.items )
-                                 nameString += selectedItemLable[i];
-                                 scope.header = nameString;
-                             }
-                             
-                         }
+                                nameString += selectedItemLable[i];
+                                scope.header = nameString;
+                            }
+
+                        }
 
                     } else {
                         var local = {};
                         local[parsedResult.itemName] = modelCtrl.$modelValue;
                         scope.header = parsedResult.viewMapper(local);
                     }
-                    
-                    if(scope.allChecked){
+
+                    if (scope.allChecked) {
                         scope.header = "All Selected";
                     }
                 }
@@ -202,7 +202,7 @@ angular.module("ui.multiselect", ["multiselect.tpl.html"])
 
                     } else {
                         scope.noOfChkedItem = document.getElementsByClassName('glyphicon-ok').length + 1;
-//                        console.log(scope.noOfChkedItem);
+                        //                        console.log(scope.noOfChkedItem);
                         if (scope.noOfChkedItem === scope.items.length) {
                             scope.allChecked = true;
                         }
@@ -216,9 +216,9 @@ angular.module("ui.multiselect", ["multiselect.tpl.html"])
                     selectedItemLable = new Array();
                     if (isMultiple) {
                         value = [];
-                        
+
                         angular.forEach(scope.items, function (item) {
-                            if (item.checked) {                               
+                            if (item.checked) {
                                 value.push(item.model);
                                 //Adding Item labe for checked items
                                 selectedItemLable.push(item.label);
@@ -238,7 +238,7 @@ angular.module("ui.multiselect", ["multiselect.tpl.html"])
                         });
                     }
                     
-                   // console.log(selectedItemLable, "scope.items")
+                    // console.log(selectedItemLable, "scope.items")
                     modelCtrl.$setViewValue(value);
                 }
 
@@ -314,7 +314,7 @@ angular.module("ui.multiselect", ["multiselect.tpl.html"])
                     }
                     // alert();
                 };
-                
+
                 function parseModel() {
                     scope.items.length = 0;
                     var model = parsedResult.source(originalScope);
@@ -323,7 +323,7 @@ angular.module("ui.multiselect", ["multiselect.tpl.html"])
                     }
                     for (var i = 0; i < model.length; i++) {
                         var local = {};
-                        var value=[];
+                        var value = [];
                         local[parsedResult.itemName] = model[i];
                         scope.items.push({
                             label: parsedResult.viewMapper(local),
@@ -332,20 +332,20 @@ angular.module("ui.multiselect", ["multiselect.tpl.html"])
                         });
                     }
                     //console.log(scope.items[0].label);
-                    if(typeof scope.items[0] !== "undefined" && scope.items[0].label==='Active') {
-                    //if(typeof obj !== "undefined" && scope.items[0].label==='Active') {
+                    if (typeof scope.items[0] !== "undefined" && scope.items[0].label === 'Active') {
+                        //if(typeof obj !== "undefined" && scope.items[0].label==='Active') {
                         // alert(1);
                         // scope.checkAll();
                         // scope.select(scope.items[0]);
                         selectSingle(scope.items[0]);
                         setModelValue(true);
-                    }else{
+                    } else {
                         scope.checkAll();
                     }
                 }
 
                 parseModel();
-                
+
             }
         };
     }])
