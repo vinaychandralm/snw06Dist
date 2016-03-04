@@ -67,16 +67,28 @@
 
 
     fetchData();
-
+    
     function fetchData() {
-        $.get("scripts/commons/jsonconfig.json", function (data) {
+        $.get("scripts/commons/jsonconfig.json").success(function (data) {
             console.log("..................................................................................",data);
             // alert( "Load was performed." );
             window.configObj = data;
             angular.bootstrap(document, ["studentActivityReports"]);
-        });
+        }).error(function(dataerr){ 
+            console.log("Error while getting");
+            console.log(dataerr )});
 
     }
+
+    // function fetchData() {
+    //     $.get("scripts/commons/jsonconfig.json", function (data) {
+    //         console.log("..................................................................................",data);
+    //         // alert( "Load was performed." );
+    //         window.configObj = data;
+    //         angular.bootstrap(document, ["studentActivityReports"]);
+    //     });
+
+    // }
 
     // function bootstrapApplication() {
     //     angular.element(document).ready(function () {

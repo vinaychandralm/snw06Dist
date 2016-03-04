@@ -3,13 +3,11 @@
 
         "role": "admin",
         "userid": "46238944",
-        "token": "~gzYwCAAAAAgUA6DFUG6jgA.pzY3unmB5KZqnCtQaz7kPD",
+        "token": "~gzYwCAAAAAgUNQMHFrnrlA.M9GZ4C5K_xOI2u1V2BrmRB",
 
-        "userspace": "gsd-06"
+        "userspace": "s1-06"
     },
-    "servicesBaseUrl": "http://192.168.2.58:8080/gage-service/service",
-    "reportServiceUrlStudent": "http://192.168.2.58:8080/reports"
+    "servicesBaseUrl":  "http://devlearn.schoolimprovement.com/gage-service/service",
+    "reportServiceUrlStudent": "http://devlearn.schoolimprovement.com/reports"
     
-    // "servicesBaseUrl": "https://devlearn.schoolimprovement.com/gage-service/service",
-    // "reportServiceUrlStudent": "https://devlearn.schoolimprovement.com/reports"
 }
