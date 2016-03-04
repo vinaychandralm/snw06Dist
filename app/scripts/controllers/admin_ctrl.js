@@ -1,8 +1,8 @@
 'use strict';
 var admModule = angular.module('studentActivityReports.adminDetails', []);
 admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getSchoolData',
-    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError',  '$sce', function ($scope, $rootScope, $location,
-        getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse, notAuthenticated, noNetError,  $sce) {
+    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError',  'iFrameLoading', '$sce', '$timeout', function ($scope, $rootScope, $location,
+        getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse, notAuthenticated, noNetError,  iFrameLoading, $sce, $timeout) {
 
         $scope.initValues = function () {
 
@@ -15,6 +15,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
             $scope.srtDateNotSelected = false;
             $scope.endDateNotgreater = false;
             $scope.minimumMinut = false;
+            $scope.excuedItem = false;
             $scope.inputAdmin = 0;
             $scope.schoolListIds = [];
             $scope.multiselectModelAdminSchool = [];
@@ -26,6 +27,9 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
             $scope.allSchoolStudentIdArrays = [];
             $scope.studentCourseListIds = [];
             $scope.multiselectModelAdminStudentCourse = [];
+            
+            $scope.oldReportUrl = null;
+            $scope.newReportUrl = null;
 
             $scope.searchagain = "displaynonecls";
             $scope.iframe_row = "displaynonecls";
@@ -146,20 +150,123 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
         $scope.isInt = function (n) {
             return n % 1 === 0;
         }
+        $scope.getDateAsString = function (dateObj) {
+            
+            // var today = new Date();
+            var dd = dateObj.getDate();
+            var mm = dateObj.getMonth() + 1; //January is 0!
+
+            var yyyy = dateObj.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+            return (dd + '/' + mm + '/' + yyyy);
+            //document.getElementById("DATE").value = today;
+            
+        }
+        $scope.getEnrollIdStr = function () {
+            var temObj = ["1", "4", "5", "6", "7", "8", "9", "10"];
+            //Active = 1, Withdrawn = 4, WithdrawnFailed = 5,Transferred = 6,Completed = 7,CompletedNoCredit = 8,Suspended = 9,Inactive = 10,
+            var idArray = [];
+            for (var i = 0; i < $scope.enrollArr.length; i++) {
+                idArray.push(temObj[$scope.enrollArr[i]]);
+            }
+            return idArray;
+        }
+
+        
+        $scope.showAdminReport = function (isDataValidate) {
+
+            console.log('isvalidData : ', isDataValidate);
+            if (isDataValidate) {
+                //Setting varaible for Animation
+                
+                var urlDetailObj = $rootScope.winConfigObj;
+                //$scope.courseIdArr.length
+
+                var schoolIdStr =  $scope.schoolListIds.join(',');
+                console.log(schoolIdStr) ;
+                
+                 var studentIDStr = $scope.studentListIds.join(',');
+                 
+                var courseIDStr = $scope.studentCourseListIds.join(',');
+
+               
+                // console.log("courseStudentIds : ", courseStudentIds);
+                //var enrollStr = $scope.enrollArr.join(',');
+                // console.log("$scope.startDateStartActivity ", new Date($scope.startDateStartActivity));
+                // console.log("$scope.startDateEndActivity ", $scope.startDateEndActivity);
+                // console.log("$rootScope.userid ", $rootScope.userid);
+                // console.log("$rootScope.userid ", $rootScope.userspace);
+                // console.log("$scope.excuedItem ", $scope.excuedItem);
+                // console.log("Token :", $rootScope.token);
+                var startDateStr = $scope.getDateAsString(new Date($scope.startDateStartActivity));
+                var endDateStr = $scope.getDateAsString($scope.startDateEndActivity);
+
+                // console.log(startDateStr, endDateStr);
+
+                var enrollIdsArray = $scope.getEnrollIdStr();
+                var enrollStr = enrollIdsArray.join(',');
+                // console.log(enrollStr);
+                var excuseItemStr = $scope.excuedItem ? '1' : '0';
+
+                // $scope.newReportUrl = urlDetailObj.reportServiceUrlStudent + '/studentactivityreportforteacher?startdate=' + startDateStr + '&enddate=' + endDateStr
+                // + '&userid=' + $rootScope.userid + '&courseids=' + courseStr + '&studentids=' + courseStudentIds + '&minimumminutes=' + $scope.minimumMinut + '&enrollmentstatus=' + enrollStr + '&excuseditem='
+                // + excuseItemStr + '&userspace=' + $rootScope.userspace + '&token=' + $rootScope.token;
+                // console.log("reportUrl : ", $scope.newReportUrl);
+               
+               console.log($rootScope.admindetail.data.user.firstname);
+               
+              $scope.newReportUrl=urlDetailObj.reportServiceUrlStudent+ '/studentactivityreportforadmin?startdate='+startDateStr+'&enddate='+endDateStr+'&userid='+$rootScope.userid+'&username='+$rootScope.admindetail.data.user.firstname+' '+$rootScope.admindetail.data.user.lastname+'&domainids='+schoolIdStr+'&studentids='+studentIDStr+'&courseids='+courseIDStr+'&minimumminutes='+$scope.inputAdmin+'&enrollmentstatus='+enrollStr+'&excuseditem='+excuseItemStr+'&userspace='+$rootScope.userspace+'&token='+$rootScope.token;
+               
+                //  $scope.newReportUrl = "http://192.168.2.58:8080/reports/studentactivityreportforteacher?startdate=01/02/2014&enddate=01/18/2019&userid=24910841&courseids=23520819,23522897,23596492&studentids=21298560,21298527,21298500,24998188&minimumminutes=2&enrollmentstatus=1,10&excuseditem=0&serspace=gsd-06&token=~gzYwCAAAAAwV29myGEzN-A.wPoIwcxlw1FBzxFvLW2W9C";
+                
+                
+                //            $scope.newReportUrl = 'http://192.168.2.58:8080/reports/studentactivityreport?startdate=01/02/2014&enddate=01/18/2019&userid=23696742&courseids=23598050,23598525&enrollmentstatus=1,10&excuseditem=0&userspace=sdale-innovation&token=~FbT1BAAAAAgCqkx2orhMPA.ubJwpnTsLvN3eKwu5jvOVB';
+                
+                if ($scope.oldReportUrl != $scope.newReportUrl) {
+                    
+                    //assigning new url to old url valiable 
+                    $scope.oldReportUrl = $scope.newReportUrl;
+                    $scope.adminReportUrl = $sce.trustAsResourceUrl($scope.newReportUrl);
+                    //Setting varaible for Animation
+                    $scope.isShowReportView = true;
+                    $rootScope.showoverlayOniFrameLoading = true;
+
+                    iFrameLoading.subscribeiFrameLoading();
+                    $rootScope.$on('iframeloading.done', function (a, b) {
+                        $timeout(function () {
+                            $rootScope.showoverlayOniFrameLoading = false;
+                        }, 3000);
+                        $scope.$apply();
+                    });
+
+                } else {
+                    $scope.isShowReportView = true;
+                }
+                // console.log($scope.isShowReportView);
+            }
+        }
 
         $scope.submit = function () {
             var startDateActivity = new Date($scope.startDateStartActivity);
             var endDateActivity = new Date($scope.startDateEndActivity);
-
+            var isvalidData = true;    
             if ($scope.startDateStartActivity == null) {
 
                 $scope.srtDateNotSelected = true;
+                isvalidData=false;
             } else {
                 $scope.srtDateNotSelected = false;
+                
             }
 
             if (startDateActivity > endDateActivity || $scope.startDateEndActivity == null) {
                 $scope.endDateNotgreater = true;
+                isvalidData=false;
             }
             else {
                 $scope.endDateNotgreater = false;
@@ -169,46 +276,53 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
 
             if ($scope.schoolListIds.length === 0) {
                 $scope.schoolNotSelected = true;
+                isvalidData=false;
             } else {
                 $scope.schoolNotSelected = false;
             }
 
             if ($scope.studentListIds.length === 0) {
                 $scope.studentNotSelected = true;
+                isvalidData=false;
             } else {
                 $scope.studentNotSelected = false;
             }
 
             if ($scope.studentCourseListIds.length === 0) {
                 $scope.courseNotSelected = true;
+                isvalidData=false;
             } else {
                 $scope.courseNotSelected = false;
             }
 
             if ($scope.studentCourseListIds.length === 0) {
                 $scope.courseNotSelected = true;
+                isvalidData=false;
             } else {
                 $scope.courseNotSelected = false;
             }
 
             if ($scope.enrollArr.length === 0) {
                 $scope.statusNotSelected = true;
+                isvalidData=false;
             } else {
                 $scope.statusNotSelected = false;
             }
             //console.log($scope.inputAdmin);
             if ($scope.inputAdmin === undefined || $scope.inputAdmin === null || $scope.inputAdmin < 0 || !$scope.isInt($scope.inputAdmin)) {
                 $scope.minimumMinut = true;
+                isvalidData=false;
             } else {
                 $scope.minimumMinut = false;
             }
 
-            if (!$scope.endDateNotgreater && !$scope.schoolNotSelected && !$scope.studentNotSelected && !$scope.courseNotSelected && !$scope.courseNotSelected && !$scope.statusNotSelected && !$scope.minimumMinut && !$scope.srtDateNotSelected) {
-                //Setting varaible for Animation
+            // if (!$scope.endDateNotgreater && !$scope.schoolNotSelected && !$scope.studentNotSelected && !$scope.courseNotSelected && !$scope.courseNotSelected && !$scope.statusNotSelected && !$scope.minimumMinut && !$scope.srtDateNotSelected) {
+            //     //Setting varaible for Animation
                
-                $scope.adminReportUrl = $sce.trustAsResourceUrl('https://www.angularjs.org');
-                $scope.isShowReportView = true;
-            }
+            //     $scope.adminReportUrl = $sce.trustAsResourceUrl('https://www.angularjs.org');
+            //     $scope.isShowReportView = true;
+            // }
+            $scope.showAdminReport(isvalidData);
         };
 
         $scope.searchAgain = function () {

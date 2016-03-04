@@ -26,6 +26,7 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
             $scope.teacherReportUrl = null;
             $scope.oldReportUrl = null;
             $scope.newReportUrl = null;
+            $scope.excuedItem = false;
 
 
             $scope.multiselectModel = [];
@@ -155,20 +156,9 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
         }
         $scope.getEnrollIdStr = function () {
             var temObj = ["1", "4", "5", "6", "7", "8", "9", "10"];
-            //Active = 1,
-            //    Withdrawn = 4,
-            //    WithdrawnFailed = 5,
-            //    Transferred = 6,
-            //    Completed = 7,
-            //    CompletedNoCredit = 8,
-            //    Suspended = 9,
-            //    Inactive = 10,
-            //$scope.enrollArr            
+            //Active = 1, Withdrawn = 4, WithdrawnFailed = 5,Transferred = 6,Completed = 7,CompletedNoCredit = 8,Suspended = 9,Inactive = 10,
             var idArray = [];
             for (var i = 0; i < $scope.enrollArr.length; i++) {
-                // console.log("$scope.enrollArr ", $scope.enrollArr[i]);
-                // console.log("temObj.enrollArr ", temObj[$scope.enrollArr[i]]);
-
                 idArray.push(temObj[$scope.enrollArr[i]]);
             }
             return idArray;
