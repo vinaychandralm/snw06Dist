@@ -139,6 +139,14 @@ describe('Admin Ctrl', function () {
 
 
     });
+    
+    
+    it('It shuould initialize the variables', function () {
+        var controller = createController();
+
+        
+
+    });
 
 
 
