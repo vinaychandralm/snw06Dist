@@ -9,4 +9,7 @@
     },
     "servicesBaseUrl": "http://192.168.2.58:8080/gage-service/service",
     "reportServiceUrlStudent": "http://192.168.2.58:8080/reports"
+    
+    // "servicesBaseUrl": "https://devlearn.schoolimprovement.com/gage-service/service",
+    // "reportServiceUrlStudent": "https://devlearn.schoolimprovement.com/reports"
 }

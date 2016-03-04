@@ -74,7 +74,7 @@ describe('Admin Ctrl', function () {
             },
             "servicesBaseUrl": "http://192.168.2.58:8080/gage-service/service",
             "reportServiceUrlStudent": "http://192.168.2.58:8080/reports"
-        }
+        };
         //        $q = _$q_;
         //        notAuthenticated=_notAuthenticated_;
         //        noNetError=_noNetError_;
