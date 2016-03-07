@@ -195,7 +195,7 @@ body{
 .frame{
     height: 400px;
     width: 100%;
-    border: 1px solid #ccc;
+    border: 0px solid #ccc;
     
 }
 .student-form .search a{
