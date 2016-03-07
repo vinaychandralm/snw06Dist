@@ -2,9 +2,9 @@
 
 var sarModule = angular.module('studentActivityReports.studentDetails', []);
 sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'getDataStudent',
-    'getEnrollmentStatus', 'getStudentCourseData', 'notAuthenticated', 'noNetError', '$sce', 'iFrameLoading', '$timeout','showReport',
+    'getEnrollmentStatus', 'getStudentCourseData', 'notAuthenticated', 'noNetError', '$sce', 'iFrameLoading', '$timeout','showReport','GetDateAsString','GetEnrollIdAsString',
     function ($scope, $rootScope, $routeParams, $location, getDataStudent, getEnrollmentStatus, getStudentCourseData,
-        notAuthenticated, noNetError, $sce, iFrameLoading, $timeout,showReport) {
+        notAuthenticated, noNetError, $sce, iFrameLoading, $timeout,showReport,GetDateAsString,GetEnrollIdAsString) {
 
         console.dir("**Inside studentDetailsCtrl**");
         $scope.init = function () {
@@ -64,36 +64,6 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
         };
 
-        $scope.getDateAsString = function (dateObj) {
-            
-            // var today = new Date();
-            console.log(dateObj)
-            var dd = dateObj.getDate();
-            var mm = dateObj.getMonth() + 1; //January is 0!
-
-            var yyyy = dateObj.getFullYear();
-            if (dd < 10) {
-                dd = '0' + dd
-            }
-            if (mm < 10) {
-                mm = '0' + mm
-            }
-            return (dd + '/' + mm + '/' + yyyy);
-        }
-
-        $scope.getEnrollIdStr = function () {
-            var temObj = ["1", "4", "5", "6", "7", "8", "9", "10"];
-            //Active = 1, Withdrawn = 4, WithdrawnFailed = 5,Transferred = 6,Completed = 7,CompletedNoCredit = 8,Suspended = 9,Inactive = 10,
-            var idArray = [];
-            for (var i = 0; i < $scope.enrollArr.length; i++) {
-                // console.log("$scope.enrollArr ", $scope.enrollArr[i]);
-                // console.log("temObj.enrollArr ", temObj[$scope.enrollArr[i]]);
-
-                idArray.push(temObj[$scope.enrollArr[i]]);
-            }
-            return idArray;
-        }
-
         $scope.submitStudentInfo = function () {
 
             var startDateActivity = new Date($scope.startDateStartActivity);
@@ -133,9 +103,12 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
                 var courseStr = $scope.courseIdArr.join(',');
                 var enrollStr = $scope.enrollArr.join(',');
-                var startDateStr = $scope.getDateAsString(new Date($scope.startDateStartActivity));
-                var endDateStr = $scope.getDateAsString(new Date($scope.startDateEndActivity));
-                var enrollIdsArray = $scope.getEnrollIdStr();
+                var startDateStr = GetDateAsString.dateStr(new Date($scope.startDateStartActivity));
+                console.log('startDateStr : ',startDateStr);
+                var endDateStr = GetDateAsString.dateStr(new Date($scope.startDateEndActivity));
+                console.log('endDateStr : ',endDateStr);
+                var enrollIdsArray = GetEnrollIdAsString.getEnrollIdStr($scope);
+                console.log('enrollIdsArray  ',enrollIdsArray);
                 enrollStr = enrollIdsArray.join(',');
                 var excuseItemStr = $scope.excuedItem ? '1' : '0';
 
