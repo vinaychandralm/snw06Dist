@@ -1,49 +1,4 @@
 'use strict';
-// describe('Admin Ctrl', function () {
-//     var scope, $location, createController, rootScope, getSchoolData;
-//     var sce, ctrl, routeParams;
-//     //    var $q,noNetError,getServerConfigData,routeParams;
-//     //    var deferred;
-//     //    
-//     //    
-//     //    var getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse;
-    
-//     beforeEach(module('studentActivityReports'));
-//     beforeEach(module('studentActivityReports.adminDetails'));
-//     beforeEach(inject(function ($rootScope, $controller, _getSchoolData_, _$sce_, _$routeParams_) {
-//         //        $location = _$location_;
-//         rootScope = $rootScope;
-//         scope = $rootScope.$new();
-//         getSchoolData = _getSchoolData_;
-//         sce = _$sce_;
-//         routeParams = _$routeParams_;
-//         //ctrl = _$controller_;
-//         //        We use the $q service to create a mock instance of defer
-//         //        deferred = _$q_.defer();
-//         //
-//         //        Use a Jasmine Spy to return the deferred promise
-//         //        spyOn(getDataCourseTeacher, '_get').and.returnValue(deferred.promise);
-//         //        
-//         //        spyOn(getDataStudentTeacher,'_get').and.returnValue(deferred.promise);
-        
-//         //        createController = function() {
-//         //            return $controller('adminctrl', {
-//         //                $scope: scope,
-//         //                $rootScope:rootScope,
-//         //                $sce:sce,
-//         //                getSchoolData:getSchoolData
-//         //            });
-//         //        };
-//         ctrl = $controller('adminctrl', {
-//             $rootScope: rootScope,
-//             $scope: scope,
-//             $sce: sce,
-//             getSchoolData: getSchoolData,
-//             $routeParams: routeParams
-//         });
-
-//     }));
-
 
 describe('Admin Ctrl', function () {
     var scope, createController, rootScope;
@@ -287,31 +242,27 @@ describe('Admin Ctrl', function () {
         expect(noNetError._showNetErrorMsg).toHaveBeenCalled();
         
     });
-    // it('It shuould call the getnSetSchoolStudentCourse method with success ', function () {
-    //      var controller = createController();
+    it('It shuould call the getnSetSchoolStudentCourse method with success ', function () {
+         var controller = createController();
         
         
-    //     scope.allSchoolStudentIdArrays = ['12342','12341','12340'];
-    //     //scope.allSchoolStudentIdArrays = [{'id':'12342','name': 'dummydata1'},{'id':'12341','name': 'dummydata2'},{'id':'12340','name': 'dummydata3'}]
-    //     scope.urlDetails = rootScope.winConfigObj;
-    //     spyOn(scope,'setDataoFSchoolStudsCourse').and.returnValue('Some text');
+        scope.allSchoolStudentIdArrays = ['12342','12341','12340'];
+        //scope.allSchoolStudentIdArrays = [{'id':'12342','name': 'dummydata1'},{'id':'12341','name': 'dummydata2'},{'id':'12340','name': 'dummydata3'}]
+        scope.urlDetails = rootScope.winConfigObj;
+        spyOn(scope,'setDataoFSchoolStudsCourse').and.returnValue('Some text');
+        scope.getnSetSchoolStudentCourse(scope.allSchoolStudentIdArrays,scope.urlDetails);
           
-    //        // Setup the data we wish to return for the .then function in the controller
-    //     deferred.resolve({ config: {}, data: { data: { 'domains':[{'id':'12342'},{'id':'12341'},{'id':'12340'}] ,'key': 'someType' }, messageType: 'SUCCESS', status: 200, statusText: 'OK' } });
-         
-          
-    //     scope.getnSetSchoolStudentCourse(scope.allSchoolStudentIdArrays,scope.urlDetails);
-         
+           // Setup the data we wish to return for the .then function in the controller
+        deferred.resolve({ config: {}, data: { data: { 'domains':[{'id':'12342'},{'id':'12341'},{'id':'12340'}] ,'key': 'someType' }, messageType: 'SUCCESS', status: 200, statusText: 'OK' } });
+ 
+         // We have to call apply for this to work
+        scope.$apply();
         
-         
-    //      // We have to call apply for this to work
-    //     scope.$apply();
-        
-    //     expect(getSchoolStudentCourse._get).toHaveBeenCalled();
-    //     expect(scope.setDataoFSchoolStudsCourse).toHaveBeenCalled();
+        expect(getSchoolStudentCourse._get).toHaveBeenCalled();
+        expect(scope.setDataoFSchoolStudsCourse).toHaveBeenCalled();
       
         
-    // });
+    });
 
 
 });
