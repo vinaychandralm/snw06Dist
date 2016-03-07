@@ -1,8 +1,8 @@
 'use strict';
 var admModule = angular.module('studentActivityReports.adminDetails', []);
 admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getSchoolData',
-    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError',  'iFrameLoading', '$sce', '$timeout','showReport', function ($scope, $rootScope, $location,
-        getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse, notAuthenticated, noNetError,  iFrameLoading, $sce, $timeout,showReport) {
+    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError',  'iFrameLoading', '$sce', '$timeout','showReport','GetDateAsString','GetEnrollIdAsString', function($scope, $rootScope, $location,
+        getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse, notAuthenticated, noNetError,  iFrameLoading, $sce, $timeout,showReport,GetDateAsString,GetEnrollIdAsString) {
 
         $scope.initValues = function () {
 
@@ -156,33 +156,6 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
         $scope.isInt = function (n) {
             return n % 1 === 0;
         }
-        $scope.getDateAsString = function (dateObj) {
-            
-            // var today = new Date();
-            var dd = dateObj.getDate();
-            var mm = dateObj.getMonth() + 1; //January is 0!
-
-            var yyyy = dateObj.getFullYear();
-            if (dd < 10) {
-                dd = '0' + dd
-            }
-            if (mm < 10) {
-                mm = '0' + mm
-            }
-            return (dd + '/' + mm + '/' + yyyy);
-            //document.getElementById("DATE").value = today;
-            
-        }
-        $scope.getEnrollIdStr = function () {
-            var temObj = ["1", "4", "5", "6", "7", "8", "9", "10"];
-            //Active = 1, Withdrawn = 4, WithdrawnFailed = 5,Transferred = 6,Completed = 7,CompletedNoCredit = 8,Suspended = 9,Inactive = 10,
-            var idArray = [];
-            for (var i = 0; i < $scope.enrollArr.length; i++) {
-                idArray.push(temObj[$scope.enrollArr[i]]);
-            }
-            return idArray;
-        }
-
         
         $scope.showAdminReport = function (isDataValidate) {
 
@@ -193,9 +166,12 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
                 var schoolIdStr =  $scope.schoolListIds.join(',');
                 var studentIDStr = $scope.studentListIds.join(',');
                 var courseIDStr = $scope.studentCourseListIds.join(',');
-                var startDateStr = $scope.getDateAsString(new Date($scope.startDateStartActivity));
-                var endDateStr = $scope.getDateAsString($scope.startDateEndActivity);
-                var enrollIdsArray = $scope.getEnrollIdStr();
+                var startDateStr = GetDateAsString.dateStr(new Date($scope.startDateStartActivity));
+                console.log('startDateStr ',startDateStr);
+                var endDateStr = GetDateAsString.dateStr($scope.startDateEndActivity);
+                console.log('startDateStr ',startDateStr);
+                var enrollIdsArray = GetEnrollIdAsString.getEnrollIdStr($scope);
+                console.log('enrollIdsArray  ',enrollIdsArray);
                 var enrollStr = enrollIdsArray.join(',');
                 var excuseItemStr = $scope.excuedItem ? '1' : '0';
 

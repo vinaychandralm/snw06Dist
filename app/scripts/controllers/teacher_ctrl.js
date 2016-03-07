@@ -2,9 +2,9 @@
 
 var sarModule = angular.module('teacherActivityReports.teacherDetails', []);
 sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location', '$routeParams', 'getDataCourseTeacher',
-    'getEnrollmentStatus', 'getDataStudentTeacher', 'notAuthenticated', 'noNetError', 'iFrameLoading', '$sce', '$timeout','showReport',
+    'getEnrollmentStatus', 'getDataStudentTeacher', 'notAuthenticated', 'noNetError', 'iFrameLoading', '$sce', '$timeout','showReport','GetDateAsString','GetEnrollIdAsString',
     function ($scope, $rootScope, $location, $routeParams, getDataCourseTeacher, getEnrollmentStatus,
-        getDataStudentTeacher, notAuthenticated, noNetError, iFrameLoading, $sce, $timeout,showReport) {
+        getDataStudentTeacher, notAuthenticated, noNetError, iFrameLoading, $sce, $timeout,showReport,GetDateAsString,GetEnrollIdAsString) {
 
         console.dir("**Inside teacherDetailsCtrl**");
 
@@ -137,33 +137,7 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
         $scope.isInt = function (n) {
             return n % 1 === 0;
         }
-        $scope.getDateAsString = function (dateObj) {
-            
-            // var today = new Date();
-            var dd = dateObj.getDate();
-            var mm = dateObj.getMonth() + 1; //January is 0!
-
-            var yyyy = dateObj.getFullYear();
-            if (dd < 10) {
-                dd = '0' + dd
-            }
-            if (mm < 10) {
-                mm = '0' + mm
-            }
-            return (dd + '/' + mm + '/' + yyyy);
-            //document.getElementById("DATE").value = today;
-            
-        }
-        $scope.getEnrollIdStr = function () {
-            var temObj = ["1", "4", "5", "6", "7", "8", "9", "10"];
-            //Active = 1, Withdrawn = 4, WithdrawnFailed = 5,Transferred = 6,Completed = 7,CompletedNoCredit = 8,Suspended = 9,Inactive = 10,
-            var idArray = [];
-            for (var i = 0; i < $scope.enrollArr.length; i++) {
-                idArray.push(temObj[$scope.enrollArr[i]]);
-            }
-            return idArray;
-        }
-
+       
         $scope.showTeacherReport = function (isDataValidate) {
 
             console.log('isvalidData : ', isDataValidate);
@@ -172,9 +146,12 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
                 var urlDetailObj = $rootScope.winConfigObj;
                 var courseStr = $scope.courseIdArr.join(',');
                 var courseStudentIds = $scope.courseStudentIdArr.join(',');
-                var startDateStr = $scope.getDateAsString(new Date($scope.startDateStartActivity));
-                var endDateStr = $scope.getDateAsString($scope.startDateEndActivity);
-                var enrollIdsArray = $scope.getEnrollIdStr();
+                var startDateStr = GetDateAsString.dateStr(new Date($scope.startDateStartActivity));
+                 console.log('startDateStr ',startDateStr);
+                var endDateStr = GetDateAsString.dateStr($scope.startDateEndActivity);
+                 console.log('endDateStr ',endDateStr);
+                var enrollIdsArray = GetEnrollIdAsString.getEnrollIdStr($scope);
+                console.log('enrollIdsArray ',enrollIdsArray);
                 var enrollStr = enrollIdsArray.join(',');
                 var excuseItemStr = $scope.excuedItem ? '1' : '0';
 
@@ -182,10 +159,6 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
                 + '&userid=' + $rootScope.userid + '&courseids=' + courseStr + '&studentids=' + courseStudentIds + '&minimumminutes=' + $scope.inputTeacher + '&enrollmentstatus=' + enrollStr + '&excuseditem='
                 + excuseItemStr + '&userspace=' + $rootScope.userspace + '&token=' + $rootScope.token;
                 console.log("reportUrl : ", $scope.newReportUrl);
-                //  $scope.newReportUrl = "http://192.168.2.58:8080/reports/studentactivityreportforteacher?startdate=01/02/2014&enddate=01/18/2019&userid=24910841&courseids=23520819,23522897,23596492&studentids=21298560,21298527,21298500,24998188&minimumminutes=2&enrollmentstatus=1,10&excuseditem=0&serspace=gsd-06&token=~gzYwCAAAAAwV29myGEzN-A.wPoIwcxlw1FBzxFvLW2W9C";
-                
-                
-                //            $scope.newReportUrl = 'http://192.168.2.58:8080/reports/studentactivityreport?startdate=01/02/2014&enddate=01/18/2019&userid=23696742&courseids=23598050,23598525&enrollmentstatus=1,10&excuseditem=0&userspace=sdale-innovation&token=~FbT1BAAAAAgCqkx2orhMPA.ubJwpnTsLvN3eKwu5jvOVB';
                 
                 //call service to load url in Iframe
                 showReport.loadOnIFrame($scope);

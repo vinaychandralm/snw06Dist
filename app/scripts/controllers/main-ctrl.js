@@ -44,6 +44,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
         //  $rootScope.userid = $routeParams.userid;
         //  $rootScope.role = $routeParams.role;
         //  $rootScope.userspace = $rootScope.winConfigObj.userSettingObjects.userspace;
+
        
 
             $scope.urlDetails = $rootScope.winConfigObj;
