@@ -2,9 +2,9 @@
 
 var sarModule = angular.module('teacherActivityReports.teacherDetails', []);
 sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location', '$routeParams', 'getDataCourseTeacher',
-    'getEnrollmentStatus', 'getDataStudentTeacher', 'notAuthenticated', 'noNetError', 'iFrameLoading', '$sce', '$timeout',
+    'getEnrollmentStatus', 'getDataStudentTeacher', 'notAuthenticated', 'noNetError', 'iFrameLoading', '$sce', '$timeout','showReport',
     function ($scope, $rootScope, $location, $routeParams, getDataCourseTeacher, getEnrollmentStatus,
-        getDataStudentTeacher, notAuthenticated, noNetError, iFrameLoading, $sce, $timeout) {
+        getDataStudentTeacher, notAuthenticated, noNetError, iFrameLoading, $sce, $timeout,showReport) {
 
         console.dir("**Inside teacherDetailsCtrl**");
 
@@ -23,7 +23,7 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
             $scope.endDateNotgreater = false;
            // $scope.minimumMinut = false;
             $scope.inputTeacher = 0;
-            $scope.teacherReportUrl = null;
+            $scope.iframeReportUrl = null;
             $scope.oldReportUrl = null;
             $scope.newReportUrl = null;
             $scope.excuedItem = false;
@@ -169,31 +169,15 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
             console.log('isvalidData : ', isDataValidate);
             if (isDataValidate) {
                 //Setting varaible for Animation
-                
                 var urlDetailObj = $rootScope.winConfigObj;
-                //$scope.courseIdArr.length
-
                 var courseStr = $scope.courseIdArr.join(',');
-                //$scope.courseStudentIdArr
-
                 var courseStudentIds = $scope.courseStudentIdArr.join(',');
-                // console.log("courseStudentIds : ", courseStudentIds);
-                //var enrollStr = $scope.enrollArr.join(',');
-                // console.log("$scope.startDateStartActivity ", new Date($scope.startDateStartActivity));
-                // console.log("$scope.startDateEndActivity ", $scope.startDateEndActivity);
-                // console.log("$rootScope.userid ", $rootScope.userid);
-                // console.log("$rootScope.userid ", $rootScope.userspace);
-                // console.log("$scope.excuedItem ", $scope.excuedItem);
-                // console.log("Token :", $rootScope.token);
                 var startDateStr = $scope.getDateAsString(new Date($scope.startDateStartActivity));
                 var endDateStr = $scope.getDateAsString($scope.startDateEndActivity);
-
-                // console.log(startDateStr, endDateStr);
-
                 var enrollIdsArray = $scope.getEnrollIdStr();
                 var enrollStr = enrollIdsArray.join(',');
-                // console.log(enrollStr);
                 var excuseItemStr = $scope.excuedItem ? '1' : '0';
+
                 $scope.newReportUrl = urlDetailObj.reportServiceUrlStudent + '/studentactivityreportforteacher?startdate=' + startDateStr + '&enddate=' + endDateStr
                 + '&userid=' + $rootScope.userid + '&courseids=' + courseStr + '&studentids=' + courseStudentIds + '&minimumminutes=' + $scope.inputTeacher + '&enrollmentstatus=' + enrollStr + '&excuseditem='
                 + excuseItemStr + '&userspace=' + $rootScope.userspace + '&token=' + $rootScope.token;
@@ -203,27 +187,8 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
                 
                 //            $scope.newReportUrl = 'http://192.168.2.58:8080/reports/studentactivityreport?startdate=01/02/2014&enddate=01/18/2019&userid=23696742&courseids=23598050,23598525&enrollmentstatus=1,10&excuseditem=0&userspace=sdale-innovation&token=~FbT1BAAAAAgCqkx2orhMPA.ubJwpnTsLvN3eKwu5jvOVB';
                 
-                if ($scope.oldReportUrl != $scope.newReportUrl) {
-                    
-                    //assigning new url to old url valiable 
-                    $scope.oldReportUrl = $scope.newReportUrl;
-                    $scope.teacherReportUrl = $sce.trustAsResourceUrl($scope.newReportUrl);
-                    //Setting varaible for Animation
-                    $scope.isShowReportView = true;
-                    $rootScope.showoverlayOniFrameLoading = true;
-
-                    iFrameLoading.subscribeiFrameLoading();
-                    $rootScope.$on('iframeloading.done', function (a, b) {
-                        $timeout(function () {
-                            $rootScope.showoverlayOniFrameLoading = false;
-                        }, 3000);
-                        $scope.$apply();
-                    });
-
-                } else {
-                    $scope.isShowReportView = true;
-                }
-                // console.log($scope.isShowReportView);
+                //call service to load url in Iframe
+                showReport.loadOnIFrame($scope);
             }
         }
         $scope.submit = function () {

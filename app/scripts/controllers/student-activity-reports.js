@@ -2,9 +2,9 @@
 
 var sarModule = angular.module('studentActivityReports.studentDetails', []);
 sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'getDataStudent',
-    'getEnrollmentStatus', 'getStudentCourseData', 'notAuthenticated', 'noNetError', '$sce', 'iFrameLoading', '$timeout',
+    'getEnrollmentStatus', 'getStudentCourseData', 'notAuthenticated', 'noNetError', '$sce', 'iFrameLoading', '$timeout','showReport',
     function ($scope, $rootScope, $routeParams, $location, getDataStudent, getEnrollmentStatus, getStudentCourseData,
-        notAuthenticated, noNetError, $sce, iFrameLoading, $timeout) {
+        notAuthenticated, noNetError, $sce, iFrameLoading, $timeout,showReport) {
 
         console.dir("**Inside studentDetailsCtrl**");
         $scope.init = function () {
@@ -19,7 +19,7 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
             $scope.srtDateNotSelected = false;
             $scope.endDateNotSelected = false;
             $scope.excuedItem = false;
-            $scope.studentReportUrl = null;
+            $scope.iframeReportUrl = null;
             $scope.newReportUrl = null;
             $scope.oldReportUrl = null;
             $scope.courseIdArr = [];
@@ -145,26 +145,9 @@ sarModule.controller('studentDetailsCtrl', ['$scope', '$rootScope', '$routeParam
 
                 // $scope.newReportUrl = 'http://192.168.2.58:8080/reports/studentactivityreport?startdate=01/02/2014&enddate=01/18/2019&userid=23696742&courseids=23598050,23598525&enrollmentstatus=1,10&excuseditem=0&userspace=sdale-innovation&token=~FbT1BAAAAAgCqkx2orhMPA.ubJwpnTsLvN3eKwu5jvOVB';
 
-                if ($scope.oldReportUrl != $scope.newReportUrl) {
-                    
-                    //assigning new url to old url valiable 
-                    $scope.oldReportUrl = $scope.newReportUrl;
-                    $scope.studentReportUrl = $sce.trustAsResourceUrl($scope.newReportUrl);
-                    //Setting varaible for Animation
-                    $scope.isShowReportView = true;
-                    $rootScope.showoverlayOniFrameLoading = true;
-
-                    iFrameLoading.subscribeiFrameLoading();
-                    $rootScope.$on('iframeloading.done', function (a, b) {
-                        $timeout(function () {
-                            $rootScope.showoverlayOniFrameLoading = false;
-                        }, 3000);
-                        $scope.$apply();
-                    });
-
-                } else {
-                    $scope.isShowReportView = true;
-                }
+                 //call service to load url in Iframe
+                 showReport.loadOnIFrame($scope);
+               
             }
         };
 

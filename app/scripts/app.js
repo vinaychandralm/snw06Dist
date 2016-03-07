@@ -29,7 +29,8 @@
             'studentActivityReports.studentDetails',
             'teacherActivityReports.teacherDetails',
             'studentActivityReports.adminDetails',
-            'studentActivityReportsAdmin.factories'
+            'studentActivityReportsAdmin.factories',
+            'studentActivityReportscommomns.factories'
         ])
         .config(function ($routeProvider) {
             //  var routingInfo = routeInfoProvider._getRoutingInfo();
