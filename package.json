@@ -30,8 +30,8 @@
     "jshint-stylish": "^1.0.0",
     "karma-jasmine": "*",
     "karma-phantomjs-launcher": "*",
-	"karma-junit-reporter": "*",
-	"karma-coverage": "*",
+    "karma-junit-reporter": "*",
+    "karma-coverage": "*",
     "time-grunt": "^1.0.0"
   },
   "engines": {
@@ -39,6 +39,9 @@
   },
   "scripts": {
     "test": "grunt test",
-    "build":"grunt build"
+    "build": "grunt build"
+  },
+  "dependencies": {
+    "karma-chrome-launcher": "^0.2.2"
   }
 }
