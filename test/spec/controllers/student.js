@@ -109,6 +109,23 @@ describe('studentDetailsCtrl', function () {
         expect(getDataStudent._get).toHaveBeenCalled();
         expect(notAuthenticated._showErrorMsg).toHaveBeenCalled();
     });
+    
+    it('It shuould call the loadData method for Netowrk or http error ', function () {
+        var controller = createController();
+
+        scope.multiselectModelEnrollment = [{ 'id': '12342' }, { 'id': '12341' }, { 'id': '12340' }];
+        spyOn(notAuthenticated, '_showErrorMsg').and.returnValue('Some text');
+
+        scope.getStudentData();
+       
+        // Setup the data we wish to return for the .then function in the controller
+        deferred.reject();
+        // We have to call apply for this to work
+        scope.$apply();
+
+        expect(notAuthenticated._showErrorMsg).toHaveBeenCalled();
+
+    });
 
     it('It shuould return the courseArray in $scope.courseArr var', function () {
         var controller = createController();

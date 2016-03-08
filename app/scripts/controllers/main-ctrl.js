@@ -74,9 +74,9 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
 
             }
         };
-        $scope.blockUser = function (authResponse) {
-            console.log(authResponse);
-        };
+        // $scope.blockUser = function (authResponse) {
+        //     console.log(authResponse);
+        // };
 
         $scope.loadData = function () {
             validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token, $scope.urlDetails)
@@ -93,7 +93,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
                 }, function onError(errResponse) {
                     console.log("err Response ", errResponse);
                     noNetError._showNetErrorMsg();
-                    $scope.blockUser(errResponse);
+                    // $scope.blockUser(errResponse);
                 });
         };
         $scope.openForm = function () {

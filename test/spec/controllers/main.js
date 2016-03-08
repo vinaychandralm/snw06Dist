@@ -106,7 +106,7 @@ describe('Main Ctrl', function () {
         var controller = createController();
         scope.role = 'student';
         spyOn(noNetError, '_showNetErrorMsg').and.returnValue('Some text');
-        spyOn(scope, 'blockUser').and.returnValue('Some text');
+        // spyOn(scope, 'blockUser').and.returnValue('Some text');
         // Setup the data we wish to return for the .then function in the controller
         deferred.reject();
         // We have to call apply for this to work
@@ -114,13 +114,13 @@ describe('Main Ctrl', function () {
 
         expect(validateUrlData._get).toHaveBeenCalled();
         expect(noNetError._showErrorMsg).toBe(undefined);
-        expect(scope.blockUser).toHaveBeenCalled();
+        // expect(scope.blockUser).toHaveBeenCalled();
 
     });
 
     it('It shuould call Show Tile function with Student', function () {
         var controller = createController();
-        rootScope.role = routeParams.role = 'student'; 'student';
+        rootScope.role = routeParams.role = 'student';
         scope.showTiles("some Object");
 
         expect(scope.progressReport).toEqual(true);
@@ -146,6 +146,15 @@ describe('Main Ctrl', function () {
         expect(scope.courseCompletionReport).toEqual(true);
         expect(scope.studentActivityReport).toEqual(true);
         expect(scope.admindetail).toEqual('some Object');
+
+    });
+    
+    it('It shuould return rootScope.admindetail undefined', function () {
+        var controller = createController();
+        rootScope.role = routeParams.role = '';
+        scope.showTiles('');
+
+        expect(rootScope.admindetail).toEqual(undefined);
 
     });
 
@@ -179,6 +188,18 @@ describe('Main Ctrl', function () {
 
         rootScope.$apply();
         expect($location.path()).toBe('/teacher-form');
+
+
+    });
+    
+    it('It shuould return $location.path undefined value', function () {
+        var controller = createController();
+        rootScope.role = routeParams.role = '';
+
+        scope.openForm();
+
+        rootScope.$apply();
+        expect($location.path()).toBe('');
 
 
     });

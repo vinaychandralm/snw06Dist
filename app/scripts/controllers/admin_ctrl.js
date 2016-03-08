@@ -266,22 +266,22 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
         }
 
         // Success callback
-        var handleSuccess = function (data, status) {
-            $scope.details = data;
-        };
+        // var handleSuccess = function (data, status) {
+        //     $scope.details = data;
+        // };
 
-        // Error callback
-        var handleError = function (err, status) {
-            $scope.details = {};
-        };
+        // // Error callback
+        // var handleError = function (err, status) {
+        //     $scope.details = {};
+        // };
 
-        $scope.$watch('selectedDate', function () {
-            //console.log($scope.selectedDate);
-        }, true);
+        // $scope.$watch('selectedDate', function () {
+        //     //console.log($scope.selectedDate);
+        // }, true);
 
-        $scope.$watch('selectedDate', function () {
-             //console.log($scope.selectedDate);
-        }, true);
+        // $scope.$watch('selectedDate', function () {
+        //      //console.log($scope.selectedDate);
+        // }, true);
 
         $scope._multiselectModelAdminCourse_ = function(){
             $scope.schoolListIds = [];
