@@ -29,6 +29,8 @@
             'studentActivityReports.studentDetails',
             'teacherActivityReports.teacherDetails',
             'studentActivityReports.adminDetails',
+            'studentActivityReports.studentProgressReport',
+            'teacherActivityReports.teacherCourseComp',
             'studentActivityReportsAdmin.factories',
             'studentActivityReportscommomns.factories'
         ])
@@ -59,6 +61,14 @@
                 .when('/admin-form', {
                     templateUrl: 'views/admin-form.html',
                     controller: 'adminctrl'
+                })
+                .when('/progress-report-student', {
+                    templateUrl: 'views/progress-report-student.html',
+                    controller: 'studentProgressReportCtrl'
+                })
+                .when('/coursecompletion-report-teacher', {
+                    templateUrl: 'views/coursecompletion-report-teacher.html',
+                    controller: 'teacherCourseCompletionCtrl'
                 })
                 .otherwise({
                     redirectTo: '/'
