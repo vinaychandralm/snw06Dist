@@ -94,7 +94,7 @@ admModule.controller('courseCompletionAdmin', ['$scope', '$rootScope', '$locatio
                         noNetError._showNetErrorMsg();
                     });
             
-        ;}        
+        };        
 
         //Fetch and Set all data for dropdown list starting with school dropwon.
         $scope.loadData = function () {
@@ -110,13 +110,13 @@ admModule.controller('courseCompletionAdmin', ['$scope', '$rootScope', '$locatio
                     console.log(response.data)
                     $scope.setData(response.data);
                     $scope.getAllSchollDomainId(response.data);
-                    $scope.getnSetSchoolStudent($scope.allSchoolIdArrays,$scope.urlDetails)
+                    $scope.getnSetSchoolStudent($scope.allSchoolIdArrays,$scope.urlDetails);
                    
                 }, function onerror(response) {
                     noNetError._showNetErrorMsg();
                 });
 
-        }
+        };
 
         $scope.getAllSchollDomainId = function (dataresopnse) {
             console.log(dataresopnse.data.domains);
@@ -138,8 +138,8 @@ admModule.controller('courseCompletionAdmin', ['$scope', '$rootScope', '$locatio
         $scope.OnChangeSchools = function () {
             if ($scope.schoolListIds.length === 0) {
                 var tempArr = [];
-                $scope.setDataoFStuds(tempArr);
                 $scope.setDataoFSchoolStudsCourse(tempArr);
+                $scope.setDataoFStuds(tempArr);               
                 return;
             }
             
@@ -150,7 +150,7 @@ admModule.controller('courseCompletionAdmin', ['$scope', '$rootScope', '$locatio
                 $scope.setDataoFSchoolStudsCourse([]);
                 return;
             }
-            $scope.getnSetSchoolStudentCourse($scope.studentListIds, $scope.urlDetails)
+            $scope.getnSetSchoolStudentCourse($scope.studentListIds, $scope.urlDetails);
         };
 
         $scope.isInt = function (n) {
@@ -292,7 +292,10 @@ admModule.controller('courseCompletionAdmin', ['$scope', '$rootScope', '$locatio
             for (var i = 0; i < $scope.multiselectModelAdminCourse.length; i++) {
                 $scope.schoolListIds.push($scope.multiselectModelAdminCourse[i].id);
             }
-            $scope.OnChangeSchools();
+            // $scope.OnChangeSchools();
+             $timeout(function(){
+                 $scope.OnChangeSchools();
+            },1000)
             
         };
         

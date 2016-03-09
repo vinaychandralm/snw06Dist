@@ -95,7 +95,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
                         noNetError._showNetErrorMsg();
                     });
             
-        ;}        
+        };        
 
         //Fetch and Set all data for dropdown list starting with school dropwon.
         $scope.loadData = function () {
@@ -117,7 +117,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
                     noNetError._showNetErrorMsg();
                 });
 
-        }
+        };
 
         $scope.getAllSchollDomainId = function (dataresopnse) {
             console.log(dataresopnse.data.domains);
@@ -139,8 +139,8 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
         $scope.OnChangeSchools = function () {
             if ($scope.schoolListIds.length === 0) {
                 var tempArr = [];
-                $scope.setDataoFStuds(tempArr);
                 $scope.setDataoFSchoolStudsCourse(tempArr);
+                $scope.setDataoFStuds(tempArr);               
                 return;
             }
             
@@ -293,7 +293,10 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
             for (var i = 0; i < $scope.multiselectModelAdminCourse.length; i++) {
                 $scope.schoolListIds.push($scope.multiselectModelAdminCourse[i].id);
             }
-            $scope.OnChangeSchools();
+            // $scope.OnChangeSchools();
+             $timeout(function(){
+                 $scope.OnChangeSchools();
+            },1000)
             
         };
         
@@ -304,6 +307,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
                     $scope.studentListIds.push($scope.multiselectModelAdminStudent[i].id);
                 }
                 $scope.OnChangeStudent();
+                
             };
         
         $scope.$watch('multiselectModelAdminStudent',  $scope._multiselectModelAdminStudent_,true);
