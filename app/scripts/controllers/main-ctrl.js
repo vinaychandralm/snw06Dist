@@ -110,27 +110,52 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
 
         };
         
+
         
-        $scope.openProgressForm = function () {
+        // $scope.openProgressForm = function () {
             
-            //  if ($rootScope.role === 'admin') {
-            //     $location.path("/admin-form");
-            // } else if ($rootScope.role === 'teacher') {
-            //     $location.path("/teacher-form");
-            // }
-            // else 
-            if ($rootScope.role === 'student') {
-                $location.path("/progress-report-student");
-            }
+        //     //  if ($rootScope.role === 'admin') {
+        //     //     $location.path("/admin-form");
+        //     // } else if ($rootScope.role === 'teacher') {
+        //     //     $location.path("/teacher-form");
+        //     // }
+        //     // else 
+        //     if ($rootScope.role === 'student') {
+        //         $location.path("/progress-report-student");
+        //     }
             
-        };
-        $scope.openCourseCompletionForm=function(){
+        // };
+        // $scope.openCourseCompletionForm=function(){
             
-            if ($rootScope.role === 'teacher') {
+        //     if ($rootScope.role === 'teacher') {
+        //         $location.path("/coursecompletion-report-teacher");
+        //     }
+        // };
+        
+
+         $scope.openCourseCompletionForm = function () {
+            //changing body background color
+        
+            if ($rootScope.role === 'admin') {
+                $location.path("/course-completion-admin");
+            } else if ($rootScope.role === 'teacher') {
                 $location.path("/coursecompletion-report-teacher");
             }
+
         };
         
+         $scope.openProgressForm = function () {
+            //changing body background color
+        
+            if ($rootScope.role === 'admin') {
+                $location.path("/progress-report-admin");
+            } 
+            else if($rootScope.role === 'student') {
+                $location.path("/progress-report-student");
+            }
+
+        };
+
 
         $scope.go = function (path) {
             $location.path(path);

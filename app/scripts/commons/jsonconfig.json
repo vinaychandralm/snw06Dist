@@ -2,9 +2,11 @@
 
     "userSettingObjects": {
 
+
         "role": "teacher",
         "userid": "46239951",
-        "token": "~PDZwCAAAAAgY33H-GJiOyA.nT5H7DUcXuTR9hcu0c58BD",
+        "token": "~PDZwCAAAAAwvf2TYZAKl2B.SVvtJ6jY9WjAV9T5493ucB",
+       
         "userspace": "s1-06"
     },
     "servicesBaseUrl":  "https://devlearn.schoolimprovement.com/gage-service/service",

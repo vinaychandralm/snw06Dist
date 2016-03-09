@@ -31,20 +31,12 @@
             'studentActivityReports.adminDetails',
             'studentActivityReports.studentProgressReport',
             'teacherActivityReports.teacherCourseComp',
+            'progressReport.adminDetails',
+            'courseCompletionAdmin.adminDetails',
             'studentActivityReportsAdmin.factories',
             'studentActivityReportscommomns.factories'
         ])
         .config(function ($routeProvider) {
-            //  var routingInfo = routeInfoProvider._getRoutingInfo();
-
-            //     for (var i = 0; i < routingInfo.length; i++) {
-            //         $routeProvider.when(routingInfo[i].route, {
-            //             controller: routingInfo[i].controller,
-            //             templateUrl: routingInfo[i].templateUrl,
-            //             index: i
-            //         });
-            //     }
-    
             $routeProvider
                 .when('/', {
                     templateUrl: 'views/home.html',
@@ -69,10 +61,18 @@
                 .when('/coursecompletion-report-teacher', {
                     templateUrl: 'views/coursecompletion-report-teacher.html',
                     controller: 'teacherCourseCompletionCtrl'
+                  })
+                .when('/progress-report-admin', {
+                    templateUrl: 'views/progress-report-admin.html',
+                    controller: 'progressAdmin'
+                })
+                .when('/course-completion-admin', {
+                    templateUrl: 'views/course_completion_admin.html',
+                    controller: 'courseCompletionAdmin'
                 })
                 .otherwise({
                     redirectTo: '/'
-                });
+                })
 
         });
 
@@ -90,23 +90,5 @@
             console.log(dataerr )});
 
     }
-
-    // function fetchData() {
-    //     $.get("scripts/commons/jsonconfig.json", function (data) {
-    //         console.log("..................................................................................",data);
-    //         // alert( "Load was performed." );
-    //         window.configObj = data;
-    //         angular.bootstrap(document, ["studentActivityReports"]);
-    //     });
-
-    // }
-
-    // function bootstrapApplication() {
-    //     angular.element(document).ready(function () {
-    //         angular.bootstrap(document, ["studentActivityReports"]);
-    //     });
-    // }
-
-
 
 } ());

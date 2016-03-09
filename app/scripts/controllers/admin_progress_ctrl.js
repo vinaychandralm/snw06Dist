@@ -1,6 +1,6 @@
 'use strict';
-var admModule = angular.module('studentActivityReports.adminDetails', []);
-admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getSchoolData',
+var admModule = angular.module('progressReport.adminDetails', []);
+admModule.controller('progressAdmin', ['$scope', '$rootScope', '$location', 'getSchoolData',
     'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError',  'iFrameLoading', '$sce', '$timeout','showReport','GetDateAsString','GetEnrollIdAsString', function($scope, $rootScope, $location,
         getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse, notAuthenticated, noNetError,  iFrameLoading, $sce, $timeout,showReport,GetDateAsString,GetEnrollIdAsString) {
 
@@ -14,8 +14,8 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
             $scope.schoolNotSelected = false;
             $scope.srtDateNotSelected = false;
             $scope.endDateNotgreater = false;
-            $scope.minimumMinut = false;
-            $scope.excuedItem = false;
+            $scope.finalGrade = true;
+            $scope.pageBreak = true;
             $scope.inputAdmin = 0;
             $scope.schoolListIds = [];
             $scope.multiselectModelAdminSchool = [];
@@ -36,7 +36,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
             $scope.isShowReportView = false;
 
             var currDate = new Date();
-            $scope.startDateStartActivity = currDate.setDate(currDate.getDate() - 7);
+            $scope.startDateStartActivity = currDate.setDate(currDate.getDate() - 365);
             $scope.maxDateStartActivity = new Date().setDate(new Date().getDate() - 1);
             $scope.startDateEndActivity = new Date();
 
