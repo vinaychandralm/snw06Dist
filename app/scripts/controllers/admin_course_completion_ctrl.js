@@ -82,6 +82,7 @@ admModule.controller('courseCompletionAdmin', ['$scope', '$rootScope', '$locatio
                         if (res.data.messageType === "ERROR") {
                             notAuthenticated._showErrorMsg();
                             var tempArr = [];
+                            $scope.setDataoFStuds(tempArr);
                             $scope.setDataoFSchoolStudsCourse(tempArr);
                             return;
                         }

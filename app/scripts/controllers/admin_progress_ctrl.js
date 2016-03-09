@@ -83,6 +83,7 @@ admModule.controller('progressAdmin', ['$scope', '$rootScope', '$location', 'get
                         if (res.data.messageType === "ERROR") {
                             notAuthenticated._showErrorMsg();
                             var tempArr = [];
+                            $scope.setDataoFStuds(tempArr);
                             $scope.setDataoFSchoolStudsCourse(tempArr);
                             return;
                         }

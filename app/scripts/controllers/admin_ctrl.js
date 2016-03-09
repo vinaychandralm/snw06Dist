@@ -83,6 +83,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
                         if (res.data.messageType === "ERROR") {
                             notAuthenticated._showErrorMsg();
                             var tempArr = [];
+                            $scope.setDataoFStuds(tempArr);
                             $scope.setDataoFSchoolStudsCourse(tempArr);
                             return;
                         }
