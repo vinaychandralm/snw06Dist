@@ -35,15 +35,15 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
     
             //   TODO : Remove blow 6 line comments if not using GRUNT-SERVE.
 
-        //  $routeParams.role = $rootScope.winConfigObj.userSettingObjects.role;
-        //  $routeParams.userid = $rootScope.winConfigObj.userSettingObjects.userid;
-        //  $routeParams.token = $rootScope.winConfigObj.userSettingObjects.token;
-        //  $routeParams.userspace = $rootScope.winConfigObj.userSettingObjects.userspace;
+         $routeParams.role = $rootScope.winConfigObj.userSettingObjects.role;
+         $routeParams.userid = $rootScope.winConfigObj.userSettingObjects.userid;
+         $routeParams.token = $rootScope.winConfigObj.userSettingObjects.token;
+         $routeParams.userspace = $rootScope.winConfigObj.userSettingObjects.userspace;
         
-        //  $rootScope.token = $routeParams.token;
-        //  $rootScope.userid = $routeParams.userid;
-        //  $rootScope.role = $routeParams.role;
-        //  $rootScope.userspace = $rootScope.winConfigObj.userSettingObjects.userspace;
+         $rootScope.token = $routeParams.token;
+         $rootScope.userid = $routeParams.userid;
+         $rootScope.role = $routeParams.role;
+         $rootScope.userspace = $rootScope.winConfigObj.userSettingObjects.userspace;
 
        
 
@@ -101,6 +101,34 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
         
             if ($rootScope.role === 'admin') {
                 $location.path("/admin-form");
+            } else if ($rootScope.role === 'teacher') {
+                $location.path("/teacher-form");
+            }
+            else if ($rootScope.role === 'student') {
+                $location.path("/student-activity-reports");
+            }
+
+        };
+        
+         $scope.openForm1 = function () {
+            //changing body background color
+        
+            if ($rootScope.role === 'admin') {
+                $location.path("/course-completion-admin");
+            } else if ($rootScope.role === 'teacher') {
+                $location.path("/teacher-form");
+            }
+            else if ($rootScope.role === 'student') {
+                $location.path("/student-activity-reports");
+            }
+
+        };
+        
+         $scope.openForm2 = function () {
+            //changing body background color
+        
+            if ($rootScope.role === 'admin') {
+                $location.path("/progress-report-admin");
             } else if ($rootScope.role === 'teacher') {
                 $location.path("/teacher-form");
             }

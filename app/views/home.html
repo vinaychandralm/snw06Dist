@@ -65,9 +65,9 @@
                         
                         <div ng-class="{'showreportLink': !showoverlay, 'hidereportLink' : showoverlay}">
                             <h4>REPORTS</h4>
-                            <a href="" class="report-link disabledCls" ng-show='progressReport'>Student Progress Report</a>
+                            <a href="" class="report-link" ng-click="openForm2()" ng-show='progressReport'>Student Progress Report</a>
 
-                            <a href="" class="report-link disabledCls" ng-show='courseCompletionReport'>Course Completion Report</a>
+                            <a href="" class="report-link" ng-click="openForm1()" ng-show='courseCompletionReport'>Course Completion Report</a>
 
                             <a href="" class="report-link" ng-click="openForm()" ng-show='studentActivityReport'>Student Activity Report</a>
                             
