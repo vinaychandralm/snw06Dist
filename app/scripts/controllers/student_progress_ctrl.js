@@ -112,14 +112,19 @@ studProgReportModule.controller('studentProgressReportCtrl', ['$scope', '$rootSc
                 enrollStr = enrollIdsArray.join(',');
                 var excuseItemStr = $scope.includeGrade ? '1' : '0';
 
-                $scope.newReportUrl = urlDetailObj.reportServiceUrlStudent + '/studentactivityreport?startdate=' + startDateStr + '&enddate=' + endDateStr
-                + '&userid=' + $rootScope.userid + '&courseids=' + courseStr + '&enrollmentstatus=' + enrollStr + '&excuseditem='
+                // $scope.newReportUrl = urlDetailObj.reportServiceUrlStudent + '/studentactivityreport?startdate=' + startDateStr + '&enddate=' + endDateStr
+                // + '&userid=' + $rootScope.userid + '&courseids=' + courseStr + '&enrollmentstatus=' + enrollStr + '&excuseditem='
+                // + excuseItemStr + '&userspace=' + $rootScope.userspace + '&token=' + $rootScope.token;
+                
+                
+                $scope.newReportUrl = 'http://192.168.2.58:8080/reports/progressreport?startdate=' + startDateStr + '&enddate=' + endDateStr
+                + '&userid=' + $rootScope.userid + '&courseids=' + courseStr + '&enrollmentstatus=' + enrollStr + '&finalgrades='
                 + excuseItemStr + '&userspace=' + $rootScope.userspace + '&token=' + $rootScope.token;
 
                 // $scope.newReportUrl = 'http://192.168.2.58:8080/reports/studentactivityreport?startdate=01/02/2014&enddate=01/18/2019&userid=23696742&courseids=23598050,23598525&enrollmentstatus=1,10&excuseditem=0&userspace=sdale-innovation&token=~FbT1BAAAAAgCqkx2orhMPA.ubJwpnTsLvN3eKwu5jvOVB';
 
                  //call service to load url in Iframe
-                //  showReport.loadOnIFrame($scope);
+                 showReport.loadOnIFrame($scope);
                
             }
         };

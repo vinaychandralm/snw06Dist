@@ -4,14 +4,14 @@ describe('Admin Ctrl', function () {
     var scope, createController, rootScope;
     var $q, noNetError, notAuthenticated, noNetError;
     var deferred, getSchoolData, getSchoolStudent, getSchoolStudentCourse;
-    var getEnrollmentStatus, $location, showReport;
+    var getEnrollmentStatus, $location, showReport,$timeout;
     //    
     //    
     //    var getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse,routeParams;
     
     beforeEach(module('studentActivityReports'));
     beforeEach(module('studentActivityReports.adminDetails'));
-    beforeEach(inject(function ($rootScope, $controller, _$location_, _notAuthenticated_, _noNetError_, _getSchoolData_, _$q_, _getEnrollmentStatus_, _getSchoolStudent_, _getSchoolStudentCourse_, _showReport_) {
+    beforeEach(inject(function ($rootScope, $controller, _$location_,_$timeout_, _notAuthenticated_, _noNetError_, _getSchoolData_, _$q_, _getEnrollmentStatus_, _getSchoolStudent_, _getSchoolStudentCourse_, _showReport_) {
         //        $location = _$location_;
         rootScope = $rootScope;
         scope = $rootScope.$new();
@@ -24,6 +24,7 @@ describe('Admin Ctrl', function () {
         $q = _$q_;
         $location = _$location_;
         showReport = _showReport_;
+        $timeout=_$timeout_;
         // sce = _$sce_;
         // routeParams = _$routeParams_;
         rootScope.admindetail = { data: { user: { domainid: "some id" } } };
@@ -58,6 +59,9 @@ describe('Admin Ctrl', function () {
         spyOn(getSchoolStudentCourse, '_get').and.returnValue(deferred.promise);
 
         scope.$watch = jasmine.createSpy('$watch');
+
+        jasmine.createSpy("$timeout");
+        
         
         //        spyOn(getDataStudentTeacher,'_get').and.returnValue(deferred.promise);
         
@@ -72,7 +76,8 @@ describe('Admin Ctrl', function () {
                 getSchoolStudent: getSchoolStudent,
                 getSchoolStudentCourse: getSchoolStudentCourse,
                 showReport: showReport,
-                $location: $location
+                $location: $location,
+                $timeout:$timeout
                 // $sce: sce,
                 // getSchoolData: getSchoolData,
                 // $routeParams: routeParams
@@ -540,11 +545,17 @@ describe('Admin Ctrl', function () {
 
         it('should return schoolListIds with the id values of scope.multiselectModelAdminCourse object', function () {
             var controller = createController();
+
             scope.schoolListIds = [];
             scope.multiselectModelAdminCourse = [{ id: 1 }, { id: 2 }, { id: 3 }];
             spyOn(scope, 'OnChangeSchools').and.returnValue('some value');
             scope._multiselectModelAdminCourse_();
             expect(scope.schoolListIds).toEqual([1, 2, 3]);
+            $timeout(function () {
+                scope.OnChangeSchools();
+            }, 900);
+            expect(scope.OnChangeSchools).not.toHaveBeenCalled();
+            $timeout.flush(1000);
             expect(scope.OnChangeSchools).toHaveBeenCalled();
         });
 

@@ -23,6 +23,9 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
             $rootScope.loadingText = true;
             $rootScope.netErr = false;
             $rootScope.authenticationErr = false;
+            // $rootScope.progressReportAdminUpdated = false;
+            // $rootScope.courseCompletionReportAdminUpdated = false;
+            // $rootScope.studentActivityReportAdminUpdated = false;
 
             $rootScope.token = $routeParams.token;
             //console.log($routeParams.token);
@@ -35,17 +38,17 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
     
             //   TODO : Remove blow 6 line comments if not using GRUNT-SERVE.
 
-        //  $routeParams.role = $rootScope.winConfigObj.userSettingObjects.role;
-        //  $routeParams.userid = $rootScope.winConfigObj.userSettingObjects.userid;
-        //  $routeParams.token = $rootScope.winConfigObj.userSettingObjects.token;
-        //  $routeParams.userspace = $rootScope.winConfigObj.userSettingObjects.userspace;
-        
-        //  $rootScope.token = $routeParams.token;
-        //  $rootScope.userid = $routeParams.userid;
-        //  $rootScope.role = $routeParams.role;
-        //  $rootScope.userspace = $rootScope.winConfigObj.userSettingObjects.userspace;
+            $routeParams.role = $rootScope.winConfigObj.userSettingObjects.role;
+            $routeParams.userid = $rootScope.winConfigObj.userSettingObjects.userid;
+            $routeParams.token = $rootScope.winConfigObj.userSettingObjects.token;
+            $routeParams.userspace = $rootScope.winConfigObj.userSettingObjects.userspace;
 
-       
+            $rootScope.token = $routeParams.token;
+            $rootScope.userid = $routeParams.userid;
+            $rootScope.role = $routeParams.role;
+            $rootScope.userspace = $rootScope.winConfigObj.userSettingObjects.userspace;
+
+
 
             $scope.urlDetails = $rootScope.winConfigObj;
             console.log($scope.urlDetails);
@@ -109,8 +112,8 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
             }
 
         };
-        
-         $scope.openCourseCompletionForm = function () {
+
+        $scope.openCourseCompletionForm = function () {
             //changing body background color
         
             if ($rootScope.role === 'admin') {
@@ -120,14 +123,14 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
             }
 
         };
-        
-         $scope.openProgressForm = function () {
+
+        $scope.openProgressForm = function () {
             //changing body background color
         
             if ($rootScope.role === 'admin') {
                 $location.path("/progress-report-admin");
-            } 
-            else if($rootScope.role === 'student') {
+            }
+            else if ($rootScope.role === 'student') {
                 $location.path("/progress-report-student");
             }
 

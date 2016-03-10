@@ -140,7 +140,8 @@ admModule.controller('progressAdmin', ['$scope', '$rootScope', '$location', 'get
             if ($scope.schoolListIds.length === 0) {
                 var tempArr = [];
                 $scope.setDataoFSchoolStudsCourse(tempArr);
-                $scope.setDataoFStuds(tempArr);              
+                $scope.setDataoFStuds(tempArr);
+                $timeout.cancel($scope.promise);              
                 return;
             }
             
@@ -294,9 +295,12 @@ admModule.controller('progressAdmin', ['$scope', '$rootScope', '$location', 'get
                 $scope.schoolListIds.push($scope.multiselectModelAdminCourse[i].id);
             }
             // $scope.OnChangeSchools();
-            $timeout(function(){
+            // $timeout(function(){
+            //      $scope.OnChangeSchools();
+            // },1000)
+            $scope.promise= $timeout(function(){
                  $scope.OnChangeSchools();
-            },1000)
+            },1000);
             
         };
         
