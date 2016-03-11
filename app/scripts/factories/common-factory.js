@@ -21,8 +21,7 @@ factoryModule.factory('showReport',['$rootScope','$sce','iFrameLoading','$timeou
                     $rootScope.$on('iframeloading.done', function (a, b) {
                         $timeout(function () {
                             $rootScope.showoverlayOniFrameLoading = false;
-                            alert();
-                        }, 4000);
+                        }, 18000);
                         __$scope.$apply();
                     });
 

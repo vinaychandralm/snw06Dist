@@ -175,13 +175,16 @@ admModule.controller('progressAdmin', ['$scope', '$rootScope', '$location', 'get
                 var enrollIdsArray = GetEnrollIdAsString.getEnrollIdStr($scope);
                 console.log('enrollIdsArray  ',enrollIdsArray);
                 var enrollStr = enrollIdsArray.join(',');
-                var excuseItemStr = $scope.excuedItem ? '1' : '0';
+                var finalGrade = $scope.finalGrade ? '1' : '0';
+                var pageBreak = $scope.pageBreak ? '1' : '0';
 
                 // $scope.newReportUrl = urlDetailObj.reportServiceUrlStudent + '/studentactivityreportforteacher?startdate=' + startDateStr + '&enddate=' + endDateStr
                 // + '&userid=' + $rootScope.userid + '&courseids=' + courseStr + '&studentids=' + courseStudentIds + '&minimumminutes=' + $scope.minimumMinut + '&enrollmentstatus=' + enrollStr + '&excuseditem='
                 // + excuseItemStr + '&userspace=' + $rootScope.userspace + '&token=' + $rootScope.token;
                 // console.log("reportUrl : ", $scope.newReportUrl);
-                $scope.newReportUrl=urlDetailObj.reportServiceUrlStudent+ '/studentactivityreportforadmin?startdate='+startDateStr+'&enddate='+endDateStr+'&userid='+$rootScope.userid+'&username='+$rootScope.admindetail.data.user.firstname+' '+$rootScope.admindetail.data.user.lastname+'&domainids='+schoolIdStr+'&studentids='+studentIDStr+'&courseids='+courseIDStr+'&minimumminutes='+$scope.inputAdmin+'&enrollmentstatus='+enrollStr+'&excuseditem='+excuseItemStr+'&userspace='+$rootScope.userspace+'&token='+$rootScope.token;
+                // $scope.newReportUrl=urlDetailObj.reportServiceUrlStudent+ '/studentactivityreportforadmin?startdate='+startDateStr+'&enddate='+endDateStr+'&userid='+$rootScope.userid+'&username='+$rootScope.admindetail.data.user.firstname+' '+$rootScope.admindetail.data.user.lastname+'&domainids='+schoolIdStr+'&studentids='+studentIDStr+'&courseids='+courseIDStr+'&minimumminutes='+$scope.inputAdmin+'&enrollmentstatus='+enrollStr+'&excuseditem='+excuseItemStr+'&userspace='+$rootScope.userspace+'&token='+$rootScope.token;
+                
+                $scope.newReportUrl='http://192.168.2.58:8080/reports/progressreportadmin?startdate='+startDateStr+'&enddate='+endDateStr+'&userid='+$rootScope.userid+'&username='+$rootScope.admindetail.data.user.firstname+' '+$rootScope.admindetail.data.user.lastname+'&domainids='+schoolIdStr+'&studentids='+studentIDStr+'&courseids='+courseIDStr+'&enrollmentstatus='+enrollStr+'&finalgrades='+finalGrade+'&pagebreak='+pageBreak+'&userspace='+$rootScope.userspace+'&token='+$rootScope.token;
                 
                //call service to load url in Iframe 
                 showReport.loadOnIFrame($scope);
