@@ -174,13 +174,16 @@ admModule.controller('courseCompletionAdmin', ['$scope', '$rootScope', '$locatio
                 var enrollIdsArray = GetEnrollIdAsString.getEnrollIdStr($scope);
                 console.log('enrollIdsArray  ',enrollIdsArray);
                 var enrollStr = enrollIdsArray.join(',');
-                var excuseItemStr = $scope.excuedItem ? '1' : '0';
+                var finalGrade = $scope.finalGrade ? '1' : '0';
 
                 // $scope.newReportUrl = urlDetailObj.reportServiceUrlStudent + '/studentactivityreportforteacher?startdate=' + startDateStr + '&enddate=' + endDateStr
                 // + '&userid=' + $rootScope.userid + '&courseids=' + courseStr + '&studentids=' + courseStudentIds + '&minimumminutes=' + $scope.minimumMinut + '&enrollmentstatus=' + enrollStr + '&excuseditem='
                 // + excuseItemStr + '&userspace=' + $rootScope.userspace + '&token=' + $rootScope.token;
                 // console.log("reportUrl : ", $scope.newReportUrl);
-                $scope.newReportUrl=urlDetailObj.reportServiceUrlStudent+ '/studentactivityreportforadmin?startdate='+startDateStr+'&enddate='+endDateStr+'&userid='+$rootScope.userid+'&username='+$rootScope.admindetail.data.user.firstname+' '+$rootScope.admindetail.data.user.lastname+'&domainids='+schoolIdStr+'&studentids='+studentIDStr+'&courseids='+courseIDStr+'&minimumminutes='+$scope.inputAdmin+'&enrollmentstatus='+enrollStr+'&excuseditem='+excuseItemStr+'&userspace='+$rootScope.userspace+'&token='+$rootScope.token;
+                // $scope.newReportUrl=urlDetailObj.reportServiceUrlStudent+ '/studentactivityreportforadmin?startdate='+startDateStr+'&enddate='+endDateStr+'&userid='+$rootScope.userid+'&username='+$rootScope.admindetail.data.user.firstname+' '+$rootScope.admindetail.data.user.lastname+'&domainids='+schoolIdStr+'&studentids='+studentIDStr+'&courseids='+courseIDStr+'&minimumminutes='+$scope.inputAdmin+'&enrollmentstatus='+enrollStr+'&excuseditem='+excuseItemStr+'&userspace='+$rootScope.userspace+'&token='+$rootScope.token;
+                
+                
+                 $scope.newReportUrl=urlDetailObj.reportServiceUrlStudent+ '/coursecompletionadmin?startdate='+startDateStr+'&enddate='+endDateStr+'&userid='+$rootScope.userid+'&domainids='+schoolIdStr+'&studentids='+studentIDStr+'&courseids='+courseIDStr+'&enrollmentstatus='+enrollStr+'&finalgrades='+finalGrade+'&userspace='+$rootScope.userspace+'&token='+$rootScope.token;
                 
                //call service to load url in Iframe 
                 showReport.loadOnIFrame($scope);

@@ -26,7 +26,7 @@ teacherCourseCompletionModule.controller('teacherCourseCompletionCtrl', ['$scope
             $scope.iframeReportUrl = null;
             $scope.oldReportUrl = null;
             $scope.newReportUrl = null;
-            $scope.includeGrade =true;
+            $scope.finalGarade =true;
 
 
             $scope.multiselectModel = [];
@@ -160,7 +160,7 @@ teacherCourseCompletionModule.controller('teacherCourseCompletionCtrl', ['$scope
                 // + finalGrade + '&enrollmentstatus=' + enrollStr +  '&userspace=' + $rootScope.userspace + '&token=' + $rootScope.token;
                 // console.log("reportUrl : ", $scope.newReportUrl);
                 
-                $scope.newReportUrl = 'http://192.168.2.58:8080/reports/coursecompletion?startdate=' + startDateStr + '&enddate=' + endDateStr
+                $scope.newReportUrl = urlDetailObj.reportServiceUrlStudent + '/coursecompletion?startdate=' + startDateStr + '&enddate=' + endDateStr
                 + '&userid=' + $rootScope.userid + '&courseids=' + courseStr + '&studentids=' + courseStudentIds +'&finalgrades='
                 + finalGrade + '&enrollmentstatus=' + enrollStr +  '&userspace=' + $rootScope.userspace + '&token=' + $rootScope.token;
                 console.log("reportUrl : ", $scope.newReportUrl);

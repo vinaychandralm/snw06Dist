@@ -117,7 +117,7 @@ studProgReportModule.controller('studentProgressReportCtrl', ['$scope', '$rootSc
                 // + excuseItemStr + '&userspace=' + $rootScope.userspace + '&token=' + $rootScope.token;
                 
                 
-                $scope.newReportUrl = 'http://192.168.2.58:8080/reports/progressreport?startdate=' + startDateStr + '&enddate=' + endDateStr
+                $scope.newReportUrl = urlDetailObj.reportServiceUrlStudent + '/progressreport?startdate=' + startDateStr + '&enddate=' + endDateStr
                 + '&userid=' + $rootScope.userid + '&courseids=' + courseStr + '&enrollmentstatus=' + enrollStr + '&finalgrades='
                 + excuseItemStr + '&userspace=' + $rootScope.userspace + '&token=' + $rootScope.token;
 
