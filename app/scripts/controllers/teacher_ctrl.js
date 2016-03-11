@@ -160,6 +160,7 @@ sarModule.controller('teacherDetailsCtrl', ['$scope', '$rootScope', '$location',
                 + excuseItemStr + '&userspace=' + $rootScope.userspace + '&token=' + $rootScope.token;
                 console.log("reportUrl : ", $scope.newReportUrl);
                 
+                
                 //call service to load url in Iframe
                 showReport.loadOnIFrame($scope);
             }

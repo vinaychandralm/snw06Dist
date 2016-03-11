@@ -153,11 +153,16 @@ teacherCourseCompletionModule.controller('teacherCourseCompletionCtrl', ['$scope
                 var enrollIdsArray = GetEnrollIdAsString.getEnrollIdStr($scope);
                 console.log('enrollIdsArray ',enrollIdsArray);
                 var enrollStr = enrollIdsArray.join(',');
-                var excuseItemStr = $scope.includeGrade ? '1' : '0';
+                var finalGrade = $scope.finalGarade ? '1' : '0';
 
-                $scope.newReportUrl = urlDetailObj.reportServiceUrlStudent + '/studentactivityreportforteacher?startdate=' + startDateStr + '&enddate=' + endDateStr
-                + '&userid=' + $rootScope.userid + '&courseids=' + courseStr + '&studentids=' + courseStudentIds + '&enrollmentstatus=' + enrollStr + '&excuseditem='
-                + excuseItemStr + '&userspace=' + $rootScope.userspace + '&token=' + $rootScope.token;
+                // $scope.newReportUrl = urlDetailObj.reportServiceUrlStudent + '/studentactivityreportforteacher?startdate=' + startDateStr + '&enddate=' + endDateStr
+                // + '&userid=' + $rootScope.userid + '&courseids=' + courseStr + '&studentids=' + courseStudentIds +'&finalgrades='
+                // + finalGrade + '&enrollmentstatus=' + enrollStr +  '&userspace=' + $rootScope.userspace + '&token=' + $rootScope.token;
+                // console.log("reportUrl : ", $scope.newReportUrl);
+                
+                $scope.newReportUrl = 'http://192.168.2.58:8080/reports/coursecompletion?startdate=' + startDateStr + '&enddate=' + endDateStr
+                + '&userid=' + $rootScope.userid + '&courseids=' + courseStr + '&studentids=' + courseStudentIds +'&finalgrades='
+                + finalGrade + '&enrollmentstatus=' + enrollStr +  '&userspace=' + $rootScope.userspace + '&token=' + $rootScope.token;
                 console.log("reportUrl : ", $scope.newReportUrl);
                 
                 //call service to load url in Iframe
