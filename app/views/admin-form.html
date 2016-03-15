@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-md-6 select-drop">
                     <multiselect ng-model="multiselectModelAdminStudent" options="schoolStuds.title for schoolStuds in schoolStudentList" data-multiple="true"
-                    data-checkall="All Students" >
+                    data-checkall="All Students">
                     </multiselect>
                     <span class="field-alert" ng-show='studentNotSelected'>please select atleast one student.</span>
                 </div>
@@ -124,7 +124,10 @@
                 </div>
             </div>
         </div>
-        <div class="row" ng-class="{'displaynonecls hideAnimation': !isShowReportView, 'showAnimation displayCls' : isShowReportView}">
+    
+    </div>
+</div>
+    <div class="row frameContainerDiv" ng-class="{'displaynonecls hideAnimation': !isShowReportView, 'showAnimation displayCls' : isShowReportView}">
             <div class="col-md-12">
                 <p class="search displayCls" ng-click="searchAgain()">Search Again
                     <a href="javascript:void(0)" class="again"><img src="images/arrow-down.png" alt=""></a>
@@ -132,18 +135,10 @@
             </div>
             <div class="col-md-12">
                 <div id='famerOverLay' class="overLayFrameDiv overlayDiv" ng-show='showoverlayOniFrameLoading'>
-                         <div>
-                            <div class ="lodaingImageDiv">   <img src="images/loading.gif" /> </div>
-                        </div>
+                    <div>
+                        <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
+                    </div>
                 </div>
                 <iframe class="frame" ng-src={{iframeReportUrl}}> </iframe>
             </div>
         </div>
-
-        <!--
-            <div class="row iframe-row displayCls" ng-class="{'displaynonecls hideAnimation': !isShowReportView, 'showAnimation displayCls' : isShowReportView}">
-
-            </div>
--->
-    </div>
-</div>

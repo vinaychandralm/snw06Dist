@@ -124,7 +124,7 @@ body{
 	padding:0px;
 	}	
 .student-form{
-	padding-top:43px;
+	padding-top:10px;
 	}	
 .student-form p{
 	margin:0;
@@ -197,6 +197,11 @@ body{
     width: 100%;
     border: 0px solid #ccc;
     
+}
+.search {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
 }
 .student-form .search a{
 	margin-left:3px;
@@ -294,7 +299,10 @@ body{
     color: #866f9e;
     margin: 10px 0 5px 0;
 }
-	
+
+.frameContainerDiv{
+    padding: 0 20px;
+}
 @media only screen and (max-width: 1100px) {
 	.header .logo{
 		width:90px;

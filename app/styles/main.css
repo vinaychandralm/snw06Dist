@@ -139,7 +139,7 @@ multiselect .btn-group ul {
 }
 .overLayFrameDiv{
     height: 100%;
-    width: 100%;
+    width: 98%;
     background-color: rgba(0,0,0,0.3);
     position: absolute;
     z-index: 1000;

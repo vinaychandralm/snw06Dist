@@ -1,8 +1,11 @@
 'use strict';
 var admModule = angular.module('studentActivityReports.adminDetails', []);
 admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getSchoolData',
-    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError', 'iFrameLoading', '$sce', '$timeout', 'showReport', 'GetDateAsString', 'GetEnrollIdAsString', function ($scope, $rootScope, $location,
-        getSchoolData, getSchoolStudent, getEnrollmentStatus, getSchoolStudentCourse, notAuthenticated, noNetError, iFrameLoading, $sce, $timeout, showReport, GetDateAsString, GetEnrollIdAsString) {
+    'getSchoolStudent', 'getEnrollmentStatus', 'getSchoolStudentCourse', 'notAuthenticated', 'noNetError', 'iFrameLoading',
+     '$sce', '$timeout', 'showReport', 'GetDateAsString', 'GetEnrollIdAsString',
+     function ($scope, $rootScope, $location,getSchoolData, getSchoolStudent, getEnrollmentStatus, 
+     getSchoolStudentCourse, notAuthenticated, noNetError, iFrameLoading, $sce, $timeout, showReport, GetDateAsString, 
+     GetEnrollIdAsString) {
 
         $scope.initValues = function () {
 
@@ -253,6 +256,7 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
                 $scope.minimumMinut = false;
             }
 
+            
             //Calling method to launch the course.
             $scope.showAdminReport(isvalidData);
         };

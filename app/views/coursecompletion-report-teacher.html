@@ -1,136 +1,119 @@
- <div class="header">
+<div class="header">
     <div class="logo-row">
-    	<img src="images/logo.jpg" class="logo" alt="" />
+        <img src="images/logo.jpg" class="logo" alt="" />
     </div>
-    <div class="heading-block" >
-    	<h2 class="heading centered">Student Course Completion Report for Teachers</h2>
+    <div class="heading-block">
+        <h2 class="heading centered">Student Course Completion Report for Teachers</h2>
     </div>
-     <div class="link-row">
-    	<a href="" class="back-link" ng-click="backTeacher()">Back to All Reports</a>
+    <div class="link-row">
+        <a href="" class="back-link" ng-click="backTeacher()">Back to All Reports</a>
     </div>
     <div class="clear"></div>
-  </div>
-  
-  	<div class="container">
-    	<div class="col-md-12 student-form">
-        	<div class="collapse-row"  ng-class="{'displaynonecls hideAnimation': isShowReportView, 'showAnimation displayCls' : !isShowReportView}">
-                <div class="row form-group">
-                    <div class="col-md-2">
-                        <p>Course(s):</p>
-                    </div>
-                    <div class="col-md-6 select-drop">
-                                           <multiselect ng-model="multiselectModel" options="c.title for c in courseArr" data-multiple="true" data-checkall="All Courses">
-                        </multiselect>
-<span class="field-alert" ng-show='courseNotSelected'>please select atleast one course.</span>
-                         
-                    </div>
+</div>
+
+<div class="container">
+    <div class="col-md-12 student-form">
+        <div class="collapse-row" ng-class="{'displaynonecls hideAnimation': isShowReportView, 'showAnimation displayCls' : !isShowReportView}">
+            <div class="row form-group">
+                <div class="col-md-2">
+                    <p>Course(s):</p>
                 </div>
-                <div class="row form-group">
-                    <div class="col-md-2">
-                        <p>Student(s)</p>
-                    </div>
-                    <div class="col-md-6 select-drop">
-    
-                        
-                        
-                        <multiselect ng-model="multiselectModel2" options="c.title for c in studentArr" data-multiple="true" data-checkall="All Students">
-                </multiselect>
-                <span class="field-alert" ng-show='studentNotSelected'>please select atleast one student.</span>
-                    </div>
+                <div class="col-md-6 select-drop">
+                    <multiselect ng-model="multiselectModel" options="c.title for c in courseArr" data-multiple="true" data-checkall="All Courses">
+                    </multiselect>
+                    <span class="field-alert" ng-show='courseNotSelected'>please select atleast one course.</span>
+
                 </div>
-                <div class="row form-group">
-                    <div class="col-md-2">
-                        <p>Enrollment Status:</p>
-                    </div>
-                    <div class="col-md-6 select-drop">
-                        <multiselect ng-model="multiselectModelEroll" options="c.name for c in enrollmentArr" data-multiple="true" data-checkall="All">
-                </multiselect>
-                <span class="field-alert" ng-show='statusNotSelected'>please select atleast one status.</span>
-                         
-                    </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-2">
+                    <p>Student(s)</p>
                 </div>
-                <div class="row form-group">
-                    <div class="col-md-2">
-                        <p>Enrollment Start Date::</p>
-                    </div>
-                    <div class="col-md-3">
-                        <div id="datepicker" class="input-group date">
-                           <!-- <input class="form-control" type="text"  />
+                <div class="col-md-6 select-drop">
+
+
+
+                    <multiselect ng-model="multiselectModel2" options="c.title for c in studentArr" data-multiple="true" data-checkall="All Students">
+                    </multiselect>
+                    <span class="field-alert" ng-show='studentNotSelected'>please select atleast one student.</span>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-2">
+                    <p>Enrollment Status:</p>
+                </div>
+                <div class="col-md-6 select-drop">
+                    <multiselect ng-model="multiselectModelEroll" options="c.name for c in enrollmentArr" data-multiple="true" data-checkall="All">
+                    </multiselect>
+                    <span class="field-alert" ng-show='statusNotSelected'>please select atleast one status.</span>
+
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-2">
+                    <p>Enrollment Start Date::</p>
+                </div>
+                <div class="col-md-3">
+                    <div id="datepicker" class="input-group date">
+                        <!-- <input class="form-control" type="text"  />
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>-->
-                            
-                            
-                             <div id="datepicker" class="input-group date">
-                    <input type="text" class="form-control cal-icon" ng-model="startDateStartActivity" data-max-date={{maxDateStartActivity}} name="date" bs-datepicker data-date-format="MM-dd-yyyy">
+
+
+                        <div id="datepicker" class="input-group date">
+                            <input type="text" class="form-control cal-icon" ng-model="startDateStartActivity" data-max-date={{maxDateStartActivity}}
+                            name="date" bs-datepicker data-date-format="MM-dd-yyyy">
+                        </div>
+                        <span class="field-alert" ng-show='srtDateNotSelected'>Please select activity strat date.</span>
+                    </div>
                 </div>
-                <span class="field-alert" ng-show='srtDateNotSelected'>Please select activity strat date.</span>
             </div>
-                        </div> 
-                    </div>
-                
-                <div class="row form-group">
-                    <div class="col-md-2">
-                        <p>Enrollment End Date:</p>
-                    </div>
-                    <div class="col-md-3">
-                        <div id="datepicker2" class="input-group date">
-                    <input type="text" class="form-control cal-icon" ng-model="startDateEndActivity" name="date" bs-datepicker data-date-format="MM-dd-yyyy">
-                    <span class=""></span>
+
+            <div class="row form-group">
+                <div class="col-md-2">
+                    <p>Enrollment End Date:</p>
                 </div>
-                <span class="field-alert" ng-show='endDateNotgreater'>please select activity end date after start date.</span>
+                <div class="col-md-3">
+                    <div id="datepicker2" class="input-group date">
+                        <input type="text" class="form-control cal-icon" ng-model="startDateEndActivity" name="date" bs-datepicker data-date-format="MM-dd-yyyy">
+                        <span class=""></span>
                     </div>
+                    <span class="field-alert" ng-show='endDateNotgreater'>please select activity end date after start date.</span>
                 </div>
-                <!--<div class="row form-group">
-            	<div class="col-md-2">
-                	<p>Minimum number of minutes in activity</p>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-2">
+                    <p>Include Final Grades?</p>
                 </div>
+                <div class="col-md-2">
+                    <label class="feild-text">
+                        <input type="checkbox" ng-model="finalGarade"> Yes
+                    </label>&nbsp;&nbsp;
+
+                </div>
+            </div>
+
+            <div class="row form-submit">
+                <div class="col-md-2"></div>
                 <div class="col-md-6">
-                	<div class="row">
-                    	 <div class="col-xs-6">
-                        	<input class="form-control" type="number" ng-model="inputTeacher" min=0>
-                        </div>
-                       
-                    </div>
-                     <span class="field-alert" ng-show='minimumMinut'>please input a positive whole number</span>
-                </div>
-            	</div>-->
-                <div class="row form-group">
-                        <div class="col-md-2">
-                            <p>Include Final Grades?</p>
-                        </div>
-                        <div class="col-md-2">
-                            <label class="feild-text">
-                                <input type="checkbox" ng-model="finalGarade"> Yes
-                            </label>&nbsp;&nbsp;
-                            
-                        </div>
-                    </div>
-                    
-                <div class="row form-submit">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-6">
-                         <button type="submit" class="btn" ng-click="submit()" id="submit-btn">OK</button>
-                         <button type="submit" class="btn disabled">Cancel</button>
-                    </div>
-                </div>
-                </div>
-             </div>
-             <div class="row" ng-class="{'displaynonecls hideAnimation': !isShowReportView, 'showAnimation displayCls' : isShowReportView}">
-            	<div class="col-md-12">
-                	<p class="search displayCls" ng-click ="searchAgain()">Search Again <a href="javascript:void(0)" class="again"><img src="images/arrow-down.png" alt=""></a></p>
-                </div>
-                <div class="col-md-12">
-                    <div id='famerOverLay' class="overLayFrameDiv overlayDiv" ng-show='showoverlayOniFrameLoading'>
-                         <div>
-                            <div class ="lodaingImageDiv">   <img src="images/loading.gif" /> </div>
-                        </div>
-                </div>
-                <iframe class="frame"  ng-src={{iframeReportUrl}}></iframe>
-            </div>
-<!--
-            <div class="row iframe-row displaynonecls" >
-                <div class="col-md-12">
+                    <button type="submit" class="btn" ng-click="submit()" id="submit-btn">OK</button>
+                    <button type="submit" class="btn disabled">Cancel</button>
                 </div>
             </div>
--->
         </div>
-    
+    </div>
+    </div>
+    <div class="row frameContainerDiv" ng-class="{'displaynonecls hideAnimation': !isShowReportView, 'showAnimation displayCls' : isShowReportView}">
+        <div class="col-md-12">
+            <p class="search displayCls" ng-click="searchAgain()">Search Again
+                <a href="javascript:void(0)" class="again"><img src="images/arrow-down.png" alt=""></a>
+            </p>
+        </div>
+        <div class="col-md-12">
+            <div id='famerOverLay' class="overLayFrameDiv overlayDiv" ng-show='showoverlayOniFrameLoading'>
+                <div>
+                    <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
+                </div>
+            </div>
+            <iframe class="frame" ng-src={{iframeReportUrl}}></iframe>
+        </div>
+    </div>

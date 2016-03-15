@@ -6,11 +6,18 @@ studentActivityServices.service('iFrameLoading', ['$window', '$rootScope', funct
         $window.addEventListener('message', function (e) {
             console.info('Post message has been Called send by Iframe');
             $rootScope.$broadcast('iframeloading.done', e);
-        })
+        });
+    }
+    function resizewindowEvent() {
+        $window.addEventListener('resize', function (e) {
+            console.log('resize has been Called send by Iframe');
+            $rootScope.$broadcast('iframeresize.happnen', e);
+        });
     }
 
     return {
-        "subscribeiFrameLoading": subsFunc
+        "subscribeiFrameLoading": subsFunc,
+        "subscribeWindowResize":resizewindowEvent
     }
 
 }]);

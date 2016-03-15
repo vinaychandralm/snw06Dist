@@ -1,7 +1,7 @@
 "use strict";
 
 var factoryModule = angular.module('studentActivityReportscommomns.factories', []);
-factoryModule.factory('showReport',['$rootScope','$sce','iFrameLoading','$timeout', function($rootScope,$sce,iFrameLoading,$timeout) {
+factoryModule.factory('showReport',['$rootScope','$sce','iFrameLoading','$timeout','$window', function($rootScope,$sce,iFrameLoading,$timeout,$window) {
 
     return {
         loadOnIFrame: function(__$scope) {
@@ -15,7 +15,11 @@ factoryModule.factory('showReport',['$rootScope','$sce','iFrameLoading','$timeou
                     __$scope.isShowReportView = true;
                     $rootScope.showoverlayOniFrameLoading = true;
 
+                    //setting Iframe Height on initial load
+                    angular.element('iframe').height(($window.innerHeight-angular.element('.header').height())*0.85);
+                    
                     iFrameLoading.subscribeiFrameLoading();
+                    
                     
                     //setting delay due to heavy processing and parsing taking time
                     $rootScope.$on('iframeloading.done', function (a, b) {
@@ -27,8 +31,15 @@ factoryModule.factory('showReport',['$rootScope','$sce','iFrameLoading','$timeou
 
                 } else {
                     __$scope.isShowReportView = true;
+                    
+                     
                 }
-
+                iFrameLoading.subscribeWindowResize();
+                $rootScope.$on('iframeresize.happnen', function () {
+                    //setting Iframe Height
+                    angular.element('iframe').height(($window.innerHeight-angular.element('.header').height())*0.85);
+                    
+                });
         }
     };
 }]);
@@ -48,11 +59,21 @@ factoryModule.factory('GetDateAsString',['$rootScope', function($rootScope) {
             if (mm < 10) {
                 mm = '0' + mm
             }
-            return (dd + '/' + mm + '/' + yyyy);
+            return (mm + '/' + dd + '/' + yyyy);
         }
        
     }
 }]);
+
+// factoryModule.factory('calculateIFramHeightnWidth',['$rootScope','$window', function($rootScope, $window) {
+
+//     return {
+//         getHeightnWidth: function() {
+//             console.log('$window.innerHeight : ',$window.innerHeight);
+//             angular.element('.header .ng-scope');
+//         }
+//     }
+// }]);
 
 factoryModule.factory('GetEnrollIdAsString',['$rootScope', function($rootScope) {
     
