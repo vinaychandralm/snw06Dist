@@ -3,10 +3,10 @@
     "userSettingObjects": {
 
 
-        "role": "teacher",
-        "userid": "46239951",
-        "token": "~PDZwCAAAAAQdsyXD6sGejB.zRVVsjc4qXYNH_iJF0SKKC",
-        "userspace": "s1-06"
+        "role": "admin",
+        "userid": "46238944",
+        "token": "~gzYwCAAAAAAQn-HzLhCMRB.MaUZ9TJtDAewFuAUjCb3GB",
+        "userspace": "gsd-06"
     },
     "servicesBaseUrl":  "https://devlearn.schoolimprovement.com/gage-service/service",
     "reportServiceUrlStudent": "https://devlearn.schoolimprovement.com/reports"
