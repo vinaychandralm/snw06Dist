@@ -183,8 +183,9 @@ admModule.controller('courseCompletionAdmin', ['$scope', '$rootScope', '$locatio
                 // $scope.newReportUrl=urlDetailObj.reportServiceUrlStudent+ '/studentactivityreportforadmin?startdate='+startDateStr+'&enddate='+endDateStr+'&userid='+$rootScope.userid+'&username='+$rootScope.admindetail.data.user.firstname+' '+$rootScope.admindetail.data.user.lastname+'&domainids='+schoolIdStr+'&studentids='+studentIDStr+'&courseids='+courseIDStr+'&minimumminutes='+$scope.inputAdmin+'&enrollmentstatus='+enrollStr+'&excuseditem='+excuseItemStr+'&userspace='+$rootScope.userspace+'&token='+$rootScope.token;
                 
                 
-                 $scope.newReportUrl=urlDetailObj.reportServiceUrlStudent+ '/coursecompletionadmin?startdate='+startDateStr+'&enddate='+endDateStr+'&userid='+$rootScope.userid+'&domainids='+schoolIdStr+'&studentids='+studentIDStr+'&courseids='+courseIDStr+'&enrollmentstatus='+enrollStr+'&finalgrades='+finalGrade+'&userspace='+$rootScope.userspace+'&token='+$rootScope.token;
-                
+                 $scope.newReportUrl=urlDetailObj.reportServiceUrlStudent+ '/coursecompletionadmin?startdate='+startDateStr+'&enddate='+endDateStr+'&userid='+$rootScope.userid+'&domainids='+schoolIdStr+'&studentids='+studentIDStr+'&courseids='+courseIDStr+'&enrollmentstatus='+enrollStr+'&finalgrades='+finalGrade+'&userspace='+$rootScope.userspace+ '&username=' + $rootScope.admindetail.data.user.firstname + ' ' + $rootScope.admindetail.data.user.lastname +
+                 '&token='+$rootScope.token;
+              
                //call service to load url in Iframe 
                 showReport.loadOnIFrame($scope);
             }
