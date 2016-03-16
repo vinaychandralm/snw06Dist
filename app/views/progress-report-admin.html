@@ -66,9 +66,9 @@
                     <p>Enrollment Start Date:</p>
                 </div>
                 <div class="col-md-3">
-                    <div id="datepickerAdminStart" class="date">
+                    <div id="datepicker_progAdmin" class="date">
                         <input type="text" class="form-control cal-icon" ng-model="startDateStartActivity" data-max-date={{maxDateStartActivity}}
-                        name="date" bs-datepicker data-date-format="MM-dd-yyyy">
+                        name="date" bs-datepicker data-date-format="MM-dd-yyyy" data-placement="auto top-right">
                     </div>
                     <span class="field-alert" ng-show='srtDateNotSelected'>Please select activity strat date.</span>
                 </div>
@@ -79,8 +79,9 @@
                     <p>Enrollment End Date:</p>
                 </div>
                 <div class="col-md-3">
-                    <div id="datepickerAdminEnd" class="date">
-                        <input type="text" class="form-control cal-icon" ng-model="startDateEndActivity" name="date" bs-datepicker data-date-format="MM-dd-yyyy">
+                    <div id="datepicker2__progAdmin" class="date">
+                        <input type="text" class="form-control cal-icon" ng-model="startDateEndActivity" name="date" bs-datepicker data-date-format="MM-dd-yyyy"
+                         data-placement="auto top-right">
                     </div>
                     <span class="field-alert" ng-show='endDateNotgreater'>please select activity end date after start date.</span>
                 </div>

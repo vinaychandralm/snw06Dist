@@ -54,17 +54,17 @@
                     <p>Enrollment Start Date::</p>
                 </div>
                 <div class="col-md-3">
-                    <div id="datepicker" class="input-group date">
+                    <!--<div id="datepicker" class="input-group date">-->
                         <!-- <input class="form-control" type="text"  />
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>-->
 
 
-                        <div id="datepicker" class="input-group date">
+                        <div id="datepicker_courseComTeacher" class="date">
                             <input type="text" class="form-control cal-icon" ng-model="startDateStartActivity" data-max-date={{maxDateStartActivity}}
-                            name="date" bs-datepicker data-date-format="MM-dd-yyyy">
+                            name="date" bs-datepicker data-date-format="MM-dd-yyyy" data-placement="auto top-right">
                         </div>
                         <span class="field-alert" ng-show='srtDateNotSelected'>Please select activity strat date.</span>
-                    </div>
+                    <!--</div>-->
                 </div>
             </div>
 
@@ -73,8 +73,9 @@
                     <p>Enrollment End Date:</p>
                 </div>
                 <div class="col-md-3">
-                    <div id="datepicker2" class="input-group date">
-                        <input type="text" class="form-control cal-icon" ng-model="startDateEndActivity" name="date" bs-datepicker data-date-format="MM-dd-yyyy">
+                    <div id="datepicker2_courseComTeacher" class="date">
+                        <input type="text" class="form-control cal-icon" ng-model="startDateEndActivity" name="date" bs-datepicker data-date-format="MM-dd-yyyy"
+                         data-placement="auto top-right">
                         <span class=""></span>
                     </div>
                     <span class="field-alert" ng-show='endDateNotgreater'>please select activity end date after start date.</span>
