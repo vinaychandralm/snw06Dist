@@ -1,0 +1,383 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>Edivate Learn</title>
+
+<!-- Bootstrap -->
+<!--<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<link href="css/datepicker.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link rel="icon" href="favicon.ico" type="image/x-icon">-->
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<!--</head>-->
+<!--<body>-->
+<div class="container_fluid">
+  <header>
+    <div class="header_wrap">
+      <h1>Course Management Tool</h1>
+    </div>
+    <div class="sub_header" ng-class="{'hideCls' : showLogErrorPg}">
+      <h2>Course Copy</h2>
+    </div>
+  </header>
+  <section ng-class="{'hideCls' : showLogErrorPg}">
+    <div class="body_panel">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="box_main_wrap">
+            <div class="shadow"></div>
+            <div class="box_wrap">
+              <div class="box_inner">
+                <div class="box_top">
+                  <h2>Course Catalog</h2>
+                </div>
+                <div class="box_content">
+                  <div class="panel-group">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title"> <span>
+                          <div class="checkbox checkbox-primary">
+                            <input id="checkbox27" type="checkbox" checked="">
+                            <label for="checkbox27"> </label>
+                          </div>
+                          </span><a data-toggle="collapse" href="#collapse1"> Pearson</a> </h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-group">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title"> <span>
+                          <div class="checkbox checkbox-primary">
+                            <input id="checkbox28" type="checkbox" checked="">
+                            <label for="checkbox28"> </label>
+                          </div>
+                          </span><a data-toggle="collapse" href="#collapse2"> Accelarated</a> </h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-group">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title"> <span>
+                          <div class="checkbox checkbox-primary">
+                            <input id="checkbox29" type="checkbox" checked="">
+                            <label for="checkbox29"> </label>
+                          </div>
+                          </span><a data-toggle="collapse" href="#collapse2"> Norc</a> </h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-group">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title"> <span>
+                          <div class="checkbox checkbox-primary">
+                            <input id="checkbox30" type="checkbox" checked="">
+                            <label for="checkbox30"> </label>
+                          </div>
+                          </span><a data-toggle="collapse" href="#collapse2"> Publisher 4</a> </h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-group">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title"> <span>
+                          <div class="checkbox checkbox-primary">
+                            <input id="checkbox31" type="checkbox" checked="">
+                            <label for="checkbox31"> </label>
+                          </div>
+                          </span><a data-toggle="collapse" href="#collapse2"> Publisher 5</a> </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="box_main_wrap">
+            <div class="shadow"></div>
+            <div class="box_wrap">
+              <div class="box_inner">
+                <div class="box_top">
+                  <h2>New Courses</h2>
+                </div>
+                <div class="box_content">
+                  <div class="panel-group">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title"> <span>
+                          <div class="checkbox checkbox-primary">
+                            <input id="checkbox20" type="checkbox" checked="">
+                            <label for="checkbox20"> </label>
+                          </div>
+                          </span><a data-toggle="collapse" href="#collapse1">All New Courses</a> </h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-group">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title"> <span>
+                          <div class="checkbox checkbox-primary">
+                            <input id="checkbox22" type="checkbox" checked="">
+                            <label for="checkbox22"> </label>
+                          </div>
+                          </span><a data-toggle="collapse" href="#collapse2"> Algebra 3A Sequential</a> </h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-group">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title"> <span>
+                          <div class="checkbox checkbox-primary">
+                            <input id="checkbox24" type="checkbox" checked="">
+                            <label for="checkbox24"> </label>
+                          </div>
+                          </span><a data-toggle="collapse" href="#collapse2"> Algebra 3B Sequential</a> </h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-group">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title"> <span>
+                          <div class="checkbox checkbox-primary">
+                            <input id="checkbox25" type="checkbox" checked="">
+                            <label for="checkbox25"> </label>
+                          </div>
+                          </span><a data-toggle="collapse" href="#collapse2">Algebra 3C Sequential</a> </h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-group">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title"> <span>
+                          <div class="checkbox checkbox-primary">
+                            <input id="checkbox26" type="checkbox" checked="">
+                            <label for="checkbox26"> </label>
+                          </div>
+                          </span><a data-toggle="collapse" href="#collapse2"> Algebra 3D Sequential</a> </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="box_main_wrap">
+            <div class="shadow"></div>
+            <div class="box_wrap">
+              <div class="box_inner">
+                <div class="box_top">
+                  <h2>Districts / Schools</h2>
+                </div>
+                <div class="box_content">
+                  <div class="panel-group">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title"> <span>
+                          <div class="checkbox checkbox-primary">
+                            <input id="checkbox2" type="checkbox" checked="">
+                            <label for="checkbox2"> </label>
+                          </div>
+                          </span><a data-toggle="collapse" href="#collapse5"> <span> <i class="fa fa-caret-down"></i></span>District 1</a> </h4>
+                      </div>
+                      <div id="collapse5" class="panel-collapse collapse">
+                        <ul class="list-group">
+                          <li class="list-group-item"><span class="more_space">
+                            <div class="checkbox checkbox-primary">
+                              <input id="checkbox3" type="checkbox" checked="">
+                              <label for="checkbox3"> </label>
+                            </div>
+                            </span>School A</li>
+                          <li class="list-group-item"><span class="more_space">
+                            <div class="checkbox checkbox-primary">
+                              <input id="checkbox4" type="checkbox" checked="">
+                              <label for="checkbox4"> </label>
+                            </div>
+                            </span>School B</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-group">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title"> <span>
+                          <div class="checkbox checkbox-primary">
+                            <input id="checkbox5" type="checkbox" checked="">
+                            <label for="checkbox5"> </label>
+                          </div>
+                          </span><a data-toggle="collapse" href="#collapse6"> <span> <i class="fa fa-caret-down"></i></span>District 1</a> </h4>
+                      </div>
+                      <div id="collapse6" class="panel-collapse collapse">
+                        <ul class="list-group">
+                          <li class="list-group-item"><span class="more_space">
+                            <div class="checkbox checkbox-primary">
+                              <input id="checkbox6" type="checkbox" checked="">
+                              <label for="checkbox6"> </label>
+                            </div>
+                            </span>School A</li>
+                          <li class="list-group-item"><span class="more_space">
+                            <div class="checkbox checkbox-primary">
+                              <input id="checkbox7" type="checkbox" checked="">
+                              <label for="checkbox7"> </label>
+                            </div>
+                            </span>School B</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="box_main_wrap">
+            <div class="shadow"></div>
+            <div class="box_wrap">
+              <div class="box_inner">
+                <div class="box_top">
+                  <h2>Existing Courses</h2>
+                </div>
+                <div class="box_content">
+                  <div class="panel-group">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title"> <a data-toggle="collapse" href="#collapse7"> <span> <i class="fa fa-caret-down"></i> </span>District 1</a> </h4>
+                      </div>
+                      <div id="collapse7" class="panel-collapse collapse">
+                        <ul class="list-group">
+                          <li class="list-group-item"><span class="more_space"></span>Algebra 3A Sequential</li>
+                          <li class="list-group-item"><span class="more_space"></span>Algebra 3B Sequential</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-group">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title"> <a data-toggle="collapse" href="#collapse8"> <span> <i class="fa fa-caret-down"></i></span>School B</a> </h4>
+                      </div>
+                      <div id="collapse8" class="panel-collapse collapse">
+                        <ul class="list-group">
+                          <li class="list-group-item"><span class="more_space"></span>Algebra 3A Sequential</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="course_type"> <span class="pull-left">Course Type:</span>
+        <label class="radio-inline">
+          <input type="radio" name="optradio">
+          Range</label>
+        <label class="radio-inline">
+          <input type="radio" name="optradio">
+          Continuous</label>
+        <div class="clearfix"></div>
+      </div>
+      <div class="calender_area">
+        <div class="calender_wrap">
+          <div class="star_D">Start Date:</div>
+          <div class="calender_box">
+             <!--<input type='text' class="form-control" id='datetimepicker41' />-->
+              <input type="text" class="form-control cal-icon" ng-model="startDateActivity" name="date" bs-datepicker data-date-format="MM-dd-yyyy"
+                         data-placement="auto top-right">
+             
+             <span><i class="fa fa-calendar"></i></span>
+          </div>
+        </div>
+        
+        <div class="calender_wrap">
+          <div class="star_D lft_space">End Date:</div>
+          <div class="calender_box">
+             <!--<input type='text' class="form-control" id='datetimepicker42' />-->
+             <input type="text" class="form-control cal-icon" ng-model="EndDateActivity" name="date" bs-datepicker data-date-format="MM-dd-yyyy"
+                         data-placement="auto top-right">
+             <span><i class="fa fa-calendar"></i></span>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="burron_area">
+        <button type="button" id= 'copyMgmtBtn'class="btn btn-primary">Copy</button>
+        <button type="button" id='cancleBtnMgmt'class="btn btn-primary" disabled>Cancel</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+  	<div class="container" ng-class="{'hideCls' : !showLogErrorPg}" >
+    	<!--intro-row-->
+        	<div class="col-md-12">
+            	<div class="col-md-5 row-content">
+                	<div class="feild-row">
+               	    	<img src="images/logo2.png" class="user-logo" alt="">
+                        
+                        <div  class='report-link marginLoading' ng-show='showoverlay'>
+                            <div id='loadingtext' ng-show="loadingText">Loading....</div>
+
+                            <div id='onNetErrorH2' class='onNetError' ng-show="netErr">Sorry, something went wrong. Please try again after sometime</div>
+                            <div id='onServiceErrorH2' class='onServiceError' ng-show="authenticationErr">Sorry, you are not authorized to access the reports. Please contact the administrator</div>
+                        </div>
+                    </div>
+              </div>
+            </div>
+        <!--/END/intro-row-->
+         <!--footer-->
+        <footer id="footer">
+            <p class="copyRText">Copyright 2016 School Improvement Network</p>
+            <p class="copyRText">Build 0.0.1.352-SNAPSHOT at Feb-22-2016 02:27:28</p>
+            <p><img src="images/footerLogo.png"></p>        
+      	</footer>
+      	<!--/END/footer-->
+    </div>
+
+
+ <!--jQuery (necessary for Bootstrap's JavaScript plugins)  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<!--<script src="js/bootstrap.min.js"></script> 
+<script src="js/bootstrap-datepicker.js"></script> 
+<script>-->
+<!--//alert('ok');
+$('.collapse').on('shown.bs.collapse', function () {
+	$(this).parent().find('.fa-caret-down').removeClass('fa-caret-down').addClass('fa-caret-up');
+}).on('hidden.bs.collapse', function () {
+	$(this).parent().find('.fa-caret-up').removeClass('fa-caret-up').addClass('fa-caret-down');
+});-->
+
+<!--</script>
+<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker4').datetimepicker();
+            });
+        </script>
+</body>-->
+<!--</html>-->
