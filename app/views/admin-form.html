@@ -72,9 +72,9 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                         </div>
 -->
-                    <div id="datepicker_admin" class="date">
+                    <div id="datepickerAdminStart" class="date">
                         <input type="text" class="form-control cal-icon" ng-model="startDateStartActivity" data-max-date={{maxDateStartActivity}}
-                        name="date" bs-datepicker data-date-format="MM-dd-yyyy" data-placement="auto top-right">
+                        name="date" bs-datepicker data-date-format="MM-dd-yyyy" data-placement="auto bottom-right">
                     </div>
                     <span class="field-alert" ng-show='srtDateNotSelected'>Please select activity strat date.</span>
                 </div>
@@ -85,9 +85,9 @@
                     <p>Activity End Date:</p>
                 </div>
                 <div class="col-md-3">
-                    <div id="datepicker_admin" class="date">
+                    <div id="datepickerAdminEnd" class="date">
                         <input type="text" class="form-control cal-icon" ng-model="startDateEndActivity" name="date" bs-datepicker data-date-format="MM-dd-yyyy"
-                        data-placement="auto top-right">
+                        data-placement="auto bottom-right">
                     </div>
                     <span class="field-alert" ng-show='endDateNotgreater'>please select activity end date after start date.</span>
                 </div>

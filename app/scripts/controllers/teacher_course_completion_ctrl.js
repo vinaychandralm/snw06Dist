@@ -42,6 +42,13 @@ teacherCourseCompletionModule.controller('teacherCourseCompletionCtrl', ['$scope
             $scope.iframe_row = "displaynonecls";
             $scope.isShowReportView = false;
             
+            
+            var currDate = new Date();
+            //var Date = new Date();
+            $scope.startDateStartActivity = currDate.setDate(currDate.getDate() - 365);
+            $scope.maxDateStartActivity = new Date().setDate(new Date().getDate() - 1);
+            $scope.startDateEndActivity = new Date();
+            
             //getting service deatil object
             $scope.urlDetails = $rootScope.winConfigObj;
 
@@ -53,13 +60,13 @@ teacherCourseCompletionModule.controller('teacherCourseCompletionCtrl', ['$scope
         * Acceptable date formats: mm-dd-yyyy, mm-dd-yy, ISO formatated string, miliseconds
         */
 
-        $scope.dateUpdate = function () {
-            var currDate = new Date();
-            //var Date = new Date();
-            $scope.startDateStartActivity = currDate.setDate(currDate.getDate() - 365);
-            $scope.maxDateStartActivity = new Date().setDate(new Date().getDate() - 1);
-            $scope.startDateEndActivity = new Date();
-        }
+        // $scope.dateUpdate = function () {
+        //     var currDate = new Date();
+        //     //var Date = new Date();
+        //     $scope.startDateStartActivity = currDate.setDate(currDate.getDate() - 365);
+        //     $scope.maxDateStartActivity = new Date().setDate(new Date().getDate() - 1);
+        //     $scope.startDateEndActivity = new Date();
+        // }
         
         //setting data on student dropdown list
         $scope.setDataStudent = function (studentCourse) {
@@ -295,6 +302,6 @@ teacherCourseCompletionModule.controller('teacherCourseCompletionCtrl', ['$scope
 
         $scope.init();
         $scope.loadData();
-        $scope.dateUpdate();
+        // $scope.dateUpdate();
 
     }]);
