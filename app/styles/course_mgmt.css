@@ -4,7 +4,7 @@
 html {
 	-webkit-text-size-adjust: none; /* Prevent font scaling in landscape */
 }
-/*body {
+body {
 	margin:0;
 	padding:0;
 	background-color:transparent;
@@ -13,7 +13,7 @@ html {
 	appearance:         none;
 	position:relative;
 	font-size:14px;
-}*/
+}
 input:focus[type="text"] {
 	outline: none;
 	-webkit-appearance: none;
@@ -255,3 +255,10 @@ hr {
 .hideCls {
     display: none;
 }
+
+.panel-title span{float:left;}
+.panel-title a {    
+   display:block;
+   padding-left:23px;
+}
+.panel-title a div{padding-left:17px;}

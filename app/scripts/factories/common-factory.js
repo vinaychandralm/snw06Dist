@@ -92,3 +92,31 @@ factoryModule.factory('GetEnrollIdAsString',['$rootScope', function($rootScope) 
     
     
 }]);
+
+
+factoryModule.factory('GetCourseCatalog',['$http','$rootScope', function($http,$rootScope) {
+    
+   return {
+        _get: function() {
+            console.log($rootScope.winConfigObj)
+            var __url = $rootScope.winConfigObj.courseCatalogUrl; // +$rootScope.token;
+            console.log(__url);
+            return $http.get(__url);
+        }
+    };
+   }
+]);
+
+
+factoryModule.factory('GetExistingCourseCat',['$http','$rootScope', function($http,$rootScope) {
+    
+   return {
+        _get: function(__domainId) {
+            console.log($rootScope.winConfigObj)
+            var __url = $rootScope.winConfigObj.existingCourseUrl+ __domainId +"?token="+$rootScope.token;
+            console.log(__url);
+            return $http.get(__url);
+        }
+    };
+   }
+]);

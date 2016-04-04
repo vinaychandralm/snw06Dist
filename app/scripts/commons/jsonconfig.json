@@ -8,7 +8,11 @@
         "token": "~gzYwCAAAAAQZvSzPzYfwJA.GeZPIOOrBFAT8-FCPiYVTC",
         "userspace": "gsd-06"
     },
-    "servicesBaseUrl":  "https://devlearn.schoolimprovement.com/gage-service/service",
-    "reportServiceUrlStudent": "https://devlearn.schoolimprovement.com/reports"
+    "servicesBaseUrl_1":  "https://devlearn.schoolimprovement.com/gage-service/service",
+    "reportServiceUrlStudent_1": "https://devlearn.schoolimprovement.com/reports",
+    "servicesBaseUrl":  "http://192.168.2.58:8080/gage-service/service",
+    "reportServiceUrlStudent": "http://192.168.2.58:8080/reports",
+    "courseCatalogUrl":"http://192.168.2.58:8080/gage-service/service/domain/list/providers?token=",
+    "existingCourseUrl":"http://192.168.2.58:8080//gage-service/service/course/list/"
     
 }

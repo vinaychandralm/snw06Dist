@@ -1,10 +1,10 @@
 'use strict';
 
 
-var courseModule = angular.module('AdminActivityReports.courseMgmt', []);        
+var courseModule = angular.module('AdminActivityReports.courseMgmt', []);
 courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', '$theme', '$routeParams', 'validateUrlData',
-    'notAuthenticated', 'noNetError', 'getSchoolData',
-    function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData, notAuthenticated, noNetError,getSchoolData) {
+    'notAuthenticated', 'noNetError', 'getSchoolData', 'GetCourseCatalog', 'GetExistingCourseCat',
+    function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData, notAuthenticated, noNetError, getSchoolData, GetCourseCatalog, GetExistingCourseCat) {
 
         $scope.initValues = function () {
 
@@ -18,6 +18,10 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             $rootScope.token = $routeParams.token;
             $rootScope.role = $routeParams.role;
             $scope.showLogErrorPg = true;
+            
+            //list modals
+            $scope.courseCatalogList = null;
+            $scope.existingCourseList = new Array();
     
             //putting 'userspace' value to root scope so that it is avilable to all ctrls
             $rootScope.userspace = $routeParams.userspace
@@ -26,38 +30,54 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
 
 
         };
+        $scope.get_course_catalog_Data = function () {
 
-         $scope.filterDataTODisplay = function(domainData){
+            GetCourseCatalog._get().then(function onsuccess(response) {
+                if (response.data.messageType === "ERROR") {
+                    //Do for stuff when an error msg in succes api.
+                }
+                console.log("On Course Catalog Data :", response.data);
+                $scope.courseCatalogList = response.data.data.domains;
+
+
+            }, function onerror(response) {
+                //Do for stuff when an error come on api calling.
+            });
+
+        };
+
+        $scope.filterDataTODisplay = function (domainData) {
             var domainDataArray = domainData.data.domains;
-             $scope.domainDataScholl=null;
-             var len =  domainDataArray.length;
-             
-             if($rootScope.role ==='admin'){
-                 $scope.isTeacherRole = false;
-                 
-             }else{
+            console.log(domainData.data.domains)
+            $scope.domainDataScholl = null;
+            var len = domainDataArray.length;
+
+            if ($rootScope.role === 'admin') {
+                $scope.isTeacherRole = false;
+
+            } else {
                 $scope.isTeacherRole = true;
                 // In Case of teacher there only only school data.
                 $scope.domainDataScholl = domainDataArray;
                 // console.log( $scope.domainDataScholl);
                 return
-             }
+            }
              
-             //Note:- there will be only one Object element for district in domain list array
-             // hence  loop will break as soon as it find matched domainID Object 
-             for(var i=0;i<len;i++){
-                 if(domainDataArray[i].id === $rootScope.userDetails.data.data.user.domainid){
-                    $scope.disrtictObj = domainDataArray.splice(i,1);  
-                    // console.log($scope.disrtictObj); 
+            //Note:- there will be only one Object element for district in domain list array
+            // hence  loop will break as soon as it find matched domainID Object 
+            for (var i = 0; i < len; i++) {
+                if (domainDataArray[i].id === $rootScope.userDetails.data.data.user.domainid) {
+                    $scope.disrtictObj = domainDataArray.splice(i, 1);
+                    console.log($scope.disrtictObj);
                     break;
-                 }
-             }
-             // In Case of teacher there only only school data.
-             $scope.domainDataScholl = domainDataArray;
-         }
+                }
+            }
+            // In Case of teacher there only only school data.
+            $scope.domainDataScholl = domainDataArray;
+        }
 
-        $scope.get_district_School_Data =  function(){
-             getSchoolData._get($rootScope.userDetails.data.data.user.domainid, $rootScope.token, $scope.urlDetails)
+        $scope.get_district_School_Data = function () {
+            getSchoolData._get($rootScope.userDetails.data.data.user.domainid, $rootScope.token, $scope.urlDetails)
                 .then(function onsuccess(response) {
                     if (response.data.messageType === "ERROR") {
                         notAuthenticated._showErrorMsg();
@@ -68,13 +88,13 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                       and fufther data instialization
                                           
                      */
-                    
+
                     $scope.filterDataTODisplay(response.data);
 
                 }, function onerror(response) {
                     noNetError._showNetErrorMsg();
                 });
-            
+
         }
 
         $scope.loadData = function () {
@@ -89,19 +109,79 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                         notAuthenticated._showErrorMsg();
                     } else {
                        
-                       //Storing userdetail response into rootscope.
+                        //Storing userdetail response into rootscope.
                         $rootScope.userDetails = response;
                         $scope.showLogErrorPg = false;
                         $rootScope.bodybg = 'bodyBgwhite';
                         $rootScope.showoverlay = false;
+                       
                         //Fetching data after successfull authentication
                         $scope.get_district_School_Data();
+
+                        $scope.get_course_catalog_Data();
                     }
                 }, function onError(errResponse) {
                     console.log("err Response ", errResponse);
                     noNetError._showNetErrorMsg();
                 });
         };
+        $scope.removeSchoolDistFrmModal=function (schdist_Id){
+            
+            console.log("Called remove from modal wit id ",schdist_Id);
+            var len = $scope.existingCourseList.length;
+            for(var i =0; i < len; i++){
+                if(schdist_Id ===$scope.existingCourseList[i].schoolDistId){
+                    $scope.existingCourseList.splice(i,1);
+                    break;
+                }
+            }
+            
+        };
+        $scope.addSchoolDistIntoModal=function(schdist_Id,itemName,existingCourses){
+            var obj ={};
+            obj.schoolDistId =schdist_Id;
+            obj.schoolDistName = itemName;
+            obj.courseList = existingCourses;
+            
+            //Updating list modal of Existing course list  
+            $scope.existingCourseList.push(obj);
+            //$scope.existingCourseList = obj;
+            
+        }
+
+        $scope.updateExistingCourseModal = function (schdist_Id, distschoolChkval,itemName,chkbxidstr) {
+            console.log("called from updateExisting course Modal for id = ",schdist_Id);
+         //   angular.element('#'+chkbxidstr).attr("disabled", true);
+            if (distschoolChkval === false) {
+               $scope.removeSchoolDistFrmModal(schdist_Id,itemName);
+            } else {
+                GetExistingCourseCat._get(schdist_Id).then(function onsuccess(response) {
+                    if (response.data.messageType === "ERROR") {
+                        
+                    }else{
+                        console.log("Values   ",response.data.data.domain);
+                        $scope.addSchoolDistIntoModal(schdist_Id,itemName,response.data.data.domain);
+                      //  angular.element('#'+chkbxidstr).attr("disabled", false);
+                        console.log( angular.element('#'+chkbxidstr).isDisable())
+                    }
+                 }, function onErr(response) {
+                     
+                  });
+            }
+
+        };
+        $scope.onDistSchollChkUpdate = function (schdist_Id, chkbxidstr,itemName) {
+            // console.log(idx, chkbxidstr);
+            console.log(angular.element('#' + chkbxidstr).is(":checked"),itemName);
+            var distschoolChkval = angular.element('#' + chkbxidstr).is(":checked");
+
+            $scope.updateExistingCourseModal(schdist_Id, distschoolChkval,itemName,chkbxidstr);
+            //GetExistingCourseCat
+        }
+
+        $scope.onCourseChkUpdate = function (idx, chkbxidstr) {
+            console.log(idx, chkbxidstr);
+        }
 
         $scope.go = function (path) {
             $location.path(path);
@@ -128,8 +208,8 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
     
         //Laoding data 
         $scope.loadData();
-        
-      
+
+
 
 
     }]);
