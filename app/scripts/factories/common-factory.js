@@ -111,10 +111,23 @@ factoryModule.factory('GetCourseCatalog',['$http','$rootScope', function($http,$
 factoryModule.factory('GetExistingCourseCat',['$http','$rootScope', function($http,$rootScope) {
     
    return {
-        _get: function(__domainId) {
-            console.log($rootScope.winConfigObj)
+        _get: function(__domainId,chkbxidstr) {
+       //     console.log($rootScope.winConfigObj)
             var __url = $rootScope.winConfigObj.existingCourseUrl+ __domainId +"?token="+$rootScope.token;
-            console.log(__url);
+      //      console.log(__url);
+            return $http.get(__url);
+        }
+    };
+   }
+]);
+
+factoryModule.factory('GetNewCourseCatSchool',['$http','$rootScope', function($http,$rootScope) {
+    
+   return {
+        _get: function(schoolId,distId) {
+       //     console.log($rootScope.winConfigObj)
+            var __url = $rootScope.winConfigObj.newCourseList+"/"+ distId +"/"+ schoolId+ "?&type=school&token="+$rootScope.token;
+      //      console.log(__url);
             return $http.get(__url);
         }
     };

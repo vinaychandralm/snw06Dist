@@ -3,11 +3,15 @@
 
 var courseModule = angular.module('AdminActivityReports.courseMgmt', []);
 courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', '$theme', '$routeParams', 'validateUrlData',
-    'notAuthenticated', 'noNetError', 'getSchoolData', 'GetCourseCatalog', 'GetExistingCourseCat',
-    function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData, notAuthenticated, noNetError, getSchoolData, GetCourseCatalog, GetExistingCourseCat) {
+    'notAuthenticated', 'noNetError', 'getSchoolData', 'GetCourseCatalog', 'GetExistingCourseCat', '$locale', '_','GetNewCourseCatSchool',
+    function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData, notAuthenticated, noNetError,
+     getSchoolData, GetCourseCatalog, GetExistingCourseCat, $locale, _,GetNewCourseCatSchool) {
 
         $scope.initValues = function () {
 
+            $locale.DATETIME_FORMATS.SHORTDAY = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+            
+            //console.log(_.union([34,35,45,48,49], [48,32,34,55]));
             $rootScope.winConfigObj = window.configObj;
             $rootScope.loadingText = true;
             $rootScope.netErr = false;
@@ -22,6 +26,11 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             //list modals
             $scope.courseCatalogList = null;
             $scope.existingCourseList = new Array();
+            
+            //loding layers flags
+            $scope.courseCatLodingLayer = false;
+            $scope.distSchollLodingLayer = false;
+            $scope.existingCourseLodingLayer = false;
     
             //putting 'userspace' value to root scope so that it is avilable to all ctrls
             $rootScope.userspace = $routeParams.userspace
@@ -32,12 +41,16 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
         };
         $scope.get_course_catalog_Data = function () {
 
+            $scope.courseCatLodingLayer = true;
             GetCourseCatalog._get().then(function onsuccess(response) {
                 if (response.data.messageType === "ERROR") {
                     //Do for stuff when an error msg in succes api.
                 }
-                console.log("On Course Catalog Data :", response.data);
+                // console.log("On Course Catalog Data :", response.data);
                 $scope.courseCatalogList = response.data.data.domains;
+
+                $scope.courseCatLodingLayer = false;
+
 
 
             }, function onerror(response) {
@@ -48,7 +61,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
 
         $scope.filterDataTODisplay = function (domainData) {
             var domainDataArray = domainData.data.domains;
-            console.log(domainData.data.domains)
+            //console.log(domainData.data.domains)
             $scope.domainDataScholl = null;
             var len = domainDataArray.length;
 
@@ -68,7 +81,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             for (var i = 0; i < len; i++) {
                 if (domainDataArray[i].id === $rootScope.userDetails.data.data.user.domainid) {
                     $scope.disrtictObj = domainDataArray.splice(i, 1);
-                    console.log($scope.disrtictObj);
+                    // console.log($scope.disrtictObj);
                     break;
                 }
             }
@@ -77,6 +90,8 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
         }
 
         $scope.get_district_School_Data = function () {
+
+            $scope.distSchollLodingLayer = true;
             getSchoolData._get($rootScope.userDetails.data.data.user.domainid, $rootScope.token, $scope.urlDetails)
                 .then(function onsuccess(response) {
                     if (response.data.messageType === "ERROR") {
@@ -90,6 +105,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                      */
 
                     $scope.filterDataTODisplay(response.data);
+                    $scope.distSchollLodingLayer = false;
 
                 }, function onerror(response) {
                     noNetError._showNetErrorMsg();
@@ -125,21 +141,21 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                     noNetError._showNetErrorMsg();
                 });
         };
-        $scope.removeSchoolDistFrmModal=function (schdist_Id){
+        $scope.removeSchoolDistFrmModal = function (schdist_Id) {
             
-            console.log("Called remove from modal wit id ",schdist_Id);
+            //  console.log("Called remove from modal wit id ",schdist_Id);
             var len = $scope.existingCourseList.length;
-            for(var i =0; i < len; i++){
-                if(schdist_Id ===$scope.existingCourseList[i].schoolDistId){
-                    $scope.existingCourseList.splice(i,1);
+            for (var i = 0; i < len; i++) {
+                if (schdist_Id === $scope.existingCourseList[i].schoolDistId) {
+                    $scope.existingCourseList.splice(i, 1);
                     break;
                 }
             }
-            
+
         };
-        $scope.addSchoolDistIntoModal=function(schdist_Id,itemName,existingCourses){
-            var obj ={};
-            obj.schoolDistId =schdist_Id;
+        $scope.addSchoolDistIntoModal = function (schdist_Id, itemName, existingCourses) {
+            var obj = {};
+            obj.schoolDistId = schdist_Id;
             obj.schoolDistName = itemName;
             obj.courseList = existingCourses;
             
@@ -149,38 +165,87 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             
         }
 
-        $scope.updateExistingCourseModal = function (schdist_Id, distschoolChkval,itemName,chkbxidstr) {
-            console.log("called from updateExisting course Modal for id = ",schdist_Id);
-         //   angular.element('#'+chkbxidstr).attr("disabled", true);
+        $scope.updateExistingCourseModal = function (schdist_Id, distschoolChkval, itemName, chkbxidstr) {
+
+            angular.element('#' + chkbxidstr).attr("disabled", true);
             if (distschoolChkval === false) {
-               $scope.removeSchoolDistFrmModal(schdist_Id,itemName);
+                $scope.removeSchoolDistFrmModal(schdist_Id, itemName);
+                angular.element('#' + chkbxidstr).removeAttr("disabled");
             } else {
-                GetExistingCourseCat._get(schdist_Id).then(function onsuccess(response) {
+
+                $scope.existingCourseLodingLayer = true;
+                GetExistingCourseCat._get(schdist_Id, chkbxidstr).then(function onsuccess(response) {
                     if (response.data.messageType === "ERROR") {
-                        
-                    }else{
-                        console.log("Values   ",response.data.data.domain);
-                        $scope.addSchoolDistIntoModal(schdist_Id,itemName,response.data.data.domain);
-                      //  angular.element('#'+chkbxidstr).attr("disabled", false);
-                        console.log( angular.element('#'+chkbxidstr).isDisable())
+
+                    } else {
+                        $scope.addSchoolDistIntoModal(schdist_Id, itemName, response.data.data.domain);
+                        angular.element('#' + chkbxidstr).removeAttr("disabled");
+                        $scope.existingCourseLodingLayer = false;
                     }
-                 }, function onErr(response) {
-                     
-                  });
+                }, function onErr(response) {
+
+                });
             }
 
         };
-        $scope.onDistSchollChkUpdate = function (schdist_Id, chkbxidstr,itemName) {
-            // console.log(idx, chkbxidstr);
-            console.log(angular.element('#' + chkbxidstr).is(":checked"),itemName);
-            var distschoolChkval = angular.element('#' + chkbxidstr).is(":checked");
+        
+         $scope.updateNewCourseListForSchool = function (schdist_Id, itemName,chkbxidstr,distschoolChkval) {
+             console.log("updateNewCourseListForSchool ",$scope.disrtictObj);
+            angular.element('#' + chkbxidstr).removeAttr("disabled",true);
+            if (distschoolChkval === false) {
+                
+            }else{
+                
+                GetNewCourseCatSchool._get(schdist_Id,$scope.disrtictObj[0].id).then(function onsuccess(response) {
+                if (response.data.messageType === "ERROR") {
 
-            $scope.updateExistingCourseModal(schdist_Id, distschoolChkval,itemName,chkbxidstr);
-            //GetExistingCourseCat
+                } else {
+                   // $scope.addSchoolDistIntoModal(schdist_Id, itemName, response.data.data.domain);
+                   console.log(response)
+                    angular.element('#' + chkbxidstr).removeAttr("disabled");
+                   // $scope.existingCourseLodingLayer = false;
+                }
+            }, function onErr(response) {
+                angular.element('#' + chkbxidstr).removeAttr("disabled");
+            });
+            }
+            
+            
+
+        };
+        $scope.checkSchoolOrDist = function (schdist_Id) {
+
+           // console.log($rootScope.userDetails.data.data.user);
+            if ($scope.disrtictObj[0].id === schdist_Id) {
+                return true;
+            } else {
+                return false;
+            }
+
+
+
+        };
+       
+        $scope.onDistSchollChkUpdate = function (schdist_Id, chkbxidstr, itemName) {
+
+            console.log(schdist_Id, chkbxidstr, itemName);
+
+            var distschoolChkval = angular.element('#' + chkbxidstr).is(":checked");
+            $scope.updateExistingCourseModal(schdist_Id, distschoolChkval, itemName, chkbxidstr);
+
+            var isDist = $scope.checkSchoolOrDist(schdist_Id);
+            console.log("IsDist ",isDist);
+            if (!isDist) {
+                // call api for new course
+                
+                $scope.updateNewCourseListForSchool(schdist_Id, itemName,chkbxidstr);
+            }
+            
+            //  $scope.updateNewCourseList();
         }
 
         $scope.onCourseChkUpdate = function (idx, chkbxidstr) {
-            console.log(idx, chkbxidstr);
+            // console.log(idx, chkbxidstr);
         }
 
         $scope.go = function (path) {

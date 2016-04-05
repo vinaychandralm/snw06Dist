@@ -36,6 +36,7 @@ module.exports = function(config) {
       'bower_components/angular-bootstrap-multiselect/angular-bootstrap-multiselect.js',
       'bower_components/angular-strap/dist/angular-strap.js',
       'bower_components/angular-strap/dist/angular-strap.tpl.js',
+      'bower_components/underscore/underscore.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

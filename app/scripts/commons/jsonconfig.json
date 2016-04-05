@@ -13,6 +13,7 @@
     "servicesBaseUrl":  "http://192.168.2.58:8080/gage-service/service",
     "reportServiceUrlStudent": "http://192.168.2.58:8080/reports",
     "courseCatalogUrl":"http://192.168.2.58:8080/gage-service/service/domain/list/providers?token=",
-    "existingCourseUrl":"http://192.168.2.58:8080//gage-service/service/course/list/"
+    "existingCourseUrl":"http://192.168.2.58:8080//gage-service/service/course/list/",
+    "newCourseList":"http://192.168.2.58:8080/gage-service/service/course/list/"
     
 }

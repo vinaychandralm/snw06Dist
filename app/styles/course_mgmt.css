@@ -110,6 +110,7 @@ hr {
 	overflow:auto;
 	border:1px solid #dedede;
 	border-radius:0 0 4px 4px;
+    position: relative;
 }
 .box_content .panel-group .panel {
 	border-radius:0;
@@ -187,9 +188,9 @@ hr {
 .box_content .panel-title span {
 	padding-right:9px;
 }
-.more_space {
+/*.more_space {
 	padding-right:20px;
-}
+}*/
 .box_content .panel-group {
 	margin-bottom:	0;
 }
@@ -262,3 +263,27 @@ hr {
    padding-left:23px;
 }
 .panel-title a div{padding-left:17px;}
+
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000;}
+ 
+ .modal-backdrop.in {
+    filter: alpha(opacity=50);
+    opacity: .5;
+}
+.fade {
+    opacity: 0;
+    -webkit-transition: opacity .15s linear;
+    -o-transition: opacity .15s linear;
+    transition: opacity .15s linear;
+}
+
+
+.list-group-item .txt_list{padding-left:38px;}
+

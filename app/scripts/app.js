@@ -90,10 +90,13 @@
             // alert( "Load was performed." );
             window.configObj = data;
             angular.bootstrap(document, ["studentActivityReports"]);
+           
         }).error(function(dataerr){ 
             console.log("Error while getting");
             console.log(dataerr )});
 
     }
+    
+    studentActivityApp.constant('_', window._);
 
 } ());

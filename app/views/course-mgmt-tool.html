@@ -21,7 +21,13 @@
                 <div class="box_top">
                   <h2>Course Catalog</h2>
                 </div>
+                
                 <div class="box_content">
+                    <div class="modal-backdrop fade in" id ="courseCatLodingLayerID" ng-show="courseCatLodingLayer">
+                    <div>
+                        <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
+                    </div>
+                </div>
                     
                      <!--<div class="panel panel-default">
                         <ul class="list-group">
@@ -134,8 +140,14 @@
                 <div class="box_top">
                   <h2>Districts / Schools</h2>
                 </div>
+                
                 <div class="box_content" >
-                  <div class="panel-group" ng-class="{'hideCls' : isTeacherRole}">
+                    <div class="modal-backdrop fade in" id ="courseCatLodingLayerID" ng-show="distSchollLodingLayer">
+                    <div>
+                        <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
+                    </div>
+                </div>
+                  <!--<div class="panel-group" ng-class="{'hideCls' : isTeacherRole}">
                     <div class="panel panel-default">
                       <div class="panel-heading">
                         <h4 class="panel-title"> <span>
@@ -156,7 +168,42 @@
                         </ul>
                       </div>
                     </div>
+                  </div>-->
+                  
+                   <div class="panel-group" ng-class="{'hideCls' : isTeacherRole}">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title"> <span>
+                          <div class="checkbox checkbox-primary">
+                            <input id="distCollapsable" type="checkbox" ng-click="onDistSchollChkUpdate(disrtictObj[0].id,'distCollapsable',disrtictObj[0].name, disrtictObj[0])">
+                            <label for="distCollapsable"> </label>
+                          </div>
+                          </span><a data-toggle="collapse" href="#collapse5"> <span> <i class="fa fa-caret-down"></i></span><div>{{disrtictObj[0].name}}</div></a> </h4>
+                      </div>
+                      <div id="collapse5" class="panel-collapse collapse">
+                        <ul class="list-group">
+                          <li class="list-group-item" ng-repeat= "domainObj in domainDataScholl"><span class="more_space">
+                            <div class="checkbox checkbox-primary">
+                              <input id="checkbox_{{$index}}" type="checkbox"  ng-click="onDistSchollChkUpdate(domainObj.id,'checkbox_'+$index,domainObj.name,domainObj)">
+                              <label for="checkbox_{{$index}}"> </label>
+                            </div>
+                            </span><div class="txt_list">{{domainObj.name}}</div></li>
+                          <!--<li class="list-group-item"><span class="more_space">
+                            <div class="checkbox checkbox-primary">
+                              <input id="checkbox4" type="checkbox" checked="">
+                              <label for="checkbox4"> </label>
+                            </div>
+                            </span>School B</li>-->
+                        </ul>
+                      </div>
+                    </div>
                   </div>
+                  
+                  
+                  
+                  
+                  
+                  
                   
                     <!--<div class="panel-group"  ng-class="{'hideCls' : isTeacherRole}">
                     <div class="panel panel-default">
@@ -199,8 +246,14 @@
                 <div class="box_top">
                   <h2>Existing Courses</h2>
                 </div>
+                
                 <div class="box_content">
-                  <div class="panel-group" ng-repeat="schoolDistObj in existingCourseList">
+                    <div class="modal-backdrop fade in" id ="courseCatLodingLayerID" ng-show="existingCourseLodingLayer">
+                    <div>
+                        <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
+                    </div>
+                </div>
+                  <!--<div class="panel-group" ng-repeat="schoolDistObj in existingCourseList">
                     <div class="panel panel-default">
                       <div class="panel-heading">
                         <h4 class="panel-title"> <a data-toggle="collapse" href="#collapse_{{$index}}"> <span> <i class="fa fa-caret-down"></i> </span><div>{{schoolDistObj.schoolDistName}}</div></a> </h4>
@@ -208,11 +261,26 @@
                       <div id="collapse_{{$index}}" class="panel-collapse collapse">
                         <ul class="list-group">
                           <li class="list-group-item" ng-repeat="subObj in schoolDistObj.courseList "><span class="more_space"></span>{{subObj.title}}</li>
-                          <!--<li class="list-group-item"><span class="more_space"></span>Algebra 3B Sequential</li>-->
+                        </ul>
+                      </div>
+                    </div>
+                  </div>-->
+                  
+                  <div class="panel-group" ng-repeat="schoolDistObj in existingCourseList">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title"> <a data-toggle="collapse" href="#collapse_{{$index}}"> <span> <i class="fa fa-caret-down"></i> </span><div>{{schoolDistObj.schoolDistName}}</div></a> </h4>
+                      </div>
+                      <div id="collapse_{{$index}}" class="panel-collapse collapse">
+                        <ul class="list-group">
+                          <li class="list-group-item" ng-repeat="subObj in schoolDistObj.courseList "><span class="more_space"></span><div class="txt_list">{{subObj.title}}</div></li>
                         </ul>
                       </div>
                     </div>
                   </div>
+                  
+                  
+                  
                   <!--<div class="panel-group">
                     <div class="panel panel-default">
                       <div class="panel-heading">
@@ -296,3 +364,17 @@
       	</footer>
       	<!--/END/footer-->
     </div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<!--<script src="js/bootstrap.min.js"></script> -->
+<!--<script src="js/bootstrap-datepicker.js"></script> -->
+<script>
+//alert('ok');
+$('.collapse').on('shown.bs.collapse', function () {
+	$(this).parent().find('.fa-caret-down').removeClass('fa-caret-down').addClass('fa-caret-up');
+}).on('hidden.bs.collapse', function () {
+	$(this).parent().find('.fa-caret-up').removeClass('fa-caret-up').addClass('fa-caret-down');
+});
+
+</script>
