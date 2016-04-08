@@ -10,10 +10,10 @@
     },
     "servicesBaseUrl_1":  "https://devlearn.schoolimprovement.com/gage-service/service",
     "reportServiceUrlStudent_1": "https://devlearn.schoolimprovement.com/reports",
-    "servicesBaseUrl":  "http://localhost:8080/gage-service/service",
-    "reportServiceUrlStudent": "http://localhost:8080/reports",
-    "courseCatalogUrl":"http://localhost:8080/gage-service/service/domain/list/providers?token=",
-    "existingCourseUrl":"http://localhost:8080//gage-service/service/course/list/",
-    "newCourseList":"http://localhost:8080/gage-service/service/course/new/list/"
+    "servicesBaseUrl":  "http://localhost:9090/gage-service/service",
+    "reportServiceUrlStudent": "http://localhost:9090/reports",
+    "courseCatalogUrl":"http://localhost:9090/gage-service/service/domain/list/providers?token=",
+    "existingCourseUrl":"http://localhost:9090//gage-service/service/course/list/",
+    "newCourseList":"http://localhost:9090/gage-service/service/course/new/list/"
     
 }

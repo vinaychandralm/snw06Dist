@@ -22,7 +22,7 @@
                   <h2>Course Catalog</h2>
                 </div>
                 
-                <div class="box_content">
+                <div class="box_content" id = "courseCatlogs">
                     <div class="modal-backdrop fade in" id ="courseCatLodingLayerID" ng-show="courseCatLodingLayer">
                         <div>
                             <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
@@ -33,7 +33,7 @@
                       <div class="panel-heading">
                         <h4 class="panel-title"> <span>
                           <div class="checkbox checkbox-primary">
-                            <input id="checkboxCourse_{{$index}}" type="checkbox"  ng-click="onCourseChkUpdate(courseCat.id,'checkboxCourse_'+$index)">
+                            <input id="checkboxCourse_{{$index}}" data-course-id = "{{courseCat.id}}" type="checkbox"  ng-click="onCourseChkUpdate()">
                             <label for="checkboxCourse_{{$index}}"> </label>
                           </div>
                           </span><a data-toggle="collapse" href="#collapse1"> {{courseCat.name}}</a> </h4>
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                   
-                   <div class="panel-group"  ng-repeat= "schollCouresObj in schollNewCousreList">
+                   <div class="panel-group"  ng-repeat= "schollCouresObj in mainCourseArryAsModal">
                     <div class="panel panel-default">
                       <div class="panel-heading">
                         <h4 class="panel-title"> <span>
@@ -73,7 +73,7 @@
                               <input id="checkbox_{{newCourseList.id}}" type="checkbox"  ng-click="">
                               <label for="checkbox_{{newCourseList.id}}"> </label>
                             </div>
-                                </span><div class="txt_list">{{newCourseList.title}} (District)</div></li>
+                                </span><div class="txt_list">{{newCourseList.title}}</div></li>
                         </ul>
                       </div>
                     </div>
@@ -98,29 +98,7 @@
                         <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
                     </div>
                 </div>
-                  <!--<div class="panel-group" ng-class="{'hideCls' : isTeacherRole}">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h4 class="panel-title"> <span>
-                          <div class="checkbox checkbox-primary">
-                            <input id="distCollapsable" type="checkbox" ng-click="onDistSchollChkUpdate(disrtictObj[0].id,'distCollapsable',disrtictObj[0].name)">
-                            <label for="distCollapsable"> </label>
-                          </div>
-                          </span><a data-toggle="collapse" href="#collapse5"> <span> <i class="fa fa-caret-down"></i></span><div>{{disrtictObj[0].name}}</div></a> </h4>
-                      </div>
-                      <div id="collapse5" class="panel-collapse collapse">
-                        <ul class="list-group">
-                          <li class="list-group-item" ng-repeat= "domainObj in domainDataScholl" ><span class="more_space">
-                            <div class="checkbox checkbox-primary">
-                              <input  id="checkbox_{{$index}}" type="checkbox" ng-click="onDistSchollChkUpdate(domainObj.id,'checkbox_'+$index,domainObj.name)">
-                              <label for="checkbox_{{$index}}"> </label>
-                            </div>
-                            </span>{{domainObj.name}}</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>-->
-                  
+                                   
                    <div class="panel-group" ng-class="{'hideCls' : isTeacherRole}">
                     <div class="panel panel-default">
                       <div class="panel-heading">

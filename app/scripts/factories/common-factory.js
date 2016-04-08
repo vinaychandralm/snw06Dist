@@ -138,3 +138,19 @@ factoryModule.factory('GetNewCourseCatSchool',['$http','$rootScope', function($h
     };
    }
 ]);
+
+///http://localhost:8080/gage-service/service/course/new/list/46238884?baseDomainId=34816161,34816208&type=district&token=~gzY
+
+factoryModule.factory('GetNewCourseCatDist',['$http','$rootScope', function($http,$rootScope) {
+    
+   return {
+        _get: function(distObjId, idArrayOfSelectedCourseCat) {
+           
+            var __url = $rootScope.winConfigObj.newCourseList + distObjId  +"?baseDomainId="+idArrayOfSelectedCourseCat.join() + "&type=district&token="+$rootScope.token;
+     
+            console.log(__url);
+            return $http.get(__url);
+        }
+    };
+   }
+]);
