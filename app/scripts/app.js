@@ -71,8 +71,8 @@
                     templateUrl: 'views/course_completion_admin.html',
                     controller: 'courseCompletionAdmin'
                 })
-                .when('/course-mgmt-tool', {
-                    templateUrl: 'views/course-mgmt-tool.html',
+                .when('/course-copy-tool', {
+                    templateUrl: 'views/course-copy-tool.html',
                     controller: 'courseMgmtCtrl'
                 })
                 .otherwise({
