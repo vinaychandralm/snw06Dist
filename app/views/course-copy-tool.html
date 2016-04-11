@@ -53,7 +53,7 @@
                 <div class="box_top">
                   <h2>New Courses</h2>
                 </div>
-                <div class="box_content">
+                <div class="box_content" id = "newcourseCatlogs">
                     <div class="modal-backdrop fade in" id ="newCourseCatLodingLayerID" ng-show="newCourseCatLodingLayer">
                         <div>
                             <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
@@ -70,8 +70,8 @@
                         <ul class="list-group">
                           <li class="list-group-item" ng-repeat= "newCourseList in schollCouresObj.courseList"><span class="more_space">
                             <div class="checkbox checkbox-primary">
-                              <input id="checkbox_{{newCourseList.id}}" type="checkbox"  ng-click="">
-                              <label for="checkbox_{{newCourseList.id}}"> </label>
+                              <input id="checkbox_{{newCourseList.id}}_{{schollCouresObj.schoolName}}" type="checkbox"  data-courseId= "{{newCourseList.id}}", data-domainType="{{newCourseList.domainType}}",data-domainId="{{schollCouresObj.schoolDomainId}}">
+                              <label for="checkbox_{{newCourseList.id}}_{{schollCouresObj.schoolName}}"> </label>
                             </div>
                                 </span><div class="txt_list">{{newCourseList.title}}</div></li>
                         </ul>
@@ -117,36 +117,12 @@
                               <label for="checkbox_{{$index}}"> </label>
                             </div>
                             </span><div class="txt_list">{{domainObj.name}}</div></li>
-                          <!--<li class="list-group-item"><span class="more_space">
-                            <div class="checkbox checkbox-primary">
-                              <input id="checkbox4" type="checkbox" checked="">
-                              <label for="checkbox4"> </label>
-                            </div>
-                            </span>School B</li>-->
+                          
                         </ul>
                       </div>
                     </div>
                   </div>
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                    <!--<div class="panel-group"  ng-class="{'hideCls' : isTeacherRole}">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h4 class="panel-title"> <a data-toggle="collapse" href="#collapse7"> <span> <i class="fa fa-caret-down"></i> </span>District 1</a> </h4>
-                      </div>
-                      <div id="collapse7" class="panel-collapse collapse">
-                        <ul class="list-group">
-                          <li class="list-group-item"><span class="more_space"></span>Algebra 3A Sequential</li>
-                          <li class="list-group-item"><span class="more_space"></span>Algebra 3B Sequential</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>-->
+                 
                   
                   <!--For teacher panal -->
                   <div class="panel-group" ng-class="{'hideCls' : !isTeacherRole}">
@@ -182,18 +158,7 @@
                         <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
                     </div>
                 </div>
-                  <!--<div class="panel-group" ng-repeat="schoolDistObj in existingCourseList">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h4 class="panel-title"> <a data-toggle="collapse" href="#collapse_{{$index}}"> <span> <i class="fa fa-caret-down"></i> </span><div>{{schoolDistObj.schoolDistName}}</div></a> </h4>
-                      </div>
-                      <div id="collapse_{{$index}}" class="panel-collapse collapse">
-                        <ul class="list-group">
-                          <li class="list-group-item" ng-repeat="subObj in schoolDistObj.courseList "><span class="more_space"></span>{{subObj.title}}</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>-->
+                
                   
                   <div class="panel-group" ng-repeat="schoolDistObj in existingCourseList">
                     <div class="panel panel-default">
@@ -207,21 +172,7 @@
                       </div>
                     </div>
                   </div>
-                  
-                  
-                  
-                  <!--<div class="panel-group">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h4 class="panel-title"> <a data-toggle="collapse" href="#collapse8"> <span> <i class="fa fa-caret-down"></i></span>School B</a> </h4>
-                      </div>
-                      <div id="collapse8" class="panel-collapse collapse">
-                        <ul class="list-group">
-                          <li class="list-group-item"><span class="more_space"></span>Algebra 3A Sequential</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>-->
+                 
                 </div>
               </div>
             </div>
@@ -230,10 +181,10 @@
       </div>
       <div class="course_type"> <span class="pull-left">Course Type:</span>
         <label class="radio-inline">
-          <input type="radio" name="optradio">
+          <input type="radio" name="optradio" ng-model="courseType" value="Range">
           Range</label>
         <label class="radio-inline">
-          <input type="radio" name="optradio">
+          <input type="radio" name="optradio" ng-model="courseType" value="Continuous">
           Continuous</label>
         <div class="clearfix"></div>
       </div>
@@ -261,7 +212,7 @@
         <div class="clearfix"></div>
       </div>
       <div class="burron_area">
-        <button type="button" id= 'copyMgmtBtn'class="btn btn-primary">Copy</button>
+        <button type="button" id= 'copyMgmtBtn'class="btn btn-primary" ng-click="handleCopyEvent()">Copy</button>
         <button type="button" id='cancleBtnMgmt'class="btn btn-primary" disabled>Cancel</button>
       </div>
     </div>
