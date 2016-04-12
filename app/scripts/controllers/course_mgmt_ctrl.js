@@ -660,7 +660,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             var selectedNewCoursedId = angular.element("#newcourseCatlogs input:checkbox:checked");
             if(selectedNewCoursedId.length === 0){
                 
-                alert("There is no any new courses to be copied from New Courses.");
+                $scope.showModalPopup("There is no new courses to be copied from New Courses.");
                 return;
             }
             
@@ -680,17 +680,25 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                         $timeout(function () {
                             $scope.updateRespectiveColumns(idArrayOfSelectedDistSchool);
                         }, 1000);
+                        
+                         $scope.showModalPopup("New Courses has been copied successfully.");
 
                     }
                 },
                     function (response) {
-                        // failure callback
-                        
-                        console.log("******************messageType from error: ", response.messageType);
-                        
                         $scope.showWholePgLoading = false;
+                        
+                        $scope.showModalPopup("New Courses did not get copied, Please try again");
                     });
             }
+        };
+        
+        $scope.showModalPopup=function(msg){
+            
+            angular.element('#modalContent').text(msg);
+           
+            angular.element('#msgModal').modal('show');
+            
         };
 
         $scope.go = function (path) {
