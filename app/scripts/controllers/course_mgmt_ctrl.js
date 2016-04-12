@@ -58,6 +58,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             $scope.maxDateStartActivity;
             $scope.startDateEndActivity;
             $scope.showWholePgLoading =false;
+            $scope.hideCalenderArea = true;
 
 
         };
@@ -614,7 +615,17 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 mm = '0' + mm
             }
             return (yyyy + '-' + mm + '-' + dd);
-        }
+        };
+        
+        $scope.onCourseTypeClick=function(){
+          
+          if($scope.courseType === 'Continuous'){
+            $scope.hideCalenderArea = true;
+          }else{
+              $scope.hideCalenderArea = false;
+          }
+            
+        };
 
         $scope.getAllSelectedDistNSchool = function () {
 
@@ -688,8 +699,9 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
 
         $scope.dateUpdate = function () {
             var currDate = new Date();
-            $scope.startDateStartActivity = currDate.setDate(currDate.getDate() - 7);
-            $scope.maxDateStartActivity = new Date().setDate(new Date().getDate() - 1);
+            $scope.startDateStartActivity = currDate.setDate(currDate.getDate());
+            $scope.maxDateStartActivity = new Date().setDate(new Date().getDate());
+            $scope.minDateStartActivity = new Date();
             $scope.startDateEndActivity = new Date();
         }
     

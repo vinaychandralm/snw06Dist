@@ -192,19 +192,19 @@
             </div>
             <div class="course_type"> <span class="pull-left">Course Type:</span>
                 <label class="radio-inline">
-                    <input type="radio" name="optradio" ng-model="courseType" value="Range"> Range
+                    <input type="radio" name="optradio" ng-model="courseType" value="Range" ng-click="onCourseTypeClick()"> Range
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="optradio" ng-model="courseType" value="Continuous"> Continuous
+                    <input type="radio" name="optradio" ng-model="courseType" value="Continuous" ng-click="onCourseTypeClick()"> Continuous
                 </label>
                 <div class="clearfix"></div>
             </div>
-            <div class="calender_area">
+            <div class="calender_area" ng-hide="hideCalenderArea" >
                 <div class="calender_wrap">
                     <div class="star_D">Start Date:</div>
                     <div class="calender_box">
                         <!--<input type='text' class="form-control" id='datetimepicker41' />-->
-                        <input type="text" class="form-control cal-icon" ng-model="startDateStartActivity" data-max-date={{maxDateStartActivity}}
+                        <input type="text" class="form-control cal-icon" ng-model="startDateStartActivity" data-min-date={{minDateStartActivity}}
                         name="date" bs-datepicker data-date-format="MM-dd-yyyy" data-placement="auto top-right">
 
                         <!--<span><i class="fa fa-calendar"></i></span>-->
@@ -215,7 +215,7 @@
                     <div class="star_D lft_space">End Date:</div>
                     <div class="calender_box">
                         <!--<input type='text' class="form-control" id='datetimepicker42' />-->
-                        <input type="text" class="form-control cal-icon" ng-model="startDateEndActivity" name="date" bs-datepicker data-date-format="MM-dd-yyyy"
+                        <input type="text" class="form-control cal-icon" ng-model="startDateEndActivity" data-min-date={{startDateStartActivity}} name="date" bs-datepicker data-date-format="MM-dd-yyyy"
                         data-placement="auto top-right">
                         <!--<span><i class="fa fa-calendar"></i></span>-->
                     </div>
