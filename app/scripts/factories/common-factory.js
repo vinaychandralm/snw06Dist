@@ -98,9 +98,9 @@ factoryModule.factory('GetCourseCatalog',['$http','$rootScope', function($http,$
     
    return {
         _get: function() {
-            console.log($rootScope.winConfigObj)
+            // console.log($rootScope.winConfigObj)
             var __url = $rootScope.winConfigObj.courseCatalogUrl; // +$rootScope.token;
-            console.log(__url);
+            // console.log(__url);
             return $http.get(__url);
         }
     };
@@ -153,4 +153,24 @@ factoryModule.factory('GetNewCourseCatDist',['$http','$rootScope', function($htt
         }
     };
    }
+   
+  
 ]);
+ factoryModule.factory('postcopycourse',['$http','$rootScope', function($http,$rootScope) {
+    
+   return {
+        _post: function(objArray) {
+           
+         //  console.log(objArray)
+           var data = JSON.stringify(objArray);
+           console.log(data);
+           var config = {
+                headers : {
+                     'Content-Type': 'application/json;charset=utf-8;'
+                }
+            }
+           return $http.post($rootScope.winConfigObj.copyCourseUrl+"?token="+$rootScope.token, data,config);
+        }
+    };
+   }
+   ]);

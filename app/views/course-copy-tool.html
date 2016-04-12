@@ -2,255 +2,266 @@
 
 
 <div class="container_fluid">
-  <header>
-    <div class="header_wrap">
-      <h1>Course Management Tool</h1>
-    </div>
-    <div class="sub_header" ng-class="{'hideCls' : showLogErrorPg}">
-      <h2>Course Copy</h2>
-    </div>
-  </header>
-  <section ng-class="{'hideCls' : showLogErrorPg}">
-    <div class="body_panel">
-      <div class="row">
-        <div class="col-md-3">
-          <div class="box_main_wrap">
-            <div class="shadow"></div>
-            <div class="box_wrap">
-              <div class="box_inner">
-                <div class="box_top">
-                  <h2>Course Catalog</h2>
-                </div>
-                
-                <div class="box_content" id = "courseCatlogs">
-                    <div class="modal-backdrop fade in" id ="courseCatLodingLayerID" ng-show="courseCatLodingLayer">
-                        <div>
-                            <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
-                        </div>
-                    </div>
-                    <div class="panel-group" ng-repeat= "courseCat in courseCatalogList">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h4 class="panel-title"> <span>
+    <header>
+        <div class="header_wrap">
+            <h1>Course Management Tool</h1>
+        </div>
+        <div class="sub_header" ng-class="{'hideCls' : showLogErrorPg}">
+            <h2>Course Copy</h2>
+        </div>
+    </header>
+    <section>
+        <div class="modal-backdrop fade in" id="wholePageLoading" ng-show="showWholePgLoading">
+            <div>
+                <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
+            </div>
+        </div>
+        <div class="body_panel">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="box_main_wrap">
+                        <div class="shadow"></div>
+                        <div class="box_wrap">
+                            <div class="box_inner">
+                                <div class="box_top">
+                                    <h2>Course Catalog</h2>
+                                </div>
+
+                                <div class="box_content" id="courseCatlogs">
+                                    <div class="modal-backdrop fade in" id="courseCatLodingLayerID" ng-show="courseCatLodingLayer">
+                                        <div>
+                                            <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-group" ng-repeat="courseCat in courseCatalogList">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title"> <span>
                           <div class="checkbox checkbox-primary">
                             <input id="checkboxCourse_{{$index}}" data-course-id = "{{courseCat.id}}" type="checkbox"  ng-click="onCourseChkUpdate()">
                             <label for="checkboxCourse_{{$index}}"> </label>
                           </div>
                           </span><a data-toggle="collapse" href="#collapse1"> {{courseCat.name}}</a> </h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="box_main_wrap">
-            <div class="shadow"></div>
-            <div class="box_wrap">
-              <div class="box_inner">
-                <div class="box_top">
-                  <h2>New Courses</h2>
-                </div>
-                <div class="box_content" id = "newcourseCatlogs">
-                    <div class="modal-backdrop fade in" id ="newCourseCatLodingLayerID" ng-show="newCourseCatLodingLayer">
-                        <div>
-                            <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                  
-                   <div class="panel-group"  ng-repeat= "schollCouresObj in mainCourseArryAsModal">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h4 class="panel-title"> <span>
+                </div>
+                <div class="col-md-3">
+                    <div class="box_main_wrap">
+                        <div class="shadow"></div>
+                        <div class="box_wrap">
+                            <div class="box_inner">
+                                <div class="box_top">
+                                    <h2>New Courses</h2>
+                                </div>
+                                <div class="box_content" id="newcourseCatlogs">
+                                    <div class="modal-backdrop fade in" id="newCourseCatLodingLayerID" ng-show="newCourseCatLodingLayer">
+                                        <div>
+                                            <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel-group" ng-repeat="schollCouresObj in mainCourseArryAsModal">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title"> <span>
                           </span><a data-toggle="collapse" href="#schoolCousreList_{{schollCouresObj.schoolDomainId}}"> <span> <i class="fa fa-caret-down"></i></span><div>{{schollCouresObj.schoolName}}</div></a> </h4>
-                      </div>
-                      <div id="schoolCousreList_{{schollCouresObj.schoolDomainId}}" class="panel-collapse collapse">
-                        <ul class="list-group">
-                          <li class="list-group-item" ng-repeat= "newCourseList in schollCouresObj.courseList"><span class="more_space">
+                                            </div>
+                                            <div id="schoolCousreList_{{schollCouresObj.schoolDomainId}}" class="panel-collapse collapse">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item" ng-repeat="newCourseList in schollCouresObj.courseList"><span class="more_space">
                             <div class="checkbox checkbox-primary">
                               <input id="checkbox_{{newCourseList.id}}_{{schollCouresObj.schoolName}}" type="checkbox"  data-courseId= "{{newCourseList.id}}", data-domainType="{{newCourseList.domainType}}",data-domainId="{{schollCouresObj.schoolDomainId}}">
                               <label for="checkbox_{{newCourseList.id}}_{{schollCouresObj.schoolName}}"> </label>
                             </div>
-                                </span><div class="txt_list">{{newCourseList.title}}</div></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="box_main_wrap">
-            <div class="shadow"></div>
-            <div class="box_wrap">
-              <div class="box_inner">
-                <div class="box_top">
-                  <h2>Districts / Schools</h2>
-                </div>
-                
-                <div class="box_content" >
-                    <div class="modal-backdrop fade in" id ="courseCatLodingLayerID" ng-show="distSchollLodingLayer">
-                    <div>
-                        <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
+                                </span>
+                                                        <div class="txt_list">{{newCourseList.title}}</div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                                   
-                   <div class="panel-group" ng-class="{'hideCls' : isTeacherRole}">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h4 class="panel-title"> <span>
+                <div class="col-md-3">
+                    <div class="box_main_wrap">
+                        <div class="shadow"></div>
+                        <div class="box_wrap">
+                            <div class="box_inner">
+                                <div class="box_top">
+                                    <h2>Districts / Schools</h2>
+                                </div>
+
+                                <div class="box_content">
+                                    <div class="modal-backdrop fade in" id="courseCatLodingLayerID" ng-show="distSchollLodingLayer">
+                                        <div>
+                                            <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel-group" ng-class="{'hideCls' : isTeacherRole}" id='distSchoolContainer'>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title"> <span>
                           <div class="checkbox checkbox-primary">
                             <input id="distCollapsable" type="checkbox" ng-click="onDistSchollChkUpdate(disrtictObj[0].id,'distCollapsable',disrtictObj[0].name, disrtictObj[0],null)">
                             <label for="distCollapsable"> </label>
                           </div>
                           </span><a data-toggle="collapse" href="#collapse5"> <span> <i class="fa fa-caret-down"></i></span><div>{{disrtictObj[0].name}}</div></a> </h4>
-                      </div>
-                      <div id="collapse5" class="panel-collapse collapse">
-                        <ul class="list-group">
-                          <li class="list-group-item" ng-repeat= "domainObj in domainDataScholl"><span class="more_space">
+                                            </div>
+                                            <div id="collapse5" class="panel-collapse collapse">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item" ng-repeat="domainObj in domainDataScholl"><span class="more_space">
                             <div class="checkbox checkbox-primary">
                               <input id="checkbox_{{$index}}" type="checkbox"  ng-click="onDistSchollChkUpdate(domainObj.id,'checkbox_'+$index,domainObj.name,domainObj,disrtictObj[0].id)">
                               <label for="checkbox_{{$index}}"> </label>
                             </div>
-                            </span><div class="txt_list">{{domainObj.name}}</div></li>
-                          
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                 
-                  
-                  <!--For teacher panal -->
-                  <div class="panel-group" ng-class="{'hideCls' : !isTeacherRole}">
-                    <div class="panel panel-default">
-                        <ul class="list-group">
-                          <li class="list-group-item" ng-repeat= "domainObj in domainDataScholl" ><span class="more_space">
+                            </span>
+                                                        <div class="txt_list">{{domainObj.name}}</div>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!--For teacher panal -->
+                                    <div class="panel-group" ng-class="{'hideCls' : !isTeacherRole}">
+                                        <div class="panel panel-default">
+                                            <ul class="list-group">
+                                                <li class="list-group-item" ng-repeat="domainObj in domainDataScholl"><span class="more_space">
                             <div class="checkbox checkbox-primary">
                               <input id="checkboxScholl_{{$index}}" type="checkbox" checked="">
                               <label for="checkboxScholl_{{$index}}"> </label>
                             </div>
                             </span>{{domainObj.name}}</li>
-                          
-                        </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="box_main_wrap">
-            <div class="shadow"></div>
-            <div class="box_wrap">
-              <div class="box_inner">
-                <div class="box_top">
-                  <h2>Existing Courses</h2>
-                </div>
-                
-                <div class="box_content">
-                    <div class="modal-backdrop fade in" id ="courseCatLodingLayerID" ng-show="existingCourseLodingLayer">
-                    <div>
-                        <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
-                    </div>
-                </div>
-                
-                  
-                  <div class="panel-group" ng-repeat="schoolDistObj in existingCourseList">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h4 class="panel-title"> <a data-toggle="collapse" href="#collapse_{{$index}}"> <span> <i class="fa fa-caret-down"></i> </span><div>{{schoolDistObj.schoolDistName}}</div></a> </h4>
-                      </div>
-                      <div id="collapse_{{$index}}" class="panel-collapse collapse">
-                        <ul class="list-group">
-                          <li class="list-group-item" ng-repeat="subObj in schoolDistObj.courseList "><span class="more_space"></span><div class="txt_list">{{subObj.title}}</div></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                 
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="course_type"> <span class="pull-left">Course Type:</span>
-        <label class="radio-inline">
-          <input type="radio" name="optradio" ng-model="courseType" value="Range">
-          Range</label>
-        <label class="radio-inline">
-          <input type="radio" name="optradio" ng-model="courseType" value="Continuous">
-          Continuous</label>
-        <div class="clearfix"></div>
-      </div>
-      <div class="calender_area">
-        <div class="calender_wrap">
-          <div class="star_D">Start Date:</div>
-          <div class="calender_box">
-             <!--<input type='text' class="form-control" id='datetimepicker41' />-->
-              <input type="text" class="form-control cal-icon" ng-model="startDateActivity" name="date" bs-datepicker data-date-format="MM-dd-yyyy"
-                         data-placement="auto top-right">
-             
-             <!--<span><i class="fa fa-calendar"></i></span>-->
-          </div>
-        </div>
-        
-        <div class="calender_wrap">
-          <div class="star_D lft_space">End Date:</div>
-          <div class="calender_box">
-             <!--<input type='text' class="form-control" id='datetimepicker42' />-->
-             <input type="text" class="form-control cal-icon" ng-model="EndDateActivity" name="date" bs-datepicker data-date-format="MM-dd-yyyy"
-                         data-placement="auto top-right">
-             <!--<span><i class="fa fa-calendar"></i></span>-->
-          </div>
-        </div>
-        <div class="clearfix"></div>
-      </div>
-      <div class="burron_area">
-        <button type="button" id= 'copyMgmtBtn'class="btn btn-primary" ng-click="handleCopyEvent()">Copy</button>
-        <button type="button" id='cancleBtnMgmt'class="btn btn-primary" disabled>Cancel</button>
-      </div>
-    </div>
-  </section>
-</div>
 
-  	<div class="container" ng-class="{'hideCls' : !showLogErrorPg}" >
-    	<!--intro-row-->
-        	<div class="col-md-12">
-            	<div class="col-md-5 row-content">
-                	<div class="feild-row">
-               	    	<img src="images/logo2.png" class="user-logo" alt="">
-                        
-                        <div  class='report-link marginLoading' ng-show='showoverlay'>
-                            <div id='loadingtext' ng-show="loadingText">Loading....</div>
-
-                            <div id='onNetErrorH2' class='onNetError' ng-show="netErr">Sorry, something went wrong. Please try again after sometime</div>
-                            <div id='onServiceErrorH2' class='onServiceError' ng-show="authenticationErr">Sorry, you are not authorized to access the reports. Please contact the administrator</div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-              </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="box_main_wrap">
+                        <div class="shadow"></div>
+                        <div class="box_wrap">
+                            <div class="box_inner">
+                                <div class="box_top">
+                                    <h2>Existing Courses</h2>
+                                </div>
+
+                                <div class="box_content">
+                                    <div class="modal-backdrop fade in" id="courseCatLodingLayerID" ng-show="existingCourseLodingLayer">
+                                        <div>
+                                            <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="panel-group" ng-repeat="schoolDistObj in existingCourseList">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title"> <a data-toggle="collapse" href="#collapse_{{$index}}"> <span> <i class="fa fa-caret-down"></i> </span><div>{{schoolDistObj.schoolDistName}}</div></a> </h4>
+                                            </div>
+                                            <div id="collapse_{{$index}}" class="panel-collapse collapse">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item" ng-repeat="subObj in schoolDistObj.courseList "><span class="more_space"></span>
+                                                        <div class="txt_list">{{subObj.title}}</div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        <!--/END/intro-row-->
-         <!--footer-->
-        <footer id="footer">
-            <p class="copyRText">Copyright 2016 School Improvement Network</p>
-            <p class="copyRText">Build 0.0.1.352-SNAPSHOT at Feb-22-2016 02:27:28</p>
-            <p><img src="images/footerLogo.png"></p>        
-      	</footer>
-      	<!--/END/footer-->
+            <div class="course_type"> <span class="pull-left">Course Type:</span>
+                <label class="radio-inline">
+                    <input type="radio" name="optradio" ng-model="courseType" value="Range"> Range
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="optradio" ng-model="courseType" value="Continuous"> Continuous
+                </label>
+                <div class="clearfix"></div>
+            </div>
+            <div class="calender_area">
+                <div class="calender_wrap">
+                    <div class="star_D">Start Date:</div>
+                    <div class="calender_box">
+                        <!--<input type='text' class="form-control" id='datetimepicker41' />-->
+                        <input type="text" class="form-control cal-icon" ng-model="startDateStartActivity" data-max-date={{maxDateStartActivity}}
+                        name="date" bs-datepicker data-date-format="MM-dd-yyyy" data-placement="auto top-right">
+
+                        <!--<span><i class="fa fa-calendar"></i></span>-->
+                    </div>
+                </div>
+
+                <div class="calender_wrap">
+                    <div class="star_D lft_space">End Date:</div>
+                    <div class="calender_box">
+                        <!--<input type='text' class="form-control" id='datetimepicker42' />-->
+                        <input type="text" class="form-control cal-icon" ng-model="startDateEndActivity" name="date" bs-datepicker data-date-format="MM-dd-yyyy"
+                        data-placement="auto top-right">
+                        <!--<span><i class="fa fa-calendar"></i></span>-->
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="burron_area">
+                <button type="button" id='copyMgmtBtn' class="btn btn-primary" ng-click="handleCopyEvent()">Copy</button>
+                <button type="button" id='cancleBtnMgmt' class="btn btn-primary" disabled>Cancel</button>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="container" ng-class="{'hideCls' : !showLogErrorPg}">
+    <!--intro-row-->
+    <div class="col-md-12">
+        <div class="col-md-5 row-content">
+            <div class="feild-row">
+                <img src="images/logo2.png" class="user-logo" alt="">
+
+                <div class='report-link marginLoading' ng-show='showoverlay'>
+                    <div id='loadingtext' ng-show="loadingText">Loading....</div>
+
+                    <div id='onNetErrorH2' class='onNetError' ng-show="netErr">Sorry, something went wrong. Please try again after sometime</div>
+                    <div id='onServiceErrorH2' class='onServiceError' ng-show="authenticationErr">Sorry, you are not authorized to access the reports. Please contact the administrator</div>
+                </div>
+            </div>
+        </div>
     </div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
-<!-- Include all compiled plugins (below), or include individual files as needed --> 
+    <!--/END/intro-row-->
+    <!--footer-->
+    <footer id="footer">
+        <p class="copyRText">Copyright 2016 School Improvement Network</p>
+        <p class="copyRText">Build 0.0.1.352-SNAPSHOT at Feb-22-2016 02:27:28</p>
+        <p><img src="images/footerLogo.png"></p>
+    </footer>
+    <!--/END/footer-->
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
 <!--<script src="js/bootstrap.min.js"></script> -->
 <!--<script src="js/bootstrap-datepicker.js"></script> -->
 <script>
-//alert('ok');
+    //alert('ok');
 $('.collapse').on('shown.bs.collapse', function () {
 	$(this).parent().find('.fa-caret-down').removeClass('fa-caret-down').addClass('fa-caret-up');
 }).on('hidden.bs.collapse', function () {

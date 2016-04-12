@@ -86,7 +86,6 @@
     
     function fetchData() {
         $.get("scripts/commons/jsonconfig.json").success(function (data) {
-            console.log("..................................................................................",data);
             // alert( "Load was performed." );
             window.configObj = data;
             angular.bootstrap(document, ["studentActivityReports"]);
