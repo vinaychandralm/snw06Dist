@@ -6,12 +6,12 @@
 
     <!-- Modal content-->
     <div class="modal-content">
-      <!--<div class="modal-header">
+      <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>-->
+        <h4 class="modal-title"><b>Course Copy</b></h4>
+      </div>
       <div class="modal-body">
-        <p id='modalContent'>Some text in the modal.</p>
+        <p id='modalContent'></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -90,7 +90,7 @@
                                     <div class="panel-group" ng-repeat="schollCouresObj in mainCourseArryAsModal">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
-                                                <h4 class="panel-title"> <span>
+                                                <h4 class="panel-title alingNonChekbx"> <span>
                           </span><a data-toggle="collapse" href="#schoolCousreList_{{schollCouresObj.schoolDomainId}}"> <span> <i class="fa fa-caret-down"></i></span><div>{{schollCouresObj.schoolName}}</div></a> </h4>
                                             </div>
                                             <div id="schoolCousreList_{{schollCouresObj.schoolDomainId}}" class="panel-collapse collapse">
@@ -194,11 +194,11 @@
                                     <div class="panel-group" ng-repeat="schoolDistObj in existingCourseList">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
-                                                <h4 class="panel-title"> <a data-toggle="collapse" href="#collapse_{{$index}}"> <span> <i class="fa fa-caret-down"></i> </span><div>{{schoolDistObj.schoolDistName}}</div></a> </h4>
+                                                <h4 class="panel-title alingNonChekbx" > <a data-toggle="collapse" href="#collapse_{{$index}}"> <span> <i class="fa fa-caret-down"></i> </span><div>{{schoolDistObj.schoolDistName}}</div></a> </h4>
                                             </div>
                                             <div id="collapse_{{$index}}" class="panel-collapse collapse">
                                                 <ul class="list-group">
-                                                    <li class="list-group-item" ng-repeat="subObj in schoolDistObj.courseList "><span class="more_space"></span>
+                                                    <li class="list-group-item alignNonLi" ng-repeat="subObj in schoolDistObj.courseList "><span class="more_space"></span>
                                                         <div class="txt_list">{{subObj.title}}</div>
                                                     </li>
                                                 </ul>
@@ -247,7 +247,6 @@
             <div class="burron_area">
                 <button type="button" id='copyMgmtBtn' class="btn btn-primary" ng-click="handleCopyEvent()">Copy</button>
                 <button type="button" id='cancleBtnMgmt' class="btn btn-primary" disabled>Cancel</button>
-                <!--<button type="button" id='showModalBtn' class="btn btn-primary "  data-toggle="modal" data-target="msgModal">modalshow</button>-->
             </div>
         </div>
     </section>

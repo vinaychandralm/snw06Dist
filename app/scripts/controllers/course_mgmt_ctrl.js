@@ -709,8 +709,8 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             var currDate = new Date();
             $scope.startDateStartActivity = currDate.setDate(currDate.getDate());
             $scope.maxDateStartActivity = new Date().setDate(new Date().getDate());
-            $scope.minDateStartActivity = new Date();
-            $scope.startDateEndActivity = new Date();
+            $scope.minDateStartActivity = new Date().setDate(new Date().getDate()-1);
+            $scope.startDateEndActivity =new Date().setDate(new Date().getDate()+365);
         }
     
         //Initilizing variables.
