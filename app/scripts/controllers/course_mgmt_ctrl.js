@@ -320,7 +320,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 
                 var obj = {};
                 obj.courseid = angular.element(this).attr('data-courseId');
-                obj.domainid = angular.element(this).attr(',data-domainid');
+                obj.domainid = angular.element(this).attr('data-domainid');
                 obj.domaintype = angular.element(this).attr('data-domainType');
                 obj.type = $scope.courseType;
                 obj.startdate = $scope.dateStringFormat(new Date($scope.startDateStartActivity));
@@ -685,6 +685,11 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                         
                          $scope.showModalPopup("New Courses has been copied successfully.");
 
+                    }else{
+                         $scope.showWholePgLoading = false;
+                        
+                        $scope.showModalPopup("New Courses did not get copied, Please try again");
+                        
                     }
                 },
                     function (response) {
