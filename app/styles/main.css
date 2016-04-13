@@ -199,12 +199,25 @@ multiselect .btn-group ul {
     background-color: black;
 }
 /*---------------------------------- Copy course--------------------*/
-.alingNonChekbx a {
+/*.alingNonChekbx a {
   
     padding-left: 0px !important;
 }
 .alignNonLi .txt_list {
     padding-left: 16px !important;
+}*/
+.coursecat{
+    padding-left: 10px;
+}
+.txt_list_newCourse{
+   
+    display: block;
+    overflow: hidden;
+}
+.txt_list_dist{
+    padding-left: 9px;
+    display: block;
+    overflow: hidden;
 }
 
 /*---------------------------------- End copy course----------------*/

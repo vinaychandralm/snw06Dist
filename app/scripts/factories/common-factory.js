@@ -128,11 +128,11 @@ factoryModule.factory('GetNewCourseCatSchool',['$http','$rootScope', function($h
        //     console.log($rootScope.winConfigObj)
           //  var __url = $rootScope.winConfigObj.newCourseList+"/"+ distId +"/"+ schoolId+ "?&type=school&token="+$rootScope.token;
      
-     console.log("$rootScope.token ",$rootScope.token);
-     console.log("")
+    //  console.log("$rootScope.token ",$rootScope.token);
+    //  console.log("")
                  var __url = $rootScope.winConfigObj.newCourseList + schoolId  +"?baseDomainId="+distId + "&type=school&token="+$rootScope.token;
      
-            console.log(__url);
+            // console.log(__url);
             return $http.get(__url);
         }
     };
@@ -148,7 +148,7 @@ factoryModule.factory('GetNewCourseCatDist',['$http','$rootScope', function($htt
            
             var __url = $rootScope.winConfigObj.newCourseList + distObjId  +"?baseDomainId="+idArrayOfSelectedCourseCat.join() + "&type=district&token="+$rootScope.token;
      
-            console.log(__url);
+            // console.log(__url);
             return $http.get(__url);
         }
     };
@@ -163,7 +163,7 @@ factoryModule.factory('GetNewCourseCatDist',['$http','$rootScope', function($htt
            
          //  console.log(objArray)
            var data = JSON.stringify(objArray);
-           console.log(data);
+        //    console.log(data);
            var config = {
                 headers : {
                      'Content-Type': 'application/json;charset=utf-8;'

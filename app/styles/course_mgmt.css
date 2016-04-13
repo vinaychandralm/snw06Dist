@@ -110,7 +110,7 @@ hr {
 	overflow:auto;
 	border:1px solid #dedede;
 	border-radius:0 0 4px 4px;
-    position: relative;
+	position:relative;
 }
 .box_content .panel-group .panel {
 	border-radius:0;
@@ -132,6 +132,7 @@ hr {
 
 .box_content .panel-title a {
 	text-decoration:none;
+	overflow:hidden;
 }
 .checkbox-primary input[type="checkbox"]:checked + label::after {
  color: #fff;
@@ -185,9 +186,14 @@ hr {
 	width:15px;
 	height:15px;
 }
-.box_content .panel-title span {
+/*.box_content .panel-title span {
 	padding-right:9px;
-}
+}*/
+.chkboxWrap{float: left;    padding-right: 10px;
+    display: block;}
+.box_content .panel-title .contnt-wrap{/*float:left;*/}
+
+
 /*.more_space {
 	padding-right:20px;
 }*/
@@ -232,6 +238,7 @@ hr {
 .calender_box {	
 	float:left;
 	position:relative;
+	background:#fff;
 }
 /*.calender_box span{position:absolute; right:10px; top:7px; cursor:pointer;}*/
 
@@ -240,27 +247,33 @@ hr {
 	padding-left:140px;
 	padding-top:20px;
 }
+/* changed class name .btn-primary with button Ids */
 #copyMgmtBtn,#cancleBtnMgmt {
 	background:#2196f3;
 	margin-right: 10px;
 	border: none;
 	border-radius: 8px;
 	padding: 8px 10px;
-	min-width:82px;
+	min-width:82px
 }
 .btn-primary.disabled.focus, .btn-primary.disabled:focus, .btn-primary.disabled:hover, .btn-primary[disabled].focus, .btn-primary[disabled]:focus, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary.focus, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:hover {
 	background-color:#2196f3;
 	opacity: .65
 }
 
-
-.panel-title span{float:left;}
+.panel-title span{float: left;
+    display: block;
+    /* margin-right: 7px; */
+    height: 16px;
+    width: 16px;
+    text-align: center;
+    vertical-align: middle;}
 .panel-title a {    
    display:block;
-   padding-left:23px;
+   /*padding-left:23px;*/
 }
-.panel-title a div{padding-left:17px;}
-
+.panel-title a div{display:block; overflow:hidden;}
+.list-group-item .txt_list{display: block;    overflow: hidden;     padding-left: 16px;}
 .modal-backdrop {
     position: absolute;
     top: 0;
@@ -269,8 +282,8 @@ hr {
     left: 0;
     z-index: 1040;
     background-color: #000;}
- 
- .modal-backdrop.in {
+	
+	.modal-backdrop.in {
     filter: alpha(opacity=50);
     opacity: .5;
 }
@@ -281,6 +294,4 @@ hr {
     transition: opacity .15s linear;
 }
 
-
-.list-group-item .txt_list{padding-left:38px;}
 
