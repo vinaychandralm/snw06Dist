@@ -143,8 +143,9 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
 
                     $rootScope.firstName = response.data.firstname;
                     $rootScope.lastName = response.data.lastname;
-                    if (response.data.messageType === "ERROR") {
+                    if (response.data.messageType === "ERROR" || $routeParams.role !=='admin') {
                         notAuthenticated._showErrorMsg();
+                         $scope.showLogErrorPg = true;
                     } else {
                        
                         //Storing userdetail response into rootscope.
@@ -160,6 +161,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                     }
                 }, function onError(errResponse) {
                     console.log("err Response ", errResponse);
+                    $scope.showLogErrorPg = true;
                     noNetError._showNetErrorMsg();
                 });
         };
