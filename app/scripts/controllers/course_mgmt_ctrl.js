@@ -344,7 +344,8 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 var currOBjRef = $scope.SchollNewCourseSlaveArray[i].courseList;
                 for (var j = 0; j < tempLen; j++) {
 
-                    currOBjRef[j].title = currOBjRef[j].title + " (District)";
+                  //  currOBjRef[j].title = currOBjRef[j].title + " (District)";
+                    currOBjRef[j].courseFrom = " (District)";
                 }
 
             }
@@ -369,7 +370,8 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 for (var j = 0; j < DistArrayLen; j++) {
                     var obj = angular.copy($scope.DistNewCourseMasterArray[j]);
                     // console.log(obj);
-                    obj.title = obj.title + " (Course Catalog)";
+                   // obj.title = obj.title + " (Course Catalog)";
+                    Obj.courseFrom = "(Course Catalog)";
                     // console.log(obj.title);
                     $scope.SchollNewCourseSlaveArray[i].courseList.push(obj);
                 }
@@ -407,8 +409,8 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 var tempSchollObj = dupSchollArray[i];
                 var objLen = tempSchollObj.courseList.length;
                 for (var j = 0; j < objLen; j++) {
-                    tempSchollObj.courseList[j].title = tempSchollObj.courseList[j].title + " (District)";
-                    
+                    //tempSchollObj.courseList[j].title = tempSchollObj.courseList[j].title + " (District)";
+                     tempSchollObj.courseList[j].courseFrom = " (District)";
                     //This case for school data.
                     tempSchollObj.courseList[j].Domain_ID = tempSchollObj.schoolDomainId;
                     tempSchollObj.courseList[j].domainType = 'SCHOOL';
@@ -428,7 +430,8 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 for (var j = 0; j < DistArrayLen; j++) {
                     var obj = angular.copy($scope.DistNewCourseArray[j]);
                     // console.log(obj);
-                    obj.title = obj.title + " (Course Catalog)";
+                   // obj.title = obj.title + " (Course Catalog)";
+                    obj.courseFrom =  " (Course Catalog)";
                     // console.log(obj.title);
                    
                     

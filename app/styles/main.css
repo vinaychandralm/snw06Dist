@@ -172,6 +172,9 @@ multiselect .btn-group ul {
 .hideCls {
     display: none;
 }
+.blodText{
+    font-weight: bolder ;
+}
 .cal-icon{
     background: url(../images/calender-icon.jpg) no-repeat center right;
     border-radius: 4px !important;
