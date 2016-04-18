@@ -390,7 +390,8 @@ module.exports = function (grunt) {
 			'styles/{,*/}*.*',
 			'scripts/{,*/}*.*',
 			'images/{,*/}*.*',			
-			'views/{,*/}*.*'
+			'views/{,*/}*.*',
+            'fonts/{,*/}*.*'
           ]
 		 }, {
           expand: true,
@@ -417,7 +418,8 @@ module.exports = function (grunt) {
 			'styles/{,*/}*.*',
 			'scripts/{,*/}*.*',
 			'images/{,*/}*.*',			
-			'views/{,*/}*.*'
+			'views/{,*/}*.*',
+            'fonts/{,*/}*.*'
           ]
         }, {
           expand: true,
