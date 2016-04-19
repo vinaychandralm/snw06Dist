@@ -168,6 +168,11 @@ multiselect .btn-group ul {
 #loadingtext{
     font-size: 30pt;
 }
+#copyinTXtLoader{
+    font-size: 24pt;
+    margin-left: -28px;
+    color: mintcream
+}
 
 .hideCls {
     display: none;
