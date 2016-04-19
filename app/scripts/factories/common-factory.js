@@ -153,7 +153,7 @@ factoryModule.factory('GetNewCourseCatDist',['$http','$rootScope', function($htt
  factoryModule.factory('postcopycourse',['$http','$rootScope', function($http,$rootScope) {
     
    return {
-        _post: function(objArray) {
+        _post: function(objArray,distID) {
            
          //  console.log(objArray)
            var data = JSON.stringify(objArray);
@@ -163,7 +163,9 @@ factoryModule.factory('GetNewCourseCatDist',['$http','$rootScope', function($htt
                      'Content-Type': 'application/json;charset=utf-8;'
                 }
             }
-           return $http.post($rootScope.winConfigObj.copyCourseUrl+"?token="+$rootScope.token, data,config);
+           //return $http.post($rootScope.winConfigObj.copyCourseUrl+"?token="+$rootScope.token, data,config);
+           
+            return $http.post($rootScope.winConfigObj.copyCourseUrl+"/"+distID, data,config);
         }
     };
    }

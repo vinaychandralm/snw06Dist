@@ -667,7 +667,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             $scope.showWholePgLoading = true;
             var objArrayOfSelected = $scope.getSelectedNewCourses();
             if (objArrayOfSelected.length > 0) {
-                postcopycourse._post(objArrayOfSelected).then(function (response) {
+                postcopycourse._post(objArrayOfSelected,$scope.disrtictObj[0].id).then(function (response) {
                     // success callback
                     if (response.data.messageType === 'SUCCESS') {
                         // console.log("copying done successfully ");
