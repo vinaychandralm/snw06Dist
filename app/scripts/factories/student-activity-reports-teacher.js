@@ -20,7 +20,7 @@ factoryModule.factory('getDataStudentTeacher',['$http', function ($http) {
 
     return {
         _get: function (role, userid,urlDetails) {
-            console.log(basePath + "entityids=" + userid);
+          //  console.log(basePath + "entityids=" + userid);
             var basePath = urlDetails.servicesBaseUrl +"/student?entitytype=course&";
             return $http.get(basePath + "entityids=" + userid);
         }

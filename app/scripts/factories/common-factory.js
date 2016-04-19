@@ -125,14 +125,8 @@ factoryModule.factory('GetNewCourseCatSchool',['$http','$rootScope', function($h
     
    return {
         _get: function(schoolId,distId) {
-       //     console.log($rootScope.winConfigObj)
-          //  var __url = $rootScope.winConfigObj.newCourseList+"/"+ distId +"/"+ schoolId+ "?&type=school&token="+$rootScope.token;
-     
-    //  console.log("$rootScope.token ",$rootScope.token);
-    //  console.log("")
-                 var __url = $rootScope.winConfigObj.newCourseList + schoolId  +"?baseDomainId="+distId + "&type=school&token="+$rootScope.token;
-     
-            // console.log(__url);
+            var __url = $rootScope.winConfigObj.newCourseList + schoolId  +"?baseDomainId="+distId + "&type=school&token="+$rootScope.token;
+            console.log("URLLLLL  ",  __url);
             return $http.get(__url);
         }
     };

@@ -45,7 +45,7 @@ describe('directive: multiselect', function () {
         // Check that the compiled element contains the templated content
         expect(element.html()).toContain("Select");
         
-        console.log($rootScope);
+       // console.log($rootScope);
     });
     // it('Header text will be Select if no data array has been supplied', function () {
     //     var element = $compile('<multiselect ng-model="multiselectModelcourse" options="c.title for c in courseArr" data-multiple="true" data-checkall="All Courses"></multiselect>')($rootScope);

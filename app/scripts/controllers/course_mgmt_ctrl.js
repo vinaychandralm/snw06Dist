@@ -315,11 +315,6 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
 
             var objArrayOfSelected = new Array();
             angular.element("#newcourseCatlogs input:checkbox:checked").each(function () {
-                //console.log(angular.element(this).attr('data-course-id'));
-
-                //console.log(angular.element(this));
-                
-                
                 var obj = {};
                 obj.courseid = angular.element(this).attr('data-courseId');
                 obj.domainid = angular.element(this).attr('data-domainid');
@@ -332,7 +327,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
 
             });
             
-            console.log($scope.dateStringFormat(new Date($scope.startDateStartActivity)), $scope.dateStringFormat(new Date($scope.startDateEndActivity)))
+          $scope.dateStringFormat(new Date($scope.startDateStartActivity)), $scope.dateStringFormat(new Date($scope.startDateEndActivity));
             // console.log(objArrayOfSelected);
             return objArrayOfSelected;
         };
@@ -349,9 +344,6 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 }
 
             }
-            // console.log("after adding Title in slave school array  ", $scope.SchollNewCourseSlaveArray);
-            
-            //Copying into master after adding district as postfix;
             $scope.SchollNewCourseMasterArray = angular.copy($scope.SchollNewCourseSlaveArray);
 
         };
@@ -438,7 +430,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                     //This case for school data.
                     obj.Domain_ID = tempSchollArray[i].schoolDomainId;
                     // console.log(obj.Domain_ID, tempSchollArray[i].schoolDomainId)
-                    obj.domainType = 'COURSE CATELOG';
+                    obj.domainType = 'COURSE CATALOG';
 
                     tempSchollArray[i].courseList.push(obj);
                 }

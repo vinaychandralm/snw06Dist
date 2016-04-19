@@ -104,7 +104,7 @@ teacherCourseCompletionModule.controller('teacherCourseCompletionCtrl', ['$scope
         $scope.loadData = function () {
             getDataCourseTeacher._get($rootScope.role, $rootScope.userid, $scope.urlDetails)
                 .then(function onsuccess(response) {
-                    console.log(response.data);
+                   // console.log(response.data);
                     if (response.data.messageType === "ERROR") {
                         notAuthenticated._showErrorMsg();
                         return;
@@ -126,7 +126,7 @@ teacherCourseCompletionModule.controller('teacherCourseCompletionCtrl', ['$scope
             //            $scope.setDataStudent(courseIdArr);
             getDataStudentTeacher._get($rootScope.role, courseIdArr, $scope.urlDetails)
                 .then(function onsuccess(response) {
-                    console.log(response.data);
+                   // console.log(response.data);
                     if (response.data.messageType === "ERROR") {
                         notAuthenticated._showErrorMsg();
                         return;
@@ -147,18 +147,18 @@ teacherCourseCompletionModule.controller('teacherCourseCompletionCtrl', ['$scope
        
         $scope.showTeacherReport = function (isDataValidate) {
 
-            console.log('isvalidData : ', isDataValidate);
+          //  console.log('isvalidData : ', isDataValidate);
             if (isDataValidate) {
                 //Setting varaible for Animation
                 var urlDetailObj = $rootScope.winConfigObj;
                 var courseStr = $scope.courseIdArr.join(',');
                 var courseStudentIds = $scope.courseStudentIdArr.join(',');
                 var startDateStr = GetDateAsString.dateStr(new Date($scope.startDateStartActivity));
-                 console.log('startDateStr ',startDateStr);
+                // console.log('startDateStr ',startDateStr);
                 var endDateStr = GetDateAsString.dateStr($scope.startDateEndActivity);
-                 console.log('endDateStr ',endDateStr);
+               //  console.log('endDateStr ',endDateStr);
                 var enrollIdsArray = GetEnrollIdAsString.getEnrollIdStr($scope);
-                console.log('enrollIdsArray ',enrollIdsArray);
+               // console.log('enrollIdsArray ',enrollIdsArray);
                 var enrollStr = enrollIdsArray.join(',');
                 var finalGrade = $scope.finalGarade ? '1' : '0';
 
@@ -170,7 +170,7 @@ teacherCourseCompletionModule.controller('teacherCourseCompletionCtrl', ['$scope
                 $scope.newReportUrl = urlDetailObj.reportServiceUrlStudent + '/coursecompletion?startdate=' + startDateStr + '&enddate=' + endDateStr
                 + '&userid=' + $rootScope.userid + '&courseids=' + courseStr + '&studentids=' + courseStudentIds +'&finalgrades='
                 + finalGrade + '&enrollmentstatus=' + enrollStr +  '&userspace=' + $rootScope.userspace + '&token=' + $rootScope.token;
-                console.log("reportUrl : ", $scope.newReportUrl);
+              //  console.log("reportUrl : ", $scope.newReportUrl);
                 
                 //call service to load url in Iframe
                 showReport.loadOnIFrame($scope);

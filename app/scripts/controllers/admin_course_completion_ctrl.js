@@ -107,7 +107,7 @@ admModule.controller('courseCompletionAdmin', ['$scope', '$rootScope', '$locatio
                         $scope.setDataoFSchoolStudsCourse(tempArr);
                         return;
                     }
-                    console.log(response.data)
+                  //  console.log(response.data)
                     $scope.setData(response.data);
                     $scope.getAllSchollDomainId(response.data);
                     $scope.getnSetSchoolStudent($scope.allSchoolIdArrays,$scope.urlDetails);
@@ -119,7 +119,7 @@ admModule.controller('courseCompletionAdmin', ['$scope', '$rootScope', '$locatio
         };
 
         $scope.getAllSchollDomainId = function (dataresopnse) {
-            console.log(dataresopnse.data.domains);
+           // console.log(dataresopnse.data.domains);
             $scope.allSchoolIdArrays = [];
             for (var i = 0; i < dataresopnse.data.domains.length; i++) {
                 $scope.allSchoolIdArrays.push(dataresopnse.data.domains[i].id);
@@ -168,11 +168,11 @@ admModule.controller('courseCompletionAdmin', ['$scope', '$rootScope', '$locatio
                 var studentIDStr = $scope.studentListIds.join(',');
                 var courseIDStr = $scope.studentCourseListIds.join(',');
                 var startDateStr = GetDateAsString.dateStr(new Date($scope.startDateStartActivity));
-                console.log('startDateStr ',startDateStr);
+              //  console.log('startDateStr ',startDateStr);
                 var endDateStr = GetDateAsString.dateStr($scope.startDateEndActivity);
-                console.log('startDateStr ',startDateStr);
+              //  console.log('startDateStr ',startDateStr);
                 var enrollIdsArray = GetEnrollIdAsString.getEnrollIdStr($scope);
-                console.log('enrollIdsArray  ',enrollIdsArray);
+             //   console.log('enrollIdsArray  ',enrollIdsArray);
                 var enrollStr = enrollIdsArray.join(',');
                 var finalGrade = $scope.finalGrade ? '1' : '0';
 

@@ -73,7 +73,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
                 $scope.studentActivityReport = true;
 
                 $rootScope.admindetail = authResponse;
-                console.log($rootScope.admindetail);
+              //  console.log($rootScope.admindetail);
 
             }
         };
@@ -94,7 +94,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
                         $rootScope.showoverlay = false;
                     }
                 }, function onError(errResponse) {
-                    console.log("err Response ", errResponse);
+                    //console.log("err Response ", errResponse);
                     noNetError._showNetErrorMsg();
                     // $scope.blockUser(errResponse);
                 });

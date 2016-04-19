@@ -29,9 +29,9 @@ factoryModule.factory('getSchoolStudent', ['$http','$rootScope',function($http, 
            // var entitytype = 'D|C';
            // $rootScope.showoverlay = true;
             var basePath = urlDetails.servicesBaseUrl +"/student?entitytype=school&entityids=";
-            console.log(schoolIdsArray.join());
+           // console.log(schoolIdsArray.join());
             var __url = basePath +schoolIdsArray.join();
-            console.log(__url);
+            //console.log(__url);
             return $http.get(__url);
 
         }
@@ -46,9 +46,9 @@ factoryModule.factory('getSchoolStudentCourse', ['$http','$rootScope',function($
            // var entitytype = 'D|C';
            // $rootScope.showoverlay = true;
              var basePath = urlDetails.servicesBaseUrl +"/course?role=student&userids=";
-            console.log(schoolStudentIdsArray.join());
+           // console.log(schoolStudentIdsArray.join());
             var __url = basePath +schoolStudentIdsArray.join();
-            console.log(__url);
+          //  console.log(__url);
             return $http.get(__url);
 
         }
