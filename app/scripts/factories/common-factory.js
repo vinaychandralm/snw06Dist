@@ -126,7 +126,6 @@ factoryModule.factory('GetNewCourseCatSchool',['$http','$rootScope', function($h
    return {
         _get: function(schoolId,distId) {
             var __url = $rootScope.winConfigObj.newCourseList + schoolId  +"?baseDomainId="+distId + "&type=school&token="+$rootScope.token;
-            console.log("URLLLLL  ",  __url);
             return $http.get(__url);
         }
     };

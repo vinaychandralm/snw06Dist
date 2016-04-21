@@ -173,7 +173,12 @@ multiselect .btn-group ul {
     margin-left: -28px;
     color: mintcream
 }
-
+.defaultCursor{
+    cursor: default;
+}
+.autoCursor{
+        cursor: auto;
+}
 .hideCls {
     display: none;
 }

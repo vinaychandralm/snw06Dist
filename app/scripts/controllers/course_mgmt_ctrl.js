@@ -33,11 +33,8 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             $scope.existingCourseList = new Array();
             $scope.schollNewCousreList = new Array();
 
-            $scope.DistNewCourseMasterArray;
-            $scope.DistNewCourseSlaveArray;
-
             $scope.SchollNewCourseMasterArray;
-            $scope.SchollNewCourseSlaveArray;
+            // $scope.SchollNewCourseSlaveArray;
 
             $scope.mainCourseArryAsModal;
             
@@ -50,14 +47,13 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             //putting 'userspace' value to root scope so that it is avilable to all ctrls
             $rootScope.userspace = $routeParams.userspace
             $scope.urlDetails = $rootScope.winConfigObj;
-            // console.log($scope.urlDetails);
-            
+
             $scope.DistChkBoxID = 'distCollapsable';
 
             $scope.startDateStartActivity;
             $scope.maxDateStartActivity;
             $scope.startDateEndActivity;
-            $scope.showWholePgLoading =false;
+            $scope.showWholePgLoading = false;
             $scope.hideCalenderArea = true;
 
 
@@ -68,12 +64,10 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             GetCourseCatalog._get().then(function onsuccess(response) {
                 if (response.data.messageType === "ERROR") {
                     //Do for stuff when an error msg in succes api.
+                     $scope.courseCatLodingLayer = false;
                 }
-                // console.log("On Course Catalog Data :", response.data);
                 $scope.courseCatalogList = response.data.data.domains;
                 $scope.courseCatLodingLayer = false;
-
-                // console.log("$scope.courseCatalogList ", $scope.courseCatalogList);
 
             }, function onerror(response) {
                 //Do for stuff when an error come on api calling.
@@ -118,6 +112,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 .then(function onsuccess(response) {
                     if (response.data.messageType === "ERROR") {
                         notAuthenticated._showErrorMsg();
+                         $scope.distSchollLodingLayer = false;
                         return;
                     }
                     // console.log(response.data)
@@ -143,9 +138,9 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
 
                     $rootScope.firstName = response.data.firstname;
                     $rootScope.lastName = response.data.lastname;
-                    if (response.data.messageType === "ERROR" || $routeParams.role !=='admin') {
+                    if (response.data.messageType === "ERROR" || $routeParams.role !== 'admin') {
                         notAuthenticated._showErrorMsg();
-                         $scope.showLogErrorPg = true;
+                        $scope.showLogErrorPg = true;
                     } else {
                        
                         //Storing userdetail response into rootscope.
@@ -167,7 +162,6 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
         };
         $scope.removeSchoolDistFrmModal = function (schdist_Id) {
             
-            //  console.log("Called remove from modal wit id ",schdist_Id);
             var len = $scope.existingCourseList.length;
             for (var i = 0; i < len; i++) {
                 if (schdist_Id === $scope.existingCourseList[i].schoolDistId) {
@@ -191,10 +185,6 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             } else {
                 $scope.existingCourseList.push(obj);
             }
-            
-            
-            
-            //$scope.existingCourseList = obj;
             
         }
 
@@ -234,11 +224,6 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             
             //Updating list modal of Existing course list  
             $scope.schollNewCousreList.push(obj);
-            
-            //copying scholl after adding
-            //    $scope.SchollNewCourseMasterArray = angular.copy($scope.schollNewCousreList);
-
-            // console.log("Added  ", $scope.schollNewCousreList);
         };
         $scope.removeNewSchollCourseFrmModal = function (domainObj) {
             var len = $scope.schollNewCousreList.length;
@@ -255,11 +240,6 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
 
 
         $scope.updateNewCourseListForSchool = function (domainObj, distObjId, chkbxidstr) {
-            // console.log("updateNewCourseListForSchool ", $scope.disrtictObj);
-            // console.log(domainObj.id, domainObj.name, $scope.disrtictObj[0].id, chkbxidstr);
-             
-             
-            //angular.element('#' + chkbxidstr).removeAttr("disabled",true);
             var distschoolChkval = angular.element('#' + chkbxidstr).is(":checked");
             if (distschoolChkval === false) {
 
@@ -272,12 +252,8 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                     if (response.data.messageType === "ERROR") {
                         $scope.newCourseCatLodingLayer = false;
                     } else {
-                        // $scope.addSchoolDistIntoModal(schdist_Id, itemName, response.data.data.domain);
-                        // console.log("........................", domainObj.name)
-
 
                         angular.element('#' + chkbxidstr).removeAttr("disabled");
-                        // $scope.existingCourseLodingLayer = false;
                    
                         $scope.updateNewCourseForSchool(response.data.data.course, domainObj);
 
@@ -308,8 +284,6 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 idArrayOfSelectedCourseCat.push(angular.element(this).attr('data-course-id'));
             });
             return idArrayOfSelectedCourseCat;
-            //  console.log( angular.element("#courseCatlogs input:checkbox") );
-            //console.log( angular.element("#courseCatlogs input:checkbox:checked") );
         };
         $scope.getSelectedNewCourses = function () {
 
@@ -326,75 +300,13 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 objArrayOfSelected.push(obj);
 
             });
-            
-          $scope.dateStringFormat(new Date($scope.startDateStartActivity)), $scope.dateStringFormat(new Date($scope.startDateEndActivity));
+
+            $scope.dateStringFormat(new Date($scope.startDateStartActivity)), $scope.dateStringFormat(new Date($scope.startDateEndActivity));
             // console.log(objArrayOfSelected);
             return objArrayOfSelected;
         };
 
-        $scope.applyPostFixForScholl = function () {
-            var schollCourseLen = $scope.SchollNewCourseSlaveArray.length;
-            for (var i = 0; i < schollCourseLen; i++) {
-                var tempLen = $scope.SchollNewCourseSlaveArray[i].courseList.length;
-                var currOBjRef = $scope.SchollNewCourseSlaveArray[i].courseList;
-                for (var j = 0; j < tempLen; j++) {
-
-                  //  currOBjRef[j].title = currOBjRef[j].title + " (District)";
-                    currOBjRef[j].courseFrom = " (District)";
-                }
-
-            }
-            $scope.SchollNewCourseMasterArray = angular.copy($scope.SchollNewCourseSlaveArray);
-
-        };
-        $scope.applyPostfixNMergeSchollModals = function () {
-            
-            
-            //making slave array of scholls
-            $scope.SchollNewCourseSlaveArray = angular.copy($scope.SchollNewCourseMasterArray);
-
-            $scope.applyPostFixForScholl();
-            var schollCourseLen = $scope.SchollNewCourseSlaveArray.length;
-            for (var i = 0; i < schollCourseLen; i++) {
-                // var tempRefObj = $scope.DistNewCourseMasterArray[];
-                // console.log($scope.SchollNewCourseSlaveArray[i].courseList, $scope.SchollNewCourseSlaveArray[i]);
-                var DistArrayLen = $scope.DistNewCourseMasterArray.length;
-                for (var j = 0; j < DistArrayLen; j++) {
-                    var obj = angular.copy($scope.DistNewCourseMasterArray[j]);
-                    // console.log(obj);
-                   // obj.title = obj.title + " (Course Catalog)";
-                    Obj.courseFrom = "(Course Catalog)";
-                    // console.log(obj.title);
-                    $scope.SchollNewCourseSlaveArray[i].courseList.push(obj);
-                }
-            }
-             
-            //Creating Obj after joining both scholl and District data array as Modal to Show On New Course Catalog Section
-            // console.log("Master Dist Data ", $scope.DistNewCourseMasterArray);
-            // console.log("Scholl Dist Data ", $scope.SchollNewCourseSlaveArray);
-            // console.log($scope.disrtictObj[0].id, $scope.disrtictObj[0]);
-            var obj = {};
-            obj.schoolDomainId = $scope.disrtictObj[0].id;
-            obj.schoolName = $scope.disrtictObj[0].name;
-            obj.courseList = $scope.DistNewCourseMasterArray;
-
-            $scope.mainCourseArryAsModal = new Array();
-            $scope.mainCourseArryAsModal.push(obj);
-            var schollSalveLen = $scope.SchollNewCourseSlaveArray.length;
-            for (var k = 0; k < schollSalveLen; k++) {
-                $scope.mainCourseArryAsModal.push($scope.SchollNewCourseSlaveArray.shift());
-            }
-
-            // console.log("$scope.mainCourseArryAsModal  ", $scope.mainCourseArryAsModal)
-
-        };
-
-        $scope.createJointModalForNewCourse = function () {
-
-            $scope.applyPostfixNMergeSchollModals();
-            // var obj = {};
-
-        };
+      
         $scope.addDistPostFix = function (dupSchollArray) {
             var len = dupSchollArray.length;
             for (var i = 0; i < len; i++) {
@@ -402,7 +314,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 var objLen = tempSchollObj.courseList.length;
                 for (var j = 0; j < objLen; j++) {
                     //tempSchollObj.courseList[j].title = tempSchollObj.courseList[j].title + " (District)";
-                     tempSchollObj.courseList[j].courseFrom = " (District)";
+                    tempSchollObj.courseList[j].courseFrom = " (District)";
                     //This case for school data.
                     tempSchollObj.courseList[j].Domain_ID = tempSchollObj.schoolDomainId;
                     tempSchollObj.courseList[j].domainType = 'SCHOOL';
@@ -416,29 +328,17 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             // $scope.DistNewCourseArray
             var schollCourseLen = tempSchollArray.length;
             for (var i = 0; i < schollCourseLen; i++) {
-                // var tempRefObj = $scope.DistNewCourseMasterArray[];
-                // console.log($scope.SchollNewCourseSlaveArray[i].courseList, $scope.SchollNewCourseSlaveArray[i]);
                 var DistArrayLen = $scope.DistNewCourseArray.length;
                 for (var j = 0; j < DistArrayLen; j++) {
                     var obj = angular.copy($scope.DistNewCourseArray[j]);
-                    // console.log(obj);
-                   // obj.title = obj.title + " (Course Catalog)";
-                    obj.courseFrom =  " (Course Catalog)";
-                    // console.log(obj.title);
-                   
-                    
+                    obj.courseFrom = " (Course Catalog)";
                     //This case for school data.
                     obj.Domain_ID = tempSchollArray[i].schoolDomainId;
-                    // console.log(obj.Domain_ID, tempSchollArray[i].schoolDomainId)
                     obj.domainType = 'COURSE CATALOG';
 
                     tempSchollArray[i].courseList.push(obj);
                 }
             }
-
-            // console.log("Scholl Array  :", tempSchollArray)
-            // console.log("DistNewCourseArray Array  :", $scope.DistNewCourseArray)
-
         };
 
         $scope.getCopyOfScholls = function () {
@@ -484,9 +384,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             var copyOfScholl = $scope.getCopyOfScholls();
             var schollSalveLen = $scope.schollNewCousreList.length;
 
-            // console.log("$scope.schollNewCousreList   ", $scope.schollNewCousreList)
             for (var k = 0; k < schollSalveLen; k++) {
-                //$scope.mainCourseArryAsModal.push( angular.copy($scope.schollNewCousreList[k]) );
                
                 $scope.mainCourseArryAsModal.push(angular.copy(copyOfScholl[k]));
             }
@@ -514,20 +412,21 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
         }
 
         $scope.getNewCourseListForDistrict = function () {
-            // console.log("Form updateNewCourseListForDistrict  ", distObjId, idArrayOfSelectedCourseCat);
             var idArrayOfSelectedCourseCat = $scope.getSecectedCourseCatalog();
             var distObjId = $scope.disrtictObj[0].id;
             var isDistSelected = angular.element('#distCollapsable').is(":checked");
             if (isDistSelected && idArrayOfSelectedCourseCat.length > 0) {
                 $scope.newCourseCatLodingLayer = true;
                 GetNewCourseCatDist._get(distObjId, idArrayOfSelectedCourseCat).then(function onsuccess(response) {
-                    // console.log(response);
-                    var res = response.data.data.course;
-                    $scope.DistNewCourseArray = angular.copy(res);
-                    //$scope.createJointModalForNewCourse();
-                
-                    $scope.buildMainModal();
-                    $scope.newCourseCatLodingLayer = false;
+                    if (response.data.messageType === "ERROR") {
+                        $scope.newCourseCatLodingLayer = false;
+                        return;
+                    } else {
+                        var res = response.data.data.course;
+                        $scope.DistNewCourseArray = angular.copy(res);
+                        $scope.buildMainModal();
+                        $scope.newCourseCatLodingLayer = false;
+                    }
                 },
                     function error(response) {
 
@@ -559,13 +458,10 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
         // domainObj.id,'checkbox_'+$index,domainObj.name,domainObj,disrtictObj[0].id
         $scope.onDistSchollChkUpdate = function (schdist_Id, chkbxidstr, itemName, domainObj, distObjId) {
 
-            // console.log(schdist_Id, chkbxidstr, itemName);
-
             var distschoolChkval = angular.element('#' + chkbxidstr).is(":checked");
             $scope.updateExistingCourseModal(schdist_Id, distschoolChkval, itemName, chkbxidstr);
 
             var isDist = $scope.checkSchoolOrDist(schdist_Id);
-            // console.log("IsDist ", isDist);
 
             if (distschoolChkval) {
                 //Addition
@@ -615,15 +511,15 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             }
             return (yyyy + '-' + mm + '-' + dd);
         };
-        
-        $scope.onCourseTypeClick=function(){
-          
-          if($scope.courseType === 'Continuous'){
-            $scope.hideCalenderArea = true;
-          }else{
-              $scope.hideCalenderArea = false;
-          }
-            
+
+        $scope.onCourseTypeClick = function () {
+
+            if ($scope.courseType === 'Continuous') {
+                $scope.hideCalenderArea = true;
+            } else {
+                $scope.hideCalenderArea = false;
+            }
+
         };
 
         $scope.getAllSelectedDistNSchool = function () {
@@ -650,64 +546,58 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             for (var i = 0; i < len; i++) {
                 angular.element('#' + idArrayofDistSchool[i]).triggerHandler('click');
             }
-             $scope.showWholePgLoading = false;
+            $scope.showWholePgLoading = false;
         };
 
         $scope.handleCopyEvent = function () {
             
             //checking condition to fire copy Ajax
             var selectedNewCoursedId = angular.element("#newcourseCatlogs input:checkbox:checked");
-            if(selectedNewCoursedId.length === 0){
-                
+            if (selectedNewCoursedId.length === 0) {
+
                 $scope.showModalPopup("There is no new courses to be copied from New Courses.");
                 return;
             }
-            
+
 
             $scope.showWholePgLoading = true;
             var objArrayOfSelected = $scope.getSelectedNewCourses();
             if (objArrayOfSelected.length > 0) {
-                postcopycourse._post(objArrayOfSelected,$scope.disrtictObj[0].id).then(function (response) {
+                postcopycourse._post(objArrayOfSelected, $scope.disrtictObj[0].id).then(function (response) {
                     // success callback
                     if (response.data.messageType === 'SUCCESS') {
-                        // console.log("copying done successfully ");
-
-                        // var event = new Event('submit');  // (*)
-                        // elem.dispatchEvent(event);
                         var idArrayOfSelectedDistSchool = $scope.getAllSelectedDistNSchool();
 
                         $timeout(function () {
                             $scope.updateRespectiveColumns(idArrayOfSelectedDistSchool);
                         }, 1000);
-                        
-                         $scope.showModalPopup("New Courses has been copied successfully.");
 
-                    }else{
-                         $scope.showWholePgLoading = false;
-                        
+                        $scope.showModalPopup("New Courses has been copied successfully.");
+
+                    } else {
+                        $scope.showWholePgLoading = false;
+
                         $scope.showModalPopup("New Courses did not get copied, Please try again");
-                        
+
                     }
                 },
                     function (response) {
                         $scope.showWholePgLoading = false;
-                        
+
                         $scope.showModalPopup("New Courses did not get copied, Please try again");
                     });
             }
         };
-        $scope.onNewCourseClick=function(idStr){
-         var val = angular.element('#'+idStr).is(":checked");
-        //   console.log("On New Course click  ",val,idStr);
-            
+        $scope.onNewCourseClick = function (idStr) {
+            var val = angular.element('#' + idStr).is(":checked");
         };
-        
-        $scope.showModalPopup=function(msg){
-            
+
+        $scope.showModalPopup = function (msg) {
+
             angular.element('#modalContent').text(msg);
-           
+
             angular.element('#msgModal').modal('show');
-            
+
         };
 
         $scope.go = function (path) {
@@ -718,8 +608,8 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             var currDate = new Date();
             $scope.startDateStartActivity = currDate.setDate(currDate.getDate());
             $scope.maxDateStartActivity = new Date().setDate(new Date().getDate());
-            $scope.minDateStartActivity = new Date().setDate(new Date().getDate()-1);
-            $scope.startDateEndActivity =new Date().setDate(new Date().getDate()+365);
+            $scope.minDateStartActivity = new Date().setDate(new Date().getDate() - 1);
+            $scope.startDateEndActivity = new Date().setDate(new Date().getDate() + 365);
         }
     
         //Initilizing variables.
