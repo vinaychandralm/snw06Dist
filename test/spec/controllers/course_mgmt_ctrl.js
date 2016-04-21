@@ -218,44 +218,7 @@ describe('Copy Course Ctrl', function () {
     });
 
 
-    it('It shuould call the function get_district_School_Data  method with messageType: SUCCESS ', function () {
-        var controller = createController();
-
-        $routeParams.role = 'admin';
-        rootScope.userDetails = { data: { data: { user: { domainid: '123456789' } } } };
-
-        scope.urlDetails = rootScope.winConfigObj;
-        
-        // spyOn(getSchoolData, '_get').and.returnValue('Some text');
-        spyOn(scope, 'filterDataTODisplay').and.returnValue('Some text');
-
-        scope.get_district_School_Data();
-         
-         
-          // Setup the data we wish to return for the .then function in the controller
-        deferred.resolve({ config: {}, data: { data: { 'domains': [{ 'id': '12342' }, { 'id': '12341' }, { 'id': '12340' }], 'key': 'someType' }, messageType: 'SUCCESS', status: 200, statusText: 'OK' } });
-         
-         
-        // We have to call apply for this to work
-        scope.$apply();
-
-        expect(getSchoolData._get).toHaveBeenCalled();
-        // expect(scope.filterDataTODisplay).toHaveBeenCalled();
-        // expect(scope.distSchollLodingLayer).toHaveBeenCalled();
-        // expect(scope.getnSetSchoolStudent).toHaveBeenCalled();
-         
-        // // Setup the data we wish to return for the .then function in the controller
-        // deferred.resolve({ config: {}, data: { data: { 'domains': [{ 'id': '12342' }, { 'id': '12341' }, { 'id': '12340' }], 'key': 'someType' }, messageType: 'SUCCESS', status: 200, statusText: 'OK' } });
-         
-         
-        // // We have to call apply for this to work
-        // scope.$apply();
-
-        // expect(getSchoolData._get).toHaveBeenCalled();
-        // expect(scope.filterDataTODisplay).toHaveBeenCalled();
-        // expect(scope.distSchollLodingLayer).toBe(false);
-
-    });
+   
 
 
 });
