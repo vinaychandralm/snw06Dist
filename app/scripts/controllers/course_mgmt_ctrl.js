@@ -77,7 +77,9 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
 
         $scope.filterDataTODisplay = function (domainData) {
             var domainDataArray = domainData.data.domains;
-            //console.log(domainData.data.domains)
+            console.log(JSON.stringify(domainData.data.domains[0]) )
+            console.log(JSON.stringify(domainData.data.domains[1]) )
+            console.log(JSON.stringify(domainData.data.domains[2]) )
             $scope.domainDataScholl = null;
             var len = domainDataArray.length;
 
@@ -91,16 +93,17 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 // console.log( $scope.domainDataScholl);
                 return
             }
-             
+           
             //Note:- there will be only one Object element for district in domain list array
             // hence  loop will break as soon as it find matched domainID Object 
             for (var i = 0; i < len; i++) {
                 if (domainDataArray[i].id === $rootScope.userDetails.data.data.user.domainid) {
                     $scope.disrtictObj = domainDataArray.splice(i, 1);
-                    // console.log($scope.disrtictObj);
+                   
                     break;
                 }
             }
+           
             // In Case of teacher there only only school data.
             $scope.domainDataScholl = domainDataArray;
         }

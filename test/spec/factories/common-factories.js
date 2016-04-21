@@ -88,5 +88,6 @@ describe('GetCourseCatalog Ajax Call', function () {
         expect(http.post).toHaveBeenCalled();
         expect(post).toEqual("some post value");
     });
-
+    
+   
 });
