@@ -7,12 +7,9 @@ var factoryModule = angular.module('studentActivityReportsAdmin.factories', []);
 factoryModule.factory('getSchoolData',['$http', function($http) {
     return {
         _get: function(userid,__token,urlDetails) {
-            // console.log("*******************************************");
-            // console.log(userid);
             var basePath = urlDetails.servicesBaseUrl +"/domain/list/";
             var token = __token;
             var __url = basePath +userid+'?token='+token;
-            // console.log(__url);
             return $http.get(__url);
 
         }

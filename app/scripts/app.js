@@ -37,6 +37,12 @@
             'studentActivityReportsAdmin.factories',
             'studentActivityReportscommomns.factories'
         ])
+        
+        .config(function ($collapseProvider) {
+                angular.extend($collapseProvider.defaults, {
+                    disallowToggle: true
+                });
+            })
         .config(function ($routeProvider) {
             $routeProvider
                 .when('/', {
