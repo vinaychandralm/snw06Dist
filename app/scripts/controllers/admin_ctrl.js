@@ -111,7 +111,6 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
                         $scope.setDataoFSchoolStudsCourse(tempArr);
                         return;
                     }
-                  //  console.log(response.data)
                     $scope.setData(response.data);
                     $scope.getAllSchollDomainId(response.data);
                     $scope.getnSetSchoolStudent($scope.allSchoolIdArrays, $scope.urlDetails)
@@ -123,7 +122,6 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
         };
 
         $scope.getAllSchollDomainId = function (dataresopnse) {
-           // console.log(dataresopnse.data.domains);
             $scope.allSchoolIdArrays = [];
             for (var i = 0; i < dataresopnse.data.domains.length; i++) {
                 $scope.allSchoolIdArrays.push(dataresopnse.data.domains[i].id);
@@ -164,26 +162,17 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
 
         $scope.showAdminReport = function (isDataValidate) {
 
-           // console.log('isvalidData : ', isDataValidate);
             if (isDataValidate) {
-                //Setting varaible for Animation
                 var urlDetailObj = $rootScope.winConfigObj;
                 var schoolIdStr = $scope.schoolListIds.join(',');
                 var studentIDStr = $scope.studentListIds.join(',');
                 var courseIDStr = $scope.studentCourseListIds.join(',');
                 var startDateStr = GetDateAsString.dateStr(new Date($scope.startDateStartActivity));
-                //console.log('startDateStr ', startDateStr);
                 var endDateStr = GetDateAsString.dateStr($scope.startDateEndActivity);
-               // console.log('startDateStr ', startDateStr);
                 var enrollIdsArray = GetEnrollIdAsString.getEnrollIdStr($scope);
-                //console.log('enrollIdsArray  ', enrollIdsArray);
                 var enrollStr = enrollIdsArray.join(',');
                 var excuseItemStr = $scope.excuedItem ? '1' : '0';
 
-                // $scope.newReportUrl = urlDetailObj.reportServiceUrlStudent + '/studentactivityreportforteacher?startdate=' + startDateStr + '&enddate=' + endDateStr
-                // + '&userid=' + $rootScope.userid + '&courseids=' + courseStr + '&studentids=' + courseStudentIds + '&minimumminutes=' + $scope.minimumMinut + '&enrollmentstatus=' + enrollStr + '&excuseditem='
-                // + excuseItemStr + '&userspace=' + $rootScope.userspace + '&token=' + $rootScope.token;
-                // console.log("reportUrl : ", $scope.newReportUrl);
                 $scope.newReportUrl = urlDetailObj.reportServiceUrlStudent + '/studentactivityreportforadmin?startdate=' + startDateStr + '&enddate=' + endDateStr + '&userid=' + $rootScope.userid + '&username=' + $rootScope.admindetail.data.user.firstname + ' ' + $rootScope.admindetail.data.user.lastname + '&domainids=' + schoolIdStr + '&studentids=' + studentIDStr + '&courseids=' + courseIDStr + '&minimumminutes=' + $scope.inputAdmin + '&enrollmentstatus=' + enrollStr + '&excuseditem=' + excuseItemStr + '&userspace=' + $rootScope.userspace + '&token=' + $rootScope.token;
                 
                 //call service to load url in Iframe 
@@ -271,24 +260,6 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
             $location.path('/');
         }
 
-        // Success callback
-        // var handleSuccess = function (data, status) {
-        //     $scope.details = data;
-        // };
-
-        // // Error callback
-        // var handleError = function (err, status) {
-        //     $scope.details = {};
-        // };
-
-        // $scope.$watch('selectedDate', function () {
-        //     //console.log($scope.selectedDate);
-        // }, true);
-
-        // $scope.$watch('selectedDate', function () {
-        //      //console.log($scope.selectedDate);
-        // }, true);
-
         $scope._multiselectModelAdminCourse_ = function () {
             $scope.schoolListIds = [];
             
@@ -298,7 +269,6 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
             for (var i = 0; i < $scope.multiselectModelAdminCourse.length; i++) {
                 $scope.schoolListIds.push($scope.multiselectModelAdminCourse[i].id);
             }
-            // $scope.OnChangeSchools();
             $scope.promise = $timeout(function () {
                 $scope.OnChangeSchools();
             }, 1000);
@@ -337,16 +307,9 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
 
         $scope.$watch('multiselectModelEnrollment', $scope._multiselectModelEnrollment_, true);
 
-        // if (!$rootScope.studentActivityReportAdminUpdated) {
-    
             //Initalizing variables
             $scope.initValues();
-
-            // $scope.dateUpdate();
-        
             //Laoding data 
             $scope.loadData();
-        // }
-
 
     }]);

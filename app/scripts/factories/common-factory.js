@@ -65,16 +65,6 @@ factoryModule.factory('GetDateAsString',['$rootScope', function($rootScope) {
     }
 }]);
 
-// factoryModule.factory('calculateIFramHeightnWidth',['$rootScope','$window', function($rootScope, $window) {
-
-//     return {
-//         getHeightnWidth: function() {
-//             console.log('$window.innerHeight : ',$window.innerHeight);
-//             angular.element('.header .ng-scope');
-//         }
-//     }
-// }]);
-
 factoryModule.factory('GetEnrollIdAsString',['$rootScope', function($rootScope) {
     
    return{  getEnrollIdStr:function(__$scope){
@@ -93,14 +83,11 @@ factoryModule.factory('GetEnrollIdAsString',['$rootScope', function($rootScope) 
     
 }]);
 
-
 factoryModule.factory('GetCourseCatalog',['$http','$rootScope', function($http,$rootScope) {
     
    return {
         _get: function() {
-            // console.log($rootScope.winConfigObj)
-            var __url = $rootScope.winConfigObj.courseCatalogUrl; // +$rootScope.token;
-            // console.log(__url);
+            var __url = $rootScope.winConfigObj.courseCatalogUrl; 
             return $http.get(__url);
         }
     };
@@ -112,9 +99,7 @@ factoryModule.factory('GetExistingCourseCat',['$http','$rootScope', function($ht
     
    return {
         _get: function(__domainId,chkbxidstr) {
-       //     console.log($rootScope.winConfigObj)
             var __url = $rootScope.winConfigObj.existingCourseUrl+ __domainId +"?token="+$rootScope.token;
-      //      console.log(__url);
             return $http.get(__url);
         }
     };
@@ -132,16 +117,12 @@ factoryModule.factory('GetNewCourseCatSchool',['$http','$rootScope', function($h
    }
 ]);
 
-///http://localhost:8080/gage-service/service/course/new/list/46238884?baseDomainId=34816161,34816208&type=district&token=~gzY
-
 factoryModule.factory('GetNewCourseCatDist',['$http','$rootScope', function($http,$rootScope) {
     
    return {
         _get: function(distObjId, idArrayOfSelectedCourseCat) {
            
             var __url = $rootScope.winConfigObj.newCourseList + distObjId  +"?baseDomainId="+idArrayOfSelectedCourseCat.join() + "&type=district&token="+$rootScope.token;
-     
-            // console.log(__url);
             return $http.get(__url);
         }
     };
@@ -154,16 +135,12 @@ factoryModule.factory('GetNewCourseCatDist',['$http','$rootScope', function($htt
    return {
         _post: function(objArray,distID) {
            
-         //  console.log(objArray)
            var data = JSON.stringify(objArray);
-        //    console.log(data);
            var config = {
                 headers : {
                      'Content-Type': 'application/json;charset=utf-8;'
                 }
             }
-           //return $http.post($rootScope.winConfigObj.copyCourseUrl+"?token="+$rootScope.token, data,config);
-           
             return $http.post($rootScope.winConfigObj.copyCourseUrl+"/"+distID, data,config);
         }
     };

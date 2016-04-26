@@ -15,20 +15,13 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
         $scope.initValues = function () {
 
             $rootScope.winConfigObj = window.configObj;
-            // console.log(".configData ........  : ",$rootScope.winConfigObj);
-            // console.log("$rootScope.winConfigObj.userSettingObjects.role :  ",$rootScope.winConfigObj.userSettingObjects.role);
             $scope.progressReport = false;
             $scope.courseCompletionReport = false;
             $scope.studentActivityReport = false;
             $rootScope.loadingText = true;
             $rootScope.netErr = false;
             $rootScope.authenticationErr = false;
-            // $rootScope.progressReportAdminUpdated = false;
-            // $rootScope.courseCompletionReportAdminUpdated = false;
-            // $rootScope.studentActivityReportAdminUpdated = false;
-
             $rootScope.token = $routeParams.token;
-            //console.log($routeParams.token);
             $rootScope.userid = $routeParams.userid;
             $rootScope.token = $routeParams.token;
             $rootScope.role = $routeParams.role;
@@ -36,23 +29,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
             //putting 'userspace' value to root scope so that it is avilable to all ctrls
             $rootScope.userspace = $routeParams.userspace
     
-            //   TODO : Remove blow 6 line comments if not using GRUNT-SERVE.
-
-            // $routeParams.role = $rootScope.winConfigObj.userSettingObjects.role;
-            // $routeParams.userid = $rootScope.winConfigObj.userSettingObjects.userid;
-            // $routeParams.token = $rootScope.winConfigObj.userSettingObjects.token;
-            // $routeParams.userspace = $rootScope.winConfigObj.userSettingObjects.userspace;
-
-            // $rootScope.token = $routeParams.token;
-            // $rootScope.userid = $routeParams.userid;
-            // $rootScope.role = $routeParams.role;
-            // $rootScope.userspace = $rootScope.winConfigObj.userSettingObjects.userspace;
-
-
-
             $scope.urlDetails = $rootScope.winConfigObj;
-            console.log($scope.urlDetails);
-
 
         };
 
@@ -73,13 +50,8 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
                 $scope.studentActivityReport = true;
 
                 $rootScope.admindetail = authResponse;
-              //  console.log($rootScope.admindetail);
-
             }
         };
-        // $scope.blockUser = function (authResponse) {
-        //     console.log(authResponse);
-        // };
 
         $scope.loadData = function () {
             validateUrlData._get($routeParams.role, $routeParams.userid, $routeParams.token, $scope.urlDetails)
@@ -94,9 +66,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
                         $rootScope.showoverlay = false;
                     }
                 }, function onError(errResponse) {
-                    //console.log("err Response ", errResponse);
                     noNetError._showNetErrorMsg();
-                    // $scope.blockUser(errResponse);
                 });
         };
         $scope.openForm = function () {
@@ -145,9 +115,7 @@ homeModule.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$theme'
             return $location.path();
         },
             function (newValue, oldValue) {
-                //            console.log(newValue, oldValue);
-                if (newValue === '/') { // Update: variable name case should be the same
-                    // here you can do your tasks
+                if (newValue === '/') { 
                     $rootScope.bodybg = 'bodyBgViolat';
                 }
                 else {
