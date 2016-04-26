@@ -4,6 +4,7 @@ describe('studentDetailsCtrl', function () {
     var scope, $location, createController, rootScope, getEnrollmentStatus, $q, deferred, getDataStudent, routeParams, notAuthenticated;
 
     beforeEach(module('studentActivityReports'))
+    beforeEach(module('studentActivityReportsAdmin.factories'));
     beforeEach(module('studentActivityReports.studentDetails'));
     beforeEach(inject(function ($rootScope, $controller, _$location_, _getEnrollmentStatus_, _$routeParams_, _$q_, _getDataStudent_, _notAuthenticated_) {
         // $location = _$location_;

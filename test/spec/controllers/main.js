@@ -8,14 +8,14 @@ describe('Main Ctrl', function () {
     beforeEach(module('studentActivityReports'))
     beforeEach(module('studentActivityReports.home'));
     beforeEach(inject(function ($rootScope, $controller, _$location_, _$routeParams_, _validateUrlData_, _$q_,
-        _notAuthenticated_, _noNetError_, _getServerConfigData_) {
+        _notAuthenticated_, _noNetError_ ) {
         $location = _$location_;
         rootScope = $rootScope;
         scope = $rootScope.$new();
         $q = _$q_;
         notAuthenticated = _notAuthenticated_;
         noNetError = _noNetError_;
-        getServerConfigData = _getServerConfigData_;
+      //  getServerConfigData = _getServerConfigData_;
         routeParams = _$routeParams_;
         validateUrlData = _validateUrlData_;
         window.configObj = {

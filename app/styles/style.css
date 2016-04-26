@@ -35,13 +35,17 @@ body{
 .row-content .feild-row a.report-link{
 	background:url(../images/bullett.png) no-repeat center left;
 	padding-left:10px;
-	width:190px;
+	/*width:190px;*/
+    width:220px;
 	margin:0 auto;
 	display:block;
 	text-align:left;
 	margin-bottom:7px;
 	color:#003ba6;
 	}
+.reportH4{
+    margin-left: -1em;
+}
 .row-content .feild-row a.click-here{
 	font-size:12px;
 	margin-top:70px;

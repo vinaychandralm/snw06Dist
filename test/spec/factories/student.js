@@ -163,53 +163,53 @@ describe('noNetError', function () {
 
 
 
-describe('getEnrollmentStatus', function () {
+// describe('getEnrollmentStatus', function () {
 
-    // load the controller's module
-    beforeEach(module('studentActivityReports.factories'));
-    var scope, getEnrollmentStatus, rootScope;
-    beforeEach(inject(function ($rootScope, _getEnrollmentStatus_) {
-        rootScope = $rootScope;
-        scope = $rootScope.$new();
-        getEnrollmentStatus = _getEnrollmentStatus_;
+//     // load the controller's module
+//     beforeEach(module('studentActivityReports.factories'));
+//     var scope, getEnrollmentStatus, rootScope;
+//     beforeEach(inject(function ($rootScope, _getEnrollmentStatus_) {
+//         rootScope = $rootScope;
+//         scope = $rootScope.$new();
+//         getEnrollmentStatus = _getEnrollmentStatus_;
 
-    }));
+//     }));
 
-    it('should return static value', function () {
-        var get = getEnrollmentStatus.get();
-        expect(get).toEqual([
-            {
-                id: 1,
-                name: "Active"
-            },
-            {
-                id: 4,
-                name: "Withdrawn"
-            },
-            {
-                id: 5,
-                name: "WithdrawnFailed"
-            },
-            {
-                id: 6,
-                name: "Transferred"
-            },
-            {
-                id: 7,
-                name: "Completed"
-            },
-            {
-                id: 8,
-                name: "CompletedNoCredit"
-            },
-            {
-                id: 9,
-                name: "Suspended"
-            },
-            {
-                id: 10,
-                name: "Inactive"
-            }
-        ]);
-    });
-});
+//     it('should return static value', function () {
+//         var get = getEnrollmentStatus.get();
+//         expect(get).toEqual([
+//             {
+//                 id: 1,
+//                 name: "Active"
+//             },
+//             {
+//                 id: 4,
+//                 name: "Withdrawn"
+//             },
+//             {
+//                 id: 5,
+//                 name: "WithdrawnFailed"
+//             },
+//             {
+//                 id: 6,
+//                 name: "Transferred"
+//             },
+//             {
+//                 id: 7,
+//                 name: "Completed"
+//             },
+//             {
+//                 id: 8,
+//                 name: "CompletedNoCredit"
+//             },
+//             {
+//                 id: 9,
+//                 name: "Suspended"
+//             },
+//             {
+//                 id: 10,
+//                 name: "Inactive"
+//             }
+//         ]);
+//     });
+//});

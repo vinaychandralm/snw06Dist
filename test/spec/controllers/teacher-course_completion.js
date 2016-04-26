@@ -12,7 +12,7 @@ describe('Teacher Ctrl', function () {
     beforeEach(module('studentActivityReports'));
     beforeEach(module('teacherActivityReports.teacherCourseComp'));
     beforeEach(inject(function ($rootScope, $controller, _$location_, _$routeParams_, _$q_,
-        _notAuthenticated_, _noNetError_, _getServerConfigData_, _getDataCourseTeacher_,
+        _notAuthenticated_, _noNetError_,  _getDataCourseTeacher_,
         _getEnrollmentStatus_, _getDataStudentTeacher_) {
         $location = _$location_;
         rootScope = $rootScope;
@@ -20,7 +20,7 @@ describe('Teacher Ctrl', function () {
         $q = _$q_;
         notAuthenticated = _notAuthenticated_;
         noNetError = _noNetError_;
-        getServerConfigData = _getServerConfigData_;
+       // getServerConfigData = _getServerConfigData_;
         routeParams = _$routeParams_;
         getDataStudentTeacher = _getDataStudentTeacher_;
         getDataCourseTeacher = _getDataCourseTeacher_;
