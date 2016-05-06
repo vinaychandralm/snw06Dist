@@ -4,10 +4,10 @@
 var courseModule = angular.module('AdminActivityReports.courseMgmt', []);
 courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', '$theme', '$routeParams', 'validateUrlData',
     'notAuthenticated', 'noNetError', 'getSchoolData', 'GetCourseCatalog', 'GetExistingCourseCat', '$locale', '_',
-    'GetNewCourseCatSchool', 'GetNewCourseCatDist', 'postcopycourse', '$timeout',
+    'GetNewCourseCatSchool', 'GetNewCourseCatDist', 'postcopycourse', '$timeout','GetCourseWithCatalogId',
     function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData, notAuthenticated, noNetError,
         getSchoolData, GetCourseCatalog, GetExistingCourseCat, $locale, _, GetNewCourseCatSchool, GetNewCourseCatDist,
-        postcopycourse, $timeout) {
+        postcopycourse, $timeout,GetCourseWithCatalogId) {
 
         $scope.initValues = function () {
 
@@ -47,9 +47,40 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             $scope.startDateEndActivity;
             $scope.showWholePgLoading = false;
             $scope.hideCalenderArea = true;
+            $scope.catalogIdonlyArray=[];
 
 
         };
+        
+        $scope.getExistingCourseWithCatalog=function(catalogIdonlyArray){
+            
+            GetCourseWithCatalogId._get(catalogIdonlyArray).then(function onsuccess(response) {
+                if (response.data.messageType === "ERROR") {
+                    //Do for stuff when an error msg in succes api.
+                    $scope.courseCatLodingLayer = false;
+                }
+                $scope.courseWithCatalogIDList = response.data.data.course;
+              
+                $scope.courseCatLodingLayer = false;
+                console.log( $scope.courseWithCatalogIDList);
+
+            }, function onerror(response) {
+                //Do for stuff when an error come on api calling.
+                $scope.courseCatLodingLayer = false;
+            });
+            
+            
+        };
+        $scope.getCatalogIdonlyArray =function(courseCatalogListArray){
+            
+            var len = courseCatalogListArray.length;
+            
+            for(var i=0;i<len;i++){
+                $scope.catalogIdonlyArray.push(courseCatalogListArray[i].id);
+            }
+            
+        };
+        
         $scope.get_course_catalog_Data = function () {
 
             $scope.courseCatLodingLayer = true;
@@ -59,7 +90,10 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                     $scope.courseCatLodingLayer = false;
                 }
                 $scope.courseCatalogList = response.data.data.domains;
-                $scope.courseCatLodingLayer = false;
+                console.log($scope.courseCatalogList);
+                $scope.getCatalogIdonlyArray($scope.courseCatalogList);
+                $scope.getExistingCourseWithCatalog($scope.catalogIdonlyArray);
+               // $scope.courseCatLodingLayer = false;
 
             }, function onerror(response) {
                 //Do for stuff when an error come on api calling.
@@ -184,7 +218,8 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                     if (response.data.messageType === "ERROR") {
 
                     } else {
-                        $scope.addSchoolDistIntoModal(schdist_Id, itemName, response.data.data.domain, chkbxidstr);
+                        // $scope.addSchoolDistIntoModal(schdist_Id, itemName, response.data.data.domain, chkbxidstr);
+                       $scope.addSchoolDistIntoModal(schdist_Id, itemName, response.data.data.course, chkbxidstr);
                         angular.element('#' + chkbxidstr).removeAttr("disabled");
                         $scope.existingCourseLodingLayer = false;
                     }

@@ -386,6 +386,58 @@ body{
 			}
 	}
     
+/*-----------------------multiselect----------------------*/
+
+.box_outer_wrap {
+	position:relative;
+}
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+width:100%;
+}
+.box_main_wrap {
+	margin-top:5px;
+}
+.body_panel>p {
+	margin:0 0 10px 0;
+}
+.bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*=col-] {
+margin-top:6px;
+}
+.btn-group-vertical>.btn.active, .btn-group-vertical>.btn:active, .btn-group-vertical>.btn:focus, .btn-group-vertical>.btn:hover, .btn-group>.btn.active, .btn-group>.btn:active, .btn-group>.btn:focus, .btn-group>.btn:hover {
+	background:#fff;
+	border:1px solid #ccc;
+}
+.btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover {
+	background:#fff;
+	border:1px solid #ccc;
+}
+.box_outer_wrap .bs-caret {
+	background: #f0f0f0;
+	display: block;
+	width: 33px;
+	height: 32px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	border-radius: 0 3px 3px 0;
+	border-left: 1px solid #ddd;
+}
+.box_outer_wrap .bs-caret:hover, .box_outer_wrap .bs-caret:focus, .box_outer_wrap .bs-caret:active {
+	background:#cecece;
+}
+.box_outer_wrap .btn-group.open .dropdown-toggle {
+	box-shadow:none;
+}
+.box_outer_wrap .btn-default.active, .box_outer_wrap .btn-default:active, .box_outer_wrap .open>.dropdown-toggle.btn-default {
+	background:#fff;
+	box-shadow: none;
+}
+.bootstrap-select .dropdown-toggle:focus {
+	outline:none !important;
+}
+
+/*------------------------multiselect-------------------------*/
+
     
 	
 					

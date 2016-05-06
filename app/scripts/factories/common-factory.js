@@ -146,3 +146,14 @@ factoryModule.factory('GetNewCourseCatDist',['$http','$rootScope', function($htt
     };
    }
    ]);
+factoryModule.factory('GetCourseWithCatalogId',['$http','$rootScope', function($http,$rootScope) {
+    
+   return {
+        _get: function(objArray) {
+           
+           var __url = $rootScope.winConfigObj.GetCourseWithCatalogIdUrl + objArray.join() + "&token="+$rootScope.token;
+           return $http.get(__url);
+        }
+    };
+   }
+   ]);   
