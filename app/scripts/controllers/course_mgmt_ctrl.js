@@ -12,7 +12,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
         $scope.initValues = function () {
 
             $locale.DATETIME_FORMATS.SHORTDAY = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
-            
+
             //console.log(_.union([34,35,45,48,49], [48,32,34,55]));
             $rootScope.winConfigObj = window.configObj;
             $rootScope.loadingText = true;
@@ -25,20 +25,20 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             $scope.showLogErrorPg = true;
             $scope.courseType = 'Continuous';
             $scope.DistNewCourseArray = null;
-            
+
             //list modals
             $scope.courseCatalogList = null;
             $scope.existingCourseList = new Array();
             $scope.schollNewCousreList = new Array();
             $scope.SchollNewCourseMasterArray;
             $scope.mainCourseArryAsModal;
-            
+
             //loding layers vars
             $scope.courseCatLodingLayer = false;
             $scope.distSchollLodingLayer = false;
             $scope.existingCourseLodingLayer = false;
             $scope.newCourseCatLodingLayer = false;
-    
+
             $rootScope.userspace = $routeParams.userspace
             $scope.urlDetails = $rootScope.winConfigObj;
             $scope.DistChkBoxID = 'distCollapsable';
@@ -47,40 +47,57 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             $scope.startDateEndActivity;
             $scope.showWholePgLoading = false;
             $scope.hideCalenderArea = true;
+            $scope.courseWithCatalogIDList=null;
             $scope.catalogIdonlyArray=[];
+            $scope.matcehCourseCatalog=[];
 
 
         };
+        $scope.getMatchedCoursedCatalog=function(){
+          var existingCousreLen = $scope.existingCourseList[0].courseList.length;
+          var fullCourseListLen = $scope.courseWithCatalogIDList.length;
+          var catalogIdListtoCheck = [];
         
+          for(var i=0;i<existingCousreLen;i++){
+              for(var j=0;j<fullCourseListLen;j++){
+                if($scope.existingCourseList[0].courseList[i].id ==   $scope.courseWithCatalogIDList[j].baseid){
+                  catalogIdListtoCheck.push($scope.courseWithCatalogIDList[j].domainid);
+                }
+              }
+          }
+          console.log(catalogIdListtoCheck);
+        }
+
         $scope.getExistingCourseWithCatalog=function(catalogIdonlyArray){
-            
+
             GetCourseWithCatalogId._get(catalogIdonlyArray).then(function onsuccess(response) {
                 if (response.data.messageType === "ERROR") {
                     //Do for stuff when an error msg in succes api.
                     $scope.courseCatLodingLayer = false;
                 }
                 $scope.courseWithCatalogIDList = response.data.data.course;
-              
+
                 $scope.courseCatLodingLayer = false;
                 console.log( $scope.courseWithCatalogIDList);
+                  // $scope.getMatchedCoursedCatalog();
 
             }, function onerror(response) {
                 //Do for stuff when an error come on api calling.
                 $scope.courseCatLodingLayer = false;
             });
-            
-            
+
+
         };
         $scope.getCatalogIdonlyArray =function(courseCatalogListArray){
-            
+
             var len = courseCatalogListArray.length;
-            
+
             for(var i=0;i<len;i++){
                 $scope.catalogIdonlyArray.push(courseCatalogListArray[i].id);
             }
-            
+
         };
-        
+
         $scope.get_course_catalog_Data = function () {
 
             $scope.courseCatLodingLayer = true;
@@ -110,9 +127,9 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             if ($rootScope.role === 'admin') {
                 $scope.isTeacherRole = false;
 
-            } 
+            }
             //there will be only one Object element for district in domain list array
-            // hence  loop will break as soon as it find matched domainID Object 
+            // hence  loop will break as soon as it find matched domainID Object
             for (var i = 0; i < len; i++) {
                 if (domainDataArray[i].id === $rootScope.userDetails.data.data.user.domainid) {
                     $scope.disrtictObj = domainDataArray.splice(i, 1);
@@ -160,13 +177,13 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                         notAuthenticated._showErrorMsg();
                         $scope.showLogErrorPg = true;
                     } else {
-                       
+
                         //Storing userdetail response into rootscope.
                         $rootScope.userDetails = response;
                         $scope.showLogErrorPg = false;
                         $rootScope.bodybg = 'bodyBgwhite';
                         $rootScope.showoverlay = false;
-                       
+
                         //Fetching data after successfull authentication
                         $scope.get_district_School_Data();
 
@@ -194,8 +211,8 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             obj.schoolDistId = schdist_Id;
             obj.schoolDistName = itemName;
             obj.courseList = existingCourses;
-            
-            //Updating list modal of Existing course list  
+
+            //Updating list modal of Existing course list
             var isDistSelected = angular.element('#distCollapsable').is(":checked");
             if (isDistSelected && (chkbxidstr === 'distCollapsable')) {
                 $scope.existingCourseList.unshift(obj);
@@ -221,22 +238,25 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                         // $scope.addSchoolDistIntoModal(schdist_Id, itemName, response.data.data.domain, chkbxidstr);
                        $scope.addSchoolDistIntoModal(schdist_Id, itemName, response.data.data.course, chkbxidstr);
                         angular.element('#' + chkbxidstr).removeAttr("disabled");
+                        if(chkbxidstr === 'distCollapsable'){
+                          $scope.getMatchedCoursedCatalog();
+                        }
                         $scope.existingCourseLodingLayer = false;
                     }
                 }, function onErr(response) {
-
+                      $scope.existingCourseLodingLayer = false;
                 });
             }
 
         };
         $scope.updateNewCourseForSchool = function (courseArray, domainObj) {
-            
+
             var obj = {};
             obj.schoolDomainId = domainObj.id;
             obj.schoolName = domainObj.name;
             obj.courseList = courseArray;
-            
-            //Updating list modal of Existing course list  
+
+            //Updating list modal of Existing course list
             $scope.schollNewCousreList.push(obj);
         };
         $scope.removeNewSchollCourseFrmModal = function (domainObj) {
@@ -359,7 +379,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 $scope.mainCourseArryAsModal.push(obj);
                 $scope.addDataForCopyApi();
             }
-           
+
             var copyOfScholl = $scope.getCopyOfScholls();
             var schollSalveLen = $scope.schollNewCousreList.length;
 
@@ -463,7 +483,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
 
         $scope.dateStringFormat = function (dateObj) {
             var dd = dateObj.getDate();
-            var mm = dateObj.getMonth() + 1; //As for January strats with 0 
+            var mm = dateObj.getMonth() + 1; //As for January strats with 0
 
             var yyyy = dateObj.getFullYear();
             if (dd < 10) {
@@ -507,7 +527,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
         };
 
         $scope.handleCopyEvent = function () {
-            
+
             var selectedNewCoursedId = angular.element("#newcourseCatlogs input:checkbox:checked");
             if (selectedNewCoursedId.length === 0) {
 
@@ -563,11 +583,11 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             $scope.minDateStartActivity = new Date().setDate(new Date().getDate() - 1);
             $scope.startDateEndActivity = new Date().setDate(new Date().getDate() + 365);
         }
-    
+
         //Initilizing variables.
         $scope.initValues();
-    
-        //Laoding data 
+
+        //Laoding data
         $scope.loadData();
 
         $scope.dateUpdate();
