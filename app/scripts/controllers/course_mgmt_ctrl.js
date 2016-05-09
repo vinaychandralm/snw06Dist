@@ -4,10 +4,10 @@
 var courseModule = angular.module('AdminActivityReports.courseMgmt', []);
 courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', '$theme', '$routeParams', 'validateUrlData',
     'notAuthenticated', 'noNetError', 'getSchoolData', 'GetCourseCatalog', 'GetExistingCourseCat', '$locale', '_',
-    'GetNewCourseCatSchool', 'GetNewCourseCatDist', 'postcopycourse', '$timeout','GetCourseWithCatalogId',
+    'GetNewCourseCatSchool', 'GetNewCourseCatDist', 'postcopycourse', '$timeout', 'GetCourseWithCatalogId',
     function ($scope, $rootScope, $location, theme, $routeParams, validateUrlData, notAuthenticated, noNetError,
         getSchoolData, GetCourseCatalog, GetExistingCourseCat, $locale, _, GetNewCourseCatSchool, GetNewCourseCatDist,
-        postcopycourse, $timeout,GetCourseWithCatalogId) {
+        postcopycourse, $timeout, GetCourseWithCatalogId) {
 
         $scope.initValues = function () {
 
@@ -47,46 +47,46 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             $scope.startDateEndActivity;
             $scope.showWholePgLoading = false;
             $scope.hideCalenderArea = true;
-            $scope.courseWithCatalogIDList=null;
-            $scope.catalogIdonlyArray=[];
-            $scope.matcehCourseCatalog=[];
+            $scope.courseWithCatalogIDList = null;
+            $scope.catalogIdonlyArray = [];
+            $scope.matcehCourseCatalog = [];
             $scope.uniqIdListOfInitalExitingcourse = null;
             $scope.isDistNotSelected = true;
-            
+
 
 
         };
-        $scope.checkOnCourseCatalog = function(){
+        $scope.checkOnCourseCatalog = function () {
             var catListBoxId = 'courseCatelogListBox';
             var len = $scope.uniqIdListOfInitalExitingcourse.length;
-            
-            for(var i=0;i<len;i++){
-               angular.element("input[data-course-id ="+$scope.uniqIdListOfInitalExitingcourse[i] +" ]" ).prop( "checked", true );
+
+            for (var i = 0; i < len; i++) {
+                angular.element("input[data-course-id =" + $scope.uniqIdListOfInitalExitingcourse[i] + " ]").prop("checked", true);
             }
             $scope.onCourseChkUpdate();
         }
-        $scope.getMatchedCoursedCatalog=function(){
-          var existingCousreLen = $scope.existingCourseList[0].courseList.length;
-          var fullCourseListLen = $scope.courseWithCatalogIDList.length;
-          var catalogIdListtoCheck = [];
-        // console.log('................ ',$scope.existingCourseList[0].courseList);
-        // console.log('................----------- ',$scope.courseWithCatalogIDList);
-        
-          for(var i=0;i<existingCousreLen;i++){
-              for(var j=0;j<fullCourseListLen;j++){
-                if($scope.existingCourseList[0].courseList[i].baseid ==   $scope.courseWithCatalogIDList[j].id){
-                  catalogIdListtoCheck.push($scope.courseWithCatalogIDList[j].domainid);
+        $scope.getMatchedCoursedCatalog = function () {
+            var existingCousreLen = $scope.existingCourseList[0].courseList.length;
+            var fullCourseListLen = $scope.courseWithCatalogIDList.length;
+            var catalogIdListtoCheck = [];
+            // console.log('................ ',$scope.existingCourseList[0].courseList);
+            // console.log('................----------- ',$scope.courseWithCatalogIDList);
+
+            for (var i = 0; i < existingCousreLen; i++) {
+                for (var j = 0; j < fullCourseListLen; j++) {
+                    if ($scope.existingCourseList[0].courseList[i].baseid == $scope.courseWithCatalogIDList[j].id) {
+                        catalogIdListtoCheck.push($scope.courseWithCatalogIDList[j].domainid);
+                    }
                 }
-              }
-          }
-          //console.log(catalogIdListtoCheck);
-          //console.log(_.uniq(catalogIdListtoCheck));
-          $scope.uniqIdListOfInitalExitingcourse = _.uniq(catalogIdListtoCheck);
-          $scope.checkOnCourseCatalog();
+            }
+            //console.log(catalogIdListtoCheck);
+            //console.log(_.uniq(catalogIdListtoCheck));
+            $scope.uniqIdListOfInitalExitingcourse = _.uniq(catalogIdListtoCheck);
+            $scope.checkOnCourseCatalog();
         }
 
-        $scope.getExistingCourseWithCatalog=function(catalogIdonlyArray){
-           // $scope.courseCatLodingLayer = true;
+        $scope.getExistingCourseWithCatalog = function (catalogIdonlyArray) {
+            // $scope.courseCatLodingLayer = true;
             $scope.distSchollLodingLayer = true;
             GetCourseWithCatalogId._get(catalogIdonlyArray).then(function onsuccess(response) {
                 if (response.data.messageType === "ERROR") {
@@ -99,7 +99,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 $scope.courseCatLodingLayer = false;
                 $scope.distSchollLodingLayer = false;
                 //console.log( $scope.courseWithCatalogIDList);
-                  // $scope.getMatchedCoursedCatalog();
+                // $scope.getMatchedCoursedCatalog();
 
             }, function onerror(response) {
                 //Do for stuff when an error come on api calling.
@@ -109,11 +109,11 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
 
 
         };
-        $scope.getCatalogIdonlyArray =function(courseCatalogListArray){
+        $scope.getCatalogIdonlyArray = function (courseCatalogListArray) {
 
             var len = courseCatalogListArray.length;
 
-            for(var i=0;i<len;i++){
+            for (var i = 0; i < len; i++) {
                 $scope.catalogIdonlyArray.push(courseCatalogListArray[i].id);
             }
 
@@ -131,7 +131,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 //console.log($scope.courseCatalogList);
                 $scope.getCatalogIdonlyArray($scope.courseCatalogList);
                 $scope.getExistingCourseWithCatalog($scope.catalogIdonlyArray);
-               // $scope.courseCatLodingLayer = false;
+                // $scope.courseCatLodingLayer = false;
 
             }, function onerror(response) {
                 //Do for stuff when an error come on api calling.
@@ -166,7 +166,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
 
             $scope.distSchollLodingLayer = true;
             var domainid = $rootScope.userDetails.data.data.user.domainid;
-            var token =$rootScope.token;
+            var token = $rootScope.token;
             var urls = $scope.urlDetails;
             getSchoolData._get(domainid, token, urls)
                 .then(function onsuccess(response) {
@@ -257,15 +257,15 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
 
                     } else {
                         // $scope.addSchoolDistIntoModal(schdist_Id, itemName, response.data.data.domain, chkbxidstr);
-                       $scope.addSchoolDistIntoModal(schdist_Id, itemName, response.data.data.course, chkbxidstr);
+                        $scope.addSchoolDistIntoModal(schdist_Id, itemName, response.data.data.course, chkbxidstr);
                         angular.element('#' + chkbxidstr).removeAttr("disabled");
-                        if(chkbxidstr === 'distCollapsable'){
-                          $scope.getMatchedCoursedCatalog();
+                        if (chkbxidstr === 'distCollapsable') {
+                            $scope.getMatchedCoursedCatalog();
                         }
                         $scope.existingCourseLodingLayer = false;
                     }
                 }, function onErr(response) {
-                      $scope.existingCourseLodingLayer = false;
+                    $scope.existingCourseLodingLayer = false;
                 });
             }
 
@@ -422,7 +422,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                     $scope.newCourseCatLodingLayer = false;
                 }
             }, function onErr(response) {
-                 $scope.newCourseCatLodingLayer = false;
+                $scope.newCourseCatLodingLayer = false;
             });
 
         }
@@ -433,7 +433,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             var isDistSelected = angular.element('#distCollapsable').is(":checked");
             if (isDistSelected && idArrayOfSelectedCourseCat.length > 0) {
                 $scope.newCourseCatLodingLayer = true;
-             
+
                 GetNewCourseCatDist._get(distObjId, idArrayOfSelectedCourseCat).then(function onsuccess(response) {
                     if (response.data.messageType === "ERROR") {
                         $scope.newCourseCatLodingLayer = false;
@@ -472,25 +472,25 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             }
 
         };
-        $scope.uncheckAllCourseCatalog=function(){
-             angular.element("#courseCatlogs input:checkbox:checked").each(function () {
-               angular.element(this).prop('checked', false);
+        $scope.uncheckAllCourseCatalog = function () {
+            angular.element("#courseCatlogs input:checkbox:checked").each(function () {
+                angular.element(this).prop('checked', false);
             });
         }
         $scope.onDistSchollChkUpdate = function (schdist_Id, chkbxidstr, itemName, domainObj, distObjId) {
 
             var distschoolChkval = angular.element('#' + chkbxidstr).is(":checked");
             $scope.updateExistingCourseModal(schdist_Id, distschoolChkval, itemName, chkbxidstr);
-            if(angular.element('#' + $scope.DistChkBoxID).is(":checked")){
-                 $scope.isDistNotSelected = false;
-            }else{
-                 $scope.isDistNotSelected = true;
-                 $scope.uncheckAllCourseCatalog();
+            if (angular.element('#' + $scope.DistChkBoxID).is(":checked")) {
+                $scope.isDistNotSelected = false;
+            } else {
+                $scope.isDistNotSelected = true;
+                $scope.uncheckAllCourseCatalog();
             }
-            
+
 
             if (distschoolChkval) {
-               
+
                 //Addition
                 $scope.callAjx(schdist_Id, chkbxidstr, itemName, domainObj, distObjId);
             } {
@@ -600,6 +600,10 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
         };
         $scope.onNewCourseClick = function (idStr) {
             var val = angular.element('#' + idStr).is(":checked");
+            if(val == false){
+                angular.element('#' + idStr).parent().parent().parent().parent().parent().prev().find('input').prop('checked', false);
+                
+            }
         };
 
         $scope.showModalPopup = function (msg) {
@@ -619,19 +623,41 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             $scope.startDateEndActivity = new Date().setDate(new Date().getDate() + 365);
         }
 
-        $scope.onclicktoggleicon=function(idStr){
-            
-           if(angular.element("#"+idStr).hasClass('fa-caret-down')){
-               angular.element("#"+idStr).removeClass('fa-caret-down');
-               angular.element("#"+idStr).addClass('fa-caret-up');
-               
-           }else{
-               angular.element("#"+idStr).addClass('fa-caret-down');
-               angular.element("#"+idStr).removeClass('fa-caret-up');
-               
-           }
-    
+        $scope.onclicktoggleicon = function (idStr) {
+
+            if (angular.element("#" + idStr).hasClass('fa-caret-down')) {
+                angular.element("#" + idStr).removeClass('fa-caret-down');
+                angular.element("#" + idStr).addClass('fa-caret-up');
+
+            } else {
+                angular.element("#" + idStr).addClass('fa-caret-down');
+                angular.element("#" + idStr).removeClass('fa-caret-up');
+
+            }
+
         }
+        $scope.onAllSelectCheck = function (idstr) {
+            console.log(idstr);
+
+         //   var listSbling = angular.element('#' + idstr).parent().parent().parent();
+        //    angular.element('#' + idstr).parent().parent().parent()
+       var listSbling =  angular.element('#' + idstr).parent().parent().parent().next().find('li')
+            //angular.element(listSbling).next().find('li');
+            if (angular.element('#' + idstr).is(":checked")) {
+//var list = angular.element(listSbling).next().find('li');
+
+                angular.element(listSbling).each(function () {
+                    angular.element(this).find('input').prop('checked', true);
+                });
+
+            }else{
+             //   var list = angular.element(listSbling).next().find('li');
+
+                angular.element(listSbling).each(function () {
+                    angular.element(this).find('input').prop('checked', false);
+                });
+            }
+        };
         //Initilizing variables.
         $scope.initValues();
 

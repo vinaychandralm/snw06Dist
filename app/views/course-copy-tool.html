@@ -204,6 +204,12 @@
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h4 class="panel-title alingNonChekbx">
+                                                        
+                                                         <div class="checkbox checkbox-primary" >
+                                                            <input id="checkboxMainNewCourse_{{$index}}"  type="checkbox"  ng-click='onAllSelectCheck("checkboxMainNewCourse_"+$index)' >
+                                                            <label for="checkboxMainNewCourse_{{$index}}" "> </label>
+                                                        </div>
+                                                        
                                                     <a data-toggle="collapse" href="#schoolCousreList_{{schollCouresObj.schoolDomainId}}" class='autoCursor'ng-click='onclicktoggleicon("newCourseIcon_"+$index)'> 
                                                         <span> <i class="fa fa-caret-down " id ="newCourseIcon_{{$index}}"></i></span><div>{{schollCouresObj.schoolName}}</div>
                                                     </a> 

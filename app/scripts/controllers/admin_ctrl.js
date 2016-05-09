@@ -304,6 +304,11 @@ admModule.controller('adminctrl', ['$scope', '$rootScope', '$location', 'getScho
                 $scope.enrollArr.push($scope.multiselectModelEnrollment[i].id);
             }
         }
+        $scope.onAllSelectCheck = function(idstr){
+            
+            console.log(idstr);
+            
+        }
 
         $scope.$watch('multiselectModelEnrollment', $scope._multiselectModelEnrollment_, true);
 
