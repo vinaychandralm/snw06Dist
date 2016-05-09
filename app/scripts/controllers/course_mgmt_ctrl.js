@@ -50,40 +50,60 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             $scope.courseWithCatalogIDList=null;
             $scope.catalogIdonlyArray=[];
             $scope.matcehCourseCatalog=[];
+            $scope.uniqIdListOfInitalExitingcourse = null;
+            
 
 
         };
+        $scope.checkOnCourseCatalog = function(){
+            var catListBoxId = 'courseCatelogListBox';
+            var len = $scope.uniqIdListOfInitalExitingcourse.length;
+            
+            for(var i=0;i<len;i++){
+               console.log( angular.element("input[data-course-id ="+$scope.uniqIdListOfInitalExitingcourse[i] +" ]" ).prop( "checked", true ) );
+            }
+            $scope.onCourseChkUpdate();
+        }
         $scope.getMatchedCoursedCatalog=function(){
           var existingCousreLen = $scope.existingCourseList[0].courseList.length;
           var fullCourseListLen = $scope.courseWithCatalogIDList.length;
           var catalogIdListtoCheck = [];
+        // console.log('................ ',$scope.existingCourseList[0].courseList);
+        // console.log('................----------- ',$scope.courseWithCatalogIDList);
         
           for(var i=0;i<existingCousreLen;i++){
               for(var j=0;j<fullCourseListLen;j++){
-                if($scope.existingCourseList[0].courseList[i].id ==   $scope.courseWithCatalogIDList[j].baseid){
+                if($scope.existingCourseList[0].courseList[i].baseid ==   $scope.courseWithCatalogIDList[j].id){
                   catalogIdListtoCheck.push($scope.courseWithCatalogIDList[j].domainid);
                 }
               }
           }
           console.log(catalogIdListtoCheck);
+          console.log(_.uniq(catalogIdListtoCheck));
+          $scope.uniqIdListOfInitalExitingcourse = _.uniq(catalogIdListtoCheck);
+          $scope.checkOnCourseCatalog();
         }
 
         $scope.getExistingCourseWithCatalog=function(catalogIdonlyArray){
-
+           // $scope.courseCatLodingLayer = true;
+            $scope.distSchollLodingLayer = true;
             GetCourseWithCatalogId._get(catalogIdonlyArray).then(function onsuccess(response) {
                 if (response.data.messageType === "ERROR") {
                     //Do for stuff when an error msg in succes api.
                     $scope.courseCatLodingLayer = false;
+                    $scope.distSchollLodingLayer = false;
                 }
                 $scope.courseWithCatalogIDList = response.data.data.course;
 
                 $scope.courseCatLodingLayer = false;
+                $scope.distSchollLodingLayer = false;
                 console.log( $scope.courseWithCatalogIDList);
                   // $scope.getMatchedCoursedCatalog();
 
             }, function onerror(response) {
                 //Do for stuff when an error come on api calling.
                 $scope.courseCatLodingLayer = false;
+                $scope.distSchollLodingLayer = false;
             });
 
 
