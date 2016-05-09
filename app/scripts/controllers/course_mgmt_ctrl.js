@@ -60,7 +60,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             var len = $scope.uniqIdListOfInitalExitingcourse.length;
             
             for(var i=0;i<len;i++){
-               console.log( angular.element("input[data-course-id ="+$scope.uniqIdListOfInitalExitingcourse[i] +" ]" ).prop( "checked", true ) );
+               angular.element("input[data-course-id ="+$scope.uniqIdListOfInitalExitingcourse[i] +" ]" ).prop( "checked", true );
             }
             $scope.onCourseChkUpdate();
         }
@@ -78,8 +78,8 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 }
               }
           }
-          console.log(catalogIdListtoCheck);
-          console.log(_.uniq(catalogIdListtoCheck));
+          //console.log(catalogIdListtoCheck);
+          //console.log(_.uniq(catalogIdListtoCheck));
           $scope.uniqIdListOfInitalExitingcourse = _.uniq(catalogIdListtoCheck);
           $scope.checkOnCourseCatalog();
         }
@@ -97,7 +97,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
 
                 $scope.courseCatLodingLayer = false;
                 $scope.distSchollLodingLayer = false;
-                console.log( $scope.courseWithCatalogIDList);
+                //console.log( $scope.courseWithCatalogIDList);
                   // $scope.getMatchedCoursedCatalog();
 
             }, function onerror(response) {
@@ -127,7 +127,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                     $scope.courseCatLodingLayer = false;
                 }
                 $scope.courseCatalogList = response.data.data.domains;
-                console.log($scope.courseCatalogList);
+                //console.log($scope.courseCatalogList);
                 $scope.getCatalogIdonlyArray($scope.courseCatalogList);
                 $scope.getExistingCourseWithCatalog($scope.catalogIdonlyArray);
                // $scope.courseCatLodingLayer = false;
