@@ -51,6 +51,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             $scope.catalogIdonlyArray=[];
             $scope.matcehCourseCatalog=[];
             $scope.uniqIdListOfInitalExitingcourse = null;
+            $scope.isDistNotSelected = true;
             
 
 
@@ -432,6 +433,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             var isDistSelected = angular.element('#distCollapsable').is(":checked");
             if (isDistSelected && idArrayOfSelectedCourseCat.length > 0) {
                 $scope.newCourseCatLodingLayer = true;
+             
                 GetNewCourseCatDist._get(distObjId, idArrayOfSelectedCourseCat).then(function onsuccess(response) {
                     if (response.data.messageType === "ERROR") {
                         $scope.newCourseCatLodingLayer = false;
@@ -470,12 +472,25 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             }
 
         };
+        $scope.uncheckAllCourseCatalog=function(){
+             angular.element("#courseCatlogs input:checkbox:checked").each(function () {
+               angular.element(this).prop('checked', false);
+            });
+        }
         $scope.onDistSchollChkUpdate = function (schdist_Id, chkbxidstr, itemName, domainObj, distObjId) {
 
             var distschoolChkval = angular.element('#' + chkbxidstr).is(":checked");
             $scope.updateExistingCourseModal(schdist_Id, distschoolChkval, itemName, chkbxidstr);
+            if(angular.element('#' + $scope.DistChkBoxID).is(":checked")){
+                 $scope.isDistNotSelected = false;
+            }else{
+                 $scope.isDistNotSelected = true;
+                 $scope.uncheckAllCourseCatalog();
+            }
+            
 
             if (distschoolChkval) {
+               
                 //Addition
                 $scope.callAjx(schdist_Id, chkbxidstr, itemName, domainObj, distObjId);
             } {

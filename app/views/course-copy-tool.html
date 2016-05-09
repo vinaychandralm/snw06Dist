@@ -169,11 +169,11 @@
                                                 <h4 class="panel-title"> <span>
                                                     <div class='chkboxWrap'>
                                                         <div class="checkbox checkbox-primary">
-                                                            <input id="checkboxCourse_{{$index}}" data-course-id = "{{courseCat.id}}" type="checkbox"  ng-click="onCourseChkUpdate()">
-                                                            <label for="checkboxCourse_{{$index}}"> </label>
+                                                            <input id="checkboxCourse_{{$index}}" data-course-id = "{{courseCat.id}}" type="checkbox"  ng-click="onCourseChkUpdate()" ng-disabled="isDistNotSelected" ng-class="{'cursorDisable' : isDistNotSelected}">
+                                                            <label for="checkboxCourse_{{$index}}" ng-disabled="isDistNotSelected" ng-class="{'cursorDisable' : isDistNotSelected}"> </label>
                                                         </div>
                                                     </div>
-                                                         </span><a data-toggle="collapse" href="#collapse1" class='defaultCursor'><div class='coursecat'> {{courseCat.name}}</div></a> 
+                                                         </span><a data-toggle="collapse" href="#collapse1" class='defaultCursor'><div class='coursecat' ng-disabled="isDistNotSelected" ng-class="{'cursorDisable' : isDistNotSelected}"> {{courseCat.name}}</div></a> 
                                                </h4>
                                             </div>
                                         </div>
