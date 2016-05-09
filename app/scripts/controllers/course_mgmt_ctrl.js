@@ -619,6 +619,19 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             $scope.startDateEndActivity = new Date().setDate(new Date().getDate() + 365);
         }
 
+        $scope.onclicktoggleicon=function(idStr){
+            
+           if(angular.element("#"+idStr).hasClass('fa-caret-down')){
+               angular.element("#"+idStr).removeClass('fa-caret-down');
+               angular.element("#"+idStr).addClass('fa-caret-up');
+               
+           }else{
+               angular.element("#"+idStr).addClass('fa-caret-down');
+               angular.element("#"+idStr).removeClass('fa-caret-up');
+               
+           }
+    
+        }
         //Initilizing variables.
         $scope.initValues();
 
