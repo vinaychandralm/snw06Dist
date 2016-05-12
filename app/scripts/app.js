@@ -19,6 +19,7 @@
             'ngSanitize',
             'ngTouch',
             'ui.multiselect',
+            'multiselectcopytool',
         // 'angularjs-dropdown-multiselect',
             'mgcrea.ngStrap',
         // 'studentActivityReports.routing',

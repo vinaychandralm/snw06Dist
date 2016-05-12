@@ -284,7 +284,7 @@ angular.module("multiselectcopytool", ["multiselect_.tpl.html"])
                     setModelValue(true);
                 };
 
-                scope.toggleCheckAll = function () {
+                scope.toggleCheckAll = function ( onCourseChkUpdateMethod) {
                     if (!isMultiple) {
                         return;
                     }
@@ -302,6 +302,7 @@ angular.module("multiselectcopytool", ["multiselect_.tpl.html"])
                     }
 
                     setModelValue(true);
+                    setTimeout(onCourseChkUpdateMethod,100);
                 };
 
                 scope.select = function (event, item) {
@@ -316,6 +317,7 @@ angular.module("multiselectcopytool", ["multiselect_.tpl.html"])
                 };
                 scope.customSelect = function(event, item,onCourseChkUpdateMethod){
                     scope.select(event, item);
+                    console.log("kjafjlkfjasjalkdjasdljasdljasdlkjas akdjkasjd")
                      setTimeout(onCourseChkUpdateMethod,100);
                 };
 
@@ -344,7 +346,7 @@ angular.module("multiselectcopytool", ["multiselect_.tpl.html"])
                         selectSingle(scope.items[0]);
                         setModelValue(true);
                     } else {
-                       // scope.checkAll();
+                        scope.checkAll();
                     }
                 }
 
@@ -408,10 +410,10 @@ angular.module("multiselect_.tpl.html", []).run(["$templateCache", function ($te
         "  </button>\n" +
         "  <ul class=\"dropdown-menu\" style=\"margin-bottom:30px;padding-left:5px;padding-right:5px;\" ng-style=\"ulStyle\">\n" +
         "    <input filterAfterRows\" ng-model=\"filter\" style=\"width:100%;padding: 0px 3px;margin-right: 15px; margin-bottom: 4px;\" placeholder=\"Type to filter options\">" +
-        "    <li data-stopPropagation=\"true\">\n" +
-        "      <a ng-click=\"toggleCheckAll()\" style=\"padding:3px 10px;cursor:pointer;\">\n" +
-        "        <i class=\"glyphicon\" ng-class=\"{'glyphicon-check': allChecked, 'glyphicon-unchecked': !allChecked}\"></i> {{checkallStr}}</a>\n" +
-        "    </li>\n" +
+        // "    <li data-stopPropagation=\"true\">\n" +
+        // "      <a ng-click=\"toggleCheckAll(onCourseChkUpdate)\" style=\"padding:3px 10px;cursor:pointer;\">\n" +
+        // "        <i class=\"glyphicon\" ng-class=\"{'glyphicon-check': allChecked, 'glyphicon-unchecked': !allChecked}\"></i> {{checkallStr}}</a>\n" +
+        // "    </li>\n" +
         "    <li data-stopPropagation=\"true\" ng-repeat=\"i in items | filter:filter\">\n" +
         " <a ng-click=\"customSelect($event, i,onCourseChkUpdate)\" style=\"padding:3px 10px;cursor:pointer;\">\n" +
         "        <i class=\"glyphicon\" ng-class=\"{'glyphicon-check': i.checked, 'glyphicon-unchecked': !i.checked}\"></i> {{i.label}}</a>\n" +
