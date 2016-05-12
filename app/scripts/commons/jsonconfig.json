@@ -12,7 +12,7 @@
     "reportServiceUrlStudent_1": "https://devlearn.schoolimprovement.com/reports",
     "servicesBaseUrl":  "http://192.168.2.105:9090/gage-service/service",
     "reportServiceUrlStudent": "http://192.168.2.105:9090/reports",
-    "courseCatalogUrl":"http://192.168.2.105:9090/gage-service/service/domain/list/providers?token=",
+    "courseCatalogUrl":"http://192.168.2.105:9090/gage-service/service/domain/list/providers?domainId=",
     "existingCourseUrl":"http://192.168.2.105:9090/gage-service/service/course/list/",
     "newCourseList":"http://192.168.2.105:9090/gage-service/service/course/new/list/",
     "copyCourseUrl":"http://192.168.2.105:9090/gage-service/service/course/copycourse",

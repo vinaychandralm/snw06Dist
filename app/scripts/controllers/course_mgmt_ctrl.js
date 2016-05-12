@@ -57,33 +57,33 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
 
         };
         $scope.checkOnCourseCatalog = function () {
-            var catListBoxId = 'courseCatelogListBox';
-            var len = $scope.uniqIdListOfInitalExitingcourse.length;
+           // var catListBoxId = 'courseCatelogListBox';
+            //var len = $scope.uniqIdListOfInitalExitingcourse.length;
 
-            for (var i = 0; i < len; i++) {
-                angular.element("input[data-course-id =" + $scope.uniqIdListOfInitalExitingcourse[i] + " ]").prop("checked", true);
-            }
+           // for (var i = 0; i < len; i++) {
+                angular.element("#courseCatlogs input").prop("checked", true);
+           // }
             $scope.onCourseChkUpdate();
         }
-        $scope.getMatchedCoursedCatalog = function () {
-            var existingCousreLen = $scope.existingCourseList[0].courseList.length;
-            var fullCourseListLen = $scope.courseWithCatalogIDList.length;
-            var catalogIdListtoCheck = [];
-            // console.log('................ ',$scope.existingCourseList[0].courseList);
-            // console.log('................----------- ',$scope.courseWithCatalogIDList);
+        // $scope.getMatchedCoursedCatalog = function () {
+        //     var existingCousreLen = $scope.existingCourseList[0].courseList.length;
+        //     var fullCourseListLen = $scope.courseWithCatalogIDList.length;
+        //     var catalogIdListtoCheck = [];
+        //     // console.log('................ ',$scope.existingCourseList[0].courseList);
+        //     // console.log('................----------- ',$scope.courseWithCatalogIDList);
 
-            for (var i = 0; i < existingCousreLen; i++) {
-                for (var j = 0; j < fullCourseListLen; j++) {
-                    if ($scope.existingCourseList[0].courseList[i].baseid == $scope.courseWithCatalogIDList[j].id) {
-                        catalogIdListtoCheck.push($scope.courseWithCatalogIDList[j].domainid);
-                    }
-                }
-            }
-            //console.log(catalogIdListtoCheck);
-            //console.log(_.uniq(catalogIdListtoCheck));
-            $scope.uniqIdListOfInitalExitingcourse = _.uniq(catalogIdListtoCheck);
-            $scope.checkOnCourseCatalog();
-        }
+        //     for (var i = 0; i < existingCousreLen; i++) {
+        //         for (var j = 0; j < fullCourseListLen; j++) {
+        //             if ($scope.existingCourseList[0].courseList[i].baseid == $scope.courseWithCatalogIDList[j].id) {
+        //                 catalogIdListtoCheck.push($scope.courseWithCatalogIDList[j].domainid);
+        //             }
+        //         }
+        //     }
+        //     //console.log(catalogIdListtoCheck);
+        //     //console.log(_.uniq(catalogIdListtoCheck));
+        //     $scope.uniqIdListOfInitalExitingcourse = _.uniq(catalogIdListtoCheck);
+        //     $scope.checkOnCourseCatalog();
+        // }
 
         $scope.getExistingCourseWithCatalog = function (catalogIdonlyArray) {
             // $scope.courseCatLodingLayer = true;
@@ -122,16 +122,16 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
         $scope.get_course_catalog_Data = function () {
 
             $scope.courseCatLodingLayer = true;
-            GetCourseCatalog._get().then(function onsuccess(response) {
+            GetCourseCatalog._get($scope.disrtictObj[0].id).then(function onsuccess(response) {
                 if (response.data.messageType === "ERROR") {
                     //Do for stuff when an error msg in succes api.
                     $scope.courseCatLodingLayer = false;
                 }
                 $scope.courseCatalogList = response.data.data.domains;
                 //console.log($scope.courseCatalogList);
-                $scope.getCatalogIdonlyArray($scope.courseCatalogList);
-                $scope.getExistingCourseWithCatalog($scope.catalogIdonlyArray);
-                // $scope.courseCatLodingLayer = false;
+                //$scope.getCatalogIdonlyArray($scope.courseCatalogList);
+                //$scope.getExistingCourseWithCatalog($scope.catalogIdonlyArray);
+                 $scope.courseCatLodingLayer = false;
 
             }, function onerror(response) {
                 //Do for stuff when an error come on api calling.
@@ -178,6 +178,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
 
                     $scope.filterDataTODisplay(response.data);
                     $scope.distSchollLodingLayer = false;
+                    $scope.get_course_catalog_Data();
 
                 }, function onerror(response) {
                     noNetError._showNetErrorMsg();
@@ -208,7 +209,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                         //Fetching data after successfull authentication
                         $scope.get_district_School_Data();
 
-                        $scope.get_course_catalog_Data();
+                       
                     }
                 }, function onError(errResponse) {
                     console.log("err Response ", errResponse);
@@ -260,7 +261,8 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                         $scope.addSchoolDistIntoModal(schdist_Id, itemName, response.data.data.course, chkbxidstr);
                         angular.element('#' + chkbxidstr).removeAttr("disabled");
                         if (chkbxidstr === 'distCollapsable') {
-                            $scope.getMatchedCoursedCatalog();
+                            //$scope.getMatchedCoursedCatalog();
+                            $scope.checkOnCourseCatalog();
                         }
                         $scope.existingCourseLodingLayer = false;
                     }

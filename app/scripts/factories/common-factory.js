@@ -86,8 +86,8 @@ factoryModule.factory('GetEnrollIdAsString',['$rootScope', function($rootScope) 
 factoryModule.factory('GetCourseCatalog',['$http','$rootScope', function($http,$rootScope) {
     
    return {
-        _get: function() {
-            var __url = $rootScope.winConfigObj.courseCatalogUrl; 
+        _get: function(distIdStr) {
+            var __url = $rootScope.winConfigObj.courseCatalogUrl+ distIdStr; 
             return $http.get(__url);
         }
     };
