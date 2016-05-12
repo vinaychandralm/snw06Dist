@@ -286,3 +286,22 @@ th .btn-block strong{font-weight:700;}
     position: relative;
     background: #fff;
 }
+
+/*.checkedboxImg{
+   background: url(../images/checked_box.png) no-repeat;
+    
+}
+.unCheckedboxImg{
+   background: url(../images/unchecked_box.png) no-repeat;
+    
+}*/
+
+.uncheckedbox{background:url(../images/unchecked_box.png) no-repeat; width:17px; height:17px; float:left; margin:0 11px; display:block; cursor:pointer;}
+.checkedbox{background:url(../images/checked_box.png) no-repeat; width:17px; height:17px; width:17px; height:17px; float:left; margin:0 11px; display:block; cursor:pointer}
+
+
+#existCatlist .btn-group, #existCatlist .btn-default, #existCatlist .dropdown-menu {width:100%; }
+
+#existCatlist .dropdown-menu li a{color:#000;  text-decoration:none;}
+#existCatlist .dropdown-menu li  div{padding:7px 0;}
+#existCatlist .btn-group{margin-top:15px;}

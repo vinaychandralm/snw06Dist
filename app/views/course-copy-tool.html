@@ -184,30 +184,30 @@
                         </div>
                     </div>
                 </div>-->
-               
-                <multiselectcopytool id='existCatlist'  ng-model="multiselectExistingCatalog" options="courseCat.name for courseCat in courseCatalogList"
-                    data-multiple="true" data-checkall="All Course Catalog"></multiselectcopytool> 
-                    <div class="col-md-3">
 
-                        <div class='box_outer_wrap'>
-                            <div class="shadow"></div>
-                            <div class="box_main_wrap">
-                                <div class="box_wrap">
-                                    <div class="box_inner">
-                                        <div class="box_top">
-                                            <h2>New Courses</h2>
-                                        </div>
-                                        <div class="box_content" id="newcourseCatlogs">
-                                            <div class="modal-backdrop fade in" id="newCourseCatLodingLayerID" ng-show="newCourseCatLodingLayer">
-                                                <div>
-                                                    <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
-                                                </div>
+
+                <div class="col-md-3">
+                    <multiselectcopytool id='existCatlist' ng-model="multiselectExistingCatalog" options="courseCat.name for courseCat in courseCatalogList"
+                        data-multiple="true" data-checkall="All Course Catalog"></multiselectcopytool>
+                    <div class='box_outer_wrap'>
+                        <div class="shadow"></div>
+                        <div class="box_main_wrap">
+                            <div class="box_wrap">
+                                <div class="box_inner">
+                                    <div class="box_top">
+                                        <h2>New Courses</h2>
+                                    </div>
+                                    <div class="box_content" id="newcourseCatlogs">
+                                        <div class="modal-backdrop fade in" id="newCourseCatLodingLayerID" ng-show="newCourseCatLodingLayer">
+                                            <div>
+                                                <div class="lodaingImageDiv"> <img src="images/loading.gif" /> </div>
                                             </div>
+                                        </div>
 
-                                            <div class="panel-group" ng-repeat="schollCouresObj in mainCourseArryAsModal">
-                                                <div class="panel panel-default">
-                                                    <div class="panel-heading">
-                                                        <h4 class="panel-title alingNonChekbx">
+                                        <div class="panel-group" ng-repeat="schollCouresObj in mainCourseArryAsModal">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title alingNonChekbx">
                                                         
                                                          <div class="checkbox checkbox-primary" >
                                                             <input id="checkboxMainNewCourse_{{$index}}"  type="checkbox"  ng-click='onAllSelectCheck("checkboxMainNewCourse_"+$index)' >
@@ -218,34 +218,34 @@
                                                         <span> <i class="fa fa-caret-down " id ="newCourseIcon_{{$index}}"></i></span><div>{{schollCouresObj.schoolName}}</div>
                                                     </a> 
                                                 </h4>
-                                                    </div>
-                                                    <div id="schoolCousreList_{{schollCouresObj.schoolDomainId}}" class="panel-collapse collapse">
-                                                        <ul class="list-group">
-                                                            <li class="list-group-item" ng-repeat="newCourseList in schollCouresObj.courseList">
+                                                </div>
+                                                <div id="schoolCousreList_{{schollCouresObj.schoolDomainId}}" class="panel-collapse collapse">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item" ng-repeat="newCourseList in schollCouresObj.courseList">
 
-                                                                <div class='chkboxWrap'>
-                                                                    <div class="checkbox checkbox-primary">
-                                                                        <input id="checkbox_{{newCourseList.id}}_{{schollCouresObj.schoolDomainId}}" type="checkbox" data-courseId="{{newCourseList.id}}"
-                                                                            data-domainType="{{newCourseList.domainType}}" data-domainId="{{schollCouresObj.schoolDomainId}}"
-                                                                            ng-click='onNewCourseClick("checkbox_"+newCourseList.id+"_"+schollCouresObj.schoolDomainId)'>
-                                                                        <label for="checkbox_{{newCourseList.id}}_{{schollCouresObj.schoolDomainId}}"> </label>
-                                                                    </div>
+                                                            <div class='chkboxWrap'>
+                                                                <div class="checkbox checkbox-primary">
+                                                                    <input id="checkbox_{{newCourseList.id}}_{{schollCouresObj.schoolDomainId}}" type="checkbox" data-courseId="{{newCourseList.id}}"
+                                                                        data-domainType="{{newCourseList.domainType}}" data-domainId="{{schollCouresObj.schoolDomainId}}"
+                                                                        ng-click='onNewCourseClick("checkbox_"+newCourseList.id+"_"+schollCouresObj.schoolDomainId)'>
+                                                                    <label for="checkbox_{{newCourseList.id}}_{{schollCouresObj.schoolDomainId}}"> </label>
                                                                 </div>
+                                                            </div>
 
-                                                                <div class="txt_list_newCourse">{{newCourseList.title}} <span class='blodText'>{{newCourseList.courseFrom}}</span></div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                                            <div class="txt_list_newCourse">{{newCourseList.title}} <span class='blodText'>{{newCourseList.courseFrom}}</span></div>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
 
                     </div>
+
+                </div>
 
             </div>
             <div class="course_type"> <span class="pull-left">Course Type:</span>

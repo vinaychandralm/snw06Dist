@@ -414,10 +414,16 @@ angular.module("multiselect_.tpl.html", []).run(["$templateCache", function ($te
         // "      <a ng-click=\"toggleCheckAll(onCourseChkUpdate)\" style=\"padding:3px 10px;cursor:pointer;\">\n" +
         // "        <i class=\"glyphicon\" ng-class=\"{'glyphicon-check': allChecked, 'glyphicon-unchecked': !allChecked}\"></i> {{checkallStr}}</a>\n" +
         // "    </li>\n" +
-        "    <li data-stopPropagation=\"true\" ng-repeat=\"i in items | filter:filter\">\n" +
-        " <a ng-click=\"customSelect($event, i,onCourseChkUpdate)\" style=\"padding:3px 10px;cursor:pointer;\">\n" +
-        "        <i class=\"glyphicon\" ng-class=\"{'glyphicon-check': i.checked, 'glyphicon-unchecked': !i.checked}\"></i> {{i.label}}</a>\n" +
+        "    <li  data-stopPropagation=\"true\" ng-repeat=\"i in items | filter:filter\">\n" +
+        "<div ng-click=\"customSelect($event, i,onCourseChkUpdate)\">"+
+        " <a  style=\"padding:3px 10px;cursor:pointer;\">\n" +
+        //"        <i class=\"glyphicon\" ng-class=\"{'glyphicon-check': i.checked, 'glyphicon-unchecked': !i.checked}\"></i> {{i.label}}</a>\n" +
+      // " <span  ng-class=\"{'checkedbox': i.checked, 'uncheckedbox': !i.checked}\"></span>"+
+        "       {{i.label}}</a>\n" +
+         " <span  ng-class=\"{'checkedbox': i.checked, 'uncheckedbox': !i.checked}\"></span>"+
+"</div>"+
         "    </li>\n" +
+        
         "  </ul>\n" +
         "</div>");
 }]);

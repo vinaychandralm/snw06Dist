@@ -611,6 +611,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             }
         };
         $scope.onNewCourseClick = function (idStr) {
+            console.log(idStr);
             var val = angular.element('#' + idStr).is(":checked");
             if (val == false) {
                 angular.element('#' + idStr).parent().parent().parent().parent().parent().prev().find('input').prop('checked', false);
