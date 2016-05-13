@@ -47,7 +47,7 @@ describe('GetCourseCatalog Ajax Call', function () {
     it('should call the GetCourseCatalog function', function () {
         // var url = basePath + domainid + '?token=' + token;
         var get = GetCourseCatalog._get(rootScope);
-        expect(http.get).toHaveBeenCalledWith(rootScope.winConfigObj.courseCatalogUrl);
+        expect(http.get).toHaveBeenCalled();
         expect(get).toEqual("some value");
         // expect(http.get).toBe("some value");
     });

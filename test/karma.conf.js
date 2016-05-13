@@ -51,7 +51,7 @@ module.exports = function(config) {
       // source files, that you wanna generate coverage for 
       // do not include tests or libraries 
       // (these files will be instrumented by Istanbul) 
-      'app/scripts/**/*.js': ['coverage']
+      'app/scripts/!(directives|libs)/*.js': ['coverage']
     },
 	// test results reporter to use
     // possible values: 'dots', 'progress'
@@ -88,12 +88,14 @@ module.exports = function(config) {
     browsers: [
       "PhantomJS"
     ],
+   // browsers: ['Chrome'],
 
     // Which plugins to enable
     plugins: [
 	  "karma-coverage",
 	  "karma-junit-reporter",
       "karma-phantomjs-launcher",
+      "karma-chrome-launcher", 
       "karma-jasmine"
     ],
 

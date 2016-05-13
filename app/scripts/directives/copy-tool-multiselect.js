@@ -406,10 +406,12 @@ angular.module("multiselect_.tpl.html", []).run(["$templateCache", function ($te
     $templateCache.put("multiselect_.tpl.html",
         "<div class=\"btn-group\">\n" +
         "  <button tabindex=\"{{tabindex}}\" title=\"{{header}}\" type=\"button\" class=\"btn btn-default dropdown-toggle\" ng-click=\"toggleSelect()\" ng-disabled=\"disabled\" ng-class=\"{'error': !valid()}\">\n" +
-        "    <div ng-style=\"maxWidth\" style=\"padding-right: 13px; overflow: hidden; float:left; text-overflow: ellipsis;width:100%;text-align: left;\">{{header}}</div><span class=\"caret\" style=\"position:absolute;right:10px;top:14px;\"></span>\n" +
+        "    <div ng-style=\"maxWidth\" style=\"padding-right: 13px; overflow: hidden; float:left; text-overflow: ellipsis;width:100%;text-align: left;\">{{header}}</div>"+
+        //"<span class=\"caret\" style=\"position:absolute;right:10px;top:14px;\"></span>\n" +
+        "<span class=\"bs-caret\"><span class=\"caret\"></span></span>\n"+
         "  </button>\n" +
         "  <ul class=\"dropdown-menu\" style=\"margin-bottom:30px;padding-left:5px;padding-right:5px;\" ng-style=\"ulStyle\">\n" +
-        "    <input filterAfterRows\" ng-model=\"filter\" style=\"width:100%;padding: 0px 3px;margin-right: 15px; margin-bottom: 4px;\" placeholder=\"Type to filter options\">" +
+        // "    <input filterAfterRows\" ng-model=\"filter\" style=\"width:100%;padding: 0px 3px;margin-right: 15px; margin-bottom: 4px;\" placeholder=\"Type to filter options\">" +
         // "    <li data-stopPropagation=\"true\">\n" +
         // "      <a ng-click=\"toggleCheckAll(onCourseChkUpdate)\" style=\"padding:3px 10px;cursor:pointer;\">\n" +
         // "        <i class=\"glyphicon\" ng-class=\"{'glyphicon-check': allChecked, 'glyphicon-unchecked': !allChecked}\"></i> {{checkallStr}}</a>\n" +

@@ -140,7 +140,7 @@ describe('Copy Course Ctrl', function () {
 
         $routeParams.role = 'admin';
         spyOn(scope, 'get_district_School_Data').and.returnValue('Some text');
-        spyOn(scope, 'get_course_catalog_Data').and.returnValue('Some text');
+    //    spyOn(scope, 'get_course_catalog_Data').and.returnValue('Some text');
 
         scope.loadData();
          
@@ -153,7 +153,7 @@ describe('Copy Course Ctrl', function () {
 
         expect(validateUrlData._get).toHaveBeenCalled();
         expect(scope.get_district_School_Data).toHaveBeenCalled();
-        expect(scope.get_course_catalog_Data).toHaveBeenCalled();
+        //expect(scope.get_course_catalog_Data).toHaveBeenCalled();
 
     });
 
@@ -240,6 +240,8 @@ describe('Copy Course Ctrl', function () {
         spyOn(getSchoolData, '_get').and.returnValue('Some text');
         spyOn(GetCourseCatalog, '_get').and.returnValue(deferred.promise);
          spyOn(scope, 'get_district_School_Data').and.returnValue('some text');
+         scope.disrtictObj =[]
+         scope.disrtictObj.push( {'id':'some id'} );
         // spyOn(scope, 'filterDataTODisplay').and.returnValue('Some text');
         
         //rootScope.userDetails={data:{data:{user:{domainid:'46238884'}}}};
@@ -249,15 +251,19 @@ describe('Copy Course Ctrl', function () {
          
         
         // Setup the data we wish to return for the .then function in the controller
-            deferred.resolve({  data: { data:{domains:'8765' }, messageType: 'SUCCESS', status: 200, statusText: 'OK' } });
+       //     deferred.resolve({  data: { data:{domains:'8765' }, messageType: 'SUCCESS', status: 200, statusText: 'OK' } });
          
          
         // We have to call apply for this to work
-        scope.$apply();
+      //  scope.$apply();
 
         expect(GetCourseCatalog._get).toHaveBeenCalled();
         // expect(scope.filterDataTODisplay).toHaveBeenCalled();
         expect(scope.courseCatLodingLayer).toBe(false);
+        
+        
+        //   $scope.courseCatLodingLayer = false;
+        //         $scope.distSchollLodingLayer = false;
 
     });
     

@@ -287,15 +287,9 @@ th .btn-block strong{font-weight:700;}
     background: #fff;
 }
 
-/*.checkedboxImg{
-   background: url(../images/checked_box.png) no-repeat;
-    
-}
-.unCheckedboxImg{
-   background: url(../images/unchecked_box.png) no-repeat;
-    
-}*/
-
+#existingBox, #distSchollBox{
+  height: 250px !important;  
+};
 .uncheckedbox{background:url(../images/unchecked_box.png) no-repeat; width:17px; height:17px; float:left; margin:0 11px; display:block; cursor:pointer;}
 .checkedbox{background:url(../images/checked_box.png) no-repeat; width:17px; height:17px; width:17px; height:17px; float:left; margin:0 11px; display:block; cursor:pointer}
 
@@ -306,7 +300,7 @@ th .btn-block strong{font-weight:700;}
 #existCatlist .dropdown-menu li  div{padding:7px 0;}
 #existCatlist .btn-group{margin-top:15px;}
 
-/*.bs-caret{background: #f0f0f0;
+.bs-caret{background: #f0f0f0;
     width: 33px;
     height: 32px;
     display: block;
@@ -323,5 +317,7 @@ th .btn-block strong{font-weight:700;}
     margin-top: -2px;
 }
 .modal-backdrop{z-index:10;}
-#existCatlist .dropdown-menu{padding:0;}
-#existCatlist .dropdown-menu li{border-bottom:1px solid #ddd;}*/
+#existCatlist .dropdown-menu{padding:0 !important; border-radius:0 !important; box-shadow: 0 8px 11px -10px rgba(0, 0, 0, 0.4) inset; margin:-3px 0 0 0;}
+#existCatlist .dropdown-menu li{border-bottom:1px solid #ddd;}
+#existCatlist .btn-default:active, #existCatlist  .btn-default.active,  #existCatlist .open > .dropdown-toggle.btn-default{background:#fff;}
+#existCatlist .btn-group.open .dropdown-toggle{box-shadow: none;}
