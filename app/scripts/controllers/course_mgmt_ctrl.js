@@ -617,8 +617,10 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             }
         };
          $scope.onAllSelectCheck = function (idstr, childListId) {
+             console.log("idstr  ",idstr);
+             console.log("childListId  ",childListId);
            
-            var listSbling = angular.element(childListId).find('li')
+            var listSbling = angular.element("#"+childListId).find('li')
             if (angular.element('#' + idstr).is(":checked")) {
                 angular.element(listSbling).each(function () {
                     angular.element(this).find('input').prop('checked', true);

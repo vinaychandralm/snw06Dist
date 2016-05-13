@@ -377,7 +377,7 @@ describe('Copy Course Ctrl', function () {
 
         spyOn(getSchoolData, '_get').and.returnValue(deferred.promise);
         spyOn(scope, 'filterDataTODisplay').and.returnValue('some text');
-        
+        rootScope.winConfigObj={'courseCatalogUrl' : 'someUrl'};
         rootScope.userDetails={'data':{'data':{'user':{'domainid':'46238884'}}}};
         
         scope.get_district_School_Data();
