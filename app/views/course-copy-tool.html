@@ -204,13 +204,13 @@
                                             </div>
                                         </div>
 
-                                        <div class="panel-group" ng-repeat="schollCouresObj in mainCourseArryAsModal">
+                                        <div class="panel-group" ng-repeat="(parentIndex,schollCouresObj) in mainCourseArryAsModal">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h4 class="panel-title alingNonChekbx">
                                                         
                                                          <div class="checkbox checkbox-primary" >
-                                                            <input id="checkboxMainNewCourse_{{$index}}"  type="checkbox"  ng-click='onAllSelectCheck("checkboxMainNewCourse_"+$index)' >
+                                                            <input id="checkboxMainNewCourse_{{$index}}"  type="checkbox"  ng-click='onAllSelectCheck("checkboxMainNewCourse_"+$index, "schoolCousreList_"+schollCouresObj.schoolDomainId)' >
                                                             <label for="checkboxMainNewCourse_{{$index}}" "> </label>
                                                         </div>
                                                         
@@ -227,7 +227,7 @@
                                                                 <div class="checkbox checkbox-primary">
                                                                     <input id="checkbox_{{newCourseList.id}}_{{schollCouresObj.schoolDomainId}}" type="checkbox" data-courseId="{{newCourseList.id}}"
                                                                         data-domainType="{{newCourseList.domainType}}" data-domainId="{{schollCouresObj.schoolDomainId}}"
-                                                                        ng-click='onNewCourseClick("checkbox_"+newCourseList.id+"_"+schollCouresObj.schoolDomainId)'>
+                                                                        ng-click='onNewCourseClick("checkbox_"+newCourseList.id+"_"+schollCouresObj.schoolDomainId, parentIndex)'>
                                                                     <label for="checkbox_{{newCourseList.id}}_{{schollCouresObj.schoolDomainId}}"> </label>
                                                                 </div>
                                                             </div>

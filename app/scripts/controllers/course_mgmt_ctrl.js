@@ -179,7 +179,6 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                     }
 
                     $scope.filterDataTODisplay(response.data);
-                   // $scope.distSchollLodingLayer = false;
                     $scope.get_course_catalog_Data();
 
                 }, function onerror(response) {
@@ -610,14 +609,30 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                     });
             }
         };
-        $scope.onNewCourseClick = function (idStr) {
-            console.log(idStr);
+        $scope.onNewCourseClick = function (idStr,pIndex) {
+            console.log(idStr, pIndex);
             var val = angular.element('#' + idStr).is(":checked");
+            var parentChkBoxId = '#checkboxMainNewCourse_'+pIndex;
             if (val == false) {
-                angular.element('#' + idStr).parent().parent().parent().parent().parent().prev().find('input').prop('checked', false);
+                angular.element('#checkboxMainNewCourse_'+pIndex).prop('checked', false);
 
             }
         };
+         $scope.onAllSelectCheck = function (idstr, childListId) {
+           
+            var listSbling = angular.element(childListId).find('li')
+            if (angular.element('#' + idstr).is(":checked")) {
+                angular.element(listSbling).each(function () {
+                    angular.element(this).find('input').prop('checked', true);
+                });
+
+            } else {
+                angular.element(listSbling).each(function () {
+                    angular.element(this).find('input').prop('checked', false);
+                });
+            }
+        };
+
 
         $scope.showModalPopup = function (msg) {
             angular.element('#modalContent').text(msg);
@@ -645,24 +660,9 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 angular.element("#" + idStr).removeClass('fa-caret-up');
             }
         }
-        $scope.onAllSelectCheck = function (idstr) {
-            console.log(idstr);
-            var listSbling = angular.element('#' + idstr).parent().parent().parent().next().find('li')
-            if (angular.element('#' + idstr).is(":checked")) {
-                angular.element(listSbling).each(function () {
-                    angular.element(this).find('input').prop('checked', true);
-                });
-
-            } else {
-                angular.element(listSbling).each(function () {
-                    angular.element(this).find('input').prop('checked', false);
-                });
-            }
-        };
-
+       
 
         $scope._multiselectExistingCatalog_ = function () {
-           // console.log("sjkdfhsdjkfhjk");
             console.log($scope.multiselectExistingCatalog);
             // for (var i = 0; i < $scope.multiselectModelAdminStudentCourse.length; i++) {
             //     $scope.studentCourseListIds.push($scope.multiselectModelAdminStudentCourse[i].id);
