@@ -122,15 +122,13 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
         $scope.get_course_catalog_Data = function () {
 
             $scope.courseCatLodingLayer = true;
-            GetCourseCatalog._get($scope.disrtictObj[0].id).then(function onsuccess(response) {
+            var distID = $scope.disrtictObj[0].id;
+            GetCourseCatalog._get(distID).then(function onsuccess(response) {
                 if (response.data.messageType === "ERROR") {
                     //Do for stuff when an error msg in succes api.
                     $scope.courseCatLodingLayer = false;
                 }
                 $scope.courseCatalogList = response.data.data.domains;
-                //console.log($scope.courseCatalogList);
-                //$scope.getCatalogIdonlyArray($scope.courseCatalogList);
-                //$scope.getExistingCourseWithCatalog($scope.catalogIdonlyArray);
                 $scope.courseCatLodingLayer = false;
                 $scope.distSchollLodingLayer = false;
                 

@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("multiselectcopytool", ["multiselect_.tpl.html"])
-//from bootstrap-ui typeahead parser
+    //from bootstrap-ui typeahead parser
     .factory("optionParser", ["$parse", function ($parse) {
         //                      00000111000000000000022200000000000000003333333333333330000000000044000
         var TYPEAHEAD_REGEXP = /^\s*(.*?)(?:\s+as\s+(.*?))?\s+for\s+(?:([\$\w][\$\w\d]*))\s+in\s+(.*)$/;
@@ -42,7 +42,7 @@ angular.module("multiselectcopytool", ["multiselect_.tpl.html"])
                 var changeHandler = attrs.change || angular.noop;
 
                 scope.checkallStr = attrs.checkall;
-                
+
 
                 // console.log(typeof scope.checkall);
 
@@ -224,7 +224,7 @@ angular.module("multiselectcopytool", ["multiselect_.tpl.html"])
                                 selectedItemLable.push(item.label);
                                 // console.log(value);
                                 //console.log(value.length);
-                                
+
                             }
                         });
                     } else {
@@ -237,7 +237,7 @@ angular.module("multiselectcopytool", ["multiselect_.tpl.html"])
                             }
                         });
                     }
-                    
+
                     // console.log(selectedItemLable, "scope.items")
                     modelCtrl.$setViewValue(value);
                 }
@@ -284,7 +284,7 @@ angular.module("multiselectcopytool", ["multiselect_.tpl.html"])
                     setModelValue(true);
                 };
 
-                scope.toggleCheckAll = function ( onCourseChkUpdateMethod) {
+                scope.toggleCheckAll = function (onCourseChkUpdateMethod) {
                     if (!isMultiple) {
                         return;
                     }
@@ -302,7 +302,7 @@ angular.module("multiselectcopytool", ["multiselect_.tpl.html"])
                     }
 
                     setModelValue(true);
-                    setTimeout(onCourseChkUpdateMethod,100);
+                    setTimeout(onCourseChkUpdateMethod, 100);
                 };
 
                 scope.select = function (event, item) {
@@ -315,10 +315,10 @@ angular.module("multiselectcopytool", ["multiselect_.tpl.html"])
                     }
                     // alert();
                 };
-                scope.customSelect = function(event, item,onCourseChkUpdateMethod){
+                scope.customSelect = function (event, item, onCourseChkUpdateMethod) {
                     scope.select(event, item);
                     console.log("kjafjlkfjasjalkdjasdljasdljasdlkjas akdjkasjd")
-                     setTimeout(onCourseChkUpdateMethod,100);
+                    setTimeout(onCourseChkUpdateMethod, 100);
                 };
 
                 function parseModel() {
@@ -406,26 +406,19 @@ angular.module("multiselect_.tpl.html", []).run(["$templateCache", function ($te
     $templateCache.put("multiselect_.tpl.html",
         "<div class=\"btn-group\">\n" +
         "  <button tabindex=\"{{tabindex}}\" title=\"{{header}}\" type=\"button\" class=\"btn btn-default dropdown-toggle\" ng-click=\"toggleSelect()\" ng-disabled=\"disabled\" ng-class=\"{'error': !valid()}\">\n" +
-        "    <div ng-style=\"maxWidth\" style=\"padding-right: 13px; overflow: hidden; float:left; text-overflow: ellipsis;width:100%;text-align: left;\">{{header}}</div>"+
-        //"<span class=\"caret\" style=\"position:absolute;right:10px;top:14px;\"></span>\n" +
-        "<span class=\"bs-caret\"><span class=\"caret\"></span></span>\n"+
+        "    <div ng-style=\"maxWidth\" style=\"padding-right: 13px; overflow: hidden; float:left; text-overflow: ellipsis;width:100%;text-align: left;\">{{header}}</div>" +
+        "<span class=\"bs-caret\"><span class=\"caret\"></span></span>\n" +
         "  </button>\n" +
         "  <ul class=\"dropdown-menu\" style=\"margin-bottom:30px;padding-left:5px;padding-right:5px;\" ng-style=\"ulStyle\">\n" +
-        // "    <input filterAfterRows\" ng-model=\"filter\" style=\"width:100%;padding: 0px 3px;margin-right: 15px; margin-bottom: 4px;\" placeholder=\"Type to filter options\">" +
-        // "    <li data-stopPropagation=\"true\">\n" +
-        // "      <a ng-click=\"toggleCheckAll(onCourseChkUpdate)\" style=\"padding:3px 10px;cursor:pointer;\">\n" +
-        // "        <i class=\"glyphicon\" ng-class=\"{'glyphicon-check': allChecked, 'glyphicon-unchecked': !allChecked}\"></i> {{checkallStr}}</a>\n" +
-        // "    </li>\n" +
+
         "    <li  data-stopPropagation=\"true\" ng-repeat=\"i in items | filter:filter\">\n" +
-        "<div ng-click=\"customSelect($event, i,onCourseChkUpdate)\">"+
+        "<div ng-click=\"customSelect($event, i,onCourseChkUpdate)\">" +
         " <a  style=\"padding:3px 10px;cursor:pointer;\">\n" +
-        //"        <i class=\"glyphicon\" ng-class=\"{'glyphicon-check': i.checked, 'glyphicon-unchecked': !i.checked}\"></i> {{i.label}}</a>\n" +
-      // " <span  ng-class=\"{'checkedbox': i.checked, 'uncheckedbox': !i.checked}\"></span>"+
         "       {{i.label}}</a>\n" +
-         " <span  ng-class=\"{'checkedbox': i.checked, 'uncheckedbox': !i.checked}\"></span>"+
-"</div>"+
+        " <span  ng-class=\"{'checkedbox': i.checked, 'uncheckedbox': !i.checked}\"></span>" +
+        "</div>" +
         "    </li>\n" +
-        
+
         "  </ul>\n" +
         "</div>");
 }]);

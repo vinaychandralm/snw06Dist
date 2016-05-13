@@ -88,7 +88,7 @@ module.exports = function(config) {
     browsers: [
       "PhantomJS"
     ],
-   // browsers: ['Chrome'],
+     // browsers: ['Chrome'],
 
     // Which plugins to enable
     plugins: [

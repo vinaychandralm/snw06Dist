@@ -289,10 +289,9 @@ th .btn-block strong{font-weight:700;}
 
 #existingBox, #distSchollBox{
   height: 250px !important;  
-};
+}
 .uncheckedbox{background:url(../images/unchecked_box.png) no-repeat; width:17px; height:17px; float:left; margin:0 11px; display:block; cursor:pointer;}
-.checkedbox{background:url(../images/checked_box.png) no-repeat; width:17px; height:17px; width:17px; height:17px; float:left; margin:0 11px; display:block; cursor:pointer}
-
+.checkedbox{background:url(../images/checked_box.png) no-repeat; width:17px; height:17px; float:left; margin:0 11px; display:block; cursor:pointer;}
 
 #existCatlist .btn-group, #existCatlist .btn-default, #existCatlist .dropdown-menu {width:100%; }
 

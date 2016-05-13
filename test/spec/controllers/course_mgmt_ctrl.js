@@ -48,6 +48,8 @@ describe('Copy Course Ctrl', function () {
             "servicesBaseUrl": "http://192.168.2.58:8080/gage-service/service",
             "reportServiceUrlStudent": "http://192.168.2.58:8080/reports"
         };
+        
+        scope.disrtictObj = [{id:'someid'}];
         rootScope.token = rootScope.winConfigObj.userSettingObjects.token
        
         // We use the $q service to create a mock instance of defer
@@ -235,35 +237,24 @@ describe('Copy Course Ctrl', function () {
 
     it('It shuould call the get_course_catalog_Data method with messageType: SUCCESS ', function () {
         var controller = createController();
-
-        $routeParams.role = 'admin';
-        spyOn(getSchoolData, '_get').and.returnValue('Some text');
         spyOn(GetCourseCatalog, '_get').and.returnValue(deferred.promise);
-         spyOn(scope, 'get_district_School_Data').and.returnValue('some text');
-         scope.disrtictObj =[]
-         scope.disrtictObj.push( {'id':'some id'} );
-        // spyOn(scope, 'filterDataTODisplay').and.returnValue('Some text');
-        
-        //rootScope.userDetails={data:{data:{user:{domainid:'46238884'}}}};
-        rootScope.userDetails={'data':{'data':{'user': 'some value'}}};
+        scope.disrtictObj = [{id:'someid'}];
+        var successObj = {data: { data:{domains:'8765' }, messageType: 'SUCCESS', status: 200, statusText: 'OK' } };
 
         scope.get_course_catalog_Data();
-         
-        
+
         // Setup the data we wish to return for the .then function in the controller
-       //     deferred.resolve({  data: { data:{domains:'8765' }, messageType: 'SUCCESS', status: 200, statusText: 'OK' } });
-         
+        deferred.resolve(successObj);
          
         // We have to call apply for this to work
-      //  scope.$apply();
-
-        expect(GetCourseCatalog._get).toHaveBeenCalled();
-        // expect(scope.filterDataTODisplay).toHaveBeenCalled();
-        expect(scope.courseCatLodingLayer).toBe(false);
+        scope.$apply();
+        
+        expect(scope.courseCatalogList).toEqual(successObj.data.data.domains);
+        expect(GetCourseCatalog._get).toHaveBeenCalledWith(scope.disrtictObj[0].id);
         
         
         //   $scope.courseCatLodingLayer = false;
-        //         $scope.distSchollLodingLayer = false;
+        expect(scope.distSchollLodingLayer).toBe(false);
 
     });
     
