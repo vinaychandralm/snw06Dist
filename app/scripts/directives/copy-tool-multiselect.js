@@ -318,7 +318,7 @@ angular.module("multiselectcopytool", ["multiselect_.tpl.html"])
                 scope.customSelect = function (event, item, onCourseChkUpdateMethod) {
                     scope.select(event, item);
                   //  console.log("kjafjlkfjasjalkdjasdljasdljasdlkjas akdjkasjd")
-                    setTimeout(onCourseChkUpdateMethod, 100);
+                    setTimeout(onCourseChkUpdateMethod, 50);
                 };
 
                 function parseModel() {
