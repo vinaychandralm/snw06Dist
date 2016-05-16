@@ -310,10 +310,18 @@ th .btn-block strong{font-weight:700;}
     border-left: 1px solid #ddd;
 }
 
-#existCatlist .btn-group .caret{position: absolute;
+#existCatlist .btn-group .caret{
+    position: absolute;
     right: 11px;
     top: 50%;
     margin-top: -2px;
+    
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #6f6f6f;
+    
+    
+   
 }
 .modal-backdrop{z-index:10;}
 #existCatlist .dropdown-menu{padding:0 !important; border-radius:0 !important; box-shadow: 0 8px 11px -10px rgba(0, 0, 0, 0.4) inset; margin:-3px 0 0 0;}

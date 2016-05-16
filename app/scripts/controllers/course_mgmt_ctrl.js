@@ -52,6 +52,8 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             $scope.matcehCourseCatalog = [];
             $scope.uniqIdListOfInitalExitingcourse = null;
             $scope.isDistNotSelected = true;
+            $scope.newCourseListForDistrictCallStack=[];
+            $scope.newCourseListForSchollCallStack =[];
 
 
 
@@ -85,32 +87,30 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
         //     $scope.checkOnCourseCatalog();
         // }
 
-        $scope.getExistingCourseWithCatalog = function (catalogIdonlyArray) {
-            // $scope.courseCatLodingLayer = true;
-            $scope.distSchollLodingLayer = true;
-            GetCourseWithCatalogId._get(catalogIdonlyArray).then(function onsuccess(response) {
-                if (response.data.messageType === "ERROR") {
-                    //Do for stuff when an error msg in succes api.
-                    $scope.courseCatLodingLayer = false;
-                    $scope.distSchollLodingLayer = false;
-                }
-                $scope.courseWithCatalogIDList = response.data.data.course;
+        // $scope.getExistingCourseWithCatalog = function (catalogIdonlyArray) {
+        //     // $scope.courseCatLodingLayer = true;
+        //     $scope.distSchollLodingLayer = true;
+        //     GetCourseWithCatalogId._get(catalogIdonlyArray).then(function onsuccess(response) {
+        //         if (response.data.messageType === "ERROR") {
+        //             //Do for stuff when an error msg in succes api.
+        //             $scope.courseCatLodingLayer = false;
+        //             $scope.distSchollLodingLayer = false;
+        //         }
+        //         $scope.courseWithCatalogIDList = response.data.data.course;
 
-                $scope.courseCatLodingLayer = false;
-                $scope.distSchollLodingLayer = false;
-                //console.log( $scope.courseWithCatalogIDList);
-                // $scope.getMatchedCoursedCatalog();
+        //         $scope.courseCatLodingLayer = false;
+        //         $scope.distSchollLodingLayer = false;
+        //         //console.log( $scope.courseWithCatalogIDList);
+        //         // $scope.getMatchedCoursedCatalog();
 
-            }, function onerror(response) {
-                //Do for stuff when an error come on api calling.
-                $scope.courseCatLodingLayer = false;
-                $scope.distSchollLodingLayer = false;
-            });
-
-
-        };
+        //     }, function onerror(response) {
+        //         //Do for stuff when an error come on api calling.
+        //         $scope.courseCatLodingLayer = false;
+        //         $scope.distSchollLodingLayer = false;
+        //     });
+        // };
         $scope.getCatalogIdonlyArray = function (courseCatalogListArray) {
-
+            
             var len = courseCatalogListArray.length;
 
             for (var i = 0; i < len; i++) {
@@ -417,23 +417,31 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
         };
 
         $scope.getNewCourseListForScholl = function (domainObj) {
-
+            // console.log("$scope.getNewCourseListForScholl")
+            $scope.newCourseListForSchollCallStack.push({'dummyobject':'dummyvalue'});
             $scope.newCourseCatLodingLayer = true;
             GetNewCourseCatSchool._get(domainObj.id, $scope.disrtictObj[0].id, domainObj.name).then(function onsuccess(response) {
+                $scope.newCourseListForSchollCallStack.pop();
                 if (response.data.messageType === "ERROR") {
-                    $scope.newCourseCatLodingLayer = false;
+                    if($scope.newCourseListForSchollCallStack.length ===0)
+                        $scope.newCourseCatLodingLayer = false;
                 } else {
                     $scope.updateNewCourseForSchool(response.data.data.course, domainObj);
                     $scope.buildMainModal();
-                    $scope.newCourseCatLodingLayer = false;
+                    if($scope.newCourseListForSchollCallStack.length ===0)
+                        $scope.newCourseCatLodingLayer = false;
                 }
             }, function onErr(response) {
-                $scope.newCourseCatLodingLayer = false;
+                $scope.newCourseListForSchollCallStack.pop();
+                if($scope.newCourseListForSchollCallStack.length ===0)
+                    $scope.newCourseCatLodingLayer = false;
             });
 
         }
 
         $scope.getNewCourseListForDistrict = function () {
+           / console.log("$scope.getNewCourseListForDistrict");
+            $scope.newCourseListForDistrictCallStack.push({'dummyobject':'dummyvalue'});
             var idArrayOfSelectedCourseCat = $scope.getSecectedCourseCatalog();
             var distObjId = $scope.disrtictObj[0].id;
             var isDistSelected = angular.element('#distCollapsable').is(":checked");
@@ -441,18 +449,24 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 $scope.newCourseCatLodingLayer = true;
 
                 GetNewCourseCatDist._get(distObjId, idArrayOfSelectedCourseCat).then(function onsuccess(response) {
+                    $scope.newCourseListForDistrictCallStack.pop();
                     if (response.data.messageType === "ERROR") {
-                        $scope.newCourseCatLodingLayer = false;
+                        if( $scope.newCourseListForDistrictCallStack.length === 0)
+                            $scope.newCourseCatLodingLayer = false;
+                            
                         return;
                     } else {
                         var res = response.data.data.course;
                         $scope.DistNewCourseArray = angular.copy(res);
                         $scope.buildMainModal();
-                        $scope.newCourseCatLodingLayer = false;
+                        if( $scope.newCourseListForDistrictCallStack.length === 0)
+                            $scope.newCourseCatLodingLayer = false;
                     }
                 },
                     function error(response) {
-                        $scope.newCourseCatLodingLayer = false;
+                        $scope.newCourseListForDistrictCallStack.pop();
+                        if( $scope.newCourseListForDistrictCallStack.length === 0)
+                            $scope.newCourseCatLodingLayer = false;
                         return;
                     });
             }
@@ -663,7 +677,7 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
        
 
         $scope._multiselectExistingCatalog_ = function () {
-            console.log($scope.multiselectExistingCatalog);
+         //   console.log($scope.multiselectExistingCatalog);
             // for (var i = 0; i < $scope.multiselectModelAdminStudentCourse.length; i++) {
             //     $scope.studentCourseListIds.push($scope.multiselectModelAdminStudentCourse[i].id);
             // }
