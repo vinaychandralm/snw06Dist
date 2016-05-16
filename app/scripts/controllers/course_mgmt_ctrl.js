@@ -412,6 +412,14 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 $scope.mainCourseArryAsModal.push(angular.copy(copyOfScholl[k]));
             }
         };
+        
+        $scope.newCourseCatLodingLayerOnOff = function(){
+            if (($scope.newCourseListForSchollCallStack.length === 0) && ($scope.newCourseListForDistrictCallStack.length === 0))
+                return false;
+            else
+                return true;
+            
+        }
 
         $scope.getNewCourseListForScholl = function (domainObj) {
             $scope.newCourseListForSchollCallStack.push({ 'dummyobject': 'dummyvalue' });
@@ -419,18 +427,18 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             GetNewCourseCatSchool._get(domainObj.id, $scope.disrtictObj[0].id, domainObj.name).then(function onsuccess(response) {
                 $scope.newCourseListForSchollCallStack.pop();
                 if (response.data.messageType === "ERROR") {
-                    if ($scope.newCourseListForSchollCallStack.length === 0)
-                        $scope.newCourseCatLodingLayer = false;
+                  //  if (($scope.newCourseListForSchollCallStack.length === 0) && ($scope.newCourseListForDistrictCallStack.length === 0))
+                        $scope.newCourseCatLodingLayer = $scope.newCourseCatLodingLayerOnOff();
                 } else {
                     $scope.updateNewCourseForSchool(response.data.data.course, domainObj);
                     $scope.buildMainModal();
-                    if ($scope.newCourseListForSchollCallStack.length === 0)
-                        $scope.newCourseCatLodingLayer = false;
+                   // if (($scope.newCourseListForSchollCallStack.length === 0) && ($scope.newCourseListForDistrictCallStack.length === 0))
+                        $scope.newCourseCatLodingLayer = $scope.newCourseCatLodingLayerOnOff();;
                 }
             }, function onErr(response) {
                 $scope.newCourseListForSchollCallStack.pop();
-                if ($scope.newCourseListForSchollCallStack.length === 0)
-                    $scope.newCourseCatLodingLayer = false;
+              //  if (($scope.newCourseListForSchollCallStack.length === 0) && ($scope.newCourseListForDistrictCallStack.length === 0))
+                    $scope.newCourseCatLodingLayer = $scope.newCourseCatLodingLayerOnOff();;
             });
 
         }
@@ -446,22 +454,22 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
                 GetNewCourseCatDist._get(distObjId, idArrayOfSelectedCourseCat).then(function onsuccess(response) {
                     $scope.newCourseListForDistrictCallStack.pop();
                     if (response.data.messageType === "ERROR") {
-                        if ($scope.newCourseListForDistrictCallStack.length === 0)
-                            $scope.newCourseCatLodingLayer = false;
+               // if (($scope.newCourseListForSchollCallStack.length === 0) && ($scope.newCourseListForDistrictCallStack.length === 0))
+                            $scope.newCourseCatLodingLayer = $scope.newCourseCatLodingLayerOnOff();
 
                         return;
                     } else {
                         var res = response.data.data.course;
                         $scope.DistNewCourseArray = angular.copy(res);
                         $scope.buildMainModal();
-                        if ($scope.newCourseListForDistrictCallStack.length === 0)
-                            $scope.newCourseCatLodingLayer = false;
+               // if (($scope.newCourseListForSchollCallStack.length === 0) && ($scope.newCourseListForDistrictCallStack.length === 0))
+                            $scope.newCourseCatLodingLayer = $scope.newCourseCatLodingLayerOnOff();
                     }
                 },
                     function error(response) {
                         $scope.newCourseListForDistrictCallStack.pop();
-                        if ($scope.newCourseListForDistrictCallStack.length === 0)
-                            $scope.newCourseCatLodingLayer = false;
+                //if (($scope.newCourseListForSchollCallStack.length === 0) && ($scope.newCourseListForDistrictCallStack.length === 0))
+                            $scope.newCourseCatLodingLayer = $scope.newCourseCatLodingLayerOnOff();
                         return;
                     });
             }
