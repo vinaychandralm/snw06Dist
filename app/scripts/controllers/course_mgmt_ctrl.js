@@ -281,17 +281,17 @@ courseModule.controller('courseMgmtCtrl', ['$scope', '$rootScope', '$location', 
             //Updating list modal of Existing course list
             $scope.schollNewCousreList.push(obj);
         };
-        $scope.removeNewSchollCourseFrmModal = function (domainObj) {
-            var len = $scope.schollNewCousreList.length;
-            for (var i = 0; i < len; i++) {
-                if (domainObj.name === $scope.schollNewCousreList[i].schoolName) {
-                    $scope.schollNewCousreList.splice(i, 1);
-                    break;
-                }
-            }
-            //copying scholl after removal
-            $scope.SchollNewCourseMasterArray = angular.copy($scope.schollNewCousreList);
-        };
+        // $scope.removeNewSchollCourseFrmModal = function (domainObj) {
+        //     var len = $scope.schollNewCousreList.length;
+        //     for (var i = 0; i < len; i++) {
+        //         if (domainObj.name === $scope.schollNewCousreList[i].schoolName) {
+        //             $scope.schollNewCousreList.splice(i, 1);
+        //             break;
+        //         }
+        //     }
+        //     //copying scholl after removal
+        //     $scope.SchollNewCourseMasterArray = angular.copy($scope.schollNewCousreList);
+        // };
 
         $scope.checkSchoolOrDist = function (schdist_Id) {
 
