@@ -406,31 +406,69 @@ describe('Copy Course Ctrl', function () {
         expect(scope.distSchollLodingLayer).toBe(false);
 
     });
+    it('It shuould call the get_course_catalog_Data method with messageType: ERROR ', function () {
+        var controller = createController();
+        spyOn(GetCourseCatalog, '_get').and.returnValue(deferred.promise);
+        scope.disrtictObj = [{
+            id: 'someid'
+        }];
+        var successObj = {
+            data: {
+                data: {
+                    domains: '8765'
+                },
+                messageType: 'ERROR',
+                status: 200,
+                statusText: 'OK'
+            }
+        };
 
-    // it('It shuould call the get_district_School_Data method with messageType: SUCCESS ', function () {
-    //     var controller = createController();
+        scope.get_course_catalog_Data();
 
-    //     $routeParams.role = 'admin';
-    //     rootScope.userDetails={'data':{'data':{'user':{'domainid':'46238884'}}}};
+        // Setup the data we wish to return for the .then function in the controller
+        deferred.resolve(successObj);
 
+        // We have to call apply for this to work
+        scope.$apply();
 
-    //     spyOn(getSchoolData, '_get').and.returnValue(deferred.promise);
-    //     spyOn(scope, 'filterDataTODisplay').and.returnValue('Some text');
+        expect(scope.courseCatLodingLayer).toBe(false);
+        expect(scope.distSchollLodingLayer).toBe(false);
 
-    //     scope.get_district_School_Data();
+        expect(scope.courseCatalogList).toEqual(successObj.data.data.domains);
+        expect(GetCourseCatalog._get).toHaveBeenCalledWith(scope.disrtictObj[0].id);
+    });
+    it('It shuould call the get_course_catalog_Data method with messageType: Defered ', function () {
+        var controller = createController();
+        spyOn(GetCourseCatalog, '_get').and.returnValue(deferred.promise);
+        scope.disrtictObj = [{
+            id: 'someid'
+        }];
+        var successObj = {
+            data: {
+                data: {
+                    domains: '8765'
+                },
+                messageType: 'ERROR',
+                status: 200,
+                statusText: 'OK'
+            }
+        };
 
+        scope.get_course_catalog_Data();
 
-    //     // Setup the data we wish to return for the .then function in the controller
-    //     deferred.resolve({  data: { data:{domains:'8765' }, messageType: 'SUCCESS', status: 200, statusText: 'OK' } });
+        // Setup the data we wish to return for the .then function in the controller
+        deferred.reject();
 
-    //     // We have to call apply for this to work
-    //     scope.$apply();
+        // We have to call apply for this to work
+        scope.$apply();
 
-    //     expect(GetCourseCatalog._get).toHaveBeenCalled();
-    //     expect(scope.filterDataTODisplay).toHaveBeenCalled();
-    //     expect(scope.distSchollLodingLayer).toBe(false);
+        expect(scope.courseCatLodingLayer).toBe(false);
+        // expect(scope.distSchollLodingLayer).toBe(false);
 
-    // });
+        // expect(scope.courseCatalogList).toEqual(successObj.data.data.domains);
+        expect(GetCourseCatalog._get).toHaveBeenCalledWith(scope.disrtictObj[0].id);
+    });
+
 
     it('It shuould call the removeSchoolDistFrmModal method with messageType: SUCCESS ', function () {
         var controller = createController();
@@ -669,6 +707,98 @@ describe('Copy Course Ctrl', function () {
 
         expect(GetNewCourseCatSchool._get).toHaveBeenCalled();
         expect(scope.newCourseCatLodingLayer).toEqual(false);
+
+        // expect(scope.schollNewCousreList.length).toEqual(4);
+
+    });
+    it('It shuould call the getNewCourseListForScholl  method with messageType: ERROR ', function () {
+        var controller = createController();
+
+        spyOn(GetNewCourseCatSchool, '_get').and.returnValue(deferred.promise);
+        spyOn(scope, 'updateNewCourseForSchool').and.returnValue('some text');
+        spyOn(scope, 'buildMainModal').and.returnValue('some text');
+        spyOn(scope, 'newCourseCatLodingLayerOnOff').and.returnValue(true);
+
+        var domainObj = {
+            id: 'some id',
+            name: 'some name'
+        }
+        scope.disrtictObj = [{
+            "id": "46238884",
+            "name": "Gage Service District",
+            "userspace": "gsd-06",
+            "parentid": "34864588",
+            "reference": "gsd-06",
+            "guid": "693ff705-8958-4804-937b-2e5481f70e07",
+            "flags": 0,
+            "creationdate": "2016-02-10T06:08:47.583Z",
+            "creationby": "30750405",
+            "modifieddate": "2016-02-26T17:10:18.253Z",
+            "modifiedby": "46238944",
+            "version": "3",
+            "data": null
+        }];
+
+        scope.getNewCourseListForScholl(domainObj)
+
+        // Setup the data we wish to return for the .then function in the controller
+        deferred.resolve({
+            data: {
+                data: {
+                    domains: '8765',
+                    course: 'some course'
+                },
+                messageType: 'ERROR',
+                status: 200,
+                statusText: 'OK'
+            }
+        });
+        scope.$apply();
+
+        expect(GetNewCourseCatSchool._get).toHaveBeenCalled();
+        expect(scope.newCourseCatLodingLayer).toEqual(true);
+        expect(scope.newCourseCatLodingLayerOnOff).toHaveBeenCalled();
+
+        // expect(scope.schollNewCousreList.length).toEqual(4);
+
+    });
+    it('It shuould call the getNewCourseListForScholl  method with messageType: Defered Object ', function () {
+        var controller = createController();
+
+        spyOn(GetNewCourseCatSchool, '_get').and.returnValue(deferred.promise);
+        spyOn(scope, 'updateNewCourseForSchool').and.returnValue('some text');
+        spyOn(scope, 'buildMainModal').and.returnValue('some text');
+        spyOn(scope, 'newCourseCatLodingLayerOnOff').and.returnValue(true);
+
+        var domainObj = {
+            id: 'some id',
+            name: 'some name'
+        }
+        scope.disrtictObj = [{
+            "id": "46238884",
+            "name": "Gage Service District",
+            "userspace": "gsd-06",
+            "parentid": "34864588",
+            "reference": "gsd-06",
+            "guid": "693ff705-8958-4804-937b-2e5481f70e07",
+            "flags": 0,
+            "creationdate": "2016-02-10T06:08:47.583Z",
+            "creationby": "30750405",
+            "modifieddate": "2016-02-26T17:10:18.253Z",
+            "modifiedby": "46238944",
+            "version": "3",
+            "data": null
+        }];
+
+        scope.getNewCourseListForScholl(domainObj)
+
+        // Setup the data we wish to return for the .then function in the controller
+        deferred.reject();
+        scope.$apply();
+
+        expect(GetNewCourseCatSchool._get).toHaveBeenCalled();
+        expect(scope.newCourseCatLodingLayer).toEqual(true);
+        expect(scope.newCourseCatLodingLayerOnOff).toHaveBeenCalled();
 
         // expect(scope.schollNewCousreList.length).toEqual(4);
 
@@ -1147,95 +1277,113 @@ describe('Copy Course Ctrl', function () {
 
         });
     });
-    
-    
-    
-     describe('handleCopyEvent  spec', function () {
+
+
+
+    describe('handleCopyEvent  spec', function () {
 
         it('handleCopyEvent calls wit Success response', function () {
             createController();
-           // scope.multiselectExistingCatalog = [{}, {}];
-         
+            // scope.multiselectExistingCatalog = [{}, {}];
+
             spyOn(angular, 'element').and.returnValue([1, 2, 3]);
             spyOn(scope, 'getSelectedNewCourses').and.returnValue([1, 2, 3]);
-            spyOn( postcopycourse, '_post').and.returnValue(deferred.promise);
+            spyOn(postcopycourse, '_post').and.returnValue(deferred.promise);
             spyOn(scope, 'getAllSelectedDistNSchool');
             spyOn(scope, 'showModalPopup');
-            
-           
-            
+            spyOn(scope, 'updateRespectiveColumns');
+
+
+
+
             scope.handleCopyEvent();
-            
-            deferred.resolve({ config: {}, data: {
-                 data: { 'domains': [{ 'id': '12342' }, { 'id': '12341' }, { 'id': '12340' }], 'key': 'someType' },
-                 messageType: 'SUCCESS', status: 200, statusText: 'OK' } });
+
+            deferred.resolve({
+                config: {}, data: {
+                    data: { 'domains': [{ 'id': '12342' }, { 'id': '12341' }, { 'id': '12340' }], 'key': 'someType' },
+                    messageType: 'SUCCESS', status: 200, statusText: 'OK'
+                }
+            });
             scope.$apply();
-            
+
+            $timeout(function () {
+                scope.updateRespectiveColumns();
+            }, 900);
+            expect(scope.updateRespectiveColumns).not.toHaveBeenCalled();
+            $timeout.flush(1000);
+            expect(scope.updateRespectiveColumns).toHaveBeenCalled();
+
+
+
+
             scope.schollNewCousreList = [1, 2, 3]
-            
+
             expect(scope.showWholePgLoading).toBe(true);
-            
+
             expect(angular.element).toHaveBeenCalledWith("#newcourseCatlogs input:checkbox:checked");
-            
-             expect(scope.getAllSelectedDistNSchool).toHaveBeenCalled();
-             expect(scope.showModalPopup).toHaveBeenCalledWith("New Courses has been copied successfully.");
+
+            expect(scope.getAllSelectedDistNSchool).toHaveBeenCalled();
+            expect(scope.showModalPopup).toHaveBeenCalledWith("New Courses has been copied successfully.");
             expect(scope.getSelectedNewCourses).toHaveBeenCalled();
             expect(postcopycourse._post).toHaveBeenCalled();
         });
-        
-             it('handleCopyEvent calls wit Success response', function () {
+
+        it('handleCopyEvent calls wit Success response', function () {
             createController();
-         
+
             spyOn(angular, 'element').and.returnValue([1, 2, 3]);
             spyOn(scope, 'getSelectedNewCourses').and.returnValue([1, 2, 3]);
-            spyOn( postcopycourse, '_post').and.returnValue(deferred.promise);
+            spyOn(postcopycourse, '_post').and.returnValue(deferred.promise);
             spyOn(scope, 'getAllSelectedDistNSchool');
             spyOn(scope, 'showModalPopup');
-            
-           
-            
+
+
+
             scope.handleCopyEvent();
-            
-            deferred.resolve({ config: {}, data: {
-                 data: { 'domains': [{ 'id': '12342' }, { 'id': '12341' }, { 'id': '12340' }], 'key': 'someType' },
-                 messageType: 'ERROR', status: 200, statusText: 'OK' } });
+
+            deferred.resolve({
+                config: {}, data: {
+                    data: { 'domains': [{ 'id': '12342' }, { 'id': '12341' }, { 'id': '12340' }], 'key': 'someType' },
+                    messageType: 'ERROR', status: 200, statusText: 'OK'
+                }
+            });
             scope.$apply();
-            
+
             scope.schollNewCousreList = [1, 2, 3]
-            
+
             expect(scope.showWholePgLoading).toBe(false);
-            
+
             expect(angular.element).toHaveBeenCalledWith("#newcourseCatlogs input:checkbox:checked");
-            
-             expect(scope.showModalPopup).toHaveBeenCalledWith("New Courses did not get copied, Please try again");
+
+            expect(scope.showModalPopup).toHaveBeenCalledWith("New Courses did not get copied, Please try again");
             expect(scope.getSelectedNewCourses).toHaveBeenCalled();
             expect(postcopycourse._post).toHaveBeenCalled();
 
 
         });
-           it('handleCopyEvent calls with Defered or Rjected Call', function () {
+        it('handleCopyEvent calls with Defered or Rjected Call', function () {
             createController();
-         
+
             spyOn(angular, 'element').and.returnValue([1, 2, 3]);
             spyOn(scope, 'getSelectedNewCourses').and.returnValue([1, 2, 3]);
-            spyOn( postcopycourse, '_post').and.returnValue(deferred.promise);
+            spyOn(postcopycourse, '_post').and.returnValue(deferred.promise);
             spyOn(scope, 'getAllSelectedDistNSchool');
             spyOn(scope, 'showModalPopup');
-            
-           
-            
+
+
+
             scope.handleCopyEvent();
-            
+
             deferred.reject();;
             scope.$apply();
-            
+
             scope.schollNewCousreList = [1, 2, 3]
-            
+
             expect(scope.showWholePgLoading).toBe(false);
-            
+
             expect(angular.element).toHaveBeenCalledWith("#newcourseCatlogs input:checkbox:checked");
-            
-             expect(scope.showModalPopup).toHaveBeenCalledWith("New Courses did not get copied, Please try again");
+
+            expect(scope.showModalPopup).toHaveBeenCalledWith("New Courses did not get copied, Please try again");
             expect(scope.getSelectedNewCourses).toHaveBeenCalled();
             expect(postcopycourse._post).toHaveBeenCalled();
 
@@ -1244,4 +1392,153 @@ describe('Copy Course Ctrl', function () {
     });
 
 
+    describe('getNewCourseListForDistrict   spec', function () {
+
+        it('getNewCourseListForDistrict  calls with Success response', function () {
+            createController();
+            // scope.multiselectExistingCatalog = [{}, {}];
+            scope.disrtictObj = [{ 'id': "idtsr" }];
+            spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2, 3]);
+            spyOn(GetNewCourseCatDist, '_get').and.returnValue(deferred.promise);
+            spyOn(angular, 'element').and.callThrough();
+            angularHtml = jasmine.createSpyObj(angular.element, ['is']);
+            angular.element.and.returnValue(angularHtml);
+            angular.element().is.and.returnValue(true);
+            spyOn(angular, 'copy').and.callThrough();;
+            spyOn(scope, 'newCourseCatLodingLayerOnOff').and.returnValue(true);
+            spyOn(scope, 'buildMainModal');
+            scope.getNewCourseListForDistrict();
+            deferred.resolve({
+                config: {}, data: {
+                    data: { 'course': [{ 'id': '12342' }, { 'id': '12341' }, { 'id': '12340' }], 'key': 'someType' },
+                    messageType: 'SUCCESS', status: 200, statusText: 'OK'
+                }
+            });
+            scope.$apply();
+
+            expect(angular.element).toHaveBeenCalledWith('#distCollapsable');
+            expect(angular.element().is).toHaveBeenCalled();
+            expect(scope.newCourseCatLodingLayer).toBe(true);
+            expect(scope.DistNewCourseArray).toEqual([{ 'id': '12342' }, { 'id': '12341' }, { 'id': '12340' }]);
+            expect(scope.buildMainModal).toHaveBeenCalled();
+            expect(scope.getSecectedCourseCatalog).toHaveBeenCalled();
+            expect(angular.copy).toHaveBeenCalled();
+        });
+        it('getNewCourseListForDistrict  calls with ERROR response', function () {
+            createController();
+            // scope.multiselectExistingCatalog = [{}, {}];
+            scope.disrtictObj = [{ 'id': "idtsr" }];
+            spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2, 3]);
+            spyOn(GetNewCourseCatDist, '_get').and.returnValue(deferred.promise);
+            spyOn(angular, 'element').and.callThrough();
+            angularHtml = jasmine.createSpyObj(angular.element, ['is']);
+            angular.element.and.returnValue(angularHtml);
+            angular.element().is.and.returnValue(true);
+            //  spyOn(angular, 'copy').and.callThrough();;
+            spyOn(scope, 'newCourseCatLodingLayerOnOff').and.returnValue(true);
+            // spyOn(scope, 'buildMainModal');
+            scope.getNewCourseListForDistrict();
+            deferred.resolve({
+                config: {}, data: {
+                    data: { 'course': [{ 'id': '12342' }, { 'id': '12341' }, { 'id': '12340' }], 'key': 'someType' },
+                    messageType: 'ERROR', status: 200, statusText: 'OK'
+                }
+            });
+            scope.$apply();
+
+            expect(angular.element).toHaveBeenCalledWith('#distCollapsable');
+            expect(angular.element().is).toHaveBeenCalled();
+            expect(scope.getSecectedCourseCatalog).toHaveBeenCalled();
+            expect(scope.newCourseCatLodingLayer).toBe(true);
+        });
+        it('getNewCourseListForDistrict  calls with Defered response', function () {
+            createController();
+            // scope.multiselectExistingCatalog = [{}, {}];
+            scope.disrtictObj = [{ 'id': "idtsr" }];
+            spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2, 3]);
+            spyOn(GetNewCourseCatDist, '_get').and.returnValue(deferred.promise);
+            spyOn(angular, 'element').and.callThrough();
+            angularHtml = jasmine.createSpyObj(angular.element, ['is']);
+            angular.element.and.returnValue(angularHtml);
+            angular.element().is.and.returnValue(true);
+            spyOn(scope, 'newCourseCatLodingLayerOnOff').and.returnValue(true);
+            scope.getNewCourseListForDistrict();
+            deferred.reject();
+            scope.$apply();
+
+            expect(angular.element).toHaveBeenCalledWith('#distCollapsable');
+            expect(scope.getSecectedCourseCatalog).toHaveBeenCalled();
+            expect(angular.element().is).toHaveBeenCalled();
+            expect(scope.newCourseCatLodingLayer).toBe(true);
+        });
+    });
+    describe('buildMainModal spec', function () {
+        it("common code", function () {
+            createController();
+
+            var obj = {};
+            obj.schoolDomainId = scope.disrtictObj[0].id;
+            obj.schoolName = scope.disrtictObj[0].name
+            obj.courseList = scope.DistNewCourseArray;
+            //scope.mainCourseArryAsModal.push(obj);
+            spyOn(scope, 'getSecectedCourseCatalog').and.callThrough();
+            spyOn(angular, 'element').and.callThrough();
+            spyOn(scope, 'addDataForCopyApi');
+            angularHtml = jasmine.createSpyObj(angular.element, ['is']);
+            angular.element.and.returnValue(angularHtml);
+            angular.element().is.and.returnValue(true)
+            scope.mainCourseArryAsModal = [];
+            scope.multiselectExistingCatalog = [{}, {}];
+            scope.buildMainModal();
+            expect(scope.getSecectedCourseCatalog).toHaveBeenCalled();
+            expect(angular.element).toHaveBeenCalledWith('#distCollapsable');
+            expect(angular.element().is).toHaveBeenCalledWith(":checked");
+            expect(scope.addDataForCopyApi).toHaveBeenCalled();
+            expect(scope.mainCourseArryAsModal).toEqual([{
+                schoolDomainId: 'someid',
+                schoolName: undefined,
+                courseList: null
+            }])
+        });
+
+        describe('addDistrictObjects spec', function () {
+            it('addDistrictObjects', function () {
+                createController();
+                scope.DistNewCourseArray = [{
+                    '1': '01'
+                }, {
+                        '2': '02'
+                    }];
+
+
+                var tempSchollArray = [{
+                    courseList: [],
+                    schoolDomainId: '5',
+
+                }]
+                scope.addDistrictObjects(tempSchollArray);
+                var expRes = [{
+                    courseList: [
+                        {
+                            1: '01',
+                            courseFrom: ' (Course Catalog)',
+                            Domain_ID: '5',
+                            domainType: 'COURSE CATALOG'
+                        },
+                        {
+                            2: '02',
+                            courseFrom: ' (Course Catalog)',
+                            Domain_ID: '5',
+                            domainType: 'COURSE CATALOG'
+                        }],
+                    schoolDomainId: '5'
+                }]
+                expect(tempSchollArray).toEqual(expRes);
+
+            });
+
+        });
+
+
+    });
 });
