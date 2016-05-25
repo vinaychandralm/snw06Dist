@@ -1538,6 +1538,19 @@ describe('Copy Course Ctrl', function () {
             });
 
         });
+         it('updateRespectiveColumns  spec', function () {
+        createController();
+        var idArrayofDistSchool = [1, 2];
+        spyOn(angular, 'element').and.callThrough();
+        angularHtml = jasmine.createSpyObj(angular.element, ['triggerHandler']);
+        angular.element.and.returnValue(angularHtml);
+        var len = 2;
+        scope.updateRespectiveColumns(idArrayofDistSchool);
+        expect(angular.element).toHaveBeenCalledWith('#' + idArrayofDistSchool[0]);
+        expect(angular.element().triggerHandler).toHaveBeenCalledWith("click");
+        // expect(len).toBe(2);
+
+    });
 
 
     });
