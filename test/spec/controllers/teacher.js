@@ -37,7 +37,7 @@ describe('Teacher Ctrl', function () {
             },
             "servicesBaseUrl": "http://192.168.2.58:8080/gage-service/service",
             "reportServiceUrlStudent": "http://192.168.2.58:8080/reports"
-        }
+        };
         
         // We use the $q service to create a mock instance of defer
         deferred = _$q_.defer();

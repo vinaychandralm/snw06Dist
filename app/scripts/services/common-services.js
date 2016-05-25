@@ -1,3 +1,4 @@
+"use strict";
 var studentActivityServices = angular.module('studentActivityReports.services', []);
 
 studentActivityServices.service('iFrameLoading', ['$window', '$rootScope', function ($window, $rootScope) {
@@ -18,6 +19,6 @@ studentActivityServices.service('iFrameLoading', ['$window', '$rootScope', funct
     return {
         "subscribeiFrameLoading": subsFunc,
         "subscribeWindowResize":resizewindowEvent
-    }
+    };
 
 }]);

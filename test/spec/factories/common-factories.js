@@ -5,7 +5,7 @@ describe('GetCourseCatalog Ajax Call', function () {
     // load the controller's module
     beforeEach(module('studentActivityReportscommomns.factories'));
 
-    var basePath, scope, GetCourseCatalog, rootScope, http, GetExistingCourseCat, GetNewCourseCatSchool,GetNewCourseCatDist,postcopycourse;
+    var scope, GetCourseCatalog, rootScope, http, GetExistingCourseCat, GetNewCourseCatSchool,GetNewCourseCatDist,postcopycourse;
     
 
     //   // Initialize the controller and a mock scope
@@ -56,7 +56,7 @@ describe('GetCourseCatalog Ajax Call', function () {
     it('should call the GetExistingCourseCat function', function () {
         // var url = basePath + domainid + '?token=' + token;
         var _domainID = "someDomainID";
-        var chkboxstr = "SomeChkboxStr"
+        var chkboxstr = "SomeChkboxStr";
         var get = GetExistingCourseCat._get(_domainID, chkboxstr);
         expect(http.get).toHaveBeenCalledWith(rootScope.winConfigObj.existingCourseUrl + _domainID + "?token=" + rootScope.token);
         expect(get).toEqual("some value");
@@ -83,7 +83,7 @@ describe('GetCourseCatalog Ajax Call', function () {
      it('should call the postcopycourse function', function () {
         //var distObjId = "somedistObjId";
       //  var idArrayOfSelectedCourseCat = ['1234560','1234561','1234562'];
-        var objArray = [{'prop1':'name_X','id': '1234522'},{'prop1':'name_Y','id': '1234555'},{'prop1':'name_Z','id': '123456'}]
+        var objArray = [{'prop1':'name_X','id': '1234522'},{'prop1':'name_Y','id': '1234555'},{'prop1':'name_Z','id': '123456'}];
         var post = postcopycourse._post(objArray);
         expect(http.post).toHaveBeenCalled();
         expect(post).toEqual("some post value");

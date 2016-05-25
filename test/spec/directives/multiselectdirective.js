@@ -5,7 +5,7 @@ describe('directive: multiselect', function () {
    
     var $compile,
         $rootScope;
-    beforeEach(module('studentActivityReports'))
+    beforeEach(module('studentActivityReports'));
     beforeEach(module('ui.multiselect'));
 
 

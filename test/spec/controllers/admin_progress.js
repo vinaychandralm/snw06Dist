@@ -15,7 +15,7 @@ describe('Admin Ctrl', function () {
         //        $location = _$location_;
         rootScope = $rootScope;
         scope = $rootScope.$new();
-        getEnrollmentStatus: _getEnrollmentStatus_,
+        getEnrollmentStatus= _getEnrollmentStatus_,
         notAuthenticated = _notAuthenticated_;
         noNetError = _noNetError_
         getSchoolData = _getSchoolData_;

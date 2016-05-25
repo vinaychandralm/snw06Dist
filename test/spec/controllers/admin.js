@@ -15,7 +15,7 @@ describe('Admin Ctrl', function () {
         //        $location = _$location_;
         rootScope = $rootScope;
         scope = $rootScope.$new();
-        getEnrollmentStatus: _getEnrollmentStatus_,
+        //getEnrollmentStatus: _getEnrollmentStatus_,
         notAuthenticated = _notAuthenticated_;
         noNetError = _noNetError_
         getSchoolData = _getSchoolData_;
@@ -625,15 +625,11 @@ describe('Admin Ctrl', function () {
         });
     });
 
-    describe('testing-scope.$watch multiselectModelEnrollment', function () {
-
-        it('should return studentListIds with the id values of scope.multiselectModelAdminStudent object', function () {
-            var controller = createController();
+    it('should return studentListIds with the id values of scope.multiselectModelAdminStudent object', function () {
+            createController();
             var isDataValidate = 'abcd';
             spyOn(showReport, 'loadOnIFrame').and.returnValue('some value');
             scope.showAdminReport(isDataValidate);
             expect(showReport.loadOnIFrame).toHaveBeenCalledWith(scope);
         });
-
-    });
 });

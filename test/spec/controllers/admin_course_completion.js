@@ -628,7 +628,7 @@ describe('Admin Ctrl', function () {
     describe('testing-scope.$watch multiselectModelEnrollment', function () {
 
         it('should return studentListIds with the id values of scope.multiselectModelAdminStudent object', function () {
-            var controller = createController();
+            createController();
             var isDataValidate = 'abcd';
             spyOn(showReport, 'loadOnIFrame').and.returnValue('some value');
             scope.showAdminReport(isDataValidate);

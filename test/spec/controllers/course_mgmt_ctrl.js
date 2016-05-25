@@ -1,5 +1,4 @@
 'use strict';
-
 describe('Copy Course Ctrl', function () {
 
     var scope, createController, rootScope;
@@ -19,8 +18,7 @@ describe('Copy Course Ctrl', function () {
 
         rootScope = $rootScope;
         scope = $rootScope.$new();
-        getEnrollmentStatus: _getEnrollmentStatus_,
-            notAuthenticated = _notAuthenticated_;
+        notAuthenticated = _notAuthenticated_;
         noNetError = _noNetError_
         getSchoolData = _getSchoolData_;
         $q = _$q_;
@@ -66,23 +64,12 @@ describe('Copy Course Ctrl', function () {
         // Use a Jasmine Spy to return the deferred promise
         spyOn(validateUrlData, '_get').and.returnValue(deferred.promise);
 
-        //scope.$watch = jasmine.createSpy('$watch');
-
-        //  jasmine.createSpy("$timeout");
-
-
-        //        spyOn(getDataStudentTeacher,'_get').and.returnValue(deferred.promise);
-
         createController = function () {
             return $controller('courseMgmtCtrl', {
                 $rootScope: rootScope,
                 $scope: scope,
                 notAuthenticated: notAuthenticated,
                 noNetError: noNetError,
-
-                // getEnrollmentStatus: _getEnrollmentStatus_,
-                // getSchoolStudent: getSchoolStudent,
-                // getSchoolStudentCourse: getSchoolStudentCourse,
                 showReport: showReport,
                 $location: $location,
 
@@ -107,7 +94,6 @@ describe('Copy Course Ctrl', function () {
 
         expect($locale.DATETIME_FORMATS.SHORTDAY).toEqual(["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]);
 
-        //console.log(_.union([34,35,45,48,49], [48,32,34,55]));
         expect(rootScope.winConfigObj).toBe(window.configObj);
         expect(rootScope.loadingText).toBe(true);
         expect(rootScope.netErr).toBe(false);
@@ -146,11 +132,10 @@ describe('Copy Course Ctrl', function () {
     });
 
     it('It shuould call the loadData method with messageType: SUCCESS ', function () {
-        var controller = createController();
+        createController();
 
         $routeParams.role = 'admin';
         spyOn(scope, 'get_district_School_Data').and.returnValue('Some text');
-        //    spyOn(scope, 'get_course_catalog_Data').and.returnValue('Some text');
 
         scope.loadData();
 
@@ -185,7 +170,7 @@ describe('Copy Course Ctrl', function () {
     });
 
     it('It shuould call the loadData method with messageType: ERROR ', function () {
-        var controller = createController();
+        createController();
 
         $routeParams.role = 'admin';
         spyOn(notAuthenticated, '_showErrorMsg').and.returnValue('Some text');
@@ -224,7 +209,7 @@ describe('Copy Course Ctrl', function () {
     });
 
     it('It shuould call the loadData method with Net ERROR  ', function () {
-        var controller = createController();
+        createController();
 
         $routeParams.role = 'admin';
 
@@ -246,7 +231,7 @@ describe('Copy Course Ctrl', function () {
     });
 
     it('It shuould call the loadData method with Net ERROR  ', function () {
-        var controller = createController();
+        createController();
         var obj = {
             data: {
                 domains: [
@@ -365,7 +350,7 @@ describe('Copy Course Ctrl', function () {
     });
 
     it('It shuould call the loadData method with Net ERROR  ', function () {
-        var controller = createController();
+        createController();
 
         var dateStr = scope.dateStringFormat(new Date("October 21, 2016"));
 
@@ -374,7 +359,7 @@ describe('Copy Course Ctrl', function () {
     });
 
     it('It shuould call the get_course_catalog_Data method with messageType: SUCCESS ', function () {
-        var controller = createController();
+        createController();
         spyOn(GetCourseCatalog, '_get').and.returnValue(deferred.promise);
         scope.disrtictObj = [{
             id: 'someid'
@@ -407,7 +392,7 @@ describe('Copy Course Ctrl', function () {
 
     });
     it('It shuould call the get_course_catalog_Data method with messageType: ERROR ', function () {
-        var controller = createController();
+        createController();
         spyOn(GetCourseCatalog, '_get').and.returnValue(deferred.promise);
         scope.disrtictObj = [{
             id: 'someid'
@@ -438,7 +423,7 @@ describe('Copy Course Ctrl', function () {
         expect(GetCourseCatalog._get).toHaveBeenCalledWith(scope.disrtictObj[0].id);
     });
     it('It shuould call the get_course_catalog_Data method with messageType: Defered ', function () {
-        var controller = createController();
+        createController();
         spyOn(GetCourseCatalog, '_get').and.returnValue(deferred.promise);
         scope.disrtictObj = [{
             id: 'someid'
@@ -471,7 +456,7 @@ describe('Copy Course Ctrl', function () {
 
 
     it('It shuould call the removeSchoolDistFrmModal method with messageType: SUCCESS ', function () {
-        var controller = createController();
+        createController();
 
         $routeParams.role = 'admin';
         rootScope.userDetails = {
@@ -546,7 +531,7 @@ describe('Copy Course Ctrl', function () {
     });
 
     it('It shuould call the addSchoolDistIntoModal method with  PUSH ', function () {
-        var controller = createController();
+        createController();
 
         scope.existingCourseList = [
             {
@@ -605,7 +590,7 @@ describe('Copy Course Ctrl', function () {
     });
 
     it('It shuould call the updateNewCourseForSchool method with  PUSH ', function () {
-        var controller = createController();
+        createController();
 
         scope.schollNewCousreList = [
             {
@@ -663,7 +648,7 @@ describe('Copy Course Ctrl', function () {
 
     });
     it('It shuould call the getNewCourseListForScholl  method with messageType: Success ', function () {
-        var controller = createController();
+        createController();
 
         spyOn(GetNewCourseCatSchool, '_get').and.returnValue(deferred.promise);
         spyOn(scope, 'updateNewCourseForSchool').and.returnValue('some text');
@@ -712,7 +697,7 @@ describe('Copy Course Ctrl', function () {
 
     });
     it('It shuould call the getNewCourseListForScholl  method with messageType: ERROR ', function () {
-        var controller = createController();
+        createController();
 
         spyOn(GetNewCourseCatSchool, '_get').and.returnValue(deferred.promise);
         spyOn(scope, 'updateNewCourseForSchool').and.returnValue('some text');
@@ -763,7 +748,7 @@ describe('Copy Course Ctrl', function () {
 
     });
     it('It shuould call the getNewCourseListForScholl  method with messageType: Defered Object ', function () {
-        var controller = createController();
+        createController();
 
         spyOn(GetNewCourseCatSchool, '_get').and.returnValue(deferred.promise);
         spyOn(scope, 'updateNewCourseForSchool').and.returnValue('some text');
@@ -805,7 +790,7 @@ describe('Copy Course Ctrl', function () {
     });
 
     it('It shuould call the get_district_School_Data  method with messageType: Error on 200 ', function () {
-        var controller = createController();
+        createController();
 
         spyOn(getSchoolData, '_get').and.returnValue(deferred.promise);
         spyOn(notAuthenticated, '_showErrorMsg').and.returnValue('some text');
@@ -844,7 +829,7 @@ describe('Copy Course Ctrl', function () {
     });
 
     it('It shuould call the get_district_School_Data  method with messageType: Error on 500 ', function () {
-        var controller = createController();
+        createController();
 
         spyOn(getSchoolData, '_get').and.returnValue(deferred.promise);
         spyOn(noNetError, '_showNetErrorMsg').and.returnValue('some text');
@@ -870,9 +855,8 @@ describe('Copy Course Ctrl', function () {
         expect(scope.distSchollLodingLayer).toEqual(false);
     });
 
-    //updateExistingCourseModal = function (schdist_Id, distschoolChkval, itemName, chkbxidstr) {
     it('It shuould call the updateExistingCourseModal  method  ', function () {
-        var controller = createController();
+        createController();
 
         spyOn(GetExistingCourseCat, '_get').and.returnValue(deferred.promise);
         spyOn(scope, 'addSchoolDistIntoModal').and.returnValue('some text');
@@ -911,12 +895,11 @@ describe('Copy Course Ctrl', function () {
 
 
         expect(GetExistingCourseCat._get).toHaveBeenCalled();
-        //expect(noNetError._showNetErrorMsg).toHaveBeenCalled();
         expect(scope.addSchoolDistIntoModal).toHaveBeenCalled();
     });
 
     it('It shuould call the updateExistingCourseModal  method  wit dist = false', function () {
-        var controller = createController();
+        createController();
 
         spyOn(scope, 'onCourseChkUpdate').and.returnValue('some text');
         spyOn(scope, 'removeSchoolDistFrmModal').and.returnValue('some text');
@@ -944,7 +927,7 @@ describe('Copy Course Ctrl', function () {
 
 
     it('It shuould call the checkSchoolOrDist   method  wit dist = false', function () {
-        var controller = createController();
+        createController();
 
 
         var schdist_Id = 'NonDistID';
@@ -959,7 +942,7 @@ describe('Copy Course Ctrl', function () {
     });
 
     it('It shuould call the checkSchoolOrDist   method  wit dist = false', function () {
-        var controller = createController();
+        createController();
 
 
         var schdist_Id = 'DIST';
@@ -974,7 +957,7 @@ describe('Copy Course Ctrl', function () {
     });
 
     it('It should call removeNewSchollCourseFrmModal method', function () {
-        var controller = createController();
+        createController();
         var domainObj = {
             'name': 'abc'
         };
@@ -986,7 +969,7 @@ describe('Copy Course Ctrl', function () {
     });
 
     it('It should call addDataForCopyApi method', function () {
-        var controller = createController();
+        createController();
         scope.mainCourseArryAsModal = [{
             'courseList': [{
                 'name': 'abc',
@@ -996,16 +979,13 @@ describe('Copy Course Ctrl', function () {
         }];
 
         var len = scope.mainCourseArryAsModal[0].courseList.length;
-        //var len;
         scope.addDataForCopyApi();
 
-        // expect(len).toBe(scope.mainCourseArryAsModal[0].courseList.length);
         expect(scope.mainCourseArryAsModal[0].courseList[0].domainType).toEqual('DISTRICT');
         expect(scope.mainCourseArryAsModal[0].courseList[0].Domain_ID).toEqual(scope.disrtictObj[0].id);
     });
 
     describe('showModalPopup spec', function () {
-        // var controller = createController();
 
         beforeEach(function () {
             spyOn(angular, 'element').and.callThrough();
@@ -1014,7 +994,7 @@ describe('Copy Course Ctrl', function () {
 
         });
         it('call with showModalPopup spec', function () {
-            var controller = createController();
+            createController();
             scope.showModalPopup('msg');
             expect(angular.element).toHaveBeenCalledWith('#modalContent');
             expect(angular.element().text).toHaveBeenCalledWith('msg');
@@ -1027,16 +1007,14 @@ describe('Copy Course Ctrl', function () {
     describe('It should call onCourseChkUpdate method', function () {
         beforeEach(function () {
             spyOn(angular, 'element').and.callThrough();
-            //            spyOn(scope, 'getNewCourseListForDistrict');
 
             angularHtml = jasmine.createSpyObj(angular.element, ['is']);
             angular.element.and.returnValue(angularHtml);
 
         });
         it('It should call onCourseChkUpdate method for true', function () {
-            var controller = createController();
+            createController();
             spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2]);
-            //spyOn(scope, 'getNewCourseListForDistrict');
             spyOn(scope, 'buildMainModal');
             var isDistSelected = true;
 
@@ -1048,10 +1026,7 @@ describe('Copy Course Ctrl', function () {
 
             expect(angular.element).toHaveBeenCalledWith('#distCollapsable');
             expect(angular.element().is).toHaveBeenCalledWith(":checked");
-            //expect(scope.getNewCourseListForDistrict).toHaveBeenCalled();
             expect(scope.buildMainModal).toHaveBeenCalled();
-            // expect(scope.getNewCourseListForDistrict).toHaveBeenCalled();
-            //          expect(scope.getNewCourseListForDistrict).toHaveBeenCalled();           
 
         });
     });
@@ -1091,16 +1066,12 @@ describe('Copy Course Ctrl', function () {
             createController();
             scope.uncheckAllCourseCatalog();
             expect(angular.element).toHaveBeenCalledWith("#courseCatlogs input:checkbox:checked");
-            // expect(angular.element().each).toHaveBeenCalledWith("some_value");
         });
     });
 
 
     describe('It should call onCourseTypeClick method', function () {
 
-        //        beforeEach(function(){
-        //            spyOn()
-        //        })
         it('onCourseTypeClick spec true', function () {
 
             createController();
@@ -1136,19 +1107,12 @@ describe('Copy Course Ctrl', function () {
             expect(angular.element().is).toHaveBeenCalledWith(":checked");
             expect(val).toBe(false);
             expect(parentChkBoxId).toBe('#checkboxMainNewCourse_' + 'pIndex');
-            // expect(angular.element).toHaveBeenCalledWith(parentChkBoxId);
-            // expect(angular.element().prop).toHaveBeenCalledWith('checked', false);
         });
     });
-
-    //    $scope.go = function (path) {
-    //            $location.path(path);
-    //        };
 
 
     it('It should call go method', function () {
         spyOn($location, 'path');
-        //        scope.go = function (path);
         createController();
         scope.go('path');
         expect($location.path).toHaveBeenCalledWith('path');
@@ -1272,8 +1236,6 @@ describe('Copy Course Ctrl', function () {
             expect(angular.copy).toHaveBeenCalledWith([]);
             expect(scope.addDistPostFix).toHaveBeenCalledWith([1, 2, 3]);
             expect(scope.getSecectedCourseCatalog).toHaveBeenCalled();
-            //expect(scope.addDistrictObjects).toHaveBeenCalledWith([1, 2, 3]);
-
 
         });
     });
@@ -1284,8 +1246,6 @@ describe('Copy Course Ctrl', function () {
 
         it('handleCopyEvent calls wit Success response', function () {
             createController();
-            // scope.multiselectExistingCatalog = [{}, {}];
-
             spyOn(angular, 'element').and.returnValue([1, 2, 3]);
             spyOn(scope, 'getSelectedNewCourses').and.returnValue([1, 2, 3]);
             spyOn(postcopycourse, '_post').and.returnValue(deferred.promise);
@@ -1396,7 +1356,6 @@ describe('Copy Course Ctrl', function () {
 
         it('getNewCourseListForDistrict  calls with Success response', function () {
             createController();
-            // scope.multiselectExistingCatalog = [{}, {}];
             scope.disrtictObj = [{ 'id': "idtsr" }];
             spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2, 3]);
             spyOn(GetNewCourseCatDist, '_get').and.returnValue(deferred.promise);
@@ -1426,7 +1385,6 @@ describe('Copy Course Ctrl', function () {
         });
         it('getNewCourseListForDistrict  calls with ERROR response', function () {
             createController();
-            // scope.multiselectExistingCatalog = [{}, {}];
             scope.disrtictObj = [{ 'id': "idtsr" }];
             spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2, 3]);
             spyOn(GetNewCourseCatDist, '_get').and.returnValue(deferred.promise);
@@ -1434,9 +1392,7 @@ describe('Copy Course Ctrl', function () {
             angularHtml = jasmine.createSpyObj(angular.element, ['is']);
             angular.element.and.returnValue(angularHtml);
             angular.element().is.and.returnValue(true);
-            //  spyOn(angular, 'copy').and.callThrough();;
             spyOn(scope, 'newCourseCatLodingLayerOnOff').and.returnValue(true);
-            // spyOn(scope, 'buildMainModal');
             scope.getNewCourseListForDistrict();
             deferred.resolve({
                 config: {}, data: {
@@ -1453,7 +1409,6 @@ describe('Copy Course Ctrl', function () {
         });
         it('getNewCourseListForDistrict  calls with Defered response', function () {
             createController();
-            // scope.multiselectExistingCatalog = [{}, {}];
             scope.disrtictObj = [{ 'id': "idtsr" }];
             spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2, 3]);
             spyOn(GetNewCourseCatDist, '_get').and.returnValue(deferred.promise);
@@ -1538,20 +1493,43 @@ describe('Copy Course Ctrl', function () {
             });
 
         });
-         it('updateRespectiveColumns  spec', function () {
-        createController();
-        var idArrayofDistSchool = [1, 2];
-        spyOn(angular, 'element').and.callThrough();
-        angularHtml = jasmine.createSpyObj(angular.element, ['triggerHandler']);
-        angular.element.and.returnValue(angularHtml);
-        var len = 2;
-        scope.updateRespectiveColumns(idArrayofDistSchool);
-        expect(angular.element).toHaveBeenCalledWith('#' + idArrayofDistSchool[0]);
-        expect(angular.element().triggerHandler).toHaveBeenCalledWith("click");
-        // expect(len).toBe(2);
+        it('updateRespectiveColumns  spec', function () {
+            createController();
+            var idArrayofDistSchool = [1, 2];
+            spyOn(angular, 'element').and.callThrough();
+            angularHtml = jasmine.createSpyObj(angular.element, ['triggerHandler']);
+            angular.element.and.returnValue(angularHtml);
+            var len = 2;
+            scope.updateRespectiveColumns(idArrayofDistSchool);
+            expect(angular.element).toHaveBeenCalledWith('#' + idArrayofDistSchool[0]);
+            expect(angular.element().triggerHandler).toHaveBeenCalledWith("click");
 
+        });
     });
 
-
-    });
+    // describe('getSelectedNewCourses spec', function () {
+    //     beforeEach(function () {
+    //         spyOn(angular, 'element').and.callFake(function(){
+    //             return jQuery(["<div data-domainId='1' data-courseId='10' data-domainType='school'></div>","<div data-domain-id='2' data-course-Id='20' data-domainType='school'></div>"])
+    //         });
+    //         //createController();
+    //     });
+    //     afterEach(function(){
+    //        angular.element.and.callThrough(); 
+    //     });
+    //     var objArrayOfSelected = [];
+    //     var obj = {};
+    //     it('dsjk', function () {
+    //         createController();
+    //         scope.courseType = "DemoCouresType"
+    //         var returnObj = scope.getSelectedNewCourses();
+    //         expect(returnObj.length).toBe(2);
+    //         console.log(returnObj);
+    //         expect(returnObj[0].domainid).toBe('1');
+    //         expect(returnObj[0].courseid).toBe('10');
+    //         expect(returnObj[0].domaintype).toBe('school');
+    //         expect(returnObj[0].type).toBe('DemoCouresType');
+            
+    //     });
+    // });
 });

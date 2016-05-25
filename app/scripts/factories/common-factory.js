@@ -54,10 +54,10 @@ factoryModule.factory('GetDateAsString',['$rootScope', function($rootScope) {
 
             var yyyy = dateObj.getFullYear();
             if (dd < 10) {
-                dd = '0' + dd
+                dd = '0' + dd;
             }
             if (mm < 10) {
-                mm = '0' + mm
+                mm = '0' + mm;
             }
             return (mm + '/' + dd + '/' + yyyy);
         }
