@@ -1510,7 +1510,7 @@ describe('Copy Course Ctrl', function () {
     // describe('getSelectedNewCourses spec', function () {
     //     beforeEach(function () {
     //         spyOn(angular, 'element').and.callFake(function(){
-    //             return jQuery(["<div data-domainId='1' data-courseId='10' data-domainType='school'></div>","<div data-domain-id='2' data-course-Id='20' data-domainType='school'></div>"])
+    //             return jQuery(["<div data-domainid='1' data-courseid='10' data-domaintype='school'></div>","<div data-domain-id='2' data-courseid='20' data-domaintype='school'></div>"])
     //         });
     //         //createController();
     //     });
@@ -1519,15 +1519,15 @@ describe('Copy Course Ctrl', function () {
     //     });
     //     var objArrayOfSelected = [];
     //     var obj = {};
-    //     it('dsjk', function () {
+    //     it('tesing getSelectedNewCourses', function () {
     //         createController();
     //         scope.courseType = "DemoCouresType"
     //         var returnObj = scope.getSelectedNewCourses();
     //         expect(returnObj.length).toBe(2);
     //         console.log(returnObj);
-    //         expect(returnObj[0].domainid).toBe('1');
-    //         expect(returnObj[0].courseid).toBe('10');
-    //         expect(returnObj[0].domaintype).toBe('school');
+    //       //  expect(returnObj[0].domainid).toBe('1');
+    //             // expect(returnObj[0].courseid).toBe('10');
+    //             // expect(returnObj[0].domaintype).toBe('school');
     //         expect(returnObj[0].type).toBe('DemoCouresType');
             
     //     });
