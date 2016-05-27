@@ -147,9 +147,9 @@ describe('Copy Course Ctrl', function () {
                     'domains': [{
                         'id': '12342'
                     }, {
-                            'id': '12341'
+                        'id': '12341'
                         }, {
-                            'id': '12340'
+                        'id': '12340'
                         }],
                     'key': 'someType'
                 },
@@ -186,9 +186,9 @@ describe('Copy Course Ctrl', function () {
                     'domains': [{
                         'id': '12342'
                     }, {
-                            'id': '12341'
+                        'id': '12341'
                         }, {
-                            'id': '12340'
+                        'id': '12340'
                         }],
                     'key': 'someType'
                 },
@@ -317,19 +317,19 @@ describe('Copy Course Ctrl', function () {
         }]);
 
         expect(scope.domainDataScholl).toEqual([{
-            "id": "46238951",
-            "name": "School1",
-            "userspace": "s1-06",
-            "parentid": "46238884",
-            "reference": "s1-06",
-            "guid": "0dd41a6c-11bb-4ff2-9735-cb2553b48cb5",
-            "flags": 0,
-            "creationdate": "2016-02-10T06:13:52.113Z",
-            "creationby": "30750405",
-            "modifieddate": "2016-02-10T06:13:52.113Z",
-            "modifiedby": "30750405",
-            "version": "1",
-            "data": null
+                "id": "46238951",
+                "name": "School1",
+                "userspace": "s1-06",
+                "parentid": "46238884",
+                "reference": "s1-06",
+                "guid": "0dd41a6c-11bb-4ff2-9735-cb2553b48cb5",
+                "flags": 0,
+                "creationdate": "2016-02-10T06:13:52.113Z",
+                "creationby": "30750405",
+                "modifieddate": "2016-02-10T06:13:52.113Z",
+                "modifiedby": "30750405",
+                "version": "1",
+                "data": null
         },
             {
                 "id": "46239047",
@@ -532,7 +532,8 @@ describe('Copy Course Ctrl', function () {
 
     it('It shuould call the addSchoolDistIntoModal method with  PUSH ', function () {
         createController();
-
+        var isDistSelected = true;
+        var chkbxidstr = 'distCollapsable';
         scope.existingCourseList = [
             {
                 "schoolDistId": "46238884",
@@ -588,8 +589,73 @@ describe('Copy Course Ctrl', function () {
         expect(scope.existingCourseList.length).toEqual(4);
 
     });
+    it('It shuould call the addSchoolDistIntoModal method with  Unshift ', function () {
+
+        createController();
+        //  var isDistSelected = angular.element('#distCollapsable').is(":checked");
+        var chkbxidstr = 'distCollapsable';
+        spyOn(angular, 'element').and.callThrough();
+        angularHtml = jasmine.createSpyObj(angular.element, ['is']);
+        angular.element.and.returnValue(angularHtml);
+        angular.element().is.and.returnValue(true);
+        scope.existingCourseList = [
+            {
+                "schoolDistId": "46238884",
+                "name": "Gage Service District",
+                "userspace": "gsd-06",
+                "parentid": "34864588",
+                "reference": "gsd-06",
+                "guid": "693ff705-8958-4804-937b-2e5481f70e07",
+                "flags": 0,
+                "creationdate": "2016-02-10T06:08:47.583Z",
+                "creationby": "30750405",
+                "modifieddate": "2016-02-26T17:10:18.253Z",
+                "modifiedby": "46238944",
+                "version": "3",
+                "data": null
+            },
+            {
+                "schoolDistId": "46238951",
+                "name": "School1",
+                "userspace": "s1-06",
+                "parentid": "46238884",
+                "reference": "s1-06",
+                "guid": "0dd41a6c-11bb-4ff2-9735-cb2553b48cb5",
+                "flags": 0,
+                "creationdate": "2016-02-10T06:13:52.113Z",
+                "creationby": "30750405",
+                "modifieddate": "2016-02-10T06:13:52.113Z",
+                "modifiedby": "30750405",
+                "version": "1",
+                "data": null
+            },
+            {
+                "schoolDistId": "46239047",
+                "name": "School2",
+                "userspace": "s2-06",
+                "parentid": "46238884",
+                "reference": "s2-06",
+                "guid": "b6ea6150-e058-4c99-830f-38c38fff1370",
+                "flags": 0,
+                "creationdate": "2016-02-10T06:15:38.42Z",
+                "creationby": "30750405",
+                "modifieddate": "2016-02-10T06:15:38.42Z",
+                "modifiedby": "30750405",
+                "version": "1",
+                "data": null
+            }
+        ];
+        scope.addSchoolDistIntoModal('46238884', 'school1', {
+            'obj': 'some object'
+        }, 'distCollapsable');
+
+
+        expect(scope.existingCourseList.length).toEqual(4);
+
+    });
 
     it('It shuould call the updateNewCourseForSchool method with  PUSH ', function () {
+
         createController();
 
         scope.schollNewCousreList = [
@@ -794,6 +860,8 @@ describe('Copy Course Ctrl', function () {
 
         spyOn(getSchoolData, '_get').and.returnValue(deferred.promise);
         spyOn(notAuthenticated, '_showErrorMsg').and.returnValue('some text');
+        spyOn(scope, 'get_course_catalog_Data');
+        //  spyOn(scope, 'filterDataTODisplay').and.callThrough();
 
         rootScope.userDetails = {
             'data': {
@@ -820,11 +888,51 @@ describe('Copy Course Ctrl', function () {
             }
         });
         scope.$apply();
-
+        scope.get_course_catalog_Data();
+        //        scope.filterDataTODisplay();
         expect(getSchoolData._get).toHaveBeenCalled();
         expect(notAuthenticated._showErrorMsg).toHaveBeenCalled();
         expect(scope.distSchollLodingLayer).toEqual(false);
+        expect(scope.get_course_catalog_Data).toHaveBeenCalled();
+        //  expect(scope.filterDataTODisplay).toHaveBeenCalledWith('some');
+    });
+    it('It shuould call the get_district_School_Data  method with messageType: Error on 200 ', function () {
+        createController();
 
+        spyOn(getSchoolData, '_get').and.returnValue(deferred.promise);
+        spyOn(notAuthenticated, '_showErrorMsg').and.returnValue('some text');
+        spyOn(scope, 'get_course_catalog_Data');
+
+        spyOn(scope, 'filterDataTODisplay');
+        rootScope.userDetails = {
+            'data': {
+                'data': {
+                    'user': {
+                        'domainid': '46238884'
+                    }
+                }
+            }
+        };
+
+        scope.get_district_School_Data();
+
+        // Setup the data we wish to return for the .then function in the controller
+        deferred.resolve({
+            data: {
+                data: {
+                    domains: '8765',
+                    course: 'some course'
+                },
+                messageType: 'SUCCESS',
+                status: 200,
+                statusText: 'OK'
+            }
+        });
+        scope.$apply();
+
+        expect(getSchoolData._get).toHaveBeenCalled();
+        expect(scope.filterDataTODisplay).toHaveBeenCalled();
+        expect(scope.get_course_catalog_Data).toHaveBeenCalled();
 
     });
 
@@ -892,11 +1000,86 @@ describe('Copy Course Ctrl', function () {
         });
         scope.$apply();
 
-
-
         expect(GetExistingCourseCat._get).toHaveBeenCalled();
         expect(scope.addSchoolDistIntoModal).toHaveBeenCalled();
     });
+    it('It shuould call the updateExistingCourseModalError  method  ', function () {
+        createController();
+
+        spyOn(GetExistingCourseCat, '_get').and.returnValue(deferred.promise);
+        //spyOn(scope, 'addSchoolDistIntoModal').and.returnValue('some text');
+
+        rootScope.userDetails = {
+            'data': {
+                'data': {
+                    'user': {
+                        'domainid': '46238884'
+                    }
+                }
+            }
+        };
+
+        var schdist_Id = 'someID',
+            distschoolChkval = true,
+            itemName = 'someName',
+            chkbxidstr = 'chkBoxIdStr';
+
+        scope.updateExistingCourseModal(schdist_Id, distschoolChkval, itemName, chkbxidstr);
+
+        // Setup the data we wish to return for the .then function in the controller
+        deferred.resolve({
+            data: {
+                data: {
+                    domains: '8765',
+                    course: 'some course'
+                },
+                messageType: 'ERROR',
+                status: 200,
+                statusText: 'OK'
+            }
+        });
+        scope.$apply();
+
+
+
+        expect(GetExistingCourseCat._get).toHaveBeenCalled();
+        // expect(scope.addSchoolDistIntoModal).toHaveBeenCalled();
+    });
+
+    it('It shuould call the updateExistingCourseModal with Error Defered  ', function () {
+        createController();
+
+        spyOn(GetExistingCourseCat, '_get').and.returnValue(deferred.promise);
+        //spyOn(scope, 'addSchoolDistIntoModal').and.returnValue('some text');
+
+        rootScope.userDetails = {
+            'data': {
+                'data': {
+                    'user': {
+                        'domainid': '46238884'
+                    }
+                }
+            }
+        };
+
+        var schdist_Id = 'someID',
+            distschoolChkval = true,
+            itemName = 'someName',
+            chkbxidstr = 'chkBoxIdStr';
+
+        scope.updateExistingCourseModal(schdist_Id, distschoolChkval, itemName, chkbxidstr);
+
+        // Setup the data we wish to return for the .then function in the controller
+        deferred.reject();
+        scope.$apply();
+
+
+
+        expect(GetExistingCourseCat._get).toHaveBeenCalled();
+        expect(scope.existingCourseLodingLayer).toBe(false);
+        // expect(scope.addSchoolDistIntoModal).toHaveBeenCalled();
+    });
+
 
     it('It shuould call the updateExistingCourseModal  method  wit dist = false', function () {
         createController();
@@ -1016,9 +1199,11 @@ describe('Copy Course Ctrl', function () {
             createController();
             spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2]);
             spyOn(scope, 'buildMainModal');
+            spyOn(scope, 'getNewCourseListForDistrict');
             var isDistSelected = true;
-
+            scope.getNewCourseListForDistrict();
             scope.onCourseChkUpdate('idx', 'chkbxidstr');
+
 
             var idArrayOfSelectedCourseCat = scope.getSecectedCourseCatalog();
             expect(idArrayOfSelectedCourseCat).toEqual([1, 2]);
@@ -1027,8 +1212,23 @@ describe('Copy Course Ctrl', function () {
             expect(angular.element).toHaveBeenCalledWith('#distCollapsable');
             expect(angular.element().is).toHaveBeenCalledWith(":checked");
             expect(scope.buildMainModal).toHaveBeenCalled();
+            expect(scope.getNewCourseListForDistrict).toHaveBeenCalled();
 
         });
+        //        it('It should call onCourseChkUpdate method spec', function () {
+        //            createController();
+        //            //var idArrayOfSelectedCourseCat = scope.getSecectedCourseCatalog();
+        //            spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2]);
+        //            spyOn(scope, 'getNewCourseListForDistrict')
+        //            spyOn(scope, 'buildMainModal');
+        //            //spyOn(scope, 'getNewCourseListForDistrict');
+        //            var isDistSelected = true;
+        //            scope.getNewCourseListForDistrict();
+        //            scope.onCourseChkUpdate('idx', 'chkbxidstr');
+        //            expect(scope.getNewCourseListForDistrict).toHaveBeenCalled();
+        //            //expect(scope.getSecectedCourseCatalog).toHaveBeenCalledWith('idArrayOfSelectedCourseCat');
+        //
+        //        });
     });
 
     describe('It should call callAjx method', function () {
@@ -1097,17 +1297,19 @@ describe('Copy Course Ctrl', function () {
             spyOn(angular, 'element').and.callThrough();
             angularHtml = jasmine.createSpyObj(angular.element, ['is', 'prop']);
             angular.element.and.returnValue(angularHtml);
+            angular.element().is.and.returnValue(false);
         });
         it('onNewCourseClick method', function () {
-            var val = false,
-                parentChkBoxId = '#checkboxMainNewCourse_pIndex';
+            var parentChkBoxId = '#checkboxMainNewCourse_pIndex';
             createController();
             scope.onNewCourseClick('idStr', 'pIndex');
+
             expect(angular.element).toHaveBeenCalledWith('#' + 'idStr');
             expect(angular.element().is).toHaveBeenCalledWith(":checked");
-            expect(val).toBe(false);
+            // expect(val).toBe(false);
             expect(parentChkBoxId).toBe('#checkboxMainNewCourse_' + 'pIndex');
         });
+
     });
 
 
@@ -1193,10 +1395,37 @@ describe('Copy Course Ctrl', function () {
             expect(angular.element().attr).toHaveBeenCalled();
             expect(scope.buildMainModal).toHaveBeenCalled();
             expect(scope.removeNewSchollCourseFrmModal).toHaveBeenCalledWith(domainObj);
+        });
 
 
 
-        })
+        it('On  DistChkBoxID selectted true', function () {
+
+            createController();
+            spyOn(angular, 'element').and.callThrough();
+            angularHtml = jasmine.createSpyObj(angular.element, ['is', 'removeAttr', 'removeAttr']);
+            angular.element.and.returnValue(angularHtml);
+            angular.element().is.and.returnValue(true);
+            spyOn(scope, 'updateExistingCourseModal');
+            spyOn(scope, 'buildMainModal');
+            spyOn(scope, 'removeNewSchollCourseFrmModal');
+            spyOn(scope, 'callAjx');
+            var domainObj = {
+                a: 2,
+                b: 3
+            }
+            scope.multiselectExistingCatalog = [{}, {}];
+            scope.onDistSchollChkUpdate(1, 're', 'itemName', domainObj, 2);
+            expect(scope.updateExistingCourseModal).toHaveBeenCalledWith(1, true, 'itemName', 're');
+            expect(scope.isDistNotSelected).toBe(false);
+            expect(angular.element).toHaveBeenCalledWith('#existCatlist button');
+            expect(angular.element().removeAttr).toHaveBeenCalled();
+            expect(scope.buildMainModal).toHaveBeenCalled();
+            expect(scope.callAjx).toHaveBeenCalled();
+            expect(scope.removeNewSchollCourseFrmModal).toHaveBeenCalledWith(domainObj);
+        });
+
+
 
     });
 
@@ -1259,9 +1488,21 @@ describe('Copy Course Ctrl', function () {
             scope.handleCopyEvent();
 
             deferred.resolve({
-                config: {}, data: {
-                    data: { 'domains': [{ 'id': '12342' }, { 'id': '12341' }, { 'id': '12340' }], 'key': 'someType' },
-                    messageType: 'SUCCESS', status: 200, statusText: 'OK'
+                config: {},
+                data: {
+                    data: {
+                        'domains': [{
+                            'id': '12342'
+                        }, {
+                            'id': '12341'
+                        }, {
+                            'id': '12340'
+                        }],
+                        'key': 'someType'
+                    },
+                    messageType: 'SUCCESS',
+                    status: 200,
+                    statusText: 'OK'
                 }
             });
             scope.$apply();
@@ -1297,14 +1538,24 @@ describe('Copy Course Ctrl', function () {
             spyOn(scope, 'getAllSelectedDistNSchool');
             spyOn(scope, 'showModalPopup');
 
-
-
             scope.handleCopyEvent();
 
             deferred.resolve({
-                config: {}, data: {
-                    data: { 'domains': [{ 'id': '12342' }, { 'id': '12341' }, { 'id': '12340' }], 'key': 'someType' },
-                    messageType: 'ERROR', status: 200, statusText: 'OK'
+                config: {},
+                data: {
+                    data: {
+                        'domains': [{
+                            'id': '12342'
+                        }, {
+                            'id': '12341'
+                        }, {
+                            'id': '12340'
+                        }],
+                        'key': 'someType'
+                    },
+                    messageType: 'ERROR',
+                    status: 200,
+                    statusText: 'OK'
                 }
             });
             scope.$apply();
@@ -1318,8 +1569,6 @@ describe('Copy Course Ctrl', function () {
             expect(scope.showModalPopup).toHaveBeenCalledWith("New Courses did not get copied, Please try again");
             expect(scope.getSelectedNewCourses).toHaveBeenCalled();
             expect(postcopycourse._post).toHaveBeenCalled();
-
-
         });
         it('handleCopyEvent calls with Defered or Rjected Call', function () {
             createController();
@@ -1342,13 +1591,21 @@ describe('Copy Course Ctrl', function () {
             expect(scope.showWholePgLoading).toBe(false);
 
             expect(angular.element).toHaveBeenCalledWith("#newcourseCatlogs input:checkbox:checked");
-
+            //expect(scope.showModalPopup).toHaveBeenCalledWith("There is no new courses to be copied from New Courses.");
             expect(scope.showModalPopup).toHaveBeenCalledWith("New Courses did not get copied, Please try again");
             expect(scope.getSelectedNewCourses).toHaveBeenCalled();
             expect(postcopycourse._post).toHaveBeenCalled();
 
 
         });
+
+        it('handleCopyEvent calls with no new courses', function () {
+            createController();
+            spyOn(scope, 'showModalPopup');
+            scope.handleCopyEvent();
+            expect(scope.showModalPopup).toHaveBeenCalledWith("There is no new courses to be copied from New Courses.");
+        });
+
     });
 
 
@@ -1356,7 +1613,9 @@ describe('Copy Course Ctrl', function () {
 
         it('getNewCourseListForDistrict  calls with Success response', function () {
             createController();
-            scope.disrtictObj = [{ 'id': "idtsr" }];
+            scope.disrtictObj = [{
+                'id': "idtsr"
+            }];
             spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2, 3]);
             spyOn(GetNewCourseCatDist, '_get').and.returnValue(deferred.promise);
             spyOn(angular, 'element').and.callThrough();
@@ -1368,9 +1627,21 @@ describe('Copy Course Ctrl', function () {
             spyOn(scope, 'buildMainModal');
             scope.getNewCourseListForDistrict();
             deferred.resolve({
-                config: {}, data: {
-                    data: { 'course': [{ 'id': '12342' }, { 'id': '12341' }, { 'id': '12340' }], 'key': 'someType' },
-                    messageType: 'SUCCESS', status: 200, statusText: 'OK'
+                config: {},
+                data: {
+                    data: {
+                        'course': [{
+                            'id': '12342'
+                        }, {
+                            'id': '12341'
+                        }, {
+                            'id': '12340'
+                        }],
+                        'key': 'someType'
+                    },
+                    messageType: 'SUCCESS',
+                    status: 200,
+                    statusText: 'OK'
                 }
             });
             scope.$apply();
@@ -1378,14 +1649,22 @@ describe('Copy Course Ctrl', function () {
             expect(angular.element).toHaveBeenCalledWith('#distCollapsable');
             expect(angular.element().is).toHaveBeenCalled();
             expect(scope.newCourseCatLodingLayer).toBe(true);
-            expect(scope.DistNewCourseArray).toEqual([{ 'id': '12342' }, { 'id': '12341' }, { 'id': '12340' }]);
+            expect(scope.DistNewCourseArray).toEqual([{
+                'id': '12342'
+            }, {
+                'id': '12341'
+            }, {
+                'id': '12340'
+            }]);
             expect(scope.buildMainModal).toHaveBeenCalled();
             expect(scope.getSecectedCourseCatalog).toHaveBeenCalled();
             expect(angular.copy).toHaveBeenCalled();
         });
         it('getNewCourseListForDistrict  calls with ERROR response', function () {
             createController();
-            scope.disrtictObj = [{ 'id': "idtsr" }];
+            scope.disrtictObj = [{
+                'id': "idtsr"
+            }];
             spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2, 3]);
             spyOn(GetNewCourseCatDist, '_get').and.returnValue(deferred.promise);
             spyOn(angular, 'element').and.callThrough();
@@ -1395,9 +1674,21 @@ describe('Copy Course Ctrl', function () {
             spyOn(scope, 'newCourseCatLodingLayerOnOff').and.returnValue(true);
             scope.getNewCourseListForDistrict();
             deferred.resolve({
-                config: {}, data: {
-                    data: { 'course': [{ 'id': '12342' }, { 'id': '12341' }, { 'id': '12340' }], 'key': 'someType' },
-                    messageType: 'ERROR', status: 200, statusText: 'OK'
+                config: {},
+                data: {
+                    data: {
+                        'course': [{
+                            'id': '12342'
+                        }, {
+                            'id': '12341'
+                        }, {
+                            'id': '12340'
+                        }],
+                        'key': 'someType'
+                    },
+                    messageType: 'ERROR',
+                    status: 200,
+                    statusText: 'OK'
                 }
             });
             scope.$apply();
@@ -1409,7 +1700,9 @@ describe('Copy Course Ctrl', function () {
         });
         it('getNewCourseListForDistrict  calls with Defered response', function () {
             createController();
-            scope.disrtictObj = [{ 'id': "idtsr" }];
+            scope.disrtictObj = [{
+                'id': "idtsr"
+            }];
             spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2, 3]);
             spyOn(GetNewCourseCatDist, '_get').and.returnValue(deferred.promise);
             spyOn(angular, 'element').and.callThrough();
@@ -1439,12 +1732,26 @@ describe('Copy Course Ctrl', function () {
             spyOn(scope, 'getSecectedCourseCatalog').and.callThrough();
             spyOn(angular, 'element').and.callThrough();
             spyOn(scope, 'addDataForCopyApi');
+            spyOn(scope, 'getCopyOfScholls').and.returnValue([{
+                'copyObj1': 1
+            }, {
+                'copyObj2': 2
+            }]);
             angularHtml = jasmine.createSpyObj(angular.element, ['is']);
             angular.element.and.returnValue(angularHtml);
             angular.element().is.and.returnValue(true)
             scope.mainCourseArryAsModal = [];
             scope.multiselectExistingCatalog = [{}, {}];
+            scope.schollNewCousreList = [{
+                'name': 'obj1'
+            }, {
+                'name': 'obj2'
+            }];
+
+
             scope.buildMainModal();
+
+            // expect(scope.mainCourseArryAsModal.length).toBe(2);
             expect(scope.getSecectedCourseCatalog).toHaveBeenCalled();
             expect(angular.element).toHaveBeenCalledWith('#distCollapsable');
             expect(angular.element().is).toHaveBeenCalledWith(":checked");
@@ -1453,6 +1760,10 @@ describe('Copy Course Ctrl', function () {
                 schoolDomainId: 'someid',
                 schoolName: undefined,
                 courseList: null
+            }, {
+                'copyObj1': 1
+            }, {
+                'copyObj2': 2
             }])
         });
 
@@ -1462,7 +1773,7 @@ describe('Copy Course Ctrl', function () {
                 scope.DistNewCourseArray = [{
                     '1': '01'
                 }, {
-                        '2': '02'
+                    '2': '02'
                     }];
 
 
@@ -1507,15 +1818,75 @@ describe('Copy Course Ctrl', function () {
         });
     });
 
-    // describe('getSelectedNewCourses spec', function () {
+    //    $scope.newCourseCatLodingLayerOnOff = function () {
+    //            Eif (($scope.newCourseListForSchollCallStack.length === 0) && ($scope.newCourseListForDistrictCallStack.length === 0))
+    //                return false;
+    //            else
+    //                return true;
+    // 
+    //        }
+
+    describe('newCourseCatLodingLayerOnOff spec', function () {
+
+        it('newCourseCatLodingLayerOnOff spec for true', function () {
+            createController();
+            scope.newCourseListForSchollCallStack = [];
+            scope.newCourseListForDistrictCallStack = [];
+
+            expect(scope.newCourseCatLodingLayerOnOff()).toBe(false);
+        });
+        it('newCourseCatLodingLayerOnOff spec for true', function () {
+            createController();
+            scope.newCourseListForSchollCallStack = [1, 2];
+            scope.newCourseListForDistrictCallStack = [3];
+
+            expect(scope.newCourseCatLodingLayerOnOff()).toBe(true);
+        });
+    });
+
+
+
+
+
+    //    $scope.onDistSchollChkUpdate = function (schdist_Id, chkbxidstr, itemName, domainObj, distObjId) {
+    // 
+    //            var distschoolChkval = angular.element('#' + chkbxidstr).is(":checked");
+    //            $scope.updateExistingCourseModal(schdist_Id, distschoolChkval, itemName, chkbxidstr);
+    //            Iif (angular.element('#' + $scope.DistChkBoxID).is(":checked")) {
+    //                $scope.isDistNotSelected = false;
+    //                angular.element('#existCatlist button').removeAttr('disabled', true);
+    // 
+    //            } else {
+    //                $scope.isDistNotSelected = true;
+    //                angular.element('#existCatlist button').attr('disabled', true);
+    //                //$scope.uncheckAllCourseCatalog();
+    //            }
+    // 
+    // 
+    //            Iif (distschoolChkval) {
+    //                //Addition
+    //                $scope.callAjx(schdist_Id, chkbxidstr, itemName, domainObj, distObjId);
+    //            }
+    //            if (chkbxidstr === 'distCollapsable') {
+    //                //In Case of District
+    //                $scope.buildMainModal();
+    // 
+    //            } else {
+    //                //In case of Scholl
+    //                $scope.removeNewSchollCourseFrmModal(domainObj);
+    //                $scope.buildMainModal();
+    //            }
+    // 
+    //        }
+    //     describe('getSelectedNewCourses spec', function () {
     //     beforeEach(function () {
-    //         spyOn(angular, 'element').and.callFake(function(){
-    //             return jQuery(["<div data-domainid='1' data-courseid='10' data-domaintype='school'></div>","<div data-domain-id='2' data-courseid='20' data-domaintype='school'></div>"])
+    //         spyOn(angular, 'element').and.callFake(function () {
+    //             return jQuery(["<div data-domainid='1' data-courseid='10' data-domaintype='school'></div>", "<div data-domain-id='2' data-courseid='20' data-domaintype='school'></div>"])
     //         });
     //         //createController();
     //     });
-    //     afterEach(function(){
-    //        angular.element.and.callThrough(); 
+    //     afterEach(function () {
+    //         angular.element.and.callThrough();
     //     });
     //     var objArrayOfSelected = [];
     //     var obj = {};
@@ -1525,11 +1896,12 @@ describe('Copy Course Ctrl', function () {
     //         var returnObj = scope.getSelectedNewCourses();
     //         expect(returnObj.length).toBe(2);
     //         console.log(returnObj);
-    //       //  expect(returnObj[0].domainid).toBe('1');
-    //             // expect(returnObj[0].courseid).toBe('10');
-    //             // expect(returnObj[0].domaintype).toBe('school');
+    //         //  expect(returnObj[0].domainid).toBe('1');
+    //         // expect(returnObj[0].courseid).toBe('10');
+    //         // expect(returnObj[0].domaintype).toBe('school');
     //         expect(returnObj[0].type).toBe('DemoCouresType');
-            
+    //
     //     });
     // });
+
 });
