@@ -441,5 +441,8 @@ margin-top:6px;
  .cursorDisable{
 	     cursor: not-allowed !important;
  }
+ .modal-backdrop.in{
+     z-index: 9999;
+ }
 	
 					

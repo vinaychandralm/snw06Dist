@@ -1187,49 +1187,74 @@ describe('Copy Course Ctrl', function () {
     });
 
 
-    describe('It should call onCourseChkUpdate method', function () {
-        beforeEach(function () {
-            spyOn(angular, 'element').and.callThrough();
+    // describe('It should call onCourseChkUpdate method', function () {
+    //     beforeEach(function () {
+    //         spyOn(angular, 'element').and.callThrough();
 
-            angularHtml = jasmine.createSpyObj(angular.element, ['is']);
-            angular.element.and.returnValue(angularHtml);
+    //         angularHtml = jasmine.createSpyObj(angular.element, ['is']);
+    //         angular.element.and.returnValue(angularHtml);
 
-        });
-        it('It should call onCourseChkUpdate method for true', function () {
-            createController();
-            spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2]);
-            spyOn(scope, 'buildMainModal');
-            spyOn(scope, 'getNewCourseListForDistrict');
-            var isDistSelected = true;
-            scope.getNewCourseListForDistrict();
-            scope.onCourseChkUpdate('idx', 'chkbxidstr');
+    //     });
+    //     it('It should call onCourseChkUpdate method for true', function () {
+    //         createController();
+    //         spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2]);
+    //         spyOn(scope, 'buildMainModal');
+    //         spyOn(scope, 'getNewCourseListForDistrict');
+    //         var isDistSelected = true;
+    //         scope.getNewCourseListForDistrict();
+    //         scope.onCourseChkUpdate('idx', 'chkbxidstr');
 
 
-            var idArrayOfSelectedCourseCat = scope.getSecectedCourseCatalog();
-            expect(idArrayOfSelectedCourseCat).toEqual([1, 2]);
-            expect(scope.getSecectedCourseCatalog).toHaveBeenCalled();
+    //         var idArrayOfSelectedCourseCat = scope.getSecectedCourseCatalog();
+    //         expect(idArrayOfSelectedCourseCat).toEqual([1, 2]);
+    //         expect(scope.getSecectedCourseCatalog).toHaveBeenCalled();
 
-            expect(angular.element).toHaveBeenCalledWith('#distCollapsable');
-            expect(angular.element().is).toHaveBeenCalledWith(":checked");
-            expect(scope.buildMainModal).toHaveBeenCalled();
-            expect(scope.getNewCourseListForDistrict).toHaveBeenCalled();
+    //         expect(angular.element).toHaveBeenCalledWith('#distCollapsable');
+    //         expect(angular.element().is).toHaveBeenCalledWith(":checked");
+    //         expect(scope.buildMainModal).toHaveBeenCalled();
+    //         expect(scope.getNewCourseListForDistrict).toHaveBeenCalled();
 
-        });
-        //        it('It should call onCourseChkUpdate method spec', function () {
-        //            createController();
-        //            //var idArrayOfSelectedCourseCat = scope.getSecectedCourseCatalog();
-        //            spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2]);
-        //            spyOn(scope, 'getNewCourseListForDistrict')
-        //            spyOn(scope, 'buildMainModal');
-        //            //spyOn(scope, 'getNewCourseListForDistrict');
-        //            var isDistSelected = true;
-        //            scope.getNewCourseListForDistrict();
-        //            scope.onCourseChkUpdate('idx', 'chkbxidstr');
-        //            expect(scope.getNewCourseListForDistrict).toHaveBeenCalled();
-        //            //expect(scope.getSecectedCourseCatalog).toHaveBeenCalledWith('idArrayOfSelectedCourseCat');
-        //
-        //        });
-    });
+    //     });
+    //     //        it('It should call onCourseChkUpdate method spec', function () {
+    //     //            createController();
+    //     //            //var idArrayOfSelectedCourseCat = scope.getSecectedCourseCatalog();
+    //     //            spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2]);
+    //     //            spyOn(scope, 'getNewCourseListForDistrict')
+    //     //            spyOn(scope, 'buildMainModal');
+    //     //            //spyOn(scope, 'getNewCourseListForDistrict');
+    //     //            var isDistSelected = true;
+    //     //            scope.getNewCourseListForDistrict();
+    //     //            scope.onCourseChkUpdate('idx', 'chkbxidstr');
+    //     //            expect(scope.getNewCourseListForDistrict).toHaveBeenCalled();
+    //     //            //expect(scope.getSecectedCourseCatalog).toHaveBeenCalledWith('idArrayOfSelectedCourseCat');
+    //     //
+    //     //        });
+    // });
+    //     describe('It should call onCourseChkUpdate method', function () {
+    //     beforeEach(function () {
+    //         spyOn(angular, 'element').and.callThrough();
+
+    //         angularHtml = jasmine.createSpyObj(angular.element, ['is']);
+    //         angular.element.and.returnValue(angularHtml);
+    //         angular.element().is.and.returnValue(true);
+    //     });
+    //     it('It should call onCourseChkUpdate method for true', function () {
+    //         createController();
+    //         spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2]);
+    //         spyOn(scope, 'getNewCourseListForDistrict');
+    //         spyOn(scope, 'buildMainModal');
+
+    //         scope.getNewCourseListForDistrict();
+    //         scope.onCourseChkUpdate('idx', 'chkbxidstr');
+
+    //         expect(scope.getSecectedCourseCatalog).toHaveBeenCalled();
+    //         expect(angular.element).toHaveBeenCalledWith('#distCollapsable');
+    //         expect(angular.element().is).toHaveBeenCalledWith(":checked");
+    //         expect(scope.buildMainModal).toHaveBeenCalled();
+    //         expect(scope.getNewCourseListForDistrict).toHaveBeenCalled();
+
+    //     });
+    // });
 
     describe('It should call callAjx method', function () {
 
@@ -1456,6 +1481,31 @@ describe('Copy Course Ctrl', function () {
             createController();
             scope.multiselectExistingCatalog = [{}, {}];
             spyOn(angular, 'copy').and.returnValue([1, 2, 3]);
+            spyOn(angular, 'element').and.callThrough();
+            angularHtml = jasmine.createSpyObj(angular.element, ['is']);
+            angular.element.and.returnValue(angularHtml);
+            angular.element().is.and.returnValue(true);
+          
+            spyOn(scope, 'addDistPostFix');
+            spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2, 3]);
+            spyOn(scope, 'addDistrictObjects');
+            scope.getCopyOfScholls();
+            scope.schollNewCousreList = [1, 2, 3]
+            expect(angular.copy).toHaveBeenCalledWith([]);
+            expect(scope.addDistPostFix).toHaveBeenCalledWith([1, 2, 3]);
+            expect(scope.getSecectedCourseCatalog).toHaveBeenCalled();
+            expect(scope.addDistrictObjects).toHaveBeenCalled();
+
+        });
+    });
+
+
+describe('getCopyOfScholls spec', function () {
+
+        it('getCopyOfScholls calls', function () {
+            createController();
+            scope.multiselectExistingCatalog = [{}, {}];
+            spyOn(angular, 'copy').and.returnValue([1, 2, 3]);
 
             spyOn(scope, 'addDistPostFix');
             spyOn(scope, 'getSecectedCourseCatalog').and.returnValue([1, 2, 3]);
@@ -1468,7 +1518,6 @@ describe('Copy Course Ctrl', function () {
 
         });
     });
-
 
 
     describe('handleCopyEvent  spec', function () {
